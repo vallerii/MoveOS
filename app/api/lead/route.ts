@@ -18,13 +18,18 @@ export async function POST(req: NextRequest) {
   const data = body as {
     name?: string;
     phone?: string;
-    message?: string;
     consent?: boolean;
     source?: string;
+    locale?: string;
+    landingPain?: string;
+    city?: string;
+    timeframe?: string;
+    selectedPain?: string;
+    qualified?: boolean;
   };
+
   const name = String(data?.name ?? "").trim().slice(0, 200);
   const phone = String(data?.phone ?? "").trim();
-  const message = String(data?.message ?? "").trim().slice(0, 2000);
   const consent = Boolean(data?.consent);
 
   if (!isValidPhone(phone)) {
@@ -37,9 +42,14 @@ export async function POST(req: NextRequest) {
   const lead = {
     name: name || undefined,
     phone,
-    message: message || undefined,
     consent,
     source: data?.source ?? "unknown",
+    locale: data?.locale ?? "unknown",
+    landingPain: data?.landingPain ?? "unknown",
+    city: data?.city ?? "unknown",
+    timeframe: data?.timeframe ?? "unknown",
+    selectedPain: data?.selectedPain ?? "unknown",
+    qualified: Boolean(data?.qualified),
     page: req.headers.get("referer") ?? "unknown",
     userAgent: req.headers.get("user-agent") ?? "unknown",
     createdAt: new Date().toISOString(),
@@ -63,5 +73,5 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, qualified: lead.qualified });
 }
