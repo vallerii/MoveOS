@@ -45,21 +45,16 @@ export interface Dictionary {
     resultLabel: string;
     resultText: string;
   };
-  whyTrustUs: {
-    heading: string;
-    p1: string;
-    p2: string;
-    cards: { emoji: string; title: string; body: string; span?: boolean; featured?: boolean }[];
-  };
   didYouKnow: {
     heading: string;
     subheading: string;
-    facts: { q: string; a: string }[];
+    facts: Record<PainSlug, { q: string; a: string }[]>;
   };
-  ourPromise: {
-    h2: string;
-    p1: string;
-    p2: string;
+  whyUs: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    body: Record<PainSlug, string>;
   };
   quizIntro: {
     heading: string;
@@ -94,12 +89,16 @@ export interface Dictionary {
     };
     contact: {
       heading: string;
+      secondaryHeading: string;
       namePlaceholder: string;
       phonePlaceholder: string;
       consent: string;
       submitButton: string;
       submitting: string;
       error: string;
+      bookingHeading: string;
+      bookingBody: string;
+      bookingButton: string;
     };
   };
   results: {

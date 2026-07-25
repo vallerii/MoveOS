@@ -31,8 +31,15 @@ const icons = [
 export default function WhatYouGet({ dict, pain }: Props) {
   const { heading, subheading, items, resultLabel, resultText } = dict.whatYouGet;
 
+  // Only show the mistakes that are actually relevant to this pain's page —
+  // a deposit page doesn't need to also carry utilities/furniture/early-exit
+  // cards. Icons are matched by each item's original position in the array.
+  const relevantItems = items
+    .map((item, i) => ({ ...item, Icon: icons[i] ?? ScaleIcon }))
+    .filter((item) => item.pains.includes(pain));
+
   return (
-    <section className="py-20 sm:pt-16">
+    <section className="py-20 sm:py-28">
       <div className="container-page">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
@@ -43,7 +50,7 @@ export default function WhatYouGet({ dict, pain }: Props) {
 
         <Reveal delay={100}>
           <div className="mx-auto mt-12 hidden max-w-4xl items-center sm:flex">
-            {items.map((_, i) => (
+            {relevantItems.map((_, i) => (
               <div key={i} className="flex flex-1 items-center">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-brand-primary/50" />
                 <span className="mx-1.5 h-px flex-1 bg-gradient-to-r from-brand-primary/30 to-brand-primary/10" />
@@ -54,18 +61,10 @@ export default function WhatYouGet({ dict, pain }: Props) {
         </Reveal>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map(({ badge, title, pains }, i) => {
-            const Icon = icons[i] ?? ScaleIcon;
-            const highlighted = pains.includes(pain);
+          {relevantItems.map(({ badge, title, Icon }, i) => {
             return (
               <Reveal key={title} delay={i * 70}>
-                <div
-                  className={
-                    highlighted
-                      ? "card flex h-full flex-col border-brand-primary/40 ring-1 ring-brand-primary/20"
-                      : "card flex h-full flex-col"
-                  }
-                >
+                <div className="card flex h-full flex-col">
                   <span className="inline-flex w-fit items-center rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-primary">
                     {badge}
                   </span>
@@ -76,7 +75,7 @@ export default function WhatYouGet({ dict, pain }: Props) {
             );
           })}
 
-          <Reveal delay={items.length * 70} className="sm:col-span-2 lg:col-span-2">
+          <Reveal delay={relevantItems.length * 70} className="w-full sm:col-span-2 lg:col-span-3">
             <div className="relative h-full overflow-hidden rounded-2xl border border-brand-accent/50 bg-brand-accent/10 p-6 shadow-[0_0_0_1px_rgba(244,185,66,0.15),0_20px_45px_-15px_rgba(244,185,66,0.45)]">
               <div className="pointer-events-none absolute -bottom-16 right-0 h-64 w-64 rounded-full bg-brand-accent/30 blur-3xl" />
               <div className="relative">

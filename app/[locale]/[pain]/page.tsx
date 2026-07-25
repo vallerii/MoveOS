@@ -4,9 +4,8 @@ import { LOCALES, PAIN_SLUGS, type Locale, type PainSlug } from "@/lib/i18n/type
 import { getDictionary } from "@/lib/i18n";
 import Hero from "@/components/Hero";
 import WhatYouGet from "@/components/WhatYouGet";
-import WhyTrustUs from "@/components/WhyTrustUs";
 import DidYouKnow from "@/components/DidYouKnow";
-import OurPromise from "@/components/OurPromise";
+import WhyUs from "@/components/WhyUs";
 import QuizSection from "@/components/Quiz/QuizSection";
 
 type Params = { locale: string; pain: string };
@@ -38,10 +37,9 @@ export default function PainPage({ params }: { params: Params }) {
   return (
     <main>
       <Hero locale={locale} pain={pain} dict={dict} />
+      <DidYouKnow dict={dict} pain={pain} />
       <WhatYouGet dict={dict} pain={pain} />
-      <WhyTrustUs dict={dict} />
-      <DidYouKnow dict={dict} />
-      <OurPromise dict={dict} />
+      <WhyUs dict={dict} pain={pain} />
       <QuizSection locale={locale} pain={pain} dict={dict} />
     </main>
   );

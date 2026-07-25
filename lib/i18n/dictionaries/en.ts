@@ -10,142 +10,174 @@ const en: Dictionary = {
     ru: "Русский",
   },
   nav: {
-    bookButton: "Get My Free Checklist",
+    bookButton: "Free Move-Out Review",
   },
-  heroTrustBadges: ["100% free", "15 minutes", "By phone", "No obligation"],
+  heroTrustBadges: ["100% free", "15 minutes", "Personalised", "No obligation"],
   pains: {
     deposit: {
       eyebrow: "Free Deposit Protection Review · Barcelona",
       h1: "Don't Lose Your Deposit When You Move Out",
       subheading:
-        "Get a free 15-minute call with a move-out specialist. Know your rights, avoid costly mistakes, and maximise your chances of getting your full deposit back.",
-      heroCta: "Get My Free Checklist",
+        "Most tenants lose part of their deposit simply because they don't know their rights. Get a free deposit review and find out what to do before handing back the keys — so you get it all back.",
+      heroCta: "Get My Deposit Review",
       shortLabel: "Deposit",
     },
     admin: {
       eyebrow: "Free Move-Out Admin Check · Barcelona",
       h1: "Moving Out Shouldn't Mean a Mountain of Paperwork",
       subheading:
-        "Internet, address changes, banks, subscriptions — get a free 15-minute call to make sure nothing falls through the cracks when you move.",
-      heroCta: "Get My Free Checklist",
+        "A forgotten subscription or unpaid bill has a way of showing up months after you move. Get a free move-out admin review so nothing slips through the cracks.",
+      heroCta: "Get My Admin Review",
       shortLabel: "Moving Admin",
     },
     belongings: {
       eyebrow: "Free Move-Out Review · Barcelona",
       h1: "Don't Let Your Old Furniture Become a Problem",
       subheading:
-        "No time to sell, donate, or store what you're leaving behind? Get a free 15-minute call and a clear plan for what to do with it.",
-      heroCta: "Get My Free Checklist",
+        "Furniture and belongings you can't take with you are a common source of last-minute stress and cost. Get a free review and a clear plan for what to do with them.",
+      heroCta: "Get My Belongings Review",
       shortLabel: "Furniture & Belongings",
     },
     urgent: {
       eyebrow: "Free Urgent Move-Out Review · Barcelona",
       h1: "Moving Out Earlier Than Planned? Do It Right.",
       subheading:
-        "Contract, deposit, notice period — get a free 15-minute call to understand your options before you make a costly mistake.",
-      heroCta: "Get My Free Checklist",
+        "Moving out earlier than planned often costs more than you'd expect — in penalties and lost deposit. Get a free urgent move-out review before you give notice.",
+      heroCta: "Get My Urgent Move-Out Review",
       shortLabel: "Urgent Move-Out",
     },
   },
   whatYouGet: {
-    heading: "What We'll Cover in 15 Minutes",
-    subheading: "Not a generic checklist. A short call built around your specific situation.",
+    heading: "Mistakes That Cost Renters Money When They Move Out",
+    subheading: "Things most tenants find out too late — we go through them for your specific situation.",
     items: [
       {
         badge: "Deductions",
-        title: "What your landlord can legally deduct from your deposit",
+        title: "Illegal deductions are the #1 reason tenants lose their deposit",
         pains: ["deposit"],
       },
       {
         badge: "Photo Report",
-        title: "How to prepare a photo report for the handover",
+        title: "Without photos and a signed report, you can't prove your case",
         pains: ["deposit", "urgent", "belongings"],
       },
       {
         badge: "Utilities",
-        title: "How to cancel or transfer your internet, electricity and gas",
+        title: "An unclosed meter can land you a bill months after you've left",
         pains: ["admin"],
       },
       {
         badge: "Address Change",
-        title: "How to update your address with banks, subscriptions and official registers",
+        title: "A forgotten address update comes back to bite you later",
         pains: ["admin"],
       },
       {
         badge: "Belongings",
-        title: "What to do with furniture and belongings you can't take with you",
+        title: "Furniture with nowhere to go means stress and cost in your last week",
         pains: ["belongings"],
       },
       {
         badge: "Early Exit",
-        title: "How to handle notice periods and early-termination clauses",
+        title: "Leaving early often means a penalty and a smaller deposit refund",
         pains: ["urgent"],
       },
       {
         badge: "Documents",
-        title: "Which documents to collect before handing back the keys",
+        title: "One missing document is enough to delay your deposit",
         pains: ["deposit", "admin", "urgent"],
       },
     ],
     resultLabel: "The Result",
     resultText: "Leave with everything sorted — deposit, admin, and belongings.",
   },
-  whyTrustUs: {
-    heading: "Advice Tailored to Your Situation",
-    p1: "Moving out isn't the same for everyone. Your rental contract, landlord, apartment condition and timeline all matter.",
-    p2: "That's why we don't use generic checklists. During the call, we look at your specific situation and explain what matters before you hand back the keys.",
-    cards: [
-      {
-        emoji: "📄",
-        title: "Your Contract",
-        body: "Every rental agreement is different. We review the clauses that matter for your move-out.",
-      },
-      {
-        emoji: "⚖️",
-        title: "Your Rights",
-        body: "We explain what your landlord can and cannot legally deduct.",
-      },
-      {
-        emoji: "🏠",
-        title: "Your Situation",
-        body: "Not generic advice. Recommendations based on your apartment, documents and timeline.",
-        span: true,
-        featured: true,
-      },
-      {
-        emoji: "🎁",
-        title: "Free & No Obligation",
-        body: "Get practical guidance with no cost and no pressure.",
-        span: true,
-      },
-    ],
-  },
   didYouKnow: {
     heading: "Did You Know?",
     subheading: "A few things most tenants only find out after it's too late.",
-    facts: [
-      {
-        q: "Your deposit may not even be held by your landlord.",
-        a: "For most residential rentals in Catalonia, the mandatory security deposit is normally lodged with INCASÒL rather than remaining in the landlord's personal bank account.",
-      },
-      {
-        q: "Not every clause in a rental contract is enforceable.",
-        a: "Some rental agreements include clauses that conflict with mandatory tenant protections under Spanish or Catalan law. Appearing in the contract doesn't automatically make a clause valid.",
-      },
-      {
-        q: "Most deposit disputes can be prevented.",
-        a: "The strongest protection isn't a lawyer — it's good preparation before the handover. Proper documentation often makes the difference.",
-      },
-      {
-        q: "Leaving earlier than planned doesn't always mean losing your deposit.",
-        a: "Notice periods and early-termination terms vary by contract. Understanding yours before you give notice can save you money and stress.",
-      },
-    ],
+    facts: {
+      deposit: [
+        {
+          q: "Your deposit might be held by the government, not your landlord.",
+          a: "In Catalonia, the mandatory deposit is lodged with INCASÒL, not sitting in your landlord's personal account — this can be checked.",
+        },
+        {
+          q: "Your landlord has exactly one month to return your deposit.",
+          a: "By law, the deposit must be returned within a month of handing back the keys. Silence after that isn't normal — it's a breach.",
+        },
+        {
+          q: "Normal wear and tear isn't grounds for a deduction.",
+          a: "Faded paint or a worn floor from years of living there is wear and tear, not damage. Telling the two apart is the whole dispute.",
+        },
+        {
+          q: "Most disputes are settled by one photo, not a lawyer.",
+          a: "A well-documented move-in and move-out condition report closes the question before it even comes up.",
+        },
+      ],
+      admin: [
+        {
+          q: "A forgotten subscription keeps charging your card after you move.",
+          a: "Streaming, gym, deliveries — subscriptions don't cancel themselves. Checking the list takes 10 minutes and saves months of charges.",
+        },
+        {
+          q: "Internet providers rarely move faster than 2 weeks.",
+          a: "Even an urgent request to cancel or transfer your internet in Spain usually takes 1–2 weeks — plan ahead.",
+        },
+        {
+          q: "A forgotten padrón update can bite at the worst time.",
+          a: "Your registered address affects doctor appointments, school enrolment, and some immigration processes.",
+        },
+        {
+          q: "Mail to your old address can keep arriving for months.",
+          a: "Bank, tax office, insurance — the list of places with your address is usually longer than you'd think.",
+        },
+      ],
+      belongings: [
+        {
+          q: "Furniture left behind often becomes your landlord's problem — and yours.",
+          a: "If your landlord finds items after you've left, it can delay your deposit or add removal costs.",
+        },
+        {
+          q: "Selling furniture a week before moving is nearly impossible.",
+          a: "Good used-furniture listings usually take 2–4 weeks to sell — you won't have time in the final days.",
+        },
+        {
+          q: "Storage is cheaper than you think — if you book early.",
+          a: "Short-term storage prices in Barcelona spike during peak moving season (summer, end of the school year).",
+        },
+        {
+          q: "Not everything that looks like junk is easy to throw out.",
+          a: "Bulky items like furniture and mattresses can't just be left on the street — Barcelona has specific rules and pickup schedules (trastos).",
+        },
+      ],
+      urgent: [
+        {
+          q: "Leaving early doesn't always mean a penalty.",
+          a: "Many contracts allow early termination with compensation capped at one month's rent — not losing your whole deposit, as many fear.",
+        },
+        {
+          q: "Your notice period starts from the written notice, not the conversation.",
+          a: "Telling your landlord in person doesn't count — most contracts require written notice (email or burofax).",
+        },
+        {
+          q: "Leaving \"tomorrow\" is almost never free, legally speaking.",
+          a: "Even in urgent cases, contracts usually assume a minimum notice period — skipping it can mean paying for months you won't live there.",
+        },
+        {
+          q: "Panic is the worst advisor when you need to leave fast.",
+          a: "Most costly mistakes in an urgent move happen in the first 24 hours, before anyone actually reads the contract.",
+        },
+      ],
+    },
   },
-  ourPromise: {
-    h2: "We won't give generic advice.",
-    p1: "We'll review your specific situation and tell you exactly what to do before you hand back the keys.",
-    p2: "Our promise: help you leave with your deposit, your admin and your belongings all sorted.",
+  whyUs: {
+    eyebrow: "Why MoveOS",
+    heading: "Every move-out is different",
+    intro: "Your lease, your landlord, the apartment's condition, and your timeline all matter. Our only job is getting you through your move without stress.",
+    body: {
+      deposit: "Here's how we help: we review your move-out act and photos and tell you how to get your full deposit back.",
+      admin: "Here's how we help: we go through your paperwork and flag mistakes, so you don't overpay or get blamed unfairly.",
+      belongings: "Here's how we help: we build an inventory and plan your move, so nothing gets lost or broken.",
+      urgent: "Here's how we help: we tell you exactly what to do first, step by step — no panic.",
+    },
   },
   quizIntro: {
     heading: "Ready to move out with confidence?",
@@ -180,12 +212,16 @@ const en: Dictionary = {
     },
     contact: {
       heading: "Almost done — where should we send your checklist?",
+      secondaryHeading: "Leave your number too — we'll send the checklist and a confirmation",
       namePlaceholder: "Your name (optional)",
       phonePlaceholder: "Your phone number",
       consent: "I agree to be contacted by MoveOS. See our Privacy Policy.",
       submitButton: "Get my checklist",
       submitting: "Sending…",
       error: "Something went wrong. Please try again in a moment.",
+      bookingHeading: "Let's talk through your specific situation",
+      bookingBody: "A free 15-minute call — pick any time that works, no obligation.",
+      bookingButton: "Book your call",
     },
   },
   results: {

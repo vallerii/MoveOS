@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Dictionary, Locale, PainSlug } from "@/lib/i18n/types";
 import { formatTemplate } from "@/lib/i18n";
+import { BOOKING_URL } from "@/lib/config";
 import ChoiceButton from "./ChoiceButton";
 import ProgressDots from "./ProgressDots";
 import Result from "./Result";
@@ -30,7 +31,9 @@ type Props = {
 };
 
 function isQualified(a: Answers): boolean {
-  const qualifyingTimeframe = a.timeframe === "already" || a.timeframe === "lt1m" || a.timeframe === "m1to3";
+  // Qualified = renting in Barcelona AND moving out within the next 3 months.
+  // Already moved out, "later than 3 months / not sure", and other cities all fall back to the checklist only.
+  const qualifyingTimeframe = a.timeframe === "lt1m" || a.timeframe === "m1to3";
   return a.city === "barcelona" && qualifyingTimeframe;
 }
 
@@ -44,6 +47,9 @@ export default function QuizWizard({ locale, pain, dict }: Props) {
 
   const q = dict.quiz;
   const step = STEPS[stepIndex];
+  // City and timeframe are already answered by the time we reach the contact
+  // step, so we know qualification before the visitor submits anything.
+  const qualifiedSoFar = isQualified(answers);
 
   function goNext() {
     setStepIndex((i) => Math.min(i + 1, STEPS.length - 1));
@@ -54,6 +60,22 @@ export default function QuizWizard({ locale, pain, dict }: Props) {
   function choose<K extends keyof Answers>(key: K, value: Answers[K]) {
     setAnswers((a) => ({ ...a, [key]: value }));
     goNext();
+  }
+
+  // Pain is the last question before we'd normally ask for a phone number.
+  // City + timeframe are already known at this point, so we can tell right
+  // here whether this person qualifies. If they don't, we're not collecting
+  // their data at all — skip straight to the checklist/download screen
+  // instead of showing the contact form.
+  function choosePain(value: PainAnswer) {
+    const next = { ...answers, pain: value };
+    setAnswers(next);
+    if (isQualified(next)) {
+      goNext();
+    } else {
+      setQualified(false);
+      setShowResult(true);
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -183,36 +205,53 @@ export default function QuizWizard({ locale, pain, dict }: Props) {
             <ChoiceButton
               label={q.pain.deposit}
               selected={answers.pain === "deposit"}
-              onClick={() => choose("pain", "deposit")}
+              onClick={() => choosePain("deposit")}
             />
             <ChoiceButton
               label={q.pain.admin}
               selected={answers.pain === "admin"}
-              onClick={() => choose("pain", "admin")}
+              onClick={() => choosePain("admin")}
             />
             <ChoiceButton
               label={q.pain.belongings}
               selected={answers.pain === "belongings"}
-              onClick={() => choose("pain", "belongings")}
+              onClick={() => choosePain("belongings")}
             />
             <ChoiceButton
               label={q.pain.urgent}
               selected={answers.pain === "urgent"}
-              onClick={() => choose("pain", "urgent")}
+              onClick={() => choosePain("urgent")}
             />
             <ChoiceButton
               label={q.pain.other}
               selected={answers.pain === "other"}
-              onClick={() => choose("pain", "other")}
+              onClick={() => choosePain("other")}
             />
           </div>
         </fieldset>
       )}
 
       {step === "contact" && (
-        <form onSubmit={handleSubmit}>
-          <h3 className="mb-4 text-center text-lg font-bold text-brand-ink sm:text-xl">{q.contact.heading}</h3>
-          <div className="flex flex-col gap-3">
+        <div>
+          {qualifiedSoFar && (
+            <div className="mb-6 rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-6 text-center">
+              <h3 className="text-lg font-bold text-brand-ink">{q.contact.bookingHeading}</h3>
+              <p className="mt-2 text-sm text-brand-ink/70">{q.contact.bookingBody}</p>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary mt-4 inline-flex"
+              >
+                {q.contact.bookingButton}
+              </a>
+            </div>
+          )}
+          <form onSubmit={handleSubmit}>
+            <h3 className="mb-4 text-center text-lg font-bold text-brand-ink sm:text-xl">
+              {qualifiedSoFar ? q.contact.secondaryHeading : q.contact.heading}
+            </h3>
+            <div className="flex flex-col gap-3">
             <input
               type="text"
               autoComplete="name"
@@ -244,7 +283,8 @@ export default function QuizWizard({ locale, pain, dict }: Props) {
             </button>
           </div>
           {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
-        </form>
+          </form>
+        </div>
       )}
 
       {step !== "city" && (

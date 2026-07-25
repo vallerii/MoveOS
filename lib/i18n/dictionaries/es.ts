@@ -10,142 +10,174 @@ const es: Dictionary = {
     ru: "Русский",
   },
   nav: {
-    bookButton: "Consigue tu checklist gratis",
+    bookButton: "Revisión gratuita de tu mudanza",
   },
-  heroTrustBadges: ["100% gratis", "15 minutos", "Por teléfono", "Sin compromiso"],
+  heroTrustBadges: ["100% gratis", "15 minutos", "Personalizado", "Sin compromiso"],
   pains: {
     deposit: {
       eyebrow: "Revisión gratuita de tu fianza · Barcelona",
       h1: "No pierdas tu fianza al dejar el piso",
       subheading:
-        "Consigue una llamada gratuita de 15 minutos con un especialista en mudanzas. Conoce tus derechos, evita errores costosos y aumenta tus posibilidades de recuperar toda tu fianza.",
-      heroCta: "Consigue tu checklist gratis",
+        "La mayoría de inquilinos pierde parte de su fianza simplemente por no conocer sus derechos. Consigue una revisión gratuita de tu fianza y descubre qué hacer antes de entregar las llaves para recuperarla entera.",
+      heroCta: "Consigue tu revisión de fianza",
       shortLabel: "Fianza",
     },
     admin: {
       eyebrow: "Revisión gratuita de trámites de mudanza · Barcelona",
       h1: "Mudarte no debería significar una montaña de papeleo",
       subheading:
-        "Internet, cambio de dirección, bancos, suscripciones — consigue una llamada gratuita de 15 minutos para que nada se te escape al mudarte.",
-      heroCta: "Consigue tu checklist gratis",
+        "Una suscripción olvidada o una factura sin pagar suele aparecer meses después de la mudanza. Consigue una revisión gratuita de tus trámites para que nada se te escape.",
+      heroCta: "Consigue tu revisión de trámites",
       shortLabel: "Trámites de mudanza",
     },
     belongings: {
       eyebrow: "Revisión gratuita de mudanza · Barcelona",
       h1: "Que tus muebles no se conviertan en un problema",
       subheading:
-        "¿Sin tiempo para vender, donar o guardar lo que dejas atrás? Consigue una llamada gratuita de 15 minutos y un plan claro para todo ello.",
-      heroCta: "Consigue tu checklist gratis",
+        "Los muebles y pertenencias que no te llevas son una fuente habitual de estrés y gastos de última hora. Consigue una revisión gratuita y un plan claro para qué hacer con ellos.",
+      heroCta: "Consigue tu revisión de pertenencias",
       shortLabel: "Muebles y pertenencias",
     },
     urgent: {
       eyebrow: "Revisión gratuita de mudanza urgente · Barcelona",
       h1: "¿Te mudas antes de lo previsto? Hazlo bien.",
       subheading:
-        "Contrato, fianza, plazo de preaviso — consigue una llamada gratuita de 15 minutos para conocer tus opciones antes de cometer un error costoso.",
-      heroCta: "Consigue tu checklist gratis",
+        "Mudarte antes de lo previsto suele costar más de lo que crees, entre penalizaciones y fianza perdida. Consigue una revisión gratuita de tu mudanza urgente antes de avisar al propietario.",
+      heroCta: "Consigue tu revisión de mudanza urgente",
       shortLabel: "Mudanza urgente",
     },
   },
   whatYouGet: {
-    heading: "Qué veremos en 15 minutos",
-    subheading: "No es un checklist genérico. Una llamada breve centrada en tu situación concreta.",
+    heading: "Errores que le cuestan caro a los inquilinos al mudarse",
+    subheading: "Lo que la mayoría descubre demasiado tarde — lo repasamos para tu situación concreta.",
     items: [
       {
         badge: "Deducciones",
-        title: "Qué puede descontar legalmente el propietario de tu fianza",
+        title: "Las deducciones ilegales son la causa nº1 de perder la fianza",
         pains: ["deposit"],
       },
       {
         badge: "Informe fotográfico",
-        title: "Cómo preparar un informe fotográfico para la entrega",
+        title: "Sin fotos ni acta firmada, no puedes demostrar tu versión",
         pains: ["deposit", "urgent", "belongings"],
       },
       {
         badge: "Suministros",
-        title: "Cómo dar de baja o traspasar internet, luz y gas",
+        title: "Un contador sin cerrar puede pasarte factura meses después",
         pains: ["admin"],
       },
       {
         badge: "Cambio de dirección",
-        title: "Cómo actualizar tu dirección en bancos, suscripciones y registros oficiales",
+        title: "Olvidar actualizar tu dirección te complica las cosas más tarde",
         pains: ["admin"],
       },
       {
         badge: "Pertenencias",
-        title: "Qué hacer con los muebles y pertenencias que no te llevas",
+        title: "Los muebles sin destino generan estrés y gastos de última hora",
         pains: ["belongings"],
       },
       {
         badge: "Salida anticipada",
-        title: "Cómo gestionar el plazo de preaviso y las cláusulas de resolución anticipada",
+        title: "Irte antes de tiempo suele traer penalización y menos fianza",
         pains: ["urgent"],
       },
       {
         badge: "Documentos",
-        title: "Qué documentos reunir antes de entregar las llaves",
+        title: "Un solo documento que falte puede retrasar tu fianza",
         pains: ["deposit", "admin", "urgent"],
       },
     ],
     resultLabel: "El resultado",
     resultText: "Vete con todo resuelto: fianza, trámites y pertenencias.",
   },
-  whyTrustUs: {
-    heading: "Consejos adaptados a tu situación",
-    p1: "Mudarte no es igual para todos. Tu contrato de alquiler, tu propietario, el estado del piso y tus plazos importan.",
-    p2: "Por eso no usamos checklists genéricos. Durante la llamada, revisamos tu situación concreta y te explicamos qué importa antes de entregar las llaves.",
-    cards: [
-      {
-        emoji: "📄",
-        title: "Tu contrato",
-        body: "Cada contrato de alquiler es distinto. Revisamos las cláusulas que importan para tu salida.",
-      },
-      {
-        emoji: "⚖️",
-        title: "Tus derechos",
-        body: "Te explicamos qué puede y qué no puede descontar legalmente el propietario.",
-      },
-      {
-        emoji: "🏠",
-        title: "Tu situación",
-        body: "Nada de consejos genéricos. Recomendaciones según tu piso, tus documentos y tus plazos.",
-        span: true,
-        featured: true,
-      },
-      {
-        emoji: "🎁",
-        title: "Gratis y sin compromiso",
-        body: "Recibe orientación práctica sin coste y sin presión.",
-        span: true,
-      },
-    ],
-  },
   didYouKnow: {
     heading: "¿Sabías que…?",
     subheading: "Cosas que la mayoría de inquilinos descubre cuando ya es tarde.",
-    facts: [
-      {
-        q: "Puede que tu fianza ni siquiera esté en manos de tu propietario.",
-        a: "En la mayoría de alquileres de vivienda en Cataluña, la fianza obligatoria se deposita en el INCASÒL, no se queda en la cuenta personal del propietario.",
-      },
-      {
-        q: "No todas las cláusulas de un contrato de alquiler son válidas.",
-        a: "Algunos contratos incluyen cláusulas que contradicen las protecciones obligatorias para inquilinos según la ley española o catalana. Que aparezca en el contrato no la hace automáticamente válida.",
-      },
-      {
-        q: "La mayoría de disputas por la fianza se pueden evitar.",
-        a: "La mejor protección no es un abogado, es una buena preparación antes de la entrega. Una buena documentación suele marcar la diferencia.",
-      },
-      {
-        q: "Irte antes de lo previsto no siempre significa perder la fianza.",
-        a: "Los plazos de preaviso y las condiciones de resolución anticipada varían según el contrato. Entender los tuyos antes de avisar puede ahorrarte dinero y estrés.",
-      },
-    ],
+    facts: {
+      deposit: [
+        {
+          q: "Tu fianza puede estar en manos del Estado, no de tu propietario.",
+          a: "En Cataluña, la fianza obligatoria se deposita en el INCASÒL, no en la cuenta personal del propietario — y se puede comprobar.",
+        },
+        {
+          q: "Tu propietario tiene exactamente un mes para devolver la fianza.",
+          a: "Por ley, la fianza debe devolverse en el plazo de un mes tras entregar las llaves. El silencio después de ese plazo no es normal — es un incumplimiento.",
+        },
+        {
+          q: "El desgaste normal no es motivo de descuento.",
+          a: "Una pintura descolorida o un suelo desgastado por los años son desgaste normal, no daño. Distinguir uno de otro es toda la disputa.",
+        },
+        {
+          q: "La mayoría de disputas las gana una foto, no un abogado.",
+          a: "Un buen informe del estado del piso a la entrada y a la salida cierra el tema antes de que empiece.",
+        },
+      ],
+      admin: [
+        {
+          q: "Una suscripción olvidada te sigue cobrando después de mudarte.",
+          a: "Streaming, gimnasio, repartos — las suscripciones no se cancelan solas. Revisar la lista lleva 10 minutos y ahorra meses de cargos.",
+        },
+        {
+          q: "Las compañías de internet rara vez van más rápido de 2 semanas.",
+          a: "Incluso una baja o traspaso urgente de internet en España suele tardar de 1 a 2 semanas — planifícalo con tiempo.",
+        },
+        {
+          q: "Un empadronamiento olvidado puede complicarte las cosas en el peor momento.",
+          a: "Tu dirección registrada afecta a citas médicas, matrícula escolar y algunos trámites de extranjería.",
+        },
+        {
+          q: "El correo a tu antigua dirección puede seguir llegando meses después.",
+          a: "Banco, Hacienda, seguro — la lista de sitios con tu dirección suele ser más larga de lo que parece.",
+        },
+      ],
+      belongings: [
+        {
+          q: "Los muebles que dejas atrás suelen convertirse en problema del propietario — y tuyo también.",
+          a: "Si el propietario encuentra objetos después de que te vayas, puede retrasar tu fianza o sumar gastos de retirada.",
+        },
+        {
+          q: "Vender muebles la última semana es casi imposible.",
+          a: "Los buenos anuncios de muebles de segunda mano tardan entre 2 y 4 semanas en venderse — no te dará tiempo en los últimos días.",
+        },
+        {
+          q: "Guardar tus cosas es más barato de lo que crees — si reservas con antelación.",
+          a: "Los precios de trasteros a corto plazo en Barcelona suben en temporada alta de mudanzas (verano, fin de curso).",
+        },
+        {
+          q: "No todo lo que parece basura es fácil de tirar.",
+          a: "Los muebles y colchones no se pueden dejar sin más en la calle — Barcelona tiene normas y calendarios específicos para objetos voluminosos (trastos).",
+        },
+      ],
+      urgent: [
+        {
+          q: "Irte antes de tiempo no siempre implica una penalización.",
+          a: "Muchos contratos permiten la resolución anticipada con una compensación de como máximo una mensualidad — no perder toda la fianza, como muchos temen.",
+        },
+        {
+          q: "Tu plazo de preaviso cuenta desde el aviso por escrito, no desde la conversación.",
+          a: "Avisar de palabra no cuenta — la mayoría de contratos exigen un aviso por escrito (email o burofax).",
+        },
+        {
+          q: "Irte «mañana mismo» casi nunca es gratis, legalmente hablando.",
+          a: "Incluso en casos urgentes, los contratos suelen exigir un preaviso mínimo — saltárselo puede significar pagar meses que no vivirás allí.",
+        },
+        {
+          q: "El pánico es el peor consejero cuando necesitas irte rápido.",
+          a: "La mayoría de errores costosos en una salida urgente ocurren en las primeras 24 horas, antes de leer bien el contrato.",
+        },
+      ],
+    },
   },
-  ourPromise: {
-    h2: "No te daremos consejos genéricos.",
-    p1: "Revisamos tu situación concreta y te decimos exactamente qué hacer antes de entregar las llaves.",
-    p2: "Nuestra promesa: ayudarte a irte con la fianza, los trámites y tus pertenencias resueltos.",
+  whyUs: {
+    eyebrow: "Por qué MoveOS",
+    heading: "Cada mudanza es distinta",
+    intro: "Tu contrato, tu propietario, el estado del piso y tus plazos importan. Nuestro único trabajo es que te mudes sin estrés.",
+    body: {
+      deposit: "Así te ayudamos: revisamos el acta y las fotos de la salida y te decimos cómo recuperar tu fianza completa.",
+      admin: "Así te ayudamos: revisamos tus documentos y los errores, para que no pagues de más ni te culpen injustamente.",
+      belongings: "Así te ayudamos: hacemos un inventario y organizamos la mudanza, para que nada se pierda ni se rompa.",
+      urgent: "Así te ayudamos: te decimos qué hacer primero, paso a paso — sin pánico.",
+    },
   },
   quizIntro: {
     heading: "¿Listo para mudarte con confianza?",
@@ -180,12 +212,16 @@ const es: Dictionary = {
     },
     contact: {
       heading: "Casi listo — ¿dónde te enviamos tu checklist?",
+      secondaryHeading: "Deja también tu número — te enviamos el checklist y la confirmación",
       namePlaceholder: "Tu nombre (opcional)",
       phonePlaceholder: "Tu número de teléfono",
       consent: "Acepto que MoveOS me contacte. Consulta nuestra Política de privacidad.",
       submitButton: "Quiero mi checklist",
       submitting: "Enviando…",
       error: "Algo salió mal. Inténtalo de nuevo en un momento.",
+      bookingHeading: "Hablemos de tu situación en concreto",
+      bookingBody: "Una llamada gratuita de 15 minutos — elige el horario que mejor te venga, sin compromiso.",
+      bookingButton: "Reservar llamada",
     },
   },
   results: {
