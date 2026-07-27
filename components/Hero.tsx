@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CheckCircleIcon, ClockIcon, PhoneCallIcon, ShieldCheckIcon } from "./icons";
+import { CheckCircleIcon, ClockIcon, PhoneCallIcon, ShieldCheckIcon, MapPinIcon } from "./icons";
 import Reveal from "./Reveal";
 import type { Dictionary, Locale, PainSlug } from "@/lib/i18n/types";
 
@@ -9,7 +9,7 @@ type Props = {
   dict: Dictionary;
 };
 
-const badgeIcons = [CheckCircleIcon, ClockIcon, PhoneCallIcon, ShieldCheckIcon];
+const badgeIcons = [MapPinIcon, CheckCircleIcon, ClockIcon, PhoneCallIcon, ShieldCheckIcon];
 
 export default function Hero({ pain, dict }: Props) {
   const copy = dict.pains[pain];
@@ -17,11 +17,18 @@ export default function Hero({ pain, dict }: Props) {
   return (
     <section className="overflow-hidden py-8 sm:pb-10 sm:pt-24 relative min-h-[90vh]">
       <Image
-        src="/city-route.png"
+        src="/city.png"
         alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
         width={2000}
         height={800}
-        className="absolute animate-float top-0 right-[-100px] w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] object-contain object-right "
+        className="absolute top-0 right-[-100px] w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[100%] md:bottom-0 object-contain object-right "
+      />
+      <Image
+        src="/route.png"
+        alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
+        width={2000}
+        height={1000}
+        className="absolute animate-float top-0 right-[-100px] w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[90%] md:bottom-0 object-contain object-right "
       />
       <div className="container-page flex lg:grid items-center justify-center gap-10 lg:grid-cols-[2fr_1fr] lg:gap-16">
         <div className="order-1 text-center lg:text-left ">
@@ -57,7 +64,7 @@ export default function Hero({ pain, dict }: Props) {
 
       <Reveal delay={400}>
         <div className="container-page mt-14 lg:mt-40">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 rounded-2xl border border-black/5 bg-white/70 px-8 py-6 shadow-card backdrop-blur sm:justify-between">
+          <div className="flex flex-wrap items-center justify-start gap-x-10 gap-y-5 rounded-2xl border border-black/5 bg-white/70 px-8 py-6 shadow-card backdrop-blur sm:justify-between">
             {dict.heroTrustBadges.map((label, i) => {
               const Icon = badgeIcons[i] ?? CheckCircleIcon;
               return (

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
 import {
   BanknotesIcon,
@@ -11,6 +12,8 @@ import {
   DocumentTextIcon,
   MagnifyingGlassIcon,
   SparklesIcon,
+  WrenchIcon,
+  ShieldCheckIcon,
 } from "./icons";
 import type { Dictionary, PainSlug } from "@/lib/i18n/types";
 
@@ -24,6 +27,8 @@ const iconsByPain: Record<PainSlug, (typeof SparklesIcon)[]> = {
   admin: [BanknotesIcon, ClockIcon, MapPinIcon, MailIcon],
   belongings: [GiftIcon, ClockIcon, BanknotesIcon, ClipboardCheckIcon],
   urgent: [ScaleIcon, DocumentTextIcon, ClockIcon, MagnifyingGlassIcon],
+  buyout: [BanknotesIcon, ClockIcon, MagnifyingGlassIcon, ShieldCheckIcon],
+  repair: [ScaleIcon, WrenchIcon, CameraIcon, ClipboardCheckIcon],
 };
 
 export default function DidYouKnow({ dict, pain }: Props) {
@@ -32,7 +37,17 @@ export default function DidYouKnow({ dict, pain }: Props) {
   const icons = iconsByPain[pain];
 
   return (
-    <section className="bg-white py-20 sm:py-28">
+    <section className="bg-white py-20 sm:py-28 relative ">
+      <div className="absolute inset-0 overflow-hidden">
+        <Image
+          src="/city-didyouknow.png"
+          alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
+          width={2000}
+          height={800}
+          className="absolute opacity-30  top-0 left-0 w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[100%] md:bottom-0 object-contain object-left "
+        />
+
+      </div>
       <div className="container-page">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">

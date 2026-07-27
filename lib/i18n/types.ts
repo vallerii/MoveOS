@@ -3,9 +3,9 @@ export type Locale = "en" | "es" | "ru";
 export const LOCALES: Locale[] = ["en", "es", "ru"];
 export const DEFAULT_LOCALE: Locale = "ru";
 
-export type PainSlug = "deposit" | "admin" | "belongings" | "urgent";
+export type PainSlug = "deposit" | "admin" | "belongings" | "urgent" | "buyout" | "repair";
 
-export const PAIN_SLUGS: PainSlug[] = ["deposit", "admin", "belongings", "urgent"];
+export const PAIN_SLUGS: PainSlug[] = ["deposit", "admin", "belongings", "urgent", "buyout", "repair"];
 
 export interface ChecklistSection {
   heading: string;
@@ -27,7 +27,7 @@ export interface Dictionary {
   nav: {
     bookButton: string;
   };
-  heroTrustBadges: [string, string, string, string];
+  heroTrustBadges: [string, string, string, string, string];
   pains: Record<
     PainSlug,
     {
@@ -79,27 +79,6 @@ export interface Dictionary {
       m1to3: string;
       later: string;
     };
-    pain: {
-      question: string;
-      deposit: string;
-      admin: string;
-      belongings: string;
-      urgent: string;
-      other: string;
-    };
-    contact: {
-      heading: string;
-      secondaryHeading: string;
-      namePlaceholder: string;
-      phonePlaceholder: string;
-      consent: string;
-      submitButton: string;
-      submitting: string;
-      error: string;
-      bookingHeading: string;
-      bookingBody: string;
-      bookingButton: string;
-    };
   };
   results: {
     qualified: {
@@ -109,6 +88,7 @@ export interface Dictionary {
       bookingHeading: string;
       bookingBody: string;
       bookingButton: string;
+      emailAltText: string;
       checklistHeading: string;
     };
     notQualified: {

@@ -12,7 +12,7 @@ const es: Dictionary = {
   nav: {
     bookButton: "Revisión gratuita de tu mudanza",
   },
-  heroTrustBadges: ["100% gratis", "15 minutos", "Personalizado", "Sin compromiso"],
+  heroTrustBadges: ["Barcelona", "100% gratis", "15 minutos", "Personalizado", "Sin compromiso"],
   pains: {
     deposit: {
       eyebrow: "Revisión gratuita de tu fianza · Barcelona",
@@ -45,6 +45,22 @@ const es: Dictionary = {
         "Mudarte antes de lo previsto suele costar más de lo que crees, entre penalizaciones y fianza perdida. Consigue una revisión gratuita de tu mudanza urgente antes de avisar al propietario.",
       heroCta: "Consigue tu revisión de mudanza urgente",
       shortLabel: "Mudanza urgente",
+    },
+    buyout: {
+      eyebrow: "Traspaso de tu contrato de alquiler · Barcelona",
+      h1: "¿Quieres recuperar tu fianza y conseguir un bono por mudarte?",
+      subheading:
+        "Si llevas tiempo pagando un alquiler bastante por debajo del precio actual de mercado y ya piensas mudarte, podemos ofrecerte un bono de hasta 2000 € y devolverte la fianza el mismo día de la salida. Envíanos tu contrato y tendrás una oferta en menos de una hora.",
+      heroCta: "Enviar mi contrato para valorarlo",
+      shortLabel: "Traspaso de contrato",
+    },
+    repair: {
+      eyebrow: "Pequeñas reparaciones antes de entregar el piso · Barcelona",
+      h1: "Pequeñas reparaciones antes de mudarte — para recuperar toda tu fianza",
+      subheading:
+        "Reparamos solo lo que realmente hace falta para recuperar tu fianza — sin reforma completa ni gastos de más. Envíanos fotos de antes y después y te diremos qué merece la pena arreglar.",
+      heroCta: "Consigue tu valoración de reparación",
+      shortLabel: "Pequeñas reparaciones",
     },
   },
   whatYouGet: {
@@ -85,6 +101,36 @@ const es: Dictionary = {
         badge: "Documentos",
         title: "Un solo documento que falte puede retrasar tu fianza",
         pains: ["deposit", "admin", "urgent"],
+      },
+      {
+        badge: "Valor perdido",
+        title: "Irte sin más significa perder una compensación que ni sabías que existía",
+        pains: ["buyout"],
+      },
+      {
+        badge: "Espera larga",
+        title: "Una devolución de fianza normal puede tardar un mes, no un día",
+        pains: ["buyout"],
+      },
+      {
+        badge: "Valoración a ciegas",
+        title: "Sin una comparación de mercado independiente, es difícil saber cuánto vale realmente tu contrato",
+        pains: ["buyout"],
+      },
+      {
+        badge: "Reparar de más",
+        title: "Arreglar algo que ni siquiera es un daño es tirar el dinero",
+        pains: ["repair"],
+      },
+      {
+        badge: "El gremio equivocado",
+        title: "Una reforma cualquiera no sabe qué revisa realmente el propietario al entregar el piso",
+        pains: ["repair"],
+      },
+      {
+        badge: "Detalles que se escapan",
+        title: "Un arañazo o un agujero de un clavo que pase desapercibido puede costarte parte de la fianza",
+        pains: ["repair"],
       },
     ],
     resultLabel: "El resultado",
@@ -166,6 +212,42 @@ const es: Dictionary = {
           a: "La mayoría de errores costosos en una salida urgente ocurren en las primeras 24 horas, antes de leer bien el contrato.",
         },
       ],
+      buyout: [
+        {
+          q: "Tu contrato antiguo puede valer dinero.",
+          a: "Si pagas un alquiler bastante por debajo del precio actual de mercado, ese contrato tiene un valor real — puedes recibir una compensación por dejarlo, en lugar de irte sin más.",
+        },
+        {
+          q: "Tu fianza no tiene por qué esperar un mes.",
+          a: "Si la operación se estructura bien, la fianza puede pagarse el mismo día en que te mudas, sin esperar el plazo legal de un mes.",
+        },
+        {
+          q: "La valoración tarda menos de una hora.",
+          a: "Nos envías tu contrato y recibes una oferta con una cifra concreta en menos de una hora, sin visitas ni intermediarios.",
+        },
+        {
+          q: "El riesgo de la valoración lo asumimos nosotros, no tú.",
+          a: "Nosotros mismos evaluamos la diferencia con el precio de mercado y asumimos el riesgo de la operación — la valoración no te cuesta nada.",
+        },
+      ],
+      repair: [
+        {
+          q: "No todo arañazo necesita una reparación.",
+          a: "El propietario puede intentar cobrarte por lo que en realidad es desgaste normal — saber distinguirlo antes de pagar es lo que importa.",
+        },
+        {
+          q: "Una reforma completa no es lo que necesitas antes de mudarte.",
+          a: "Muchas veces basta con retocar una pared o cambiar un solo azulejo, no repintar todo el piso.",
+        },
+        {
+          q: "Las fotos de antes y después resuelven una disputa más rápido que un gremio.",
+          a: "Un estado bien documentado — antes y después de las pequeñas reparaciones — resuelve la mayoría de reclamaciones del propietario por sí solo.",
+        },
+        {
+          q: "Un presupuesto mínimo no significa perder la fianza.",
+          a: "Como empresa de reformas, sabemos exactamente qué revisa el propietario al entregar el piso — y solo arreglamos eso.",
+        },
+      ],
     },
   },
   whyUs: {
@@ -177,6 +259,8 @@ const es: Dictionary = {
       admin: "Así te ayudamos: revisamos tus documentos y los errores, para que no pagues de más ni te culpen injustamente.",
       belongings: "Así te ayudamos: hacemos un inventario y organizamos la mudanza, para que nada se pierda ni se rompa.",
       urgent: "Así te ayudamos: te decimos qué hacer primero, paso a paso — sin pánico.",
+      buyout: "Así te ayudamos: evaluamos la diferencia con el precio de mercado, asumimos el riesgo de la operación y te devolvemos la fianza el mismo día de la salida, sin esperar un mes.",
+      repair: "Así te ayudamos: revisamos tus fotos de antes y después, separamos el desgaste normal del daño real y reparamos lo mínimo necesario para recuperar toda tu fianza.",
     },
   },
   quizIntro: {
@@ -202,36 +286,16 @@ const es: Dictionary = {
       m1to3: "En 1–3 meses",
       later: "Más de 3 meses / aún no lo sé",
     },
-    pain: {
-      question: "¿Qué es lo más importante para ti ahora?",
-      deposit: "Recuperar mi fianza",
-      admin: "Gestionar suministros y cambio de dirección",
-      belongings: "Muebles y pertenencias que dejo atrás",
-      urgent: "Mudarme antes de lo previsto",
-      other: "Solo estoy investigando",
-    },
-    contact: {
-      heading: "Casi listo — ¿dónde te enviamos tu checklist?",
-      secondaryHeading: "Deja también tu número — te enviamos el checklist y la confirmación",
-      namePlaceholder: "Tu nombre (opcional)",
-      phonePlaceholder: "Tu número de teléfono",
-      consent: "Acepto que MoveOS me contacte. Consulta nuestra Política de privacidad.",
-      submitButton: "Quiero mi checklist",
-      submitting: "Enviando…",
-      error: "Algo salió mal. Inténtalo de nuevo en un momento.",
-      bookingHeading: "Hablemos de tu situación en concreto",
-      bookingBody: "Una llamada gratuita de 15 minutos — elige el horario que mejor te venga, sin compromiso.",
-      bookingButton: "Reservar llamada",
-    },
   },
   results: {
     qualified: {
       badge: "Encajas perfecto ✅",
       heading: "Vamos a que te mudes sin estrés",
-      body: "Reserva tu llamada gratuita de 15 minutos abajo, y aprovecha para descargar tu checklist completo.",
-      bookingHeading: "Reserva tu llamada gratuita de 15 minutos",
-      bookingBody: "Elige el horario que mejor te venga — sin compromiso, sin ventas.",
-      bookingButton: "Elegir horario",
+      body: "Descarga tu checklist abajo y reserva tu llamada gratuita de 15 minutos — o simplemente escríbenos por email.",
+      bookingHeading: "Hablemos de tu situación en concreto",
+      bookingBody: "Una llamada gratuita de 15 minutos — elige el horario que mejor te venga, sin compromiso.",
+      bookingButton: "Reservar llamada",
+      emailAltText: "O escríbenos por email",
       checklistHeading: "Tu checklist completo de mudanza",
     },
     notQualified: {
@@ -301,47 +365,119 @@ const es: Dictionary = {
         "Esto es información general, no asesoría legal. Las normas varían según la comunidad autónoma y el contrato — consulta tu caso concreto.",
     },
     qualified: {
-      title: "Tu checklist de mudanza — Barcelona",
+      title: "Checklist para dejar tu piso en Barcelona",
       intro:
-        "Como te mudas pronto en Barcelona, aquí tienes el panorama completo — fianza, trámites, pertenencias y plazos — y lo que veremos juntos en tu llamada gratuita.",
+        "La idea de este checklist: al entregar las llaves debes quedarte con un paquete completo de pruebas del estado en que devolviste el piso y de que todas tus obligaciones están cerradas.",
       sections: [
         {
-          heading: "Proteger tu fianza",
+          heading: "1. Tu contrato y el acta de entrada",
           items: [
-            "Documenta el estado del piso antes de empezar a hacer las maletas, no la noche antes de la entrega.",
-            "Aprende a distinguir el desgaste normal de los daños que sí se pueden descontar.",
-            "Consigue un acta de salida firmada — es el factor que más pesa en cualquier disputa por la fianza.",
+            "Revisa tu contrato y el acta inicial de entrada: qué indicaba, si había inventario, qué daños y fotos se registraron al entrar a vivir.",
+            "Comprueba qué dice el contrato sobre pintura, paredes, muebles, limpieza — por ley, el desgaste normal por el uso corre a cargo del inquilino, pero no hace falta dejar el piso como nuevo.",
           ],
         },
         {
-          heading: "Trámites de la mudanza, bajo control",
+          heading: "2. Pequeñas reparaciones — lo mínimo necesario",
           items: [
-            "Programa la baja o el traspaso de tu internet con al menos 2 semanas de antelación — las compañías van más lentas de lo que parece.",
-            "Haz una lista de todos los sitios donde figura tu dirección actual: banco, seguro, Seguridad Social, suscripciones, envíos.",
-            "Redirige o actualiza tu correspondencia antes de perder acceso a tu antiguo buzón.",
+            "Tapa tus propios agujeros, quita tus propias fijaciones, arregla los daños que hayas causado claramente tú.",
+            "No repintes todo el piso automáticamente — compara antes con el estado de entrada y las condiciones del contrato.",
           ],
         },
         {
-          heading: "Muebles y pertenencias",
+          heading: "3. Una limpieza realmente completa",
           items: [
-            "Decide pronto qué te llevas, qué vendes, donas o guardas — dejarlo para la última semana es el error más habitual.",
-            "Si necesitas almacenamiento temporal o vender rápido, podemos ponerte en contacto con socios de confianza.",
+            "Cocina, horno, nevera, dentro de los armarios, baño, inodoro, ducha, ventanas, balcón/terraza, trastero, muebles — cada uno por separado, no solo a simple vista.",
           ],
         },
         {
-          heading: "Si te vas antes de lo previsto",
+          heading: "4. Fotos — lo más detalladas posible",
           items: [
-            "Revisa las cláusulas de resolución anticipada de tu contrato y posibles penalizaciones.",
-            "Entiende qué pasa con tu fianza si rompes el periodo mínimo.",
-            "Una llamada corta puede evitarte un error costoso aquí.",
+            "Cada habitación desde cuatro ángulos, más el suelo, el techo, las paredes, puertas, ventanas.",
+            "Radiadores/aire acondicionado, muebles, dentro de los armarios, electrodomésticos, dentro de la nevera, el horno, el fregadero.",
+            "Baño/ducha, inodoro, balcón, trastero y la plaza de parking si forma parte del alquiler.",
+            "Primeros planos aparte de cualquier zona que pueda convertirse en motivo de disputa. No te cortes con la cantidad de fotos.",
           ],
         },
         {
-          heading: "En tu llamada gratuita de 15 minutos",
+          heading: "5. Un único vídeo continuo de todo el piso",
           items: [
-            "Revisamos tu contrato y tu situación real, no un guion genérico.",
-            "Repasamos qué preparar antes de la fecha de entrega.",
-            "Te damos un plan de acción claro y personal.",
+            "Empieza en la puerta de entrada y recorre todo el piso sin parar: entrada → habitaciones → armarios → cocina → electrodomésticos → baño → inodoro → balcón → trastero.",
+            "Di en voz alta la fecha y la dirección de la entrega durante la grabación.",
+            "Termina el vídeo con las lecturas de los contadores — junto con las fotos, esto da una prueba mucho más sólida que diez fotos sueltas.",
+          ],
+        },
+        {
+          heading: "6. Lecturas de los contadores",
+          items: [
+            "El día de la entrega, fotografía los contadores de luz, gas y agua de forma que se vea el número de contador y la lectura.",
+            "Guarda tus últimas facturas.",
+          ],
+        },
+        {
+          heading: "7. El acta de entrega del piso y las llaves",
+          items: [
+            "Redacta un documento (acta de entrega de llaves / documento de finalización del arrendamiento) con la dirección, la fecha y hora, quién entrega y quién recibe, el estado del piso y las lecturas de los contadores.",
+            "Indica el número y tipo exacto de llaves entregadas: del portal, del piso, del buzón, del parking, mando del garaje, etc.",
+            "Consigue la firma de ambas partes.",
+            "Intenta conseguir una frase como «La vivienda se entrega en correcto estado, sin daños pendientes» — así es mucho más difícil que alguien «encuentre» daños tres semanas después.",
+            "Para recuperar la fianza, el INCASÒL exige precisamente un documento así, firmado por ambas partes (u otra prueba de la entrega de la posesión).",
+          ],
+        },
+        {
+          heading: "8. Deja constancia de TODAS las llaves entregadas",
+          items: [
+            "Fotografía las llaves antes de entregarlas, por ejemplo: Piso — 3, Portal — 2, Buzón — 1, Mando del garaje — 1.",
+            "Esa cantidad debe coincidir con la que figura en el acta firmada — parece un detalle menor hasta que aparece una factura por cambiar las cerraduras un mes después.",
+          ],
+        },
+        {
+          heading: "9. Resuelve el tema de la fianza",
+          items: [
+            "Consigue la confirmación de que la fianza está depositada en el INCASÒL.",
+            "Solicita por escrito la devolución de la fianza.",
+            "Indica el IBAN al que debe llegar el dinero.",
+            "Anota la fecha exacta de entrega de llaves — el plazo de devolución se cuenta desde ahí.",
+            "No aceptes descuentos sin una justificación por escrito y pruebas que los respalden.",
+            "Ten en cuenta: al terminar el alquiler, es el propietario quien solicita la devolución de la fianza al INCASÒL, y el INCASÒL le paga a él, no a ti directamente — conviene comprobar que realmente ha hecho la solicitud.",
+            "Ancla legal: según el artículo 36 de la LAU, si ha pasado un mes desde la entrega de llaves y la fianza no se ha devuelto, la cantidad empieza a generar intereses legales!",
+          ],
+        },
+        {
+          heading: "10. Da de baja los suministros y servicios",
+          items: [
+            "Luz y gas: consúltalo primero con el propietario — cambio de titular o baja completa. No siempre lo más sensato es cortar la luz y el gas sin más.",
+            "Da de baja aparte el agua, internet, móvil/fibra ligados a la dirección, la alarma, el seguro del hogar, el parking/garaje — guarda los números de confirmación de las bajas.",
+          ],
+        },
+        {
+          heading: "11. Revisa los últimos pagos",
+          items: [
+            "Confirma que alquiler, luz, gas, agua, internet, parking y cualquier otro pago que el contrato pusiera de tu cuenta están saldados.",
+            "Guarda los justificantes de pago.",
+          ],
+        },
+        {
+          heading: "12. Envía al propietario una carta final",
+          items: [
+            "El día de la entrega, envía una carta/email: la fecha, la dirección del piso, confirmación de que está completamente desocupado y entregado, que se han entregado todas las llaves, las lecturas de los contadores, un enlace a las fotos y la solicitud de devolver la fianza a tu IBAN.",
+            "Esto crea un registro más, fechado y por escrito — fácil de presentar si surge una disputa más adelante.",
+          ],
+        },
+        {
+          heading: "Cómo te podemos ayudar",
+          items: [
+            "Contrato y acta de entrada: los revisamos y te decimos claramente qué es desgaste normal por ley y qué no, para que no te facturen algo que no es tu responsabilidad.",
+            "Pequeñas reparaciones: si de verdad hace falta arreglar algo, nuestro equipo de reparaciones hace un trabajo puntual y mínimo — solo lo que afecta realmente a tu fianza, sin gastar en una reforma completa.",
+            "Limpieza: te decimos en qué zonas conviene centrarse primero, según lo que realmente revisan los propietarios en la entrega.",
+            "Fotos y vídeo: te ayudamos a grabarlos o revisamos lo que ya has grabado según esta lista, para que tengas una prueba real del estado del piso, no un par de fotos sueltas.",
+            "Lecturas de los contadores: nos aseguramos de que se toman y quedan registradas junto con el acta, y no se pierden en un correo.",
+            "Acta de entrega: la redactamos con la formulación jurídicamente precisa y nos aseguramos de que ambas partes la firmen — tu principal defensa ante una reclamación posterior.",
+            "Llaves: dejamos constancia en el acta del número y tipo exacto de llaves entregadas, para que una llave «olvidada» no se convierta en excusa para retrasar la devolución.",
+            "Fianza e INCASÒL: presentamos la solicitud de devolución, comprobamos que el propietario realmente la ha tramitado ante el INCASÒL, y reclamamos los intereses legales del artículo 36 de la LAU si se incumple el plazo.",
+            "Suministros: damos de baja o cambiamos de titular la luz, el gas, el agua, internet y el seguro, y reunimos las confirmaciones de baja, para que no te llegue una factura inesperada seis meses después.",
+            "Últimos pagos: comprobamos que todo está saldado antes de la entrega, para que el propietario no tenga una excusa formal para retrasar la devolución.",
+            "Carta final: redactamos y enviamos al propietario la carta de cierre con la fecha, las lecturas de los contadores y la solicitud de devolución, para que la fecha de entrega quede documentada legalmente.",
+            "En cualquiera de estos puntos, si el propietario tarda en responder, se niega a firmar el acta o intenta quedarse con dinero sin justificación, negociamos directamente con él en tu nombre.",
           ],
         },
       ],

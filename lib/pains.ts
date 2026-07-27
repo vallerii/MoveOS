@@ -5,6 +5,8 @@ import {
   MailIcon,
   GiftIcon,
   ClockIcon,
+  BanknotesIcon,
+  WrenchIcon,
 } from "@/components/icons";
 
 export { PAIN_SLUGS };
@@ -16,6 +18,8 @@ export const PAIN_ICONS: Record<PainSlug, typeof ScaleIcon> = {
   admin: MailIcon,
   belongings: GiftIcon,
   urgent: ClockIcon,
+  buyout: BanknotesIcon,
+  repair: WrenchIcon,
 };
 
 export function isPainSlug(value: string): value is PainSlug {

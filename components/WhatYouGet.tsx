@@ -9,6 +9,8 @@ import {
   BanknotesIcon,
   GiftIcon,
   ClockIcon,
+  MagnifyingGlassIcon,
+  WrenchIcon,
 } from "./icons";
 import type { Dictionary, PainSlug } from "@/lib/i18n/types";
 
@@ -25,7 +27,12 @@ const icons = [
   GiftIcon,
   ClockIcon,
   ClipboardCheckIcon,
+  BanknotesIcon,
+  ClockIcon,
+  MagnifyingGlassIcon,
+  WrenchIcon,
   ShieldCheckIcon,
+  CameraIcon,
 ];
 
 export default function WhatYouGet({ dict, pain }: Props) {

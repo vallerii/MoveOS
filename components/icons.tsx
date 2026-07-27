@@ -143,6 +143,14 @@ export function MailIcon({ className = "h-6 w-6" }: IconProps) {
   );
 }
 
+export function WrenchIcon({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M14.7 6.3a4 4 0 0 0-5.4 4.9L4 16.5V20h3.5l5.3-5.3a4 4 0 0 0 4.9-5.4l-2.8 2.8-2.1-.7-.7-2.1 2.6-2.6Z" />
+    </svg>
+  );
+}
+
 export function GiftIcon({ className = "h-6 w-6" }: IconProps) {
   return (
     <svg {...base} className={className}>
