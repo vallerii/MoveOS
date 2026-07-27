@@ -1,5 +1,5 @@
+import Link from "next/link";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
-import Checklist from "../Checklist";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/config";
 
 type Props = {
@@ -10,20 +10,21 @@ type Props = {
 };
 
 export default function Result({ locale, dict, qualified, onRestart }: Props) {
-  const checklist = qualified ? dict.checklist.qualified : dict.checklist.generic;
-  const pdfHref = `/checklists/${locale}/${qualified ? "qualified" : "generic"}.pdf`;
+  const checklistType = qualified ? "qualified" : "generic";
+  const checklist = dict.checklist[checklistType];
+  const pdfHref = `/checklists/${locale}/${checklistType}.pdf`;
 
   return (
     <div className="mx-auto max-w-2xl text-center">
       {qualified && (
-        <div className="mt-8 rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-6 sm:p-8">
+        <div className="mt-8 rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-4 sm:p-8">
           <h4 className="text-lg font-bold text-brand-ink">{dict.results.qualified.bookingHeading}</h4>
           <p className="mt-2 text-sm text-brand-ink/70">{dict.results.qualified.bookingBody}</p>
           <a
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary mt-5 inline-flex"
+            className="btn-primary mt-5 w-full sm:w-auto"
           >
             {dict.results.qualified.bookingButton}
           </a>
@@ -36,11 +37,26 @@ export default function Result({ locale, dict, qualified, onRestart }: Props) {
         </div>
       )}
 
-      <div className="mt-8 text-left">
-        <h4 className="mb-3 text-center text-lg font-bold text-brand-ink">
+      <div className="mt-8 rounded-2xl border border-black/5 bg-white p-4 sm:p-8">
+        <h4 className="text-lg font-bold text-brand-ink">
           {qualified ? dict.results.qualified.checklistHeading : dict.results.notQualified.checklistHeading}
         </h4>
-        <Checklist content={checklist} downloadLabel={dict.results.downloadPdf} downloadHref={pdfHref} />
+        <p className="mt-2 text-sm text-brand-ink/70">{checklist.intro}</p>
+        <div className="mt-5 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a
+            href={pdfHref}
+            download
+            className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full bg-brand-primary px-6 py-3.5 text-sm font-semibold text-white shadow-card transition hover:bg-brand-primary-dark active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+          >
+            {dict.results.downloadPdf}
+          </a>
+          <Link
+            href={`/${locale}/checklist/${checklistType}`}
+            className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full border border-brand-primary/30 px-6 py-3.5 text-sm font-semibold text-brand-primary transition hover:bg-brand-primary/5 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+          >
+            {dict.results.viewChecklistButton}
+          </Link>
+        </div>
       </div>
 
       <button

@@ -28,7 +28,7 @@ export default function QuizSection({ locale, pain, dict }: Props) {
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="mx-auto mt-10 max-w-2xl rounded-3xl bg-white/70 p-6 shadow-card backdrop-blur sm:p-10">
+          <div className="mx-auto mt-10 max-w-2xl rounded-3xl bg-white/70 p-4 shadow-card backdrop-blur sm:p-10">
             <QuizWizard locale={locale} pain={pain} dict={dict} />
           </div>
         </Reveal>

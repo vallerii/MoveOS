@@ -83,7 +83,7 @@ export default function WhatYouGet({ dict, pain }: Props) {
           })}
 
           <Reveal delay={relevantItems.length * 70} className="w-full sm:col-span-2 lg:col-span-3">
-            <div className="relative h-full overflow-hidden rounded-2xl border border-brand-accent/50 bg-brand-accent/10 p-6 shadow-[0_0_0_1px_rgba(244,185,66,0.15),0_20px_45px_-15px_rgba(244,185,66,0.45)]">
+            <div className="relative h-full overflow-hidden rounded-2xl border border-brand-accent/50 bg-brand-accent/10 p-4 shadow-[0_0_0_1px_rgba(244,185,66,0.15),0_20px_45px_-15px_rgba(244,185,66,0.45)] sm:p-6">
               <div className="pointer-events-none absolute -bottom-16 right-0 h-64 w-64 rounded-full bg-brand-accent/30 blur-3xl" />
               <div className="relative">
                 <span className="inline-flex w-fit items-center rounded-full bg-brand-accent/25 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-ink">

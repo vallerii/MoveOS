@@ -44,7 +44,7 @@ export default function DidYouKnow({ dict, pain }: Props) {
           alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
           width={2000}
           height={800}
-          className="absolute opacity-30  top-0 left-0 w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[100%] md:bottom-0 object-contain object-left "
+          className="absolute opacity-30  bottom-0 left-0 w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[100%] object-contain object-left "
         />
 
       </div>
@@ -66,7 +66,7 @@ export default function DidYouKnow({ dict, pain }: Props) {
                 if (featured) {
                   return (
                     <Reveal key={q} delay={i * 90}>
-                      <div className="relative overflow-hidden rounded-2xl bg-brand-ink p-7 text-brand-background sm:p-8">
+                      <div className="relative overflow-hidden rounded-2xl bg-brand-ink p-5 text-brand-background sm:p-8">
                         <div className="pointer-events-none absolute -bottom-16 -right-10 h-64 w-64 rounded-full bg-brand-accent/25 blur-3xl" />
                         <Icon className="absolute -right-4 -top-2 h-20 w-20 text-brand-accent opacity-20" />
                         <div className="relative pr-12 sm:pr-16 mt-6">

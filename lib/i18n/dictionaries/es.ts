@@ -294,7 +294,7 @@ const es: Dictionary = {
       body: "Descarga tu checklist abajo y reserva tu llamada gratuita de 15 minutos — o simplemente escríbenos por email.",
       bookingHeading: "Hablemos de tu situación en concreto",
       bookingBody: "Una llamada gratuita de 15 minutos — elige el horario que mejor te venga, sin compromiso.",
-      bookingButton: "Reservar llamada",
+      bookingButton: "Elegir horario",
       emailAltText: "O escríbenos por email",
       checklistHeading: "Tu checklist completo de mudanza",
     },
@@ -306,6 +306,7 @@ const es: Dictionary = {
     },
     downloadPdf: "Descargar en PDF",
     restartButton: "Empezar de nuevo",
+    viewChecklistButton: "Abrir checklist",
   },
   checklist: {
     generic: {
@@ -484,6 +485,9 @@ const es: Dictionary = {
       disclaimer:
         "Esto es información general, no asesoría legal. Las normas varían según la comunidad autónoma y el contrato — consulta tu caso concreto.",
     },
+  },
+  checklistPage: {
+    backLink: "← Volver al sitio",
   },
   privacy: {
     title: "Política de privacidad",

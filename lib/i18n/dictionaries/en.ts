@@ -294,7 +294,7 @@ const en: Dictionary = {
       body: "Grab your checklist below and book your free 15-minute call — or just email us directly.",
       bookingHeading: "Let's talk through your specific situation",
       bookingBody: "A free 15-minute call — pick any time that works, no obligation.",
-      bookingButton: "Book your call",
+      bookingButton: "Pick a time",
       emailAltText: "Or email us directly",
       checklistHeading: "Your full move-out checklist",
     },
@@ -306,6 +306,7 @@ const en: Dictionary = {
     },
     downloadPdf: "Download as PDF",
     restartButton: "Start over",
+    viewChecklistButton: "Open checklist",
   },
   checklist: {
     generic: {
@@ -484,6 +485,9 @@ const en: Dictionary = {
       disclaimer:
         "This is general information, not legal advice. Rules vary by region and contract — check your specific situation.",
     },
+  },
+  checklistPage: {
+    backLink: "← Back to the site",
   },
   privacy: {
     title: "Privacy Policy",

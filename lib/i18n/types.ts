@@ -99,10 +99,14 @@ export interface Dictionary {
     };
     downloadPdf: string;
     restartButton: string;
+    viewChecklistButton: string;
   };
   checklist: {
     generic: ChecklistContent;
     qualified: ChecklistContent;
+  };
+  checklistPage: {
+    backLink: string;
   };
   privacy: {
     title: string;

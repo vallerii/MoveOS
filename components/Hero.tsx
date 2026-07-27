@@ -28,7 +28,7 @@ export default function Hero({ pain, dict }: Props) {
         alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
         width={2000}
         height={1000}
-        className="absolute animate-float top-0 right-[-100px] w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[90%] md:bottom-0 object-contain object-right "
+        className="absolute animate-float bottom-[30%] right-[-100px] w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[90%] md:bottom-0 object-contain object-right "
       />
       <div className="container-page flex lg:grid items-center justify-center gap-10 lg:grid-cols-[2fr_1fr] lg:gap-16">
         <div className="order-1 text-center lg:text-left ">
@@ -64,7 +64,7 @@ export default function Hero({ pain, dict }: Props) {
 
       <Reveal delay={400}>
         <div className="container-page mt-14 lg:mt-40">
-          <div className="flex flex-wrap items-center justify-start gap-x-10 gap-y-5 rounded-2xl border border-black/5 bg-white/70 px-8 py-6 shadow-card backdrop-blur sm:justify-between">
+          <div className="flex flex-wrap items-center justify-start gap-x-6 gap-y-4 rounded-2xl border border-black/5 bg-white/70 px-5 py-4 shadow-card backdrop-blur sm:justify-between sm:gap-x-10 sm:gap-y-5 sm:px-8 sm:py-6">
             {dict.heroTrustBadges.map((label, i) => {
               const Icon = badgeIcons[i] ?? CheckCircleIcon;
               return (
