@@ -49,7 +49,7 @@ export default function Hero({ pain, dict }: Props) {
           </Reveal>
 
           <Reveal delay={200}>
-            <p className="mt-6 text-lg text-brand-ink/70 sm:text-xl">{copy.subheading}</p>
+            <p className="mt-6 whitespace-pre-line text-lg text-brand-ink/70 sm:text-xl">{copy.subheading}</p>
           </Reveal>
 
           <Reveal delay={300}>

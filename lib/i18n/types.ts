@@ -36,6 +36,14 @@ export interface Dictionary {
       subheading: string;
       heroCta: string;
       shortLabel: string;
+      // Optional — only populated for pains that need to explain their
+      // mechanism explicitly (e.g. buyout, where "up to 2000€" needs
+      // context for it not to read as a bare hook).
+      howItWorks?: {
+        heading: string;
+        subheading: string;
+        steps: { title: string; body: string }[];
+      };
     }
   >;
   whatYouGet: {

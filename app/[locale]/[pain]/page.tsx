@@ -5,6 +5,7 @@ import { getDictionary } from "@/lib/i18n";
 import Hero from "@/components/Hero";
 import WhatYouGet from "@/components/WhatYouGet";
 import DidYouKnow from "@/components/DidYouKnow";
+import HowItWorks from "@/components/HowItWorks";
 import WhyUs from "@/components/WhyUs";
 import QuizSection from "@/components/Quiz/QuizSection";
 
@@ -33,11 +34,13 @@ export default function PainPage({ params }: { params: Params }) {
   if (!isValid(params)) notFound();
   const { locale, pain } = params;
   const dict = getDictionary(locale);
+  const howItWorks = dict.pains[pain].howItWorks;
 
   return (
     <main>
       <Hero locale={locale} pain={pain} dict={dict} />
       <DidYouKnow dict={dict} pain={pain} />
+      {howItWorks && <HowItWorks {...howItWorks} />}
       <WhatYouGet dict={dict} pain={pain} />
       <WhyUs dict={dict} pain={pain} />
       <QuizSection locale={locale} pain={pain} dict={dict} />
