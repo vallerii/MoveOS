@@ -48,11 +48,38 @@ const es: Dictionary = {
     },
     buyout: {
       eyebrow: "Traspaso de tu contrato de alquiler · Barcelona",
-      h1: "¿Quieres recuperar tu fianza y conseguir un bono por mudarte?",
+      h1: "¿Quieres un bono por mudarte y recuperar tu fianza?",
       subheading:
-        "Si llevas tiempo pagando un alquiler bastante por debajo del precio actual de mercado y ya piensas mudarte, podemos ofrecerte un bono de hasta 2000 € y devolverte la fianza el mismo día de la salida. Envíanos tu contrato y tendrás una oferta en menos de una hora.",
-      heroCta: "Enviar mi contrato para valorarlo",
+        "Llevas tiempo pagando un alquiler por debajo del precio actual de mercado y ya piensas mudarte — reserva una consulta gratuita de 15 minutos.\nRevisaremos tu situación, calcularemos un posible bono y te explicaremos cómo recuperar la fianza el mismo día de la salida, sin esperar el mes habitual.",
+      heroCta: "Reservar consulta gratuita",
+      heroCtaMobile: "Reservar consulta",
       shortLabel: "Traspaso de contrato",
+      howItWorks: {
+        heading: "Cómo funciona",
+        subheading: "Sin trucos — esto es lo que pasa en cada paso.",
+        steps: [
+          {
+            title: "Consulta gratuita (15 minutos)",
+            body: "Nos cuentas sobre tu contrato: cuánto pagas, cuánto tiempo llevas alquilando, cuándo piensas mudarte. No hacen falta documentos en este paso.",
+          },
+          {
+            title: "Calculamos la diferencia con el mercado",
+            body: "Comparamos tu alquiler con los precios actuales de la zona. Si tu contrato está claramente por debajo del mercado, el derecho sobre él tiene valor real.",
+          },
+          {
+            title: "Compramos ese derecho",
+            body: "En la práctica, te pagamos por ceder el contrato, porque vale dinero en el mercado actual. De ahí viene el bono — es una compensación por el derecho que cedes, no un regalo.",
+          },
+          {
+            title: "Cálculo exacto",
+            body: "Si la situación parece prometedora, nos envías el contrato — en menos de una hora tendrás una oferta con una cifra concreta.",
+          },
+          {
+            title: "Decides tú",
+            body: "Si aceptas, gestionamos el traspaso y tu fianza vuelve el mismo día de la salida. Si no, no pagas nada y no pierdes nada.",
+          },
+        ],
+      },
     },
     repair: {
       eyebrow: "Pequeñas reparaciones antes de entregar el piso · Barcelona",

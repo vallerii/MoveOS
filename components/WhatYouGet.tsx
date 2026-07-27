@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
 import {
   ScaleIcon,
@@ -46,7 +47,15 @@ export default function WhatYouGet({ dict, pain }: Props) {
     .filter((item) => item.pains.includes(pain));
 
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-20 sm:py-28 relative">
+      <Image
+        src="/topo-contour4.png"
+        alt=""
+        aria-hidden="true"
+        fill
+        priority={false}
+        className="pointer-events-none object-cover opacity-10 rotate-180 -scale-x-100 object-bottom"
+      />
       <div className="container-page">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">

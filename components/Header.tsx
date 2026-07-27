@@ -9,7 +9,7 @@ type Props = {
 
 export default function Header({ locale, dict }: Props) {
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-brand-background/60 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link href={`/${locale}/deposit`} className="text-lg font-bold tracking-tight text-brand-ink">
           Move<span className="text-brand-primary">OS</span>

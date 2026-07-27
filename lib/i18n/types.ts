@@ -35,6 +35,9 @@ export interface Dictionary {
       h1: string;
       subheading: string;
       heroCta: string;
+      // Optional — shorter CTA copy for narrow screens, where the full
+      // heroCta can wrap or crowd the pill button. Falls back to heroCta.
+      heroCtaMobile?: string;
       shortLabel: string;
       // Optional — only populated for pains that need to explain their
       // mechanism explicitly (e.g. buyout, where "up to 2000€" needs

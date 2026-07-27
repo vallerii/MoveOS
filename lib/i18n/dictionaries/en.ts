@@ -48,11 +48,38 @@ const en: Dictionary = {
     },
     buyout: {
       eyebrow: "Lease Buyout · Barcelona",
-      h1: "Want Your Deposit Back Plus a Bonus for Moving Out?",
+      h1: "Want a Bonus for Moving Out and Your Deposit Back?",
       subheading:
-        "If you've been renting well below today's market price and you're planning to move out anyway, we can offer a bonus of up to €2,000 plus your deposit back the same day you leave. Send us your lease — you'll have an offer within the hour.",
-      heroCta: "Send My Lease for a Quote",
+        "You've been renting well below today's market price and you're planning to move out — book a free 15-minute consultation.\nWe'll go through your situation, estimate a possible bonus, and explain how to get your deposit back the same day, without the usual month-long wait.",
+      heroCta: "Book a Free Consultation",
+      heroCtaMobile: "Book a Consultation",
       shortLabel: "Lease Buyout",
+      howItWorks: {
+        heading: "How It Works",
+        subheading: "No hidden catch — here's what happens at each step.",
+        steps: [
+          {
+            title: "Free consultation (15 minutes)",
+            body: "Tell us about your lease: how much you pay, how long you've been renting, when you're planning to move out. No documents needed at this stage.",
+          },
+          {
+            title: "We estimate the gap with the market",
+            body: "We compare your rent with current prices in the area. If your lease is well below market, the right to it has real value.",
+          },
+          {
+            title: "We buy out that right",
+            body: "In effect, we pay you to give up the lease, because it's worth money on today's market. That's where the bonus comes from — compensation for the right you're giving up, not a gift.",
+          },
+          {
+            title: "Exact numbers",
+            body: "If it looks promising, you send us the lease itself — you'll have an offer with a specific amount within the hour.",
+          },
+          {
+            title: "You decide",
+            body: "If you agree, we handle the deal and your deposit comes back the day you move out. If not, you pay nothing and lose nothing.",
+          },
+        ],
+      },
     },
     repair: {
       eyebrow: "Minor Repairs Before Handover · Barcelona",

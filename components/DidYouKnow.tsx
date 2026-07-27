@@ -44,7 +44,7 @@ export default function DidYouKnow({ dict, pain }: Props) {
           alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
           width={2000}
           height={800}
-          className="absolute opacity-30  bottom-0 left-0 w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[100%] object-contain object-left "
+          className="absolute opacity-30  bottom-0 left-0 w-[200%] h-[100%] h-auto max-w-none md:min-h-[90vh] md:h-[100%] object-cover lg:object-contain object-left "
         />
 
       </div>

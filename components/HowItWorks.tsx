@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
 import {
   PhoneCallIcon,
@@ -21,26 +22,24 @@ const icons = [PhoneCallIcon, MagnifyingGlassIcon, BanknotesIcon, DocumentTextIc
 
 export default function HowItWorks({ heading, subheading, steps }: Props) {
   return (
-    <section className="relative overflow-hidden bg-brand-background py-20 sm:py-28">
-      {/* Subtle topographic contour lines — decorative, no repeated tile,
-          stretched with preserveAspectRatio="none" so it stays seamless
-          across any section width. */}
-      <svg
-        className="pointer-events-none absolute inset-0 h-full w-full text-[#E9E7E3]"
-        viewBox="0 0 1400 900"
-        preserveAspectRatio="none"
-        fill="none"
-      >
-        <path d="M-100,20 C180,60 380,-20 640,40 C900,90 1150,10 1400,60" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M-100,120 C200,40 400,220 700,140 C950,80 1150,200 1400,120" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M-100,260 C250,340 450,180 750,280 C1000,360 1200,240 1500,300" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M-100,420 C220,480 480,360 760,440 C1020,500 1250,380 1500,440" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M-100,560 C260,500 500,620 780,540 C1040,480 1260,600 1500,540" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M-100,700 C240,660 470,760 760,680 C1020,620 1260,720 1500,660" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M-100,820 C200,780 420,860 700,800 C960,760 1200,840 1500,800" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
+    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-[#fff] to-[#EFEFEE]">
+      {/* Topographic contour background image — clusters in the top-left
+          and bottom-right corners, clear in the middle for text. */}
+      <Image
+        src="/topo-contour4.png"
+        alt=""
+        aria-hidden="true"
+        fill
+        priority={false}
+        className="pointer-events-none object-cover opacity-[0.1] "
+      />
 
-      <div className="container-page relative">
+      {/* Yellow glare — bleeds slightly onto the section below, but must
+          stay behind the cards (z-20 < the content wrapper's z-30). */}
+      <div className="pointer-events-none absolute top-[25%] right-[-40%] z-20 h-[20rem] w-[20rem] sm:h-[20rem] sm:w-[20rem] lg:h-[28rem] lg:w-[28rem] rounded-full bg-[#0ea5a8]/20 blur-3xl sm:top-[16%] sm:right-[20%] " />
+      <div className="pointer-events-none absolute -bottom-[4%] left-[-10%] z-20 h-80 w-80 sm:h-[12rem] sm:w-[12rem] lg:h-[18rem] lg:w-[18rem] rounded-full bg-[#0ea5a8]/10 blur-3xl sm:-bottom-32 sm:left-[0%] " />
+
+      <div className="container-page relative z-30">
         <Reveal>
           <div className="mx-auto max-w-xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-brand-ink sm:text-4xl">{heading}</h2>
@@ -49,12 +48,12 @@ export default function HowItWorks({ heading, subheading, steps }: Props) {
         </Reveal>
 
         <div className="mx-auto mt-12 max-w-3xl">
-          <ol className="relative space-y-6 border-l-2 border-brand-primary/20 pl-8 sm:pl-10">
+          <ol className="relative z-10 space-y-6 border-l-2 border-brand-primary/20 pl-8 sm:pl-10">
             {steps.map(({ title, body }, i) => {
               const Icon = icons[i] ?? CheckCircleIcon;
               return (
                 <Reveal key={title} delay={i * 90}>
-                  <li className="relative">
+                  <li className="relative z-[1]">
                     <span className="absolute -left-[calc(2rem+13px)] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary text-sm font-bold text-white sm:-left-[calc(2.5rem+13px)]">
                       {i + 1}
                     </span>
