@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { LOCALES, type Locale } from "@/lib/i18n/types";
+import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n";
 
 export function generateStaticParams() {
@@ -9,8 +9,20 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!LOCALES.includes(params.locale as Locale)) return {};
-  const dict = getDictionary(params.locale as Locale);
-  return { title: `${dict.privacy.title}${dict.meta.titleSuffix}` };
+  const locale = params.locale as Locale;
+  const dict = getDictionary(locale);
+  const path = `/${locale}/privacy`;
+  return {
+    title: `${dict.privacy.title}${dict.meta.titleSuffix}`,
+    description: dict.privacy.intro,
+    alternates: {
+      canonical: path,
+      languages: {
+        ...Object.fromEntries(LOCALES.map((l) => [l, `/${l}/privacy`])),
+        "x-default": `/${DEFAULT_LOCALE}/privacy`,
+      },
+    },
+  };
 }
 
 export default function PrivacyPage({ params }: { params: { locale: string } }) {

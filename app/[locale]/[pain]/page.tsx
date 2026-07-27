@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { LOCALES, PAIN_SLUGS, type Locale, type PainSlug } from "@/lib/i18n/types";
+import { LOCALES, PAIN_SLUGS, DEFAULT_LOCALE, type Locale, type PainSlug } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n";
 import Hero from "@/components/Hero";
 import WhatYouGet from "@/components/WhatYouGet";
@@ -21,12 +21,39 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: Params }): Metadata {
   if (!isValid(params)) return {};
-  const dict = getDictionary(params.locale);
-  const p = dict.pains[params.pain];
+  const { locale, pain } = params;
+  const dict = getDictionary(locale);
+  const p = dict.pains[pain];
+  // metaTitle/metaDescription are dedicated, short copy for search snippets
+  // and social cards — h1/subheading are written for the hero and run well
+  // past what Google displays (~60 / ~155 chars) before truncating.
+  const title = `${p.metaTitle}${dict.meta.titleSuffix}`;
+  const { metaDescription: description } = p;
+  const path = `/${locale}/${pain}`;
+
   return {
-    title: `${p.h1}${dict.meta.titleSuffix}`,
-    description: p.subheading,
-    openGraph: { title: p.h1, description: p.subheading, type: "website" },
+    title,
+    description,
+    alternates: {
+      canonical: path,
+      languages: {
+        ...Object.fromEntries(LOCALES.map((l) => [l, `/${l}/${pain}`])),
+        "x-default": `/${DEFAULT_LOCALE}/${pain}`,
+      },
+    },
+    openGraph: {
+      title: p.metaTitle,
+      description,
+      type: "website",
+      url: path,
+      images: ["/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: p.metaTitle,
+      description,
+      images: ["/og-image.png"],
+    },
   };
 }
 

@@ -19,3 +19,10 @@ export const BOOKING_URL =
  * Replace NEXT_PUBLIC_CONTACT_EMAIL with the real inbox before launching.
  */
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hola@moveos.es";
+
+/**
+ * Canonical production origin — used for metadataBase (resolving absolute
+ * og:image / canonical / hreflang URLs) and for sitemap.xml / robots.txt.
+ * Replace NEXT_PUBLIC_SITE_URL once a custom domain is live.
+ */
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://move-os-five.vercel.app";

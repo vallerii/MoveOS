@@ -19,6 +19,9 @@ const es: Dictionary = {
       h1: "No pierdas tu fianza al dejar el piso",
       subheading:
         "La mayoría de inquilinos pierde parte de su fianza simplemente por no conocer sus derechos. Consigue una revisión gratuita de tu fianza y descubre qué hacer antes de entregar las llaves para recuperarla entera.",
+      metaTitle: "No pierdas tu fianza al mudarte",
+      metaDescription:
+        "Revisión gratuita para inquilinos en Barcelona: qué hacer antes de entregar las llaves para recuperar tu fianza entera, sin errores comunes.",
       heroCta: "Consigue tu revisión de fianza",
       shortLabel: "Fianza",
     },
@@ -27,6 +30,9 @@ const es: Dictionary = {
       h1: "Mudarte no debería significar una montaña de papeleo",
       subheading:
         "Una suscripción olvidada o una factura sin pagar suele aparecer meses después de la mudanza. Consigue una revisión gratuita de tus trámites para que nada se te escape.",
+      metaTitle: "Trámites de mudanza — checklist",
+      metaDescription:
+        "Revisión gratuita de trámites de mudanza en Barcelona: suscripciones, facturas, cambios de dirección — para que nada se te escape.",
       heroCta: "Consigue tu revisión de trámites",
       shortLabel: "Trámites de mudanza",
     },
@@ -35,6 +41,9 @@ const es: Dictionary = {
       h1: "Que tus muebles no se conviertan en un problema",
       subheading:
         "Los muebles y pertenencias que no te llevas son una fuente habitual de estrés y gastos de última hora. Consigue una revisión gratuita y un plan claro para qué hacer con ellos.",
+      metaTitle: "Qué hacer con los muebles al mudarte",
+      metaDescription:
+        "Revisión gratuita de mudanza en Barcelona: un plan claro para qué hacer con los muebles y pertenencias que no te llevas.",
       heroCta: "Consigue tu revisión de pertenencias",
       shortLabel: "Muebles y pertenencias",
     },
@@ -43,6 +52,9 @@ const es: Dictionary = {
       h1: "¿Te mudas antes de lo previsto? Hazlo bien.",
       subheading:
         "Mudarte antes de lo previsto suele costar más de lo que crees, entre penalizaciones y fianza perdida. Consigue una revisión gratuita de tu mudanza urgente antes de avisar al propietario.",
+      metaTitle: "Mudanza urgente — hazlo bien",
+      metaDescription:
+        "¿Te mudas antes de lo previsto? Revisión gratuita de mudanza urgente en Barcelona — evita penalizaciones y protege tu fianza.",
       heroCta: "Consigue tu revisión de mudanza urgente",
       shortLabel: "Mudanza urgente",
     },
@@ -51,6 +63,9 @@ const es: Dictionary = {
       h1: "¿Quieres un bono por mudarte y recuperar tu fianza?",
       subheading:
         "Llevas tiempo pagando un alquiler por debajo del precio actual de mercado y ya piensas mudarte — reserva una consulta gratuita de 15 minutos.\nRevisaremos tu situación, calcularemos un posible bono y te explicaremos cómo recuperar la fianza el mismo día de la salida, sin esperar el mes habitual.",
+      metaTitle: "Bono por mudarte + fianza de vuelta",
+      metaDescription:
+        "Si tu alquiler está por debajo del mercado, puedes conseguir un bono por mudarte y la fianza el mismo día. Consulta gratuita en Barcelona.",
       heroCta: "Reservar consulta gratuita",
       heroCtaMobile: "Reservar consulta",
       shortLabel: "Traspaso de contrato",
@@ -86,6 +101,9 @@ const es: Dictionary = {
       h1: "Pequeñas reparaciones antes de mudarte — para recuperar toda tu fianza",
       subheading:
         "Reparamos solo lo que realmente hace falta para recuperar tu fianza — sin reforma completa ni gastos de más. Envíanos fotos de antes y después y te diremos qué merece la pena arreglar.",
+      metaTitle: "Pequeñas reparaciones antes de mudarte",
+      metaDescription:
+        "Reparamos solo lo necesario para recuperar tu fianza — sin reforma completa ni gastos de más. Valoración gratuita con fotos antes/después.",
       heroCta: "Consigue tu valoración de reparación",
       shortLabel: "Pequeñas reparaciones",
     },

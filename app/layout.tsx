@@ -5,11 +5,24 @@ import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 import "./globals.css";
 import MetaPixel from "@/components/MetaPixel";
+import { SITE_URL } from "@/lib/config";
 
+// metadataBase lets every nested page use relative URLs (og:image, canonical,
+// hreflang) and have Next resolve them to absolute ones automatically —
+// without it, Next falls back to localhost during build and warns.
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "MoveOS — Free Move-Out Check for Barcelona Renters",
   description:
     "Free 15-minute call for Barcelona renters moving out: protect your deposit, handle the admin, and know what to do with what you're leaving behind.",
+  openGraph: {
+    siteName: "MoveOS",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "MoveOS — Barcelona" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
+  },
 };
 
 // NOTE: this is the single Next.js root layout, so it must contain the

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LOCALES, type Locale } from "@/lib/i18n/types";
+import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/config";
 import Checklist from "@/components/Checklist";
@@ -21,9 +21,22 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: Params }): Metadata {
   if (!isValid(params)) return {};
-  const dict = getDictionary(params.locale);
-  const content = dict.checklist[params.type];
-  return { title: `${content.title}${dict.meta.titleSuffix}` };
+  const { locale, type } = params;
+  const dict = getDictionary(locale);
+  const content = dict.checklist[type];
+  const path = `/${locale}/checklist/${type}`;
+  return {
+    title: `${content.title}${dict.meta.titleSuffix}`,
+    description: content.intro,
+    alternates: {
+      canonical: path,
+      languages: {
+        ...Object.fromEntries(LOCALES.map((l) => [l, `/${l}/checklist/${type}`])),
+        "x-default": `/${DEFAULT_LOCALE}/checklist/${type}`,
+      },
+    },
+    openGraph: { title: content.title, description: content.intro, type: "website", url: path },
+  };
 }
 
 export default function ChecklistPage({ params }: { params: Params }) {

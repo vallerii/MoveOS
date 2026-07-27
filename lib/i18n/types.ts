@@ -34,6 +34,11 @@ export interface Dictionary {
       eyebrow: string;
       h1: string;
       subheading: string;
+      // Dedicated short copy for <title>/<meta description> — h1/subheading
+      // are written for the hero (long, persuasive); search snippets need
+      // their own copy that fits Google's display budget (~60/~155 chars).
+      metaTitle: string;
+      metaDescription: string;
       heroCta: string;
       // Optional — shorter CTA copy for narrow screens, where the full
       // heroCta can wrap or crowd the pill button. Falls back to heroCta.

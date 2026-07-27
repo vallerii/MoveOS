@@ -19,6 +19,9 @@ const en: Dictionary = {
       h1: "Don't Lose Your Deposit When You Move Out",
       subheading:
         "Most tenants lose part of their deposit simply because they don't know their rights. Get a free deposit review and find out what to do before handing back the keys — so you get it all back.",
+      metaTitle: "Don't Lose Your Rental Deposit",
+      metaDescription:
+        "Free deposit check for Barcelona renters: what to do before handing back the keys so you get your full deposit back — no common mistakes.",
       heroCta: "Get My Deposit Review",
       shortLabel: "Deposit",
     },
@@ -27,6 +30,9 @@ const en: Dictionary = {
       h1: "Moving Out Shouldn't Mean a Mountain of Paperwork",
       subheading:
         "A forgotten subscription or unpaid bill has a way of showing up months after you move. Get a free move-out admin review so nothing slips through the cracks.",
+      metaTitle: "Moving-Out Admin Checklist",
+      metaDescription:
+        "Free move-out admin review for Barcelona renters: subscriptions, bills, address changes — so nothing comes back to bite you later.",
       heroCta: "Get My Admin Review",
       shortLabel: "Moving Admin",
     },
@@ -35,6 +41,9 @@ const en: Dictionary = {
       h1: "Don't Let Your Old Furniture Become a Problem",
       subheading:
         "Furniture and belongings you can't take with you are a common source of last-minute stress and cost. Get a free review and a clear plan for what to do with them.",
+      metaTitle: "What To Do With Old Furniture",
+      metaDescription:
+        "Free move-out review for Barcelona renters: a clear plan for what to do with furniture and belongings you can't take with you.",
       heroCta: "Get My Belongings Review",
       shortLabel: "Furniture & Belongings",
     },
@@ -43,6 +52,9 @@ const en: Dictionary = {
       h1: "Moving Out Earlier Than Planned? Do It Right.",
       subheading:
         "Moving out earlier than planned often costs more than you'd expect — in penalties and lost deposit. Get a free urgent move-out review before you give notice.",
+      metaTitle: "Moving Out Early? Do It Right",
+      metaDescription:
+        "Moving out earlier than planned? Free urgent move-out review for Barcelona renters — avoid penalties and protect your deposit.",
       heroCta: "Get My Urgent Move-Out Review",
       shortLabel: "Urgent Move-Out",
     },
@@ -51,6 +63,9 @@ const en: Dictionary = {
       h1: "Want a Bonus for Moving Out and Your Deposit Back?",
       subheading:
         "You've been renting well below today's market price and you're planning to move out — book a free 15-minute consultation.\nWe'll go through your situation, estimate a possible bonus, and explain how to get your deposit back the same day, without the usual month-long wait.",
+      metaTitle: "Bonus for Moving Out, Deposit Back",
+      metaDescription:
+        "If your rent is below market price, you may get a bonus for moving out plus your deposit back the same day. Free consultation in Barcelona.",
       heroCta: "Book a Free Consultation",
       heroCtaMobile: "Book a Consultation",
       shortLabel: "Lease Buyout",
@@ -86,6 +101,9 @@ const en: Dictionary = {
       h1: "Small Repairs Before You Move Out — So You Get Your Full Deposit Back",
       subheading:
         "We only fix what actually matters for getting your deposit back — no full renovation, no overpaying. Send us before/after photos and we'll tell you exactly what's worth repairing.",
+      metaTitle: "Small Repairs Before You Move Out",
+      metaDescription:
+        "We only fix what's needed to get your deposit back — no full renovation, no overpaying. Free repair assessment from before/after photos.",
       heroCta: "Get a Repair Assessment",
       shortLabel: "Minor Repairs",
     },
