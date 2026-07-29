@@ -74,7 +74,7 @@ export default function QuizWizard({ locale, dict }: Props) {
 
       {step === "city" && (
         <fieldset>
-          <legend className="mb-4 text-center text-lg font-bold text-brand-ink sm:text-xl">
+          <legend className="mb-4 text-center text-card-title text-brand-ink">
             {q.city.question}
           </legend>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -94,7 +94,7 @@ export default function QuizWizard({ locale, dict }: Props) {
 
       {step === "timeframe" && (
         <fieldset>
-          <legend className="mb-4 text-center text-lg font-bold text-brand-ink sm:text-xl">
+          <legend className="mb-4 text-center text-card-title text-brand-ink">
             {q.timeframe.question}
           </legend>
           <div className="grid gap-3 sm:grid-cols-2">

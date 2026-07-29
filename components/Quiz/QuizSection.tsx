@@ -20,10 +20,10 @@ export default function QuizSection({ locale, pain, dict }: Props) {
       <div className="container-page relative z-10">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-brand-ink sm:text-4xl">
+            <h2 className="font-extrabold tracking-tight text-brand-ink text-section">
               {dict.quizIntro.heading}
             </h2>
-            <p className="mt-4 text-brand-ink/70">{dict.quizIntro.subheading}</p>
+            <p className="mt-4 text-subheading text-brand-ink/70">{dict.quizIntro.subheading}</p>
           </div>
         </Reveal>
 

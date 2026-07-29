@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import WhatYouGet from "@/components/WhatYouGet";
 import DidYouKnow from "@/components/DidYouKnow";
 import HowItWorks from "@/components/HowItWorks";
+import RepairShowcase from "@/components/RepairShowcase";
 import WhyUs from "@/components/WhyUs";
 import QuizSection from "@/components/Quiz/QuizSection";
 
@@ -67,7 +68,18 @@ export default function PainPage({ params }: { params: Params }) {
     <main>
       <Hero locale={locale} pain={pain} dict={dict} />
       <DidYouKnow dict={dict} pain={pain} />
-      {howItWorks && <HowItWorks {...howItWorks} />}
+      {howItWorks &&
+        (pain === "repair" ? (
+          <RepairShowcase
+            heading={howItWorks.heading}
+            intro={howItWorks.intro}
+            steps={howItWorks.steps}
+            ctaText={howItWorks.subheading}
+            ctaLabel={dict.pains[pain].heroCta}
+          />
+        ) : (
+          <HowItWorks pain={pain} {...howItWorks} />
+        ))}
       <WhatYouGet dict={dict} pain={pain} />
       <WhyUs dict={dict} pain={pain} />
       <QuizSection locale={locale} pain={pain} dict={dict} />

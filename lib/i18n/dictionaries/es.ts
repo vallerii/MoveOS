@@ -12,7 +12,6 @@ const es: Dictionary = {
   nav: {
     bookButton: "Revisión gratuita de tu mudanza",
   },
-  heroTrustBadges: ["Barcelona", "100% gratis", "15 minutos", "Personalizado", "Sin compromiso"],
   pains: {
     deposit: {
       eyebrow: "Revisión gratuita de tu fianza · Barcelona",
@@ -24,6 +23,7 @@ const es: Dictionary = {
         "Revisión gratuita para inquilinos en Barcelona: qué hacer antes de entregar las llaves para recuperar tu fianza entera, sin errores comunes.",
       heroCta: "Consigue tu revisión de fianza",
       shortLabel: "Fianza",
+      badges: ["Recupera tu fianza entera", "Respuesta en 15 minutos", "Gratis, sin compromiso"],
     },
     admin: {
       eyebrow: "Revisión gratuita de trámites de mudanza · Barcelona",
@@ -35,6 +35,7 @@ const es: Dictionary = {
         "Revisión gratuita de trámites de mudanza en Barcelona: suscripciones, facturas, cambios de dirección — para que nada se te escape.",
       heroCta: "Consigue tu revisión de trámites",
       shortLabel: "Trámites de mudanza",
+      badges: ["Todo quedará resuelto", "Tu checklist personal", "Gratis, 15 minutos"],
     },
     belongings: {
       eyebrow: "Revisión gratuita de mudanza · Barcelona",
@@ -46,6 +47,7 @@ const es: Dictionary = {
         "Revisión gratuita de mudanza en Barcelona: un plan claro para qué hacer con los muebles y pertenencias que no te llevas.",
       heroCta: "Consigue tu revisión de pertenencias",
       shortLabel: "Muebles y pertenencias",
+      badges: ["Un plan claro para tus cosas", "Sin gastos de última hora", "Gratis, sin compromiso"],
     },
     urgent: {
       eyebrow: "Revisión gratuita de mudanza urgente · Barcelona",
@@ -57,6 +59,7 @@ const es: Dictionary = {
         "¿Te mudas antes de lo previsto? Revisión gratuita de mudanza urgente en Barcelona — evita penalizaciones y protege tu fianza.",
       heroCta: "Consigue tu revisión de mudanza urgente",
       shortLabel: "Mudanza urgente",
+      badges: ["Evita penalizaciones", "Protege tu fianza", "Respuesta en 15 minutos"],
     },
     buyout: {
       eyebrow: "Traspaso de tu contrato de alquiler · Barcelona",
@@ -68,7 +71,8 @@ const es: Dictionary = {
         "Si tu alquiler está por debajo del mercado, puedes conseguir un bono por mudarte y la fianza el mismo día. Consulta gratuita en Barcelona.",
       heroCta: "Reservar consulta gratuita",
       heroCtaMobile: "Reservar consulta",
-      shortLabel: "Traspaso de contrato",
+      shortLabel: "Bono por mudanza",
+      badges: ["Valoración gratuita", "Fianza el mismo día", "Sin compromiso"],
       howItWorks: {
         heading: "Cómo funciona",
         subheading: "Sin trucos — esto es lo que pasa en cada paso.",
@@ -82,8 +86,8 @@ const es: Dictionary = {
             body: "Comparamos tu alquiler con los precios actuales de la zona. Si tu contrato está claramente por debajo del mercado, el derecho sobre él tiene valor real.",
           },
           {
-            title: "Compramos ese derecho",
-            body: "En la práctica, te pagamos por ceder el contrato, porque vale dinero en el mercado actual. De ahí viene el bono — es una compensación por el derecho que cedes, no un regalo.",
+            title: "Traspasamos tu contrato a un nuevo inquilino",
+            body: "Buscamos un inquilino dispuesto a quedarse con tu piso con las condiciones actuales de tu contrato. De ahí viene el bono — es una compensación por ceder un alquiler por debajo de mercado, no un regalo.",
           },
           {
             title: "Cálculo exacto",
@@ -98,7 +102,7 @@ const es: Dictionary = {
     },
     repair: {
       eyebrow: "Pequeñas reparaciones antes de entregar el piso · Barcelona",
-      h1: "Pequeñas reparaciones antes de mudarte — para recuperar toda tu fianza",
+      h1: "¿Quieres recuperar tu fianza? Haz una pequeña reparación con nosotros",
       subheading:
         "Reparamos solo lo que realmente hace falta para recuperar tu fianza — sin reforma completa ni gastos de más. Envíanos fotos de antes y después y te diremos qué merece la pena arreglar.",
       metaTitle: "Pequeñas reparaciones antes de mudarte",
@@ -106,6 +110,34 @@ const es: Dictionary = {
         "Reparamos solo lo necesario para recuperar tu fianza — sin reforma completa ni gastos de más. Valoración gratuita con fotos antes/después.",
       heroCta: "Consigue tu valoración de reparación",
       shortLabel: "Pequeñas reparaciones",
+      badges: ["Recupera tu fianza entera", "Solo lo necesario", "Valoración gratuita con fotos"],
+      howItWorks: {
+        heading: "Sabemos exactamente qué hay que hacer",
+        intro: "Reparamos justo lo que más a menudo hace que se retenga la fianza al entregar el piso",
+        subheading: "¿Quieres saber qué necesita tu piso?",
+        steps: [
+          {
+            title: "Bombillas y accesorios",
+            body: "Cambiamos bombillas fundidas y pequeños accesorios.",
+            highlight: "Causa habitual de retención de fianza",
+          },
+          {
+            title: "Baño",
+            body: "Quitamos la cal y limpiamos las juntas.",
+            highlight: "Sin reforma completa",
+          },
+          {
+            title: "Paredes",
+            body: "Repasamos marcas y desperfectos de fijaciones.",
+            highlight: "Rápido y sin gastos de más",
+          },
+          {
+            title: "Suelo",
+            body: "Reparamos arañazos y desperfectos puntuales del suelo.",
+            highlight: "Más barato que cambiarlo entero",
+          },
+        ],
+      },
     },
   },
   whatYouGet: {

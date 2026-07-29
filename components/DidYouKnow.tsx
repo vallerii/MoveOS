@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import GlareCard from "./GlareCard";
 import {
   BanknotesIcon,
   ClockIcon,
@@ -52,8 +53,8 @@ export default function DidYouKnow({ dict, pain }: Props) {
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
             <div className="text-center lg:sticky lg:top-28 lg:text-left">
-              <h2 className="text-3xl font-bold tracking-tight text-brand-ink sm:text-4xl">{heading}</h2>
-              <p className="mt-4 text-lg text-brand-ink/70">{subheading}</p>
+              <h2 className="font-extrabold tracking-tight text-brand-ink text-section">{heading}</h2>
+              <p className="mt-4 text-subheading text-brand-ink/70">{subheading}</p>
             </div>
           </Reveal>
 
@@ -65,27 +66,30 @@ export default function DidYouKnow({ dict, pain }: Props) {
 
                 if (featured) {
                   return (
-                    <Reveal key={q} delay={i * 90}>
-                      <div className="relative overflow-hidden rounded-2xl bg-brand-ink p-5 text-brand-background sm:p-8">
-                        <div className="pointer-events-none absolute -bottom-16 -right-10 h-64 w-64 rounded-full bg-brand-accent/25 blur-3xl" />
+                    <Reveal key={q} delay={i * 90} direction="right">
+                      <GlareCard
+                        className="rounded-2xl bg-brand-ink p-5 text-brand-background sm:p-8 relative "
+                        glareClassName="h-64 w-64 rounded-full bg-brand-accent/25 blur-3xl"
+                        defaultPosition={{ x: "100%", y: "100%" }}
+                      >
                         <Icon className="absolute -right-4 -top-2 h-20 w-20 text-brand-accent opacity-20" />
-                        <div className="relative pr-12 sm:pr-16 mt-6">
+                        <div className="pr-12 sm:pr-16 mt-6">
                           <Icon className="h-6 w-6 text-brand-accent mb-2" />
-                          <p className="text-lg font-bold leading-snug">{q}</p>
-                          <p className="mt-2 text-sm text-brand-background/70">{a}</p>
+                          <p className="text-card-title">{q}</p>
+                          <p className="mt-2 text-small text-brand-background/70">{a}</p>
                         </div>
-                      </div>
+                      </GlareCard>
                     </Reveal>
                   );
                 }
 
                 return (
-                  <Reveal key={q} delay={i * 90}>
+                  <Reveal key={q} delay={i * 90} direction="right">
                     <div className="card relative flex h-full flex-col overflow-hidden">
                       <Icon className="absolute -right-4 -top-2 h-20 w-20 text-brand-primary opacity-20" />
                       <Icon className="h-6 w-6 text-brand-primary mt-6" />
-                      <p className="mt-2 pr-12 text-lg font-bold leading-snug text-brand-ink">{q}</p>
-                      <p className="mt-3 text-sm text-brand-ink/70">{a}</p>
+                      <p className="mt-2 pr-12 text-card-title text-brand-ink">{q}</p>
+                      <p className="mt-3 text-small text-brand-ink/70">{a}</p>
                     </div>
                   </Reveal>
                 );

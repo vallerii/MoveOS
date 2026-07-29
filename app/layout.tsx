@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
+import "@fontsource/manrope/400.css";
+import "@fontsource/manrope/500.css";
+import "@fontsource/manrope/600.css";
+import "@fontsource/manrope/700.css";
+import "@fontsource/manrope/800.css";
 import "./globals.css";
 import MetaPixel from "@/components/MetaPixel";
 import { SITE_URL } from "@/lib/config";
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
 // is applied client-side in app/[locale]/layout.tsx via SetHtmlLang, since
 // nested layouts can't redeclare html/body.
 //
-// Font: self-hosted via @fontsource/inter (static files, bundled at build
+// Font: self-hosted via @fontsource/manrope (static files, bundled at build
 // time) rather than next/font/google, which fetches from Google's CDN during
 // the build — a network dependency that can hang or fail in environments
 // with restricted egress. @fontsource also ships Cyrillic subsets, needed

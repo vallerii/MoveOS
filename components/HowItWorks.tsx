@@ -6,21 +6,30 @@ import {
   BanknotesIcon,
   DocumentTextIcon,
   CheckCircleIcon,
+  WrenchIcon,
+  ClipboardCheckIcon,
+  SparklesIcon,
 } from "./icons";
+import type { PainSlug } from "@/lib/i18n/types";
 
 type Step = { title: string; body: string };
 type Props = {
+  pain: PainSlug;
   heading: string;
   subheading: string;
   steps: Step[];
 };
 
 // Icons are mapped by position, same convention as DidYouKnow — a design
-// choice, not a translated string. Falls back gracefully if a locale ever
-// ships more than 5 steps.
-const icons = [PhoneCallIcon, MagnifyingGlassIcon, BanknotesIcon, DocumentTextIcon, CheckCircleIcon];
+// choice, not a translated string. Falls back to CheckCircleIcon for any
+// pain/index without a dedicated set.
+const iconsByPain: Partial<Record<PainSlug, (typeof CheckCircleIcon)[]>> = {
+  buyout: [PhoneCallIcon, MagnifyingGlassIcon, BanknotesIcon, DocumentTextIcon, CheckCircleIcon],
+  repair: [WrenchIcon, ClipboardCheckIcon, CheckCircleIcon, SparklesIcon, WrenchIcon],
+};
 
-export default function HowItWorks({ heading, subheading, steps }: Props) {
+export default function HowItWorks({ pain, heading, subheading, steps }: Props) {
+  const icons = iconsByPain[pain] ?? [];
   return (
     <section className="relative py-20 sm:py-28 bg-gradient-to-b from-[#fff] to-[#EFEFEE]">
       {/* Topographic contour background image — clusters in the top-left
@@ -42,8 +51,8 @@ export default function HowItWorks({ heading, subheading, steps }: Props) {
       <div className="container-page relative z-30">
         <Reveal>
           <div className="mx-auto max-w-xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-brand-ink sm:text-4xl">{heading}</h2>
-            <p className="mt-4 text-lg text-brand-ink/70">{subheading}</p>
+            <h2 className="font-extrabold tracking-tight text-brand-ink text-section">{heading}</h2>
+            {subheading && <p className="mt-4 text-subheading text-brand-ink/70">{subheading}</p>}
           </div>
         </Reveal>
 
@@ -60,8 +69,8 @@ export default function HowItWorks({ heading, subheading, steps }: Props) {
                     <div className="card flex items-start gap-4">
                       <Icon className="mt-0.5 h-6 w-6 shrink-0 text-brand-primary" />
                       <div>
-                        <p className="text-lg font-bold leading-snug text-brand-ink">{title}</p>
-                        <p className="mt-1.5 text-sm text-brand-ink/70">{body}</p>
+                        <p className="text-card-title text-brand-ink">{title}</p>
+                        <p className="mt-1.5 text-small text-brand-ink/70">{body}</p>
                       </div>
                     </div>
                   </li>

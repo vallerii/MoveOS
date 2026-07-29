@@ -10,8 +10,8 @@ type Props = {
 export default function Checklist({ content, downloadLabel, downloadHref }: Props) {
   return (
     <div className="rounded-2xl border border-black/5 bg-white p-4 sm:p-8">
-      <h3 className="text-xl font-bold text-brand-ink sm:text-2xl">{content.title}</h3>
-      <p className="mt-3 text-brand-ink/70">{content.intro}</p>
+      <h3 className="text-card-title text-brand-ink">{content.title}</h3>
+      <p className="mt-3 text-body text-brand-ink/70">{content.intro}</p>
 
       <div className="mt-6 divide-y divide-black/5">
         {content.sections.map((section) => (

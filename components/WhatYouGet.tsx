@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import GlareCard from "./GlareCard";
 import {
   ScaleIcon,
   CameraIcon,
@@ -59,8 +60,8 @@ export default function WhatYouGet({ dict, pain }: Props) {
       <div className="container-page">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-brand-ink sm:text-4xl">{heading}</h2>
-            <p className="mt-4 text-lg text-brand-ink/70">{subheading}</p>
+            <h2 className="font-extrabold tracking-tight text-brand-ink text-section">{heading}</h2>
+            <p className="mt-4 text-subheading text-brand-ink/70">{subheading}</p>
           </div>
         </Reveal>
 
@@ -85,23 +86,24 @@ export default function WhatYouGet({ dict, pain }: Props) {
                     {badge}
                   </span>
                   <Icon className="mt-4 h-7 w-7 text-brand-primary" />
-                  <p className="mt-3 font-semibold text-brand-ink">{title}</p>
+                  <p className="mt-3 text-card-title text-brand-ink">{title}</p>
                 </div>
               </Reveal>
             );
           })}
 
           <Reveal delay={relevantItems.length * 70} className="w-full sm:col-span-2 lg:col-span-3">
-            <div className="relative h-full overflow-hidden rounded-2xl border border-brand-accent/50 bg-brand-accent/10 p-4 shadow-[0_0_0_1px_rgba(244,185,66,0.15),0_20px_45px_-15px_rgba(244,185,66,0.45)] sm:p-6">
-              <div className="pointer-events-none absolute -bottom-16 right-0 h-64 w-64 rounded-full bg-brand-accent/30 blur-3xl" />
-              <div className="relative">
-                <span className="inline-flex w-fit items-center rounded-full bg-brand-accent/25 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-ink">
-                  {resultLabel}
-                </span>
-                <BanknotesIcon className="mt-4 h-8 w-8 text-brand-secondary" />
-                <p className="mt-3 text-lg font-semibold text-brand-ink">💰 {resultText}</p>
-              </div>
-            </div>
+            <GlareCard
+              className="h-full rounded-2xl border border-brand-accent/50 bg-brand-accent/10 p-4 shadow-[0_0_0_1px_rgba(244,185,66,0.15),0_20px_45px_-15px_rgba(244,185,66,0.45)] sm:p-6"
+              glareClassName="h-64 w-64 rounded-full bg-brand-accent/30 blur-3xl"
+              defaultPosition={{ x: "100%", y: "100%" }}
+            >
+              <span className="inline-flex w-fit items-center rounded-full bg-brand-accent/25 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-ink">
+                {resultLabel}
+              </span>
+              <BanknotesIcon className="mt-4 h-8 w-8 text-brand-secondary" />
+              <p className="mt-3 text-subheading text-brand-ink">💰 {resultText}</p>
+            </GlareCard>
           </Reveal>
         </div>
       </div>

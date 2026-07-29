@@ -27,13 +27,16 @@ export interface Dictionary {
   nav: {
     bookButton: string;
   };
-  heroTrustBadges: [string, string, string, string, string];
   pains: Record<
     PainSlug,
     {
       eyebrow: string;
       h1: string;
       subheading: string;
+      // Three result-oriented badges shown under the hero, specific to
+      // this pain's outcome for the tenant (e.g. deposit back, penalty
+      // avoided). Order maps 1:1 to badgeIcons[pain] in Hero.tsx.
+      badges: [string, string, string];
       // Dedicated short copy for <title>/<meta description> — h1/subheading
       // are written for the hero (long, persuasive); search snippets need
       // their own copy that fits Google's display budget (~60/~155 chars).
@@ -50,7 +53,17 @@ export interface Dictionary {
       howItWorks?: {
         heading: string;
         subheading: string;
-        steps: { title: string; body: string }[];
+        // Optional — short line shown directly under the heading (used by
+        // RepairShowcase's intro; buyout's HowItWorks doesn't render it).
+        intro?: string;
+        steps: {
+          title: string;
+          body: string;
+          // Optional — short checkmark line under the card (why this specific
+          // repair matters). Only populated for repair; ignored by the plain
+          // HowItWorks timeline (buyout).
+          highlight?: string;
+        }[];
       };
     }
   >;

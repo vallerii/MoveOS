@@ -12,7 +12,6 @@ const en: Dictionary = {
   nav: {
     bookButton: "Free Move-Out Review",
   },
-  heroTrustBadges: ["Barcelona", "100% free", "15 minutes", "Personalised", "No obligation"],
   pains: {
     deposit: {
       eyebrow: "Free Deposit Protection Review · Barcelona",
@@ -24,6 +23,7 @@ const en: Dictionary = {
         "Free deposit check for Barcelona renters: what to do before handing back the keys so you get your full deposit back — no common mistakes.",
       heroCta: "Get My Deposit Review",
       shortLabel: "Deposit",
+      badges: ["Get your full deposit back", "Answers in 15 minutes", "Free, no obligation"],
     },
     admin: {
       eyebrow: "Free Move-Out Admin Check · Barcelona",
@@ -35,6 +35,7 @@ const en: Dictionary = {
         "Free move-out admin review for Barcelona renters: subscriptions, bills, address changes — so nothing comes back to bite you later.",
       heroCta: "Get My Admin Review",
       shortLabel: "Moving Admin",
+      badges: ["Everything done properly", "Your own checklist", "Free, 15 minutes"],
     },
     belongings: {
       eyebrow: "Free Move-Out Review · Barcelona",
@@ -46,6 +47,7 @@ const en: Dictionary = {
         "Free move-out review for Barcelona renters: a clear plan for what to do with furniture and belongings you can't take with you.",
       heroCta: "Get My Belongings Review",
       shortLabel: "Furniture & Belongings",
+      badges: ["A clear plan for your stuff", "No last-minute costs", "Free, no obligation"],
     },
     urgent: {
       eyebrow: "Free Urgent Move-Out Review · Barcelona",
@@ -57,9 +59,10 @@ const en: Dictionary = {
         "Moving out earlier than planned? Free urgent move-out review for Barcelona renters — avoid penalties and protect your deposit.",
       heroCta: "Get My Urgent Move-Out Review",
       shortLabel: "Urgent Move-Out",
+      badges: ["No early move-out penalties", "Protect your deposit", "Answers in 15 minutes"],
     },
     buyout: {
-      eyebrow: "Lease Buyout · Barcelona",
+      eyebrow: "Lease Reassignment · Barcelona",
       h1: "Want a Bonus for Moving Out and Your Deposit Back?",
       subheading:
         "You've been renting well below today's market price and you're planning to move out — book a free 15-minute consultation.\nWe'll go through your situation, estimate a possible bonus, and explain how to get your deposit back the same day, without the usual month-long wait.",
@@ -68,7 +71,8 @@ const en: Dictionary = {
         "If your rent is below market price, you may get a bonus for moving out plus your deposit back the same day. Free consultation in Barcelona.",
       heroCta: "Book a Free Consultation",
       heroCtaMobile: "Book a Consultation",
-      shortLabel: "Lease Buyout",
+      shortLabel: "Move-Out Bonus",
+      badges: ["Free lease assessment", "Deposit back same day", "No obligation"],
       howItWorks: {
         heading: "How It Works",
         subheading: "No hidden catch — here's what happens at each step.",
@@ -82,8 +86,8 @@ const en: Dictionary = {
             body: "We compare your rent with current prices in the area. If your lease is well below market, the right to it has real value.",
           },
           {
-            title: "We buy out that right",
-            body: "In effect, we pay you to give up the lease, because it's worth money on today's market. That's where the bonus comes from — compensation for the right you're giving up, not a gift.",
+            title: "We reassign your lease to a new tenant",
+            body: "We find a tenant willing to take over your flat on your existing lease terms. That's where the bonus comes from — compensation for handing over a below-market lease, not a gift.",
           },
           {
             title: "Exact numbers",
@@ -98,7 +102,7 @@ const en: Dictionary = {
     },
     repair: {
       eyebrow: "Minor Repairs Before Handover · Barcelona",
-      h1: "Small Repairs Before You Move Out — So You Get Your Full Deposit Back",
+      h1: "Want Your Deposit Back? Make a Few Small Repairs With Us",
       subheading:
         "We only fix what actually matters for getting your deposit back — no full renovation, no overpaying. Send us before/after photos and we'll tell you exactly what's worth repairing.",
       metaTitle: "Small Repairs Before You Move Out",
@@ -106,6 +110,34 @@ const en: Dictionary = {
         "We only fix what's needed to get your deposit back — no full renovation, no overpaying. Free repair assessment from before/after photos.",
       heroCta: "Get a Repair Assessment",
       shortLabel: "Minor Repairs",
+      badges: ["Get your full deposit back", "We fix only what's needed", "Free photo assessment"],
+      howItWorks: {
+        heading: "We Know Exactly What Needs Doing",
+        intro: "We fix exactly what most often causes a deposit to be withheld at handover",
+        subheading: "Want to know what your place needs?",
+        steps: [
+          {
+            title: "Bulbs & Fittings",
+            body: "We replace burnt-out bulbs and small fittings.",
+            highlight: "A common reason deposits get withheld",
+          },
+          {
+            title: "Bathroom",
+            body: "We remove limescale and clean the grout.",
+            highlight: "No full renovation needed",
+          },
+          {
+            title: "Walls",
+            body: "We touch up scuffs and marks from fixtures.",
+            highlight: "Fast, no extra cost",
+          },
+          {
+            title: "Floor",
+            body: "We spot-fix scratches and chips in the flooring.",
+            highlight: "Cheaper than full replacement",
+          },
+        ],
+      },
     },
   },
   whatYouGet: {

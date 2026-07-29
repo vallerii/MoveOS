@@ -6,6 +6,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Marching-dash flow for the decorative wave lines (WhyUsBackground). Kept
+   as plain CSS rather than a Tailwind keyframe so it doesn't depend on the
+   Tailwind config/JIT cache picking up changes. */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
 body {
   background-color: #EFEFEE;
   color: #1c2321;

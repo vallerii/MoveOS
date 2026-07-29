@@ -15,7 +15,28 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Manrope", "system-ui", "sans-serif"],
+      },
+      // Explicit type scale (see hierarchy notes below) — each tier is a
+      // single utility (`text-hero`, `text-section`, etc.) that bundles
+      // size, line-height, letter-spacing and weight together, instead of
+      // stacking ad hoc text-*/font-* classes per usage.
+      //   hero        — page-level h1
+      //   section     — section h2
+      //   subheading  — intro copy under a section heading
+      //   card-title  — headings inside cards/steps
+      //   body        — running paragraph text
+      //   small       — fine print, meta labels
+      // hero/section/subheading/card-title use clamp() so the size itself
+      // scales fluidly from mobile up to the desktop max (62/48/22/24px) —
+      // no sm:/md:/lg: prefixes needed at the call site.
+      fontSize: {
+        hero: ["clamp(2.125rem, 1.3rem + 4vw, 3.875rem)", { lineHeight: "1.05", letterSpacing: "-0.04em", fontWeight: "800" }],
+        section: ["clamp(1.75rem, 1.2rem + 2.8vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.03em", fontWeight: "800" }],
+        subheading: ["clamp(1.0625rem, 0.92rem + 0.7vw, 1.375rem)", { lineHeight: "1.6", fontWeight: "500" }],
+        "card-title": ["clamp(1.1875rem, 1.05rem + 0.7vw, 1.5rem)", { lineHeight: "1.3", fontWeight: "700" }],
+        body: ["18px", { lineHeight: "1.7", fontWeight: "400" }],
+        small: ["16px", { lineHeight: "1.5", fontWeight: "400" }],
       },
       boxShadow: {
         card: "0 1px 2px rgba(28,35,33,0.04), 0 8px 24px rgba(28,35,33,0.06)",

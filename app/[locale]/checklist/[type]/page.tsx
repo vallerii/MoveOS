@@ -55,8 +55,8 @@ export default function ChecklistPage({ params }: { params: Params }) {
         <Checklist content={content} downloadLabel={dict.results.downloadPdf} downloadHref={pdfHref} />
 
         <div className="mt-8 rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-4 text-center sm:p-8">
-          <h4 className="text-lg font-bold text-brand-ink">{dict.results.qualified.bookingHeading}</h4>
-          <p className="mt-2 text-sm text-brand-ink/70">{dict.results.qualified.bookingBody}</p>
+          <h4 className="text-card-title text-brand-ink">{dict.results.qualified.bookingHeading}</h4>
+          <p className="mt-2 text-small text-brand-ink/70">{dict.results.qualified.bookingBody}</p>
           <a
             href={BOOKING_URL}
             target="_blank"

@@ -18,8 +18,8 @@ export default function Result({ locale, dict, qualified, onRestart }: Props) {
     <div className="mx-auto max-w-2xl text-center">
       {qualified && (
         <div className="mt-8 rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-4 sm:p-8">
-          <h4 className="text-lg font-bold text-brand-ink">{dict.results.qualified.bookingHeading}</h4>
-          <p className="mt-2 text-sm text-brand-ink/70">{dict.results.qualified.bookingBody}</p>
+          <h4 className="text-card-title text-brand-ink">{dict.results.qualified.bookingHeading}</h4>
+          <p className="mt-2 text-small text-brand-ink/70">{dict.results.qualified.bookingBody}</p>
           <a
             href={BOOKING_URL}
             target="_blank"
@@ -38,10 +38,10 @@ export default function Result({ locale, dict, qualified, onRestart }: Props) {
       )}
 
       <div className="mt-8 rounded-2xl border border-black/5 bg-white p-4 sm:p-8">
-        <h4 className="text-lg font-bold text-brand-ink">
+        <h4 className="text-card-title text-brand-ink">
           {qualified ? dict.results.qualified.checklistHeading : dict.results.notQualified.checklistHeading}
         </h4>
-        <p className="mt-2 text-sm text-brand-ink/70">{checklist.intro}</p>
+        <p className="mt-2 text-small text-brand-ink/70">{checklist.intro}</p>
         <div className="mt-5 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <a
             href={pdfHref}
