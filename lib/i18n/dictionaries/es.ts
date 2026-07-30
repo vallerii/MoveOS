@@ -14,6 +14,7 @@ const es: Dictionary = {
   },
   pains: {
     deposit: {
+      img: "/deposit.png",
       eyebrow: "Revisión gratuita de tu fianza · Barcelona",
       h1: "No pierdas tu fianza al dejar el piso",
       subheading:
@@ -26,6 +27,7 @@ const es: Dictionary = {
       badges: ["Recupera tu fianza entera", "Respuesta en 15 minutos", "Gratis, sin compromiso"],
     },
     admin: {
+      img: "/admin.png",
       eyebrow: "Revisión gratuita de trámites de mudanza · Barcelona",
       h1: "Mudarte no debería significar una montaña de papeleo",
       subheading:
@@ -38,6 +40,7 @@ const es: Dictionary = {
       badges: ["Todo quedará resuelto", "Tu checklist personal", "Gratis, 15 minutos"],
     },
     belongings: {
+      img: "/belongings.png",
       eyebrow: "Revisión gratuita de mudanza · Barcelona",
       h1: "Que tus muebles no se conviertan en un problema",
       subheading:
@@ -50,6 +53,7 @@ const es: Dictionary = {
       badges: ["Un plan claro para tus cosas", "Sin gastos de última hora", "Gratis, sin compromiso"],
     },
     urgent: {
+      img: "/urgent.png",
       eyebrow: "Revisión gratuita de mudanza urgente · Barcelona",
       h1: "¿Te mudas antes de lo previsto? Hazlo bien.",
       subheading:
@@ -62,6 +66,7 @@ const es: Dictionary = {
       badges: ["Evita penalizaciones", "Protege tu fianza", "Respuesta en 15 minutos"],
     },
     buyout: {
+      img: "/buyout.png",
       eyebrow: "Traspaso de tu contrato de alquiler · Barcelona",
       h1: "¿Quieres un bono por mudarte y recuperar tu fianza?",
       subheading:
@@ -101,6 +106,7 @@ const es: Dictionary = {
       },
     },
     repair: {
+      img: "/repair.png",
       eyebrow: "Pequeñas reparaciones antes de entregar el piso · Barcelona",
       h1: "¿Quieres recuperar tu fianza? Haz una pequeña reparación con nosotros",
       subheading:
@@ -211,7 +217,14 @@ const es: Dictionary = {
       },
     ],
     resultLabel: "El resultado",
-    resultText: "Vete con todo resuelto: fianza, trámites y pertenencias.",
+    resultText: {
+      deposit: "Vete recuperando tu fianza entera",
+      urgent: "Vete sin penalizaciones y sin perder la fianza, aunque los plazos aprieten",
+      admin: "Vete sin ningún cabo suelto: facturas, suscripciones, empadronamiento",
+      belongings: "Vete sabiendo exactamente qué pasó con cada mueble y cada cosa",
+      repair: "Vete gastando lo mínimo en reparaciones — sin pagar de más",
+      buyout: "Vete con un bono de hasta 2000 € y la fianza el mismo día",
+    },
   },
   didYouKnow: {
     heading: "¿Sabías que…?",
@@ -356,6 +369,35 @@ const es: Dictionary = {
       barcelona: "Barcelona",
       other: "Otra ciudad",
     },
+    painIntro: {
+      question: "¿Con qué necesitas ayuda ahora mismo?",
+    },
+    topic: {
+      deposit: {
+        question: "¿Ya tienes fotos y acta de entrada?",
+        options: ["Sí, ambas cosas", "Solo fotos", "Ninguna de las dos", "No estoy seguro/a"],
+      },
+      admin: {
+        question: "¿Cuánto de los trámites ya está hecho?",
+        options: ["Nada todavía", "Parte de ellos", "Casi todo"],
+      },
+      belongings: {
+        question: "¿Qué planeas hacer con los muebles?",
+        options: ["Venderlos", "Llevármelos", "Tirarlos", "Aún no lo sé"],
+      },
+      urgent: {
+        question: "¿Qué plazo de preaviso tiene tu contrato?",
+        options: ["Menos de una semana", "2–4 semanas", "Más de un mes", "No lo sé"],
+      },
+      buyout: {
+        question: "¿Cuánto está tu alquiler por debajo del mercado?",
+        options: ["Bastante por debajo", "Un poco por debajo", "No estoy seguro/a"],
+      },
+      repair: {
+        question: "¿Ya tienes fotos de antes/después del piso?",
+        options: ["Sí, listas para enviar", "Todavía no, pero puedo", "No sé qué hace falta"],
+      },
+    },
     timeframe: {
       question: "¿Cuándo te mudas?",
       already: "Ya me mudé",
@@ -384,6 +426,7 @@ const es: Dictionary = {
     downloadPdf: "Descargar en PDF",
     restartButton: "Empezar de nuevo",
     viewChecklistButton: "Abrir checklist",
+    checklistAltText: "O descarga el checklist gratuito de mudanza:",
   },
   checklist: {
     generic: {

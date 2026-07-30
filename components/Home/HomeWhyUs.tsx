@@ -1,6 +1,8 @@
 import Reveal from "../Reveal";
+import WhyUsBackground from "../WhyUsBackground";
 import WhyUsGraphic from "./WhyUsGraphic";
 import type { HomeCopy } from "@/lib/i18n/home";
+
 
 type Props = {
   copy: HomeCopy;
@@ -18,6 +20,8 @@ export default function HomeWhyUs({ copy }: Props) {
 
   return (
     <section className="relative overflow-hidden bg-brand-ink py-20 sm:py-28">
+      <WhyUsBackground />
+
       <div className="container-page relative grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
         <Reveal>
           <div className="text-center lg:text-left">

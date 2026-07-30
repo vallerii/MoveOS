@@ -12,49 +12,56 @@ type Props = {
 
 export default function Result({ locale, dict, qualified, onRestart }: Props) {
   const checklistType = qualified ? "qualified" : "generic";
-  const checklist = dict.checklist[checklistType];
   const pdfHref = `/checklists/${locale}/${checklistType}.pdf`;
 
   return (
     <div className="mx-auto max-w-2xl text-center">
-      {qualified && (
-        <div className="mt-8 rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-4 sm:p-8">
+      {qualified ? (
+        <div className="rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-4 sm:p-6">
           <h4 className="text-card-title text-brand-ink">{dict.results.qualified.bookingHeading}</h4>
           <p className="mt-2 text-small text-brand-ink/70">{dict.results.qualified.bookingBody}</p>
-          <GlareButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-5 w-full sm:w-auto">
+          <GlareButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-4 w-full sm:w-auto">
             {dict.results.qualified.bookingButton}
           </GlareButton>
-          <p className="mt-4 text-sm text-brand-ink/60">
+          <p className="mt-3 text-sm text-brand-ink/60">
             {dict.results.qualified.emailAltText}{" "}
             <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-brand-primary hover:underline">
               {CONTACT_EMAIL}
             </a>
           </p>
         </div>
+      ) : (
+        // No booking card for a non-qualified visitor (e.g. "other city") —
+        // this is the only place they see the actual decline message, so it
+        // needs to render here rather than being silently unused copy.
+        <div className="rounded-2xl border border-black/5 bg-white p-4 sm:p-6">
+          <span className="inline-flex w-fit items-center rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-primary">
+            {dict.results.notQualified.badge}
+          </span>
+          <h4 className="mt-3 text-card-title text-brand-ink">{dict.results.notQualified.heading}</h4>
+          <p className="mt-2 text-small text-brand-ink/70">{dict.results.notQualified.body}</p>
+        </div>
       )}
 
-      <div className="mt-8 rounded-2xl border border-black/5 bg-white p-4 sm:p-8">
-        <h4 className="text-card-title text-brand-ink">
-          {qualified ? dict.results.qualified.checklistHeading : dict.results.notQualified.checklistHeading}
-        </h4>
-        <p className="mt-2 text-small text-brand-ink/70">{checklist.intro}</p>
-        <div className="mt-5 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <GlareButton href={pdfHref} download className="w-full sm:w-auto">
-            {dict.results.downloadPdf}
-          </GlareButton>
-          <Link
-            href={`/${locale}/checklist/${checklistType}`}
-            className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full border border-brand-primary/30 px-6 py-3.5 text-sm font-semibold text-brand-primary transition hover:bg-brand-primary/5 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
-          >
-            {dict.results.viewChecklistButton}
-          </Link>
-        </div>
-      </div>
+      {/* A single link line instead of a full second card (heading + intro
+          + two buttons) — the checklist is a bonus at this point, not the
+          main content, so it shouldn't compete for space/height with the
+          booking or decline card above it. */}
+      <p className="mt-4 text-sm text-brand-ink/60">
+        {dict.results.checklistAltText}{" "}
+        <Link href={`/${locale}/checklist/${checklistType}`} className="font-semibold text-brand-primary hover:underline">
+          {dict.results.viewChecklistButton}
+        </Link>
+        {" · "}
+        <a href={pdfHref} download className="font-semibold text-brand-primary hover:underline">
+          {dict.results.downloadPdf}
+        </a>
+      </p>
 
       <button
         type="button"
         onClick={onRestart}
-        className="mt-8 text-sm font-semibold text-brand-primary underline-offset-4 hover:underline"
+        className="mt-6 text-sm font-semibold text-brand-primary underline-offset-4 hover:underline"
       >
         {dict.results.restartButton}
       </button>

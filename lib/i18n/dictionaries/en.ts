@@ -14,6 +14,7 @@ const en: Dictionary = {
   },
   pains: {
     deposit: {
+      img: "/deposit.png",
       eyebrow: "Free Deposit Protection Review · Barcelona",
       h1: "Don't Lose Your Deposit When You Move Out",
       subheading:
@@ -26,6 +27,7 @@ const en: Dictionary = {
       badges: ["Get your full deposit back", "Answers in 15 minutes", "Free, no obligation"],
     },
     admin: {
+      img: "/admin.png",
       eyebrow: "Free Move-Out Admin Check · Barcelona",
       h1: "Moving Out Shouldn't Mean a Mountain of Paperwork",
       subheading:
@@ -38,6 +40,7 @@ const en: Dictionary = {
       badges: ["Everything done properly", "Your own checklist", "Free, 15 minutes"],
     },
     belongings: {
+      img: "/belongings.png",
       eyebrow: "Free Move-Out Review · Barcelona",
       h1: "Don't Let Your Old Furniture Become a Problem",
       subheading:
@@ -50,6 +53,7 @@ const en: Dictionary = {
       badges: ["A clear plan for your stuff", "No last-minute costs", "Free, no obligation"],
     },
     urgent: {
+      img: "/urgent.png",
       eyebrow: "Free Urgent Move-Out Review · Barcelona",
       h1: "Moving Out Earlier Than Planned? Do It Right.",
       subheading:
@@ -62,6 +66,7 @@ const en: Dictionary = {
       badges: ["No early move-out penalties", "Protect your deposit", "Answers in 15 minutes"],
     },
     buyout: {
+      img: "/buyout.png",
       eyebrow: "Lease Reassignment · Barcelona",
       h1: "Want a Bonus for Moving Out and Your Deposit Back?",
       subheading:
@@ -101,6 +106,7 @@ const en: Dictionary = {
       },
     },
     repair: {
+      img: "/repair.png",
       eyebrow: "Minor Repairs Before Handover · Barcelona",
       h1: "Want Your Deposit Back? Make a Few Small Repairs With Us",
       subheading:
@@ -211,7 +217,14 @@ const en: Dictionary = {
       },
     ],
     resultLabel: "The Result",
-    resultText: "Leave with everything sorted — deposit, admin, and belongings.",
+    resultText: {
+      deposit: "Leave with your full deposit back",
+      urgent: "Leave with no penalties and no lost deposit — even if the timeline is tight",
+      admin: "Leave with nothing left hanging: bills, subscriptions, address registration",
+      belongings: "Leave knowing exactly where all your furniture and belongings ended up",
+      repair: "Leave having spent the minimum on repairs — and not a cent more",
+      buyout: "Leave with a bonus of up to €2,000 and your deposit back the same day",
+    },
   },
   didYouKnow: {
     heading: "Did You Know?",
@@ -356,6 +369,35 @@ const en: Dictionary = {
       barcelona: "Barcelona",
       other: "Another city",
     },
+    painIntro: {
+      question: "What do you need help with right now?",
+    },
+    topic: {
+      deposit: {
+        question: "Do you already have move-in photos and a report?",
+        options: ["Yes, both", "Just photos", "Neither", "Not sure"],
+      },
+      admin: {
+        question: "How much of the admin work is already done?",
+        options: ["Nothing yet", "Some of it", "Almost everything"],
+      },
+      belongings: {
+        question: "What are you planning to do with your furniture?",
+        options: ["Sell it", "Take it with me", "Throw it out", "Not decided yet"],
+      },
+      urgent: {
+        question: "What's the notice period in your contract?",
+        options: ["Less than a week", "2–4 weeks", "More than a month", "Not sure"],
+      },
+      buyout: {
+        question: "How far below market is your current rent?",
+        options: ["Well below", "A little below", "Not sure"],
+      },
+      repair: {
+        question: "Do you already have before/after photos of the flat?",
+        options: ["Yes, ready to send", "Not yet, but I can", "Not sure what's needed"],
+      },
+    },
     timeframe: {
       question: "When are you moving out?",
       already: "I've already moved out",
@@ -384,6 +426,7 @@ const en: Dictionary = {
     downloadPdf: "Download as PDF",
     restartButton: "Start over",
     viewChecklistButton: "Open checklist",
+    checklistAltText: "Or grab the free move-out checklist:",
   },
   checklist: {
     generic: {

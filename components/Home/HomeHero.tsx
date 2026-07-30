@@ -35,7 +35,7 @@ const heroBadgeIcons = [ShieldCheckIcon, MapPinIcon, ClockIcon, GlobeIcon];
 export default function HomeHero({ copy }: Props) {
   return (
     <section className="overflow-hidden py-8 sm:pb-10 sm:pt-24 relative min-h-[90vh]">
-      <div className="container-page flex md:grid items-center justify-center gap-10 md:grid-cols-[2fr_1fr] lg:gap-16">
+      <div className="container-page relative z-10 flex md:grid items-center justify-center gap-10 md:grid-cols-[2fr_1fr] lg:gap-16">
         <div className="order-1 text-center md:text-left ">
           <Reveal>
             <span className="eyebrow">

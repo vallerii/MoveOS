@@ -30,6 +30,7 @@ export interface Dictionary {
   pains: Record<
     PainSlug,
     {
+      img: string;
       eyebrow: string;
       h1: string;
       subheading: string;
@@ -72,7 +73,10 @@ export interface Dictionary {
     subheading: string;
     items: { badge: string; title: string; pains: PainSlug[] }[];
     resultLabel: string;
-    resultText: string;
+    // Per-pain "Result" line shown in the standout card at the end of the
+    // mistakes grid — was a single shared string before, which meant the
+    // exact same sentence repeated verbatim across all 6 landing pages.
+    resultText: Record<PainSlug, string>;
   };
   didYouKnow: {
     heading: string;
@@ -101,6 +105,18 @@ export interface Dictionary {
       barcelona: string;
       other: string;
     };
+    // Homepage-only step — the site doesn't know the visitor's pain up
+    // front (unlike a /deposit or /repair landing page, where it's implied
+    // by the URL), so it's asked directly. The answer picks which
+    // `topic` question below gets shown next.
+    painIntro: {
+      question: string;
+    };
+    // Per-pain follow-up question, specific to that pain's topic (e.g.
+    // before/after photos for repair, notice period for urgent) — this is
+    // what makes quiz step 2/3 actually differ by page instead of being
+    // the same two generic questions everywhere.
+    topic: Record<PainSlug, { question: string; options: string[] }>;
     timeframe: {
       question: string;
       already: string;
@@ -129,6 +145,11 @@ export interface Dictionary {
     downloadPdf: string;
     restartButton: string;
     viewChecklistButton: string;
+    // Short lead-in before the checklist link — same "Or ..." style as
+    // qualified.emailAltText, used to replace what used to be a full
+    // separate card (heading + intro paragraph + two buttons) with one
+    // compact line.
+    checklistAltText: string;
   };
   checklist: {
     generic: ChecklistContent;

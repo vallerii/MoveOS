@@ -143,7 +143,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
           a: "That gap is exactly where most of the stress — and most of the mistakes — happen.",
         },
       ],
-      ctaCard: { badge: "Free · 2 minutes", text: "Find out what your situation is →" },
+      ctaCard: { badge: "Free · 15 minutes", text: "Find out what your situation is →" },
     },
     howItWorks: {
       heading: "How It Works",
@@ -261,7 +261,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
           a: "En ese margen es donde ocurre la mayor parte del estrés — y de los errores.",
         },
       ],
-      ctaCard: { badge: "Gratis · 2 minutos", text: "Descubre cuál es tu situación →" },
+      ctaCard: { badge: "Gratis · 15 minutos", text: "Descubre cuál es tu situación →" },
     },
     howItWorks: {
       heading: "Cómo Funciona",
@@ -377,7 +377,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
           a: "Именно в этот промежуток происходит больше всего стресса — и больше всего ошибок.",
         },
       ],
-      ctaCard: { badge: "Бесплатно · 2 минуты", text: "Узнайте, какая у вас ситуация →" },
+      ctaCard: { badge: "Бесплатно · 15 минут", text: "Узнайте, какая у вас ситуация →" },
     },
     howItWorks: {
       heading: "Как это работает",

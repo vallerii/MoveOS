@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 import { PAIN_ICONS, PAIN_SLUGS } from "@/lib/pains";
-import { CONTACT_EMAIL } from "@/lib/config";
+import { CONTACT_EMAIL, CONTACT_WHATSAPP, CONTACT_WHATSAPP_DISPLAY } from "@/lib/config";
+import { PhoneCallIcon, MailIcon } from "./icons";
 import BarcelonaSkyline from "./BarcelonaSkyline";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -16,25 +17,34 @@ type Props = {
 // Small homepage/footer-only strings — same reasoning as lib/i18n/home.ts:
 // these labels don't fit the per-pain `Dictionary` shape, so they live in a
 // local map here instead of widening the shared type for one component.
-const EXTRA: Record<Locale, { linksHeading: string; companyHeading: string; contact: string; home: string; bottomNote: string }> = {
+const EXTRA: Record<
+  Locale,
+  { linksHeading: string; companyHeading: string; contactHeading: string; contact: string; whatsapp: string; home: string; bottomNote: string }
+> = {
   en: {
     linksHeading: "Move-Out Help",
     companyHeading: "Company",
-    contact: "Contact us",
+    contactHeading: "Talk to us",
+    contact: "Email us",
+    whatsapp: "WhatsApp us",
     home: "Home",
     bottomNote: "Free for every tenant.",
   },
   es: {
     linksHeading: "Ayuda con tu Mudanza",
     companyHeading: "Empresa",
-    contact: "Contáctanos",
+    contactHeading: "Habla con nosotros",
+    contact: "Escríbenos",
+    whatsapp: "Escríbenos por WhatsApp",
     home: "Inicio",
     bottomNote: "Gratis para cada inquilino.",
   },
   ru: {
     linksHeading: "Помощь с выездом",
     companyHeading: "Компания",
-    contact: "Написать нам",
+    contactHeading: "Связаться с нами",
+    contact: "Написать на почту",
+    whatsapp: "Написать в WhatsApp",
     home: "Главная",
     bottomNote: "Бесплатно для каждого арендатора.",
   },
@@ -104,9 +114,30 @@ export default function Footer({ locale, dict }: Props) {
               <Link href={`/${locale}/privacy`} className="hover:text-brand-primary">
                 {dict.footer.privacy}
               </Link>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-brand-primary">
+            </nav>
+          </div>
+
+          {/* Trust block: at least one contact channel beyond email — Barcelona
+              renters expect WhatsApp/phone alongside it, and its absence reads
+              as a stop-factor for a user who's about to hand over documents
+              and their landlord's details. */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-brand-ink/40 lg:text-sm">{extra.contactHeading}</p>
+            <nav className="mt-4 flex flex-col gap-2.5 text-sm text-brand-ink/60 lg:text-base">
+              <a
+                href={`https://wa.me/${CONTACT_WHATSAPP}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 font-semibold text-brand-primary hover:text-brand-primary/80"
+              >
+                <PhoneCallIcon className="h-4 w-4 shrink-0" />
+                {extra.whatsapp}
+              </a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-2 hover:text-brand-primary">
+                <MailIcon className="h-4 w-4 shrink-0" />
                 {extra.contact}
               </a>
+              <span className="text-xs text-brand-ink/40">{CONTACT_WHATSAPP_DISPLAY}</span>
             </nav>
           </div>
         </div>

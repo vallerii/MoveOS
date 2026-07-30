@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 /* Marching-dash flow for the decorative wave lines (WhyUsBackground). Kept

@@ -34,21 +34,7 @@ export default function Hero({ pain, dict }: Props) {
 
   return (
     <section className="overflow-hidden py-8 sm:pb-10 sm:pt-24 relative min-h-[90vh]">
-      <Image
-        src="/city.png"
-        alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
-        width={2000}
-        height={800}
-        className="absolute top-0 right-[-100px] w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[100%] md:bottom-0 object-cover lg:object-contain object-right "
-      />
-      <Image
-        src="/route.png"
-        alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
-        width={2000}
-        height={1000}
-        className="absolute animate-float bottom-[25%] sm:top-[-20%] right-[-80px] w-[200%] sm:w-[100%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[50vh] md:h-[80%] md:top-0 md:bottom-0 object-contain object-right "
-      />
-      <div className="container-page flex md:grid items-center justify-center gap-10 md:grid-cols-[2fr_1fr] lg:gap-16">
+      <div className="container-page relative z-10 flex md:grid items-center justify-center gap-10 md:grid-cols-[2fr_1fr] lg:gap-16">
         <div className="order-1 text-center md:text-left ">
           <Reveal>
             <span className="eyebrow">
@@ -73,14 +59,39 @@ export default function Hero({ pain, dict }: Props) {
           <Reveal delay={300}>
             <div className="mt-10 flex  justify-center md:justify-start">
               <GlareButton href="#quiz" className="w-full sm:w-auto">
-                {/* Shorter label on mobile, full label from sm and up. */}
-                <span className="sm:!hidden">{copy.heroCtaMobile ?? copy.heroCta}</span>
-                <span className="hidden sm:!inline-flex">{copy.heroCta}</span>
+                {/* Only split into two responsive spans when there's an
+                    actually-different mobile label — otherwise both spans
+                    would render identical text into the DOM (one hidden via
+                    CSS, not from the accessibility tree), which reads as a
+                    duplicated/copy-pasted button label to anything that
+                    extracts page text without applying CSS. */}
+                {copy.heroCtaMobile && copy.heroCtaMobile !== copy.heroCta ? (
+                  <>
+                    <span className="sm:!hidden">{copy.heroCtaMobile}</span>
+                    <span className="hidden sm:!inline-flex">{copy.heroCta}</span>
+                  </>
+                ) : (
+                  copy.heroCta
+                )}
               </GlareButton>
             </div>
           </Reveal>
         </div>
       </div>
+
+      {/* Mobile: a normal in-flow image between the CTA and the badges row.
+          sm+: switches to an absolutely-positioned decorative graphic behind
+          the badges/next to the copy instead — same pattern as HomeHero, so
+          the pain pages don't get the overflow the old always-absolute
+          image caused on small screens. */}
+      <Image
+        src={copy.img}
+        alt=""
+        aria-hidden="true"
+        width={1000}
+        height={1000}
+        className="relative z-0 w-full block h-auto mx-auto max-w-[320px] object-contain sm:absolute sm:z-0 sm:mx-0 sm:mt-0 sm:top-[10%] sm:right-[-5%] sm:h-auto sm:w-auto sm:max-w-[50%] sm:object-right lg:top-[10%]"
+      />
 
       <Reveal delay={400}>
         <div className="container-page mt-14 lg:mt-20">

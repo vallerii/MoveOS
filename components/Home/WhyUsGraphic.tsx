@@ -41,44 +41,7 @@ export default function WhyUsGraphic({ advantages }: Props) {
       {/* Background layer — z-0, low opacity, spans the full card so it
           reads as ambient texture behind the content instead of a
           competing element. */}
-      <div className="pointer-events-none absolute inset-0 z-0 opacity-25">
-        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 400 320" preserveAspectRatio="none" fill="none">
-          <path
-            d="M40,280 C120,250 160,200 220,180"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeDasharray="3 7"
-            className="text-brand-primary"
-            style={{ animation: "dash-flow 18s linear infinite" }}
-          />
-          <path
-            d="M220,180 C280,150 320,120 380,60"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeDasharray="3 7"
-            className="text-brand-accent"
-            style={{ animation: "dash-flow 22s linear infinite reverse" }}
-          />
-          <path
-            d="M220,180 C270,210 310,230 370,280"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeDasharray="3 7"
-            className="text-brand-primary"
-            style={{ animation: "dash-flow 20s linear infinite" }}
-          />
-        </svg>
-
-        <div className="absolute right-8 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-brand-accent/50">
-          <ShieldCheckIcon className="h-4 w-4 text-brand-accent" />
-        </div>
-        <div className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-brand-primary/50">
-          <HomeNodeIcon className="h-5 w-5 text-brand-primary" />
-        </div>
-        <div className="absolute right-10 bottom-6 flex h-9 w-9 items-center justify-center rounded-full border border-brand-primary/40">
-          <MailIcon className="h-4 w-4 text-brand-primary" />
-        </div>
-      </div>
+      
 
       <p className="relative z-10 text-sm font-bold text-white">
         Move<span className="text-brand-primary">OS</span>

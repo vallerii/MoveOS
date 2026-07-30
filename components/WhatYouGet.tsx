@@ -39,6 +39,7 @@ const icons = [
 
 export default function WhatYouGet({ dict, pain }: Props) {
   const { heading, subheading, items, resultLabel, resultText } = dict.whatYouGet;
+  const resultCopy = resultText[pain];
 
   // Only show the mistakes that are actually relevant to this pain's page —
   // a deposit page doesn't need to also carry utilities/furniture/early-exit
@@ -101,8 +102,8 @@ export default function WhatYouGet({ dict, pain }: Props) {
               <span className="inline-flex w-fit items-center rounded-full bg-brand-accent/25 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-ink">
                 {resultLabel}
               </span>
-              <BanknotesIcon className="mt-4 h-8 w-8 text-brand-secondary" />
-              <p className="mt-3 text-subheading text-brand-ink">💰 {resultText}</p>
+              {/* <BanknotesIcon className="mt-4 h-8 w-8 text-brand-secondary" /> */}
+              <p className="my-3 text-card-title text-brand-ink">💰 {resultCopy}</p>
             </GlareCard>
           </Reveal>
         </div>
