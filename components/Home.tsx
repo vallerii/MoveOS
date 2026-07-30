@@ -1,4 +1,5 @@
 import QuizSection from "./Quiz/QuizSection";
+import HomeStage from "./Home/HomeStage";
 import HomeHero from "./Home/HomeHero";
 import HomeSituations from "./Home/HomeSituations";
 import HomeTrust from "./Home/HomeTrust";
@@ -21,8 +22,13 @@ export default function Home({ locale, dict }: Props) {
 
   return (
     <main>
-      <HomeHero copy={copy} />
-      <HomeSituations locale={locale} dict={dict} copy={copy} />
+      {/* Hero and situations share one scroll stage: the product artifacts
+          fly out of the hero and land in the section below, so both have to
+          sit inside the same coordinate space. See HomeStage. */}
+      <HomeStage>
+        <HomeHero copy={copy} />
+        <HomeSituations locale={locale} dict={dict} copy={copy} />
+      </HomeStage>
       <HomeTrust copy={copy} />
       <HomeHowItWorks copy={copy} />
       <HomeWhyUs copy={copy} />

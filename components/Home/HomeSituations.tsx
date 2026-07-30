@@ -41,11 +41,17 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
                 </div>
               </div>
 
-              {/* Product artifacts float at the panel's right edge instead of
-                  the old isometric illustration. */}
-              <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 hidden lg:block">
-                <ChecklistArtifact className="animate-drift" />
+              {/* Landing pad for the checklist artifact flown in from the
+                  hero (see HomeStage). Below xl nothing flies, so the
+                  artifact renders here statically instead. */}
+              <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 hidden lg:block xl:hidden">
+                <ChecklistArtifact />
               </div>
+              <div
+                data-fly-target="0"
+                aria-hidden
+                className="pointer-events-none absolute -right-6 bottom-8 hidden w-[280px] xl:block"
+              />
             </div>
           </Reveal>
 
@@ -77,11 +83,20 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
                   <Link
                     key={slug}
                     href={`/${locale}/${slug}`}
-                    className={`group flex items-center justify-between gap-4 py-3.5 text-base text-ink transition-colors hover:text-slate ${
+                    className={`group flex items-center gap-4 py-3.5 text-base text-ink transition-colors hover:text-slate ${
                       i > 0 ? "border-t border-ink/[0.07]" : ""
                     }`}
                   >
-                    <span>{dict.pains[slug].shortLabel}</span>
+                    {/* The first three rows are where the remaining hero
+                        artifacts come to rest. The pad reserves the space
+                        at every breakpoint so the list doesn't reflow when
+                        the flight kicks in at xl. */}
+                    {i < 3 ? (
+                      <span data-fly-target={i + 1} aria-hidden className="h-9 w-9 shrink-0 rounded-[10px] bg-ink/[0.04]" />
+                    ) : (
+                      <span aria-hidden className="h-9 w-9 shrink-0" />
+                    )}
+                    <span className="flex-1">{dict.pains[slug].shortLabel}</span>
                     <span
                       aria-hidden
                       className="text-ash transition-transform duration-200 group-hover:translate-x-0.5"
