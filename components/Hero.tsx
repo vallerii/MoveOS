@@ -9,6 +9,7 @@ import {
   WrenchIcon,
 } from "./icons";
 import Reveal from "./Reveal";
+import GlareButton from "./GlareButton";
 import type { Dictionary, Locale, PainSlug } from "@/lib/i18n/types";
 
 type Props = {
@@ -71,11 +72,11 @@ export default function Hero({ pain, dict }: Props) {
 
           <Reveal delay={300}>
             <div className="mt-10 flex  justify-center md:justify-start">
-              <a href="#quiz" className="btn-primary w-full sm:w-auto">
+              <GlareButton href="#quiz" className="w-full sm:w-auto">
                 {/* Shorter label on mobile, full label from sm and up. */}
                 <span className="sm:!hidden">{copy.heroCtaMobile ?? copy.heroCta}</span>
                 <span className="hidden sm:!inline-flex">{copy.heroCta}</span>
-              </a>
+              </GlareButton>
             </div>
           </Reveal>
         </div>

@@ -5,6 +5,7 @@ import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/config";
 import Checklist from "@/components/Checklist";
+import GlareButton from "@/components/GlareButton";
 
 type ChecklistType = "qualified" | "generic";
 const CHECKLIST_TYPES: ChecklistType[] = ["qualified", "generic"];
@@ -57,14 +58,9 @@ export default function ChecklistPage({ params }: { params: Params }) {
         <div className="mt-8 rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-4 text-center sm:p-8">
           <h4 className="text-card-title text-brand-ink">{dict.results.qualified.bookingHeading}</h4>
           <p className="mt-2 text-small text-brand-ink/70">{dict.results.qualified.bookingBody}</p>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary mt-5 w-full sm:w-auto"
-          >
+          <GlareButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-5 w-full sm:w-auto">
             {dict.results.qualified.bookingButton}
-          </a>
+          </GlareButton>
           <p className="mt-4 text-sm text-brand-ink/60">
             {dict.results.qualified.emailAltText}{" "}
             <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-brand-primary hover:underline">

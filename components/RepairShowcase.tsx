@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import GlareButton from "./GlareButton";
 import { CheckCircleIcon } from "./icons";
 
 type Step = { title: string; body: string; highlight?: string };
@@ -75,9 +76,9 @@ export default function RepairShowcase({ heading, intro, steps, ctaText, ctaLabe
         <Reveal delay={250}>
           <div className="mx-auto mt-14 flex max-w-xl flex-col items-center text-center">
             <p className="text-subheading text-brand-ink">{ctaText}</p>
-            <a href="#quiz" className="btn-primary mt-6 w-full sm:w-auto">
+            <GlareButton href="#quiz" className="mt-6 w-full sm:w-auto">
               {ctaLabel}
-            </a>
+            </GlareButton>
           </div>
         </Reveal>
       </div>

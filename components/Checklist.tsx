@@ -1,4 +1,5 @@
 import { ChevronDownIcon } from "./icons";
+import GlareButton from "./GlareButton";
 import type { ChecklistContent } from "@/lib/i18n/types";
 
 type Props = {
@@ -34,13 +35,13 @@ export default function Checklist({ content, downloadLabel, downloadHref }: Prop
 
       <p className="mt-6 text-xs text-brand-ink/40">{content.disclaimer}</p>
 
-      <a
+      <GlareButton
         href={downloadHref}
         download
-        className="btn-primary mt-6 inline-flex w-full justify-center sm:w-auto"
+        className="mt-6 inline-flex w-full justify-center sm:w-auto"
       >
         {downloadLabel}
-      </a>
+      </GlareButton>
     </div>
   );
 }

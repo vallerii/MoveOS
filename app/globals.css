@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Marching-dash flow for the decorative wave lines (WhyUsBackground). Kept
@@ -18,6 +19,11 @@ html {
 body {
   background-color: #EFEFEE;
   color: #1c2321;
+  /* Safety net — decorative absolutely-positioned graphics (hero, bento
+     sections) intentionally bleed past their own card/section edges; this
+     stops any of that from ever turning into a page-level horizontal
+     scrollbar. */
+  overflow-x: hidden;
 }
 
 @layer components {

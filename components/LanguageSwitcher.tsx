@@ -20,7 +20,7 @@ export default function LanguageSwitcher({ locale, languageNames }: Props) {
   const pathname = usePathname() || `/${locale}`;
 
   return (
-    <div className="flex items-center gap-1 rounded-full border border-black/10 bg-white/70 p-1 text-sm">
+    <div className="inline-flex w-fit items-center gap-1 rounded-full border border-black/10 bg-white/70 p-1 text-sm">
       {LOCALES.map((l) => (
         <Link
           key={l}

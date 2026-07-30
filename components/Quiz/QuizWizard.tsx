@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Dictionary, Locale, PainSlug } from "@/lib/i18n/types";
+import type { Dictionary, Locale } from "@/lib/i18n/types";
 import { formatTemplate } from "@/lib/i18n";
 import ChoiceButton from "./ChoiceButton";
 import ProgressDots from "./ProgressDots";
@@ -20,7 +20,6 @@ const STEPS: StepId[] = ["city", "timeframe", "contact"];
 
 type Props = {
   locale: Locale;
-  pain: PainSlug;
   dict: Dictionary;
 };
 
