@@ -1,61 +1,62 @@
-import Image from "next/image";
 import Reveal from "../Reveal";
-import GlareButton from "../GlareButton";
-import { ShieldCheckIcon, MapPinIcon, ClockIcon } from "../icons";
+import PillButton from "../PillButton";
+import { ChecklistArtifact, DocumentArtifact, StatArtifact, TimelineArtifact } from "../Artifacts";
 import type { HomeCopy } from "@/lib/i18n/home";
 
 type Props = {
   copy: HomeCopy;
 };
 
-// Local to the homepage only — every other badge/icon set in the app is
-// mapped from components/icons.tsx, but "multiple languages" isn't a
-// concept any existing icon covers, so a small one-off in the same visual
-// style (24x24, currentColor stroke, rounded caps) lives here rather than
-// widening the shared icon file for a single usage.
-function GlobeIcon({ className = "h-6 w-6" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18" />
-    </svg>
-  );
-}
-
-const heroBadgeIcons = [ShieldCheckIcon, MapPinIcon, ClockIcon, GlobeIcon];
-
+/**
+ * Homepage hero — the reference hero pattern: a centred oversized serif
+ * headline with a subhead and a pill button pair, ringed by four floating
+ * product artifacts overlapping the white canvas at varied offsets.
+ *
+ * The homepage copy ships `h1` as an array of lines, each an array of
+ * segments flagged `accent`. Under the old palette those segments rendered
+ * in teal. This system doesn't tint headline type — instead the accented
+ * phrase is *italicised*, which is exactly the reference hero device: one
+ * italic phrase mid-sentence in an otherwise upright serif display line.
+ *
+ * The apartment illustration that used to sit at the right edge is gone, as
+ * is the tinted badge strip — imagery is product-UI fragments only, and the
+ * badges are metadata now rather than icon chips.
+ */
 export default function HomeHero({ copy }: Props) {
   return (
-    <section className="overflow-hidden py-8 sm:pb-10 sm:pt-24 relative min-h-[90vh]">
-      <div className="container-page flex md:grid items-center justify-center gap-10 md:grid-cols-[2fr_1fr] lg:gap-16">
-        <div className="order-1 text-center md:text-left ">
+    <section className="relative overflow-hidden bg-paper pb-24 pt-16 sm:pb-32 sm:pt-24">
+      <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
+        <div className="container-page relative h-full">
+          <div className="absolute left-0 top-2 animate-drift">
+            <ChecklistArtifact />
+          </div>
+          <div className="absolute right-2 top-14">
+            <DocumentArtifact />
+          </div>
+          <div className="absolute bottom-10 left-8">
+            <StatArtifact value="46.2%" delta="↑ 5.5×" />
+          </div>
+          <div className="absolute bottom-4 right-0 animate-drift">
+            <TimelineArtifact />
+          </div>
+        </div>
+      </div>
+
+      <div className="container-page relative">
+        <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <span className="eyebrow">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-primary opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-primary" />
-              </span>
-              {copy.hero.eyebrow}
-            </span>
+            <p className="tag">{copy.hero.eyebrow}</p>
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="mt-6 font-extrabold tracking-tight text-brand-ink text-hero">
+            <h1 className="mt-6 font-display text-display text-ink">
               {copy.hero.h1.map((line, i) => (
                 <span key={i} className="block">
                   {line.map((segment, j) =>
                     segment.accent ? (
-                      <span key={j} className="text-brand-primary">
+                      <em key={j} className="italic">
                         {segment.text}
-                      </span>
+                      </em>
                     ) : (
                       <span key={j}>{segment.text}</span>
                     )
@@ -66,49 +67,30 @@ export default function HomeHero({ copy }: Props) {
           </Reveal>
 
           <Reveal delay={200}>
-            <p className="mx-auto mt-6 max-w-md whitespace-pre-line text-subheading text-brand-ink/70 md:mx-0">
-              {copy.hero.subheading}
-            </p>
+            <p className="mx-auto mt-8 max-w-xl whitespace-pre-line text-body text-slate">{copy.hero.subheading}</p>
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-10 flex justify-center md:justify-start">
-              <GlareButton href="#situations" className="w-full sm:w-auto">
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <PillButton href="#situations" className="w-full sm:w-auto">
                 {copy.hero.cta}
-              </GlareButton>
+              </PillButton>
+              <PillButton href="#quiz" variant="ghost" className="w-full sm:w-auto">
+                {copy.situations.whatWeDo.cta}
+              </PillButton>
             </div>
           </Reveal>
         </div>
       </div>
 
-      {/* Mobile: a normal in-flow image between the CTA and the badges row.
-          sm+: switches to an absolutely-positioned decorative graphic behind
-          the badges/next to the copy instead (it was previously *always*
-          absolute with no width cap, which is what made it misbehave and
-          cause horizontal overflow on small screens). */}
-      <Image
-        src="/heroapartment.png"
-        alt=""
-        aria-hidden="true"
-        width={1000}
-        height={1000}
-        className="relative z-0 mx-auto mt-10 block h-auto w-[70%] max-w-[220px] object-contain sm:absolute sm:z-0 sm:mx-0 sm:mt-0 sm:bottom-0 sm:right-0 sm:h-auto sm:w-auto sm:max-w-none sm:object-right lg:top-[10%]"
-      />
-
       <Reveal delay={400}>
-        <div className="container-page mt-14 lg:mt-20">
-          <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-start gap-x-6 gap-y-4 rounded-2xl border border-black/5 bg-white/70 px-5 py-4 shadow-card backdrop-blur sm:justify-between sm:gap-x-10 sm:gap-y-5 sm:px-8 sm:py-6">
-            {copy.hero.badges.map((label, i) => {
-              const Icon = heroBadgeIcons[i] ?? ShieldCheckIcon;
-              return (
-                <div key={label} className="flex items-center gap-3 text-base font-semibold text-brand-ink sm:text-lg">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-primary/10">
-                    <Icon className="h-6 w-6 text-brand-primary" />
-                  </span>
-                  {label}
-                </div>
-              );
-            })}
+        <div className="container-page relative mt-20 sm:mt-28">
+          <div className="mx-auto grid max-w-4xl grid-cols-2 divide-x divide-y divide-hairline border-y border-l border-hairline sm:grid-cols-4 sm:divide-y-0 sm:border-l-0">
+            {copy.hero.badges.map((label) => (
+              <div key={label} className="px-4 py-5 text-center">
+                <p className="text-caption text-slate">{label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </Reveal>

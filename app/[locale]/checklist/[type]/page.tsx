@@ -5,7 +5,7 @@ import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/config";
 import Checklist from "@/components/Checklist";
-import GlareButton from "@/components/GlareButton";
+import ArrowLink from "@/components/ArrowLink";
 
 type ChecklistType = "qualified" | "generic";
 const CHECKLIST_TYPES: ChecklistType[] = ["qualified", "generic"];
@@ -48,25 +48,39 @@ export default function ChecklistPage({ params }: { params: Params }) {
   const pdfHref = `/checklists/${locale}/${type}.pdf`;
 
   return (
+    // Reading page — narrower measure than the marketing sections, since
+    // this is a long list of items rather than a magazine spread.
     <main className="container-page py-16 sm:py-24">
-      <Link href={`/${locale}`} className="text-sm font-semibold text-brand-primary hover:underline">
-        {dict.checklistPage.backLink}
-      </Link>
-      <div className="mt-6">
-        <Checklist content={content} downloadLabel={dict.results.downloadPdf} downloadHref={pdfHref} />
+      <div className="mx-auto max-w-3xl">
+        <ArrowLink href={`/${locale}`} className="text-caption text-slate">
+          {dict.checklistPage.backLink}
+        </ArrowLink>
 
-        <div className="mt-8 rounded-2xl border border-brand-primary/30 bg-brand-primary/5 p-4 text-center sm:p-8">
-          <h4 className="text-card-title text-brand-ink">{dict.results.qualified.bookingHeading}</h4>
-          <p className="mt-2 text-small text-brand-ink/70">{dict.results.qualified.bookingBody}</p>
-          <GlareButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-5 w-full sm:w-auto">
-            {dict.results.qualified.bookingButton}
-          </GlareButton>
-          <p className="mt-4 text-sm text-brand-ink/60">
-            {dict.results.qualified.emailAltText}{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-brand-primary hover:underline">
-              {CONTACT_EMAIL}
-            </a>
-          </p>
+        <div className="mt-10">
+          <Checklist content={content} downloadLabel={dict.results.downloadPdf} downloadHref={pdfHref} />
+
+          {/* The page's single accent card — the booking offer is the one
+              action worth punctuating here. */}
+          <div className="card-peach mt-16">
+            <h4 className="font-display text-heading-sm text-sienna">{dict.results.qualified.bookingHeading}</h4>
+            <p className="mt-3 max-w-xl text-caption text-sienna/80">{dict.results.qualified.bookingBody}</p>
+            <div className="mt-8">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex max-w-full items-center justify-center whitespace-nowrap rounded-full bg-sienna px-6 py-3.5 text-base text-peach transition-opacity hover:opacity-90"
+              >
+                {dict.results.qualified.bookingButton}
+              </a>
+            </div>
+            <p className="mt-6 text-meta text-sienna/70">
+              {dict.results.qualified.emailAltText}{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4">
+                {CONTACT_EMAIL}
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </main>

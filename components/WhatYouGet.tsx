@@ -1,19 +1,4 @@
-import Image from "next/image";
 import Reveal from "./Reveal";
-import GlareCard from "./GlareCard";
-import {
-  ScaleIcon,
-  CameraIcon,
-  DocumentTextIcon,
-  MailIcon,
-  ClipboardCheckIcon,
-  ShieldCheckIcon,
-  BanknotesIcon,
-  GiftIcon,
-  ClockIcon,
-  MagnifyingGlassIcon,
-  WrenchIcon,
-} from "./icons";
 import type { Dictionary, PainSlug } from "@/lib/i18n/types";
 
 type Props = {
@@ -21,91 +6,49 @@ type Props = {
   pain: PainSlug;
 };
 
-const icons = [
-  ScaleIcon,
-  CameraIcon,
-  MailIcon,
-  DocumentTextIcon,
-  GiftIcon,
-  ClockIcon,
-  ClipboardCheckIcon,
-  BanknotesIcon,
-  ClockIcon,
-  MagnifyingGlassIcon,
-  WrenchIcon,
-  ShieldCheckIcon,
-  CameraIcon,
-];
-
+/**
+ * "What you get" — a 3-column grid of neutral feature cards under a serif
+ * section heading, with the outcome line promoted to a full-width row.
+ *
+ * The topographic background image, the connector-dot rail, the icon per
+ * card, and the gold glow card are all gone. This section sits on Paper, and
+ * DidYouKnow already spends the page's one peach card, so the result row
+ * here is a Mist card differentiated by scale and a rule — not by colour.
+ */
 export default function WhatYouGet({ dict, pain }: Props) {
   const { heading, subheading, items, resultLabel, resultText } = dict.whatYouGet;
 
-  // Only show the mistakes that are actually relevant to this pain's page —
-  // a deposit page doesn't need to also carry utilities/furniture/early-exit
-  // cards. Icons are matched by each item's original position in the array.
-  const relevantItems = items
-    .map((item, i) => ({ ...item, Icon: icons[i] ?? ScaleIcon }))
-    .filter((item) => item.pains.includes(pain));
+  // Only show the mistakes actually relevant to this pain's page — a deposit
+  // page doesn't need to also carry utilities/furniture/early-exit cards.
+  const relevantItems = items.filter((item) => item.pains.includes(pain));
 
   return (
-    <section className="py-20 sm:py-28 relative">
-      <Image
-        src="/topo-contour4.png"
-        alt=""
-        aria-hidden="true"
-        fill
-        priority={false}
-        className="pointer-events-none object-cover opacity-10 rotate-180 -scale-x-100 object-bottom"
-      />
+    <section className="bg-paper py-20 sm:py-section">
       <div className="container-page">
         <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-extrabold tracking-tight text-brand-ink text-section">{heading}</h2>
-            <p className="mt-4 text-subheading text-brand-ink/70">{subheading}</p>
+          <div className="max-w-2xl">
+            <h2 className="font-display text-heading-lg text-ink">{heading}</h2>
+            <p className="mt-6 max-w-xl text-body text-slate">{subheading}</p>
           </div>
         </Reveal>
 
-        <Reveal delay={100}>
-          <div className="mx-auto mt-12 hidden max-w-4xl items-center sm:flex">
-            {relevantItems.map((_, i) => (
-              <div key={i} className="flex flex-1 items-center">
-                <span className="h-2 w-2 shrink-0 rounded-full bg-brand-primary/50" />
-                <span className="mx-1.5 h-px flex-1 bg-gradient-to-r from-brand-primary/30 to-brand-primary/10" />
+        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {relevantItems.map(({ badge, title }, i) => (
+            <Reveal key={title} delay={i * 70}>
+              <div className="card-neutral flex h-full flex-col">
+                <span className="tag">{badge}</span>
+                <p className="mt-6 text-heading-sm text-ink">{title}</p>
               </div>
-            ))}
-            <span className="h-3.5 w-3.5 shrink-0 animate-pulse rounded-full bg-brand-accent shadow-[0_0_14px_3px_rgba(244,185,66,0.55)]" />
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={relevantItems.length * 70}>
+          <div className="mt-4 flex flex-col gap-6 rounded-card bg-mist p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
+            <span className="tag shrink-0">{resultLabel}</span>
+            <p className="max-w-2xl font-display text-heading text-ink">{resultText}</p>
           </div>
         </Reveal>
-
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {relevantItems.map(({ badge, title, Icon }, i) => {
-            return (
-              <Reveal key={title} delay={i * 70}>
-                <div className="card flex h-full flex-col">
-                  <span className="inline-flex w-fit items-center rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-primary">
-                    {badge}
-                  </span>
-                  <Icon className="mt-4 h-7 w-7 text-brand-primary" />
-                  <p className="mt-3 text-card-title text-brand-ink">{title}</p>
-                </div>
-              </Reveal>
-            );
-          })}
-
-          <Reveal delay={relevantItems.length * 70} className="w-full sm:col-span-2 lg:col-span-3">
-            <GlareCard
-              className="h-full rounded-2xl border border-brand-accent/50 bg-brand-accent/10 p-4 shadow-[0_0_0_1px_rgba(244,185,66,0.15),0_20px_45px_-15px_rgba(244,185,66,0.45)] sm:p-6"
-              glareClassName="h-64 w-64 rounded-full bg-brand-accent/30 blur-3xl"
-              defaultPosition={{ x: "100%", y: "100%" }}
-            >
-              <span className="inline-flex w-fit items-center rounded-full bg-brand-accent/25 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-ink">
-                {resultLabel}
-              </span>
-              <BanknotesIcon className="mt-4 h-8 w-8 text-brand-secondary" />
-              <p className="mt-3 text-subheading text-brand-ink">💰 {resultText}</p>
-            </GlareCard>
-          </Reveal>
-        </div>
       </div>
     </section>
   );

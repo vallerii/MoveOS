@@ -20,16 +20,17 @@ export default function LanguageSwitcher({ locale, languageNames }: Props) {
   const pathname = usePathname() || `/${locale}`;
 
   return (
-    <div className="inline-flex w-fit items-center gap-1 rounded-full border border-black/10 bg-white/70 p-1 text-sm">
+    // Pill-geometry segmented control on a hairline border — the same
+    // rounded-full silhouette as the buttons, at a smaller scale, with the
+    // active locale carrying the system's one dark fill.
+    <div className="inline-flex w-fit items-center gap-1 rounded-full border border-hairline bg-paper p-1 text-meta">
       {LOCALES.map((l) => (
         <Link
           key={l}
           href={pathForLocale(pathname, l)}
           aria-current={l === locale ? "true" : undefined}
-          className={`rounded-full px-3 py-1.5 font-medium transition ${
-            l === locale
-              ? "bg-brand-primary text-white"
-              : "text-brand-ink/60 hover:text-brand-ink"
+          className={`rounded-full px-3.5 py-1.5 transition-colors ${
+            l === locale ? "bg-ink text-paper" : "text-slate hover:text-ink"
           }`}
         >
           {l.toUpperCase()}

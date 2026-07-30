@@ -1,15 +1,6 @@
-import Image from "next/image";
-import {
-  BanknotesIcon,
-  CameraIcon,
-  ClipboardCheckIcon,
-  ClockIcon,
-  DocumentTextIcon,
-  ShieldCheckIcon,
-  WrenchIcon,
-} from "./icons";
 import Reveal from "./Reveal";
-import GlareButton from "./GlareButton";
+import PillButton from "./PillButton";
+import { ChecklistArtifact, DocumentArtifact, StatArtifact, TimelineArtifact } from "./Artifacts";
 import type { Dictionary, Locale, PainSlug } from "@/lib/i18n/types";
 
 type Props = {
@@ -18,84 +9,86 @@ type Props = {
   dict: Dictionary;
 };
 
-// Icons for the 3 hero badges, matched 1:1 by index to each pain's
-// `badges` copy in the dictionaries — chosen to fit that pain's outcome.
-const badgeIcons: Record<PainSlug, [typeof BanknotesIcon, typeof BanknotesIcon, typeof BanknotesIcon]> = {
-  deposit: [BanknotesIcon, ClockIcon, ShieldCheckIcon],
-  admin: [ClipboardCheckIcon, ClipboardCheckIcon, ClockIcon],
-  belongings: [ClipboardCheckIcon, BanknotesIcon, ShieldCheckIcon],
-  urgent: [ShieldCheckIcon, BanknotesIcon, ClockIcon],
-  buyout: [DocumentTextIcon, BanknotesIcon, ShieldCheckIcon],
-  repair: [BanknotesIcon, WrenchIcon, CameraIcon],
-};
-
+/**
+ * Per-pain hero — a centred oversized serif headline with a subhead and a
+ * pill button pair, surrounded by four floating product artifacts that
+ * overlap the canvas at varied offsets. That collage IS the hero image; the
+ * isometric city/route illustrations that used to sit behind this section
+ * are gone, since this system uses product-UI imagery only.
+ *
+ * The artifacts are decorative and hidden from assistive tech — they carry
+ * no copy, so nothing is lost by skipping them.
+ *
+ * The badge row below the fold moved from icon-in-a-tinted-circle to a
+ * hairline-ruled row of plain type: badges are metadata, and metadata in
+ * this system doesn't get colour or containers.
+ */
 export default function Hero({ pain, dict }: Props) {
   const copy = dict.pains[pain];
 
   return (
-    <section className="overflow-hidden py-8 sm:pb-10 sm:pt-24 relative min-h-[90vh]">
-      <Image
-        src="/city.png"
-        alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
-        width={2000}
-        height={800}
-        className="absolute top-0 right-[-100px] w-[200%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[90vh] md:h-[100%] md:bottom-0 object-cover lg:object-contain object-right "
-      />
-      <Image
-        src="/route.png"
-        alt="Isometric city block illustration with a highlighted route from a key chip to a home chip"
-        width={2000}
-        height={1000}
-        className="absolute animate-float bottom-[25%] sm:top-[-20%] right-[-80px] w-[200%] sm:w-[100%] h-[340px] sm:h-[480px] h-auto max-w-none md:min-h-[50vh] md:h-[80%] md:top-0 md:bottom-0 object-contain object-right "
-      />
-      <div className="container-page flex md:grid items-center justify-center gap-10 md:grid-cols-[2fr_1fr] lg:gap-16">
-        <div className="order-1 text-center md:text-left ">
+    <section className="relative overflow-hidden bg-paper pb-24 pt-16 sm:pb-32 sm:pt-24">
+      {/* Artifact collage — absolutely placed around the headline column on
+          large screens only. Below xl there isn't room to overlap anything
+          without colliding with the copy, so they simply don't render. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
+        <div className="container-page relative h-full">
+          <div className="absolute left-0 top-4 animate-drift">
+            <ChecklistArtifact />
+          </div>
+          <div className="absolute right-0 top-16">
+            <StatArtifact value="1 840 €" delta="↑ 3.2×" />
+          </div>
+          <div className="absolute bottom-6 left-6">
+            <TimelineArtifact />
+          </div>
+          <div className="absolute bottom-0 right-10 animate-drift">
+            <DocumentArtifact />
+          </div>
+        </div>
+      </div>
+
+      <div className="container-page relative">
+        <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <span className="eyebrow">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-primary opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-primary" />
-              </span>
-              {copy.eyebrow}
-            </span>
+            <p className="tag">{copy.eyebrow}</p>
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="mt-6 font-extrabold tracking-tight text-brand-ink text-hero">
-              {copy.h1}
-            </h1>
+            {/* The display serif stays at weight 400 at every size — it
+                whispers authority rather than shouting in bold. */}
+            <h1 className="mt-6 font-display text-display text-ink">{copy.h1}</h1>
           </Reveal>
 
           <Reveal delay={200}>
-            <p className="mt-6 whitespace-pre-line text-subheading text-brand-ink/70">{copy.subheading}</p>
+            <p className="mx-auto mt-8 max-w-xl whitespace-pre-line text-body text-slate">{copy.subheading}</p>
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-10 flex  justify-center md:justify-start">
-              <GlareButton href="#quiz" className="w-full sm:w-auto">
+            {/* Filled primary always pairs with a ghost secondary on the
+                same baseline — that pairing is structural in this system. */}
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <PillButton href="#quiz" className="w-full sm:w-auto">
                 {/* Shorter label on mobile, full label from sm and up. */}
                 <span className="sm:!hidden">{copy.heroCtaMobile ?? copy.heroCta}</span>
-                <span className="hidden sm:!inline-flex">{copy.heroCta}</span>
-              </GlareButton>
+                <span className="hidden sm:!inline">{copy.heroCta}</span>
+              </PillButton>
+              <PillButton href="#didyouknow" variant="ghost" className="w-full sm:w-auto">
+                {dict.nav.bookButton}
+              </PillButton>
             </div>
           </Reveal>
         </div>
       </div>
 
       <Reveal delay={400}>
-        <div className="container-page mt-14 lg:mt-20">
-          <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-start gap-x-6 gap-y-4 rounded-2xl border border-black/5 bg-white/70 px-5 py-4 shadow-card backdrop-blur sm:justify-between sm:gap-x-10 sm:gap-y-5 sm:px-8 sm:py-6">
-            {copy.badges.map((label, i) => {
-              const Icon = badgeIcons[pain][i];
-              return (
-                <div key={label} className="flex items-center gap-3 text-base font-semibold text-brand-ink sm:text-lg">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-primary/10">
-                    <Icon className="h-6 w-6 text-brand-primary" />
-                  </span>
-                  {label}
-                </div>
-              );
-            })}
+        <div className="container-page relative mt-20 sm:mt-28">
+          <div className="mx-auto flex max-w-3xl flex-col divide-y divide-hairline border-y border-hairline sm:flex-row sm:divide-x sm:divide-y-0">
+            {copy.badges.map((label) => (
+              <div key={label} className="flex-1 px-3 py-5 text-center">
+                <p className="text-caption text-slate">{label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </Reveal>

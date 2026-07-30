@@ -2,44 +2,108 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   Steep — CSS custom properties.
+   Kept alongside the Tailwind config so raw CSS (inline artifact elevation,
+   a few one-off spots) can reference the same values the utility classes do
+   without duplicating hex literals.
+--------------------------------------------------------------------------- */
+:root {
+  --color-ink: #17191c;
+  --color-paper: #ffffff;
+  --color-mist: #f2f2f3;
+  --color-fog: #fafafb;
+  --color-slate: #777b86;
+  --color-ash: #979799;
+  --color-smoke: #a3a6af;
+  --color-peach: #fbe1d1;
+  --color-sienna: #5d2a1a;
+  --color-hairline: #ececec;
+
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+
+  --shadow-artifact: rgba(4, 23, 43, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+  --shadow-overlay: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 8px 40px 0px;
+  --shadow-popover: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.08) 0px 4px 24px 0px;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
-/* Marching-dash flow for the decorative wave lines (WhyUsBackground). Kept
-   as plain CSS rather than a Tailwind keyframe so it doesn't depend on the
-   Tailwind config/JIT cache picking up changes. */
-@keyframes dash-flow {
-  to {
-    stroke-dashoffset: -200;
-  }
+body {
+  /* Paper White is the canvas — the whole system sits on it. Sections that
+     need separation use Fog (#fafafb) or Mist (#f2f2f3) bands, never a
+     darker page background. */
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-body {
-  background-color: #EFEFEE;
-  color: #1c2321;
-  /* Safety net — decorative absolutely-positioned graphics (hero, bento
-     sections) intentionally bleed past their own card/section edges; this
-     stops any of that from ever turning into a page-level horizontal
-     scrollbar. */
-  overflow-x: hidden;
+/* Source Serif 4 is a touch narrower than Signifier at the same nominal
+   size; optical sizing keeps the display tier from reading thin next to
+   the body sans. */
+.font-display {
+  font-optical-sizing: auto;
 }
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-6xl px-4;
+    @apply mx-auto w-full max-w-page px-5 sm:px-8;
   }
 
-  .eyebrow {
-    @apply inline-flex max-w-full items-center gap-1 whitespace-nowrap rounded-full bg-brand-primary/10 px-2.5 py-1.5 text-[10px] font-medium text-brand-primary sm:gap-2 sm:px-4 sm:text-sm;
+  /* --- Buttons -----------------------------------------------------------
+     Pill geometry (9999px) is structural, never softened. The filled and
+     ghost variants share the exact same box so they read as a matched pair
+     sitting on one baseline. */
+  .btn-pill {
+    @apply inline-flex max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-full
+           bg-ink px-6 py-3.5 text-base font-normal text-paper
+           transition-colors duration-200 hover:bg-[#2a2d32]
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 focus-visible:ring-offset-2;
   }
 
-  .card {
-    @apply rounded-2xl border border-black/5 bg-white p-4 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-6;
+  .btn-ghost {
+    @apply inline-flex max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-full
+           border border-ink bg-transparent px-6 py-3.5 text-base font-normal text-ink
+           transition-colors duration-200 hover:bg-ink/[0.04]
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:ring-offset-2;
   }
 
-  .btn-primary {
-    @apply inline-flex max-w-full items-center justify-center whitespace-nowrap rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:bg-brand-primary-dark active:scale-[0.98] sm:px-8 sm:py-4 sm:text-base;
+  /* --- Cards -------------------------------------------------------------
+     The workhorse surface: flat, soft, quiet. No border, no shadow — the
+     radius and the tonal step away from Paper do all the work. */
+  .card-neutral {
+    @apply rounded-card bg-mist p-6 sm:p-8;
+  }
+
+  /* Editorial accent. At most ONE per page, and only ever on a Paper or
+     Mist background so it reads warm-on-neutral. Sienna is its ink. */
+  .card-peach {
+    @apply rounded-card bg-peach p-8 text-sienna sm:p-10;
+  }
+
+  /* The only elements in the system that earn elevation — cropped product
+     UI fragments that float over the canvas. */
+  .card-artifact {
+    @apply rounded-artifact bg-paper shadow-artifact;
+  }
+
+  /* --- Typographic tags --------------------------------------------------
+     Ghost-like by design: no background, no border, no badge chrome. They
+     group content without adding visual weight. */
+  .tag {
+    @apply text-meta font-normal text-ash;
+  }
+
+  /* Inline navigation. The arrow suffix carries the affordance — the
+     underline appears only on hover, never at rest. */
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 text-base font-normal text-ink
+           decoration-1 underline-offset-4 transition hover:underline;
   }
 }

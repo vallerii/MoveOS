@@ -4,20 +4,26 @@ type Props = {
   label: string;
 };
 
+/**
+ * Step progress — pill-geometry segments, filled in ink as the wizard
+ * advances. The step label sits as a ghost typographic tag rather than an
+ * uppercase tracked caption, matching how every other label in the system
+ * is set.
+ */
 export default function ProgressDots({ total, current, label }: Props) {
   return (
-    <div className="mb-6">
-      <div className="flex items-center gap-2">
+    <div className="mb-8">
+      <div className="flex items-center gap-1.5">
         {Array.from({ length: total }).map((_, i) => (
           <span
             key={i}
-            className={`h-1.5 flex-1 rounded-full transition-colors ${
-              i <= current ? "bg-brand-primary" : "bg-black/10"
+            className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
+              i <= current ? "bg-ink" : "bg-mist"
             }`}
           />
         ))}
       </div>
-      <p className="mt-3 text-center text-xs font-medium uppercase tracking-wide text-brand-ink/50">{label}</p>
+      <p className="tag mt-4 text-center">{label}</p>
     </div>
   );
 }

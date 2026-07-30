@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import "@fontsource/manrope/400.css";
-import "@fontsource/manrope/500.css";
-import "@fontsource/manrope/600.css";
-import "@fontsource/manrope/700.css";
-import "@fontsource/manrope/800.css";
+// Sohne substitute — the body/UI/nav sans. The design system leans on
+// half-step weights (430/450/480) for hierarchy; Inter ships static cuts at
+// 400/500 only, so those two carry the scale and `font-w430`/`w450`/`w480`
+// resolve to the nearest available cut via synthetic weighting.
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+// Signifier substitute — display/headline serif, weight 400 only. Italic is
+// loaded because the hero pattern italicises one phrase mid-sentence.
+import "@fontsource/source-serif-4/400.css";
+import "@fontsource/source-serif-4/400-italic.css";
 import "./globals.css";
 import MetaPixel from "@/components/MetaPixel";
 import { SITE_URL } from "@/lib/config";
@@ -31,11 +36,11 @@ export const metadata: Metadata = {
 // is applied client-side in app/[locale]/layout.tsx via SetHtmlLang, since
 // nested layouts can't redeclare html/body.
 //
-// Font: self-hosted via @fontsource/manrope (static files, bundled at build
-// time) rather than next/font/google, which fetches from Google's CDN during
-// the build — a network dependency that can hang or fail in environments
-// with restricted egress. @fontsource also ships Cyrillic subsets, needed
-// for the Russian locale.
+// Fonts: self-hosted via @fontsource (static files, bundled at build time)
+// rather than next/font/google, which fetches from Google's CDN during the
+// build — a network dependency that can hang or fail in environments with
+// restricted egress. Both families ship Cyrillic subsets, needed for the
+// Russian locale.
 export default function RootLayout({
   children,
 }: {
@@ -43,7 +48,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">
+      <body className="bg-paper font-sans text-ink antialiased">
         <MetaPixel />
         {children}
       </body>

@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import Reveal from "../Reveal";
-import GlareButton from "../GlareButton";
+import ArrowLink from "../ArrowLink";
 import PainQuotesCarousel from "./PainQuotesCarousel";
-import { PAIN_ICONS, PAIN_SLUGS } from "@/lib/pains";
+import { ChecklistArtifact } from "../Artifacts";
+import { PAIN_SLUGS } from "@/lib/pains";
 import type { HomeCopy } from "@/lib/i18n/home";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 
@@ -13,49 +13,50 @@ type Props = {
   copy: HomeCopy;
 };
 
-// Bento layout: a big "what we do" panel + a stats panel on top, a
-// pain-quote carousel + a links-to-every-situation panel below. Replaces the
-// old 6-card grid — the six pain pages are still one click away, just as a
-// compact link list instead of a full card each.
+/**
+ * Situations block — kept as a bento of four panels, rebuilt in Mist cards
+ * at 24px radius with no shadow, no borders, and no gradients.
+ *
+ * The stat figures moved from oversized teal numerals to serif display
+ * numbers, which is where this system puts emphasis: scale and typeface,
+ * not colour. The pain links dropped their tinted icon circles for a plain
+ * type list — six links don't need six coloured chips.
+ */
 export default function HomeSituations({ locale, dict, copy }: Props) {
   const { whatWeDo, trustStats, quotes, linksPanel } = copy.situations;
 
   return (
-    <section id="situations" className="relative bg-white py-20 sm:py-28">
-      <Image
-        src="/topo-contour4.png"
-        alt=""
-        aria-hidden="true"
-        fill
-        priority={false}
-        className="pointer-events-none object-cover opacity-[0.08]"
-      />
-
-      <div className="container-page relative">
-        <div className="grid gap-5 lg:grid-cols-5">
+    <section id="situations" className="scroll-mt-24 bg-paper py-20 sm:py-section">
+      <div className="container-page">
+        <div className="grid gap-4 lg:grid-cols-5">
           <Reveal className="lg:col-span-3">
-            <div className="card relative flex h-full min-h-[20rem] flex-col-reverse items-center justify-center gap-4 overflow-visible sm:flex-row sm:justify-between sm:gap-8">
-              <div className="max-w-sm">
-                <h3 className="text-card-title font-extrabold text-brand-ink">{whatWeDo.heading}</h3>
-                <p className="mt-3 max-w-sm text-small text-brand-ink/70">{whatWeDo.body}</p>
-                <GlareButton href="#quiz" variant="outline" className="mt-6">
-                  {whatWeDo.cta} →
-                </GlareButton>
+            <div className="card-neutral relative flex h-full min-h-[22rem] flex-col justify-center overflow-hidden">
+              <div className="relative z-10 max-w-md">
+                <h3 className="font-display text-heading text-ink">{whatWeDo.heading}</h3>
+                <p className="mt-5 text-caption text-slate">{whatWeDo.body}</p>
+                <div className="mt-8">
+                  <ArrowLink href="#quiz" external>
+                    {whatWeDo.cta}
+                  </ArrowLink>
+                </div>
               </div>
-              <div className="relative -mt-6 aspect-[1280/853] w-56 shrink-0 sm:-mr-4 sm:-mt-10 sm:w-64 lg:-mr-4 lg:-mt-20 lg:w-[25rem]">
-                <Image src="/situation.png" alt="" aria-hidden="true" fill className="object-contain object-left" />
+
+              {/* Product artifacts float at the panel's right edge instead of
+                  the old isometric illustration. */}
+              <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 hidden lg:block">
+                <ChecklistArtifact className="animate-drift" />
               </div>
             </div>
           </Reveal>
 
           <Reveal delay={80} className="lg:col-span-2">
-            <div className="card flex h-full min-h-[20rem] flex-col justify-between bg-gradient-to-br from-white to-brand-primary/[0.09]">
-              <h3 className="text-card-title font-extrabold text-brand-ink">{trustStats.heading}</h3>
-              <div className="mt-5 grid grid-cols-2 gap-3">
+            <div className="card-neutral flex h-full min-h-[22rem] flex-col justify-between">
+              <h3 className="font-display text-heading-sm text-ink">{trustStats.heading}</h3>
+              <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8">
                 {trustStats.stats.map((s) => (
-                  <div key={s.label} className="rounded-xl bg-white/70 p-4">
-                    <p className="text-2xl font-extrabold text-brand-primary sm:text-3xl">{s.value}</p>
-                    <p className="mt-1 text-base text-brand-ink/60">{s.label}</p>
+                  <div key={s.label}>
+                    <p className="font-display text-heading text-ink">{s.value}</p>
+                    <p className="mt-2 text-meta text-slate">{s.label}</p>
                   </div>
                 ))}
               </div>
@@ -63,33 +64,32 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
           </Reveal>
         </div>
 
-        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
           <Reveal delay={120}>
             <PainQuotesCarousel quotes={quotes} />
           </Reveal>
 
           <Reveal delay={160}>
-            <div id="situation-links" className="card h-full scroll-mt-24">
-              <h3 className="text-card-title font-extrabold text-brand-ink">{linksPanel.heading}</h3>
-              <nav className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                {PAIN_SLUGS.map((slug) => {
-                  const Icon = PAIN_ICONS[slug];
-                  const pain = dict.pains[slug];
-                  return (
-                    <Link
-                      key={slug}
-                      href={`/${locale}/${slug}`}
-                      className="group flex flex-col items-center gap-2 rounded-xl px-2 py-3 text-center transition hover:bg-brand-primary/5"
+            <div id="situation-links" className="card-neutral h-full scroll-mt-24">
+              <h3 className="font-display text-heading-sm text-ink">{linksPanel.heading}</h3>
+              <nav className="mt-8 flex flex-col">
+                {PAIN_SLUGS.map((slug, i) => (
+                  <Link
+                    key={slug}
+                    href={`/${locale}/${slug}`}
+                    className={`group flex items-center justify-between gap-4 py-3.5 text-base text-ink transition-colors hover:text-slate ${
+                      i > 0 ? "border-t border-ink/[0.07]" : ""
+                    }`}
+                  >
+                    <span>{dict.pains[slug].shortLabel}</span>
+                    <span
+                      aria-hidden
+                      className="text-ash transition-transform duration-200 group-hover:translate-x-0.5"
                     >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 sm:h-14 sm:w-14 lg:h-16 lg:w-16">
-                        <Icon className="h-5 w-5 text-brand-primary sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
-                      </span>
-                      <span className="text-sm font-medium text-brand-ink/80 transition group-hover:text-brand-primary">
-                        {pain.shortLabel}
-                      </span>
-                    </Link>
-                  );
-                })}
+                      →
+                    </span>
+                  </Link>
+                ))}
               </nav>
             </div>
           </Reveal>

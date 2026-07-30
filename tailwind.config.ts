@@ -1,62 +1,105 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Design system: "Steep" — serif analytics on warm paper.
+ *
+ * Near-monochrome white canvas, editorial serif display type at weight 400,
+ * a single warm peach accent used at most once per page, hairline borders,
+ * 24px card radius, fully-rounded pill buttons, and shadow reserved
+ * exclusively for floating product artifacts.
+ *
+ * Tokens below mirror the reference `variables.css` / `theme.css` 1:1 —
+ * translated from the Tailwind v4 `@theme` syntax into this project's
+ * v3 `theme.extend` config.
+ */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        brand: {
-          primary: "#0EA5A8",
-          "primary-dark": "#0B8285",
-          secondary: "#2E7D32",
-          background: "#FAF8F3",
-          accent: "#F4B942",
-          ink: "#1C2321",
-        },
+        // Steep palette. `ink` is the ONLY dark surface in the system —
+        // every CTA and headline resolves to it. The peach/brown pair is
+        // the only chroma allowed; nothing else is introduced.
+        ink: "#17191c",
+        paper: "#ffffff",
+        mist: "#f2f2f3",
+        fog: "#fafafb",
+        slate: "#777b86",
+        ash: "#979799",
+        smoke: "#a3a6af",
+        peach: "#fbe1d1",
+        sienna: "#5d2a1a",
+        hairline: "#ececec",
       },
       fontFamily: {
-        sans: ["Manrope", "system-ui", "sans-serif"],
+        // Signifier substitute — the display/headline serif. Stays at
+        // weight 400 at every size; that restraint is the signature.
+        display: ["Source Serif 4", "ui-serif", "Georgia", "serif"],
+        // Sohne substitute — the body/UI/nav workhorse.
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
-      // Explicit type scale (see hierarchy notes below) — each tier is a
-      // single utility (`text-hero`, `text-section`, etc.) that bundles
-      // size, line-height, letter-spacing and weight together, instead of
-      // stacking ad hoc text-*/font-* classes per usage.
-      //   hero        — page-level h1
-      //   section     — section h2
-      //   subheading  — intro copy under a section heading
-      //   card-title  — headings inside cards/steps
-      //   body        — running paragraph text
-      //   small       — fine print, meta labels
-      // hero/section/subheading/card-title use clamp() so the size itself
-      // scales fluidly from mobile up to the desktop max (62/48/22/24px) —
-      // no sm:/md:/lg: prefixes needed at the call site.
+      // Steep type scale. Display/heading tiers use clamp() so the serif
+      // scales fluidly down to mobile instead of needing sm:/md:/lg:
+      // prefixes at each call site; the upper bound of each clamp is the
+      // exact token size (90 / 64 / 44 / 26px).
+      //
+      // Tracking gets tighter as size grows — that's the typographic
+      // signature: -0.025em at display, -0.015em at heading, -0.009em at
+      // the 26/18px tiers, 0 at body sizes.
       fontSize: {
-        hero: ["clamp(2.125rem, 1.3rem + 4vw, 3.875rem)", { lineHeight: "1.05", letterSpacing: "-0.04em", fontWeight: "800" }],
-        section: ["clamp(1.75rem, 1.2rem + 2.8vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.03em", fontWeight: "800" }],
-        subheading: ["clamp(1.0625rem, 0.92rem + 0.7vw, 1.375rem)", { lineHeight: "1.6", fontWeight: "500" }],
-        "card-title": ["clamp(1.1875rem, 1.05rem + 0.7vw, 1.5rem)", { lineHeight: "1.3", fontWeight: "700" }],
-        body: ["18px", { lineHeight: "1.7", fontWeight: "400" }],
-        small: ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+        display: ["clamp(2.75rem, 1.6rem + 5.2vw, 5.625rem)", { lineHeight: "1.12", letterSpacing: "-0.025em", fontWeight: "400" }],
+        "heading-lg": ["clamp(2.25rem, 1.5rem + 3.4vw, 4rem)", { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "400" }],
+        heading: ["clamp(1.875rem, 1.35rem + 2.2vw, 2.75rem)", { lineHeight: "1.2", letterSpacing: "-0.015em", fontWeight: "400" }],
+        "heading-sm": ["clamp(1.375rem, 1.2rem + 0.75vw, 1.625rem)", { lineHeight: "1.18", letterSpacing: "-0.009em", fontWeight: "400" }],
+        subheading: ["1.375rem", { lineHeight: "1.5", letterSpacing: "-0.009em", fontWeight: "400" }],
+        "body-lg": ["1.25rem", { lineHeight: "1.35", fontWeight: "400" }],
+        body: ["1.0625rem", { lineHeight: "1.35", fontWeight: "400" }],
+        caption: ["0.9375rem", { lineHeight: "1.5", fontWeight: "400" }],
+        meta: ["0.875rem", { lineHeight: "1.4", fontWeight: "400" }],
       },
-      boxShadow: {
-        card: "0 1px 2px rgba(28,35,33,0.04), 0 8px 24px rgba(28,35,33,0.06)",
+      fontWeight: {
+        // Half-step weights — the scale is finer than standard 400/500/700.
+        // Reach for these before ever jumping to 500.
+        w430: "430",
+        w450: "450",
+        w480: "480",
       },
       borderRadius: {
-        "3xl": "1.75rem",
+        // Two structural radii carry the system: 9999px on buttons,
+        // 24px on content cards. Everything else is a supporting tier.
+        image: "12px",
+        input: "16px",
+        "card-sm": "16px",
+        artifact: "20px",
+        card: "24px",
+      },
+      boxShadow: {
+        // Shadow is rationed: content cards get NONE. Only floating
+        // product artifacts (and overlays) earn elevation.
+        artifact:
+          "rgba(4, 23, 43, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px",
+        overlay: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 8px 40px 0px",
+        popover: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.08) 0px 4px 24px 0px",
+      },
+      maxWidth: {
+        page: "1200px",
+      },
+      spacing: {
+        section: "80px",
       },
       keyframes: {
         fadeUp: {
           "0%": { opacity: "0", transform: "translateY(18px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        float: {
+        drift: {
           "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
       animation: {
         "fade-up": "fadeUp 0.7s ease-out forwards",
-        float: "float 7s ease-in-out infinite",
+        drift: "drift 9s ease-in-out infinite",
       },
     },
   },

@@ -30,14 +30,20 @@ export default function PrivacyPage({ params }: { params: { locale: string } }) 
   const dict = getDictionary(params.locale as Locale);
 
   return (
-    <main className="container-page py-24">
-      <h1 className="font-extrabold tracking-tight text-brand-ink text-section">{dict.privacy.title}</h1>
-      <p className="mt-6 max-w-2xl text-body text-brand-ink/70">{dict.privacy.intro}</p>
-      <ul className="mt-4 max-w-2xl list-disc space-y-2 pl-5 text-body text-brand-ink/70">
-        {dict.privacy.items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+    <main className="container-page py-24 sm:py-32">
+      <div className="mx-auto max-w-3xl">
+        <h1 className="font-display text-heading-lg text-ink">{dict.privacy.title}</h1>
+        <p className="mt-8 text-body text-slate">{dict.privacy.intro}</p>
+        {/* Hairline-divided rows rather than bullets — the same list
+            treatment used for steps and checklist items elsewhere. */}
+        <ul className="mt-12 border-t border-hairline">
+          {dict.privacy.items.map((item) => (
+            <li key={item} className="border-b border-hairline py-5 text-caption text-slate">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </main>
   );
 }

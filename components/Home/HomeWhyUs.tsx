@@ -6,32 +6,31 @@ type Props = {
   copy: HomeCopy;
 };
 
-// Homepage-only version of WhyUs: same dark bg-brand-ink section as before
-// (per-pain WhyUs.tsx/WhyUsBackground are untouched), but "Почему MoveOS" is
-// now the big two-tone headline itself (no small pill eyebrow, no separate
-// accent statement line below it) paired with a dark "what we do" graphic
-// card instead of the plain centered paragraph.
+/**
+ * Homepage positioning section — the standard 2-column text + UI feature
+ * layout on a Fog band.
+ *
+ * Previously this was a full-bleed dark ink section with "MoveOS" picked
+ * out in accent teal. Neither survives: ink is reserved for type and the
+ * filled pill, and headline type is never tinted. The brand name simply
+ * sits in the serif heading like the rest of the line.
+ */
 export default function HomeWhyUs({ copy }: Props) {
-  // Every locale's eyebrow ends with the untranslated brand name — split it
-  // off so "MoveOS" renders in accent teal, the rest in light ink.
-  const eyebrowPrefix = copy.whyUs.eyebrow.replace(/MoveOS\s*$/, "");
-
   return (
-    <section className="relative overflow-hidden bg-brand-ink py-20 sm:py-28">
-      <div className="container-page relative grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-        <Reveal>
-          <div className="text-center lg:text-left">
-            <h2 className="font-extrabold tracking-tight text-section text-brand-background">
-              {eyebrowPrefix}
-              <span className="text-brand-primary">MoveOS</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-md text-body text-brand-background/70 lg:mx-0">{copy.whyUs.intro}</p>
-          </div>
-        </Reveal>
+    <section className="bg-fog py-20 sm:py-section">
+      <div className="container-page">
+        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
+          <Reveal>
+            <div>
+              <h2 className="font-display text-heading-lg text-ink">{copy.whyUs.eyebrow}</h2>
+              <p className="mt-6 max-w-md text-body text-slate">{copy.whyUs.intro}</p>
+            </div>
+          </Reveal>
 
-        <Reveal delay={100} direction="right">
-          <WhyUsGraphic advantages={copy.whyUs.advantages} />
-        </Reveal>
+          <Reveal delay={120} direction="right">
+            <WhyUsGraphic advantages={copy.whyUs.advantages} />
+          </Reveal>
+        </div>
       </div>
     </section>
   );

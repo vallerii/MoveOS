@@ -6,16 +6,22 @@ type Props = {
   selected?: boolean;
 };
 
+/**
+ * Quiz answer option — an input-radius (16px) tile with a hairline border,
+ * flat against the surface. Selection is signalled by the system's one dark
+ * fill rather than a tinted background, and there's no lift-on-hover or
+ * shadow: only floating artifacts get elevation here.
+ */
 export default function ChoiceButton({ label, onClick, selected }: Props) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`w-full rounded-2xl border px-6 py-4 text-left text-base font-semibold transition duration-150 hover:-translate-y-0.5 hover:shadow-card focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 ${
+      className={`w-full rounded-input px-6 py-4 text-left text-base transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-2 ${
         selected
-          ? "border-brand-primary bg-brand-primary/10 text-brand-ink"
-          : "border-black/10 bg-white text-brand-ink hover:border-brand-primary/40"
+          ? "bg-ink text-paper"
+          : "border border-hairline bg-paper text-ink hover:border-ink/25 hover:bg-fog"
       }`}
     >
       {label}

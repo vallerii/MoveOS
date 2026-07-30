@@ -3,9 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
-import { PAIN_ICONS, PAIN_SLUGS } from "@/lib/pains";
+import { PAIN_SLUGS } from "@/lib/pains";
 import { CONTACT_EMAIL } from "@/lib/config";
-import BarcelonaSkyline from "./BarcelonaSkyline";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 type Props = {
@@ -40,6 +39,15 @@ const EXTRA: Record<Locale, { linksHeading: string; companyHeading: string; cont
   },
 };
 
+/**
+ * Fog-band footer — one tonal step off the canvas, a single hairline rule at
+ * the top, and no decoration at all. The skyline illustration and accent
+ * glow that used to sit behind it are both gone: this system uses product-UI
+ * imagery only, with no illustration and no abstract graphics.
+ *
+ * Pain links are plain type now rather than icon rows — the icons pulled
+ * colour and weight into what should be the quietest block on the page.
+ */
 export default function Footer({ locale, dict }: Props) {
   // Derived from the route instead of a passed-in prop — the old
   // `currentPain` prop was never actually supplied by app/[locale]/layout.tsx
@@ -50,44 +58,31 @@ export default function Footer({ locale, dict }: Props) {
   const extra = EXTRA[locale];
 
   return (
-    <footer className="relative overflow-hidden border-t border-black/5 pb-10 pt-16 sm:pt-20 bg-[#EFEFEE]">
-      {/* Decorative background — moved here from Quiz/QuizSection.tsx's
-          section so the footer gets the same brand treatment (soft accent
-          glow + a thin Barcelona skyline silhouette) instead of a bare
-          white/border-only bar. */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute -bottom-16 right-0 h-64 w-64 rounded-full  blur-3xl" />
-        <BarcelonaSkyline className="absolute inset-x-0 bottom-[-20px] h-40 w-full animate-float text-brand-ink/[0.07] sm:h-56 md:h-72" />
-      </div>
-
-      <div className="container-page relative z-10">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="border-t border-hairline bg-fog pb-12 pt-20 sm:pt-24">
+      <div className="container-page">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="lg:col-span-2">
-            <Link href={`/${locale}`} className="text-lg font-bold tracking-tight text-brand-ink">
-              Move<span className="text-brand-primary">OS</span>
+            <Link href={`/${locale}`} className="font-display text-2xl tracking-tight text-ink">
+              MoveOS
             </Link>
-            <p className="mt-4 max-w-xs text-small text-brand-ink/60">{dict.footer.tagline}</p>
-            <div className="mt-5">
+            <p className="mt-5 max-w-xs text-caption text-slate">{dict.footer.tagline}</p>
+            <div className="mt-8">
               <LanguageSwitcher locale={locale} languageNames={dict.languageNames} />
             </div>
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-brand-ink/40 lg:text-sm">{extra.linksHeading}</p>
-            <nav className="mt-4 flex flex-col gap-2.5">
+            <p className="tag">{extra.linksHeading}</p>
+            <nav className="mt-5 flex flex-col gap-3">
               {PAIN_SLUGS.map((slug) => {
-                const Icon = PAIN_ICONS[slug];
                 const active = slug === currentSlug;
                 return (
                   <Link
                     key={slug}
                     href={`/${locale}/${slug}`}
                     aria-current={active ? "page" : undefined}
-                    className={`flex items-center gap-2 text-sm transition lg:text-base ${
-                      active ? "font-semibold text-brand-primary" : "text-brand-ink/60 hover:text-brand-primary"
-                    }`}
+                    className={`text-caption transition-colors ${active ? "text-ink" : "text-slate hover:text-ink"}`}
                   >
-                    <Icon className="h-4 w-4 shrink-0" />
                     {dict.pains[slug].shortLabel}
                   </Link>
                 );
@@ -96,22 +91,22 @@ export default function Footer({ locale, dict }: Props) {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-brand-ink/40 lg:text-sm">{extra.companyHeading}</p>
-            <nav className="mt-4 flex flex-col gap-2.5 text-sm text-brand-ink/60 lg:text-base">
-              <Link href={`/${locale}`} className="hover:text-brand-primary">
+            <p className="tag">{extra.companyHeading}</p>
+            <nav className="mt-5 flex flex-col gap-3 text-caption text-slate">
+              <Link href={`/${locale}`} className="transition-colors hover:text-ink">
                 {extra.home}
               </Link>
-              <Link href={`/${locale}/privacy`} className="hover:text-brand-primary">
+              <Link href={`/${locale}/privacy`} className="transition-colors hover:text-ink">
                 {dict.footer.privacy}
               </Link>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-brand-primary">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-ink">
                 {extra.contact}
               </a>
             </nav>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/5 pt-6 text-sm text-brand-ink/50 sm:flex-row lg:text-base">
+        <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-hairline pt-8 text-meta text-ash sm:flex-row">
           <span>© {new Date().getFullYear()} MoveOS</span>
           <span>{extra.bottomNote}</span>
         </div>
