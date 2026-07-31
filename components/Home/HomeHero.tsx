@@ -34,13 +34,24 @@ export default function HomeHero({ copy }: Props) {
     <section className="relative overflow-hidden bg-paper pb-24 pt-16 sm:pb-32 sm:pt-24">
       <HeroGlow />
 
-      {/* Departure points for the flying artifacts — see HomeStage. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
+      {/* Departure points for the flying elements — see HomeStage.
+          Slot 0 is the checklist card; slots 1-6 are the situation icons,
+          scattered down both gutters so they frame the headline column
+          without ever overlapping it (the centred text block is 768px wide
+          inside a 1200px container, leaving ~215px of clear gutter a side).
+          These are empty zero-height boxes, so they cost nothing at any
+          breakpoint; HomeStage decides on its own whether anything flies. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-10">
         <div className="container-page relative h-full">
-          <div data-fly-slot="0" className="absolute left-0 top-2 w-[280px]" />
-          <div data-fly-slot="1" className="absolute right-2 top-14 w-[240px]" />
-          <div data-fly-slot="2" className="absolute bottom-10 left-8 w-[230px]" />
-          <div data-fly-slot="3" className="absolute bottom-4 right-0 w-[250px]" />
+          <div data-fly-slot="0" className="absolute left-0 top-0 w-[280px]" />
+
+          <div data-fly-slot="1" className="absolute left-6 top-[260px] w-14" />
+          <div data-fly-slot="2" className="absolute left-24 top-[390px] w-14" />
+          <div data-fly-slot="3" className="absolute left-2 top-[500px] w-14" />
+
+          <div data-fly-slot="4" className="absolute right-4 top-[70px] w-14" />
+          <div data-fly-slot="5" className="absolute right-20 top-[230px] w-14" />
+          <div data-fly-slot="6" className="absolute right-0 top-[400px] w-14" />
         </div>
       </div>
 

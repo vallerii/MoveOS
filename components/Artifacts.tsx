@@ -6,6 +6,12 @@
  * instead of photography or illustration. Per the design reference, the
  * hero composition is a text-and-UI collage, not a headline over a picture.
  *
+ * Widths are fixed rather than `w-full max-w-[…]`. These are rendered into
+ * absolutely-positioned wrappers with no width of their own, where a
+ * percentage width has nothing to resolve against and collapses the card to
+ * its content — which is what squashed the checklist into an unreadable
+ * sliver. A fixed width is also what the flight animation measures against.
+ *
  * Deliberately near-wordless: every artifact is built from numerals,
  * glyphs, and muted "redacted" line bars rather than sentences. That keeps
  * them locale-neutral (the site ships EN/ES/RU) so they can float on any
@@ -55,7 +61,7 @@ export function ChecklistArtifact({ className = "" }: ArtifactProps) {
   ];
 
   return (
-    <div className={`card-artifact w-full max-w-[280px] p-4 ${className}`} aria-hidden>
+    <div className={`card-artifact w-[280px] p-4 ${className}`} aria-hidden>
       <div className="flex items-center justify-between">
         <span className="text-meta text-ash">01 / 04</span>
         <span className="text-meta font-medium text-ink">75%</span>
@@ -86,7 +92,7 @@ export function StatArtifact({
   className = "",
 }: ArtifactProps & { value: string; delta: string }) {
   return (
-    <div className={`card-artifact w-full max-w-[230px] p-4 ${className}`} aria-hidden>
+    <div className={`card-artifact w-[230px] p-4 ${className}`} aria-hidden>
       <div className="flex items-baseline justify-between gap-3">
         <span className="text-body-lg font-medium text-ink">{value}</span>
         <span className="text-meta text-slate">{delta}</span>
@@ -115,7 +121,7 @@ export function TimelineArtifact({ className = "" }: ArtifactProps) {
   ];
 
   return (
-    <div className={`card-artifact w-full max-w-[250px] p-4 ${className}`} aria-hidden>
+    <div className={`card-artifact w-[250px] p-4 ${className}`} aria-hidden>
       <span className="text-meta text-ash">—</span>
       <div className="mt-3 space-y-4">
         {rows.map((row, i) => (
@@ -141,7 +147,7 @@ export function TimelineArtifact({ className = "" }: ArtifactProps) {
  */
 export function DocumentArtifact({ className = "" }: ArtifactProps) {
   return (
-    <div className={`card-artifact w-full max-w-[240px] p-4 ${className}`} aria-hidden>
+    <div className={`card-artifact w-[240px] p-4 ${className}`} aria-hidden>
       <div className="space-y-2.5">
         <Bar w="90%" />
         <Bar w="76%" />

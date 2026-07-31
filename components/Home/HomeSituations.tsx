@@ -3,7 +3,7 @@ import Reveal from "../Reveal";
 import ArrowLink from "../ArrowLink";
 import PainQuotesCarousel from "./PainQuotesCarousel";
 import { ChecklistArtifact } from "../Artifacts";
-import { PAIN_SLUGS } from "@/lib/pains";
+import { PAIN_ICONS, PAIN_SLUGS } from "@/lib/pains";
 import type { HomeCopy } from "@/lib/i18n/home";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 
@@ -26,7 +26,20 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
   const { whatWeDo, trustStats, quotes, linksPanel } = copy.situations;
 
   return (
-    <section id="situations" className="scroll-mt-24 bg-paper py-20 sm:py-section">
+    // Rides up over the foot of the hero rather than butting against it: a
+    // negative top margin plus its own Paper surface, a rounded top edge and
+    // a soft upward shadow. As the hero's headline recedes and fades behind
+    // it, the effect is of this panel sliding forward over the type.
+    //
+    // Deliberately a static offset, not a scroll-driven transform — the
+    // flight targets live inside this section, and HomeStage measures them
+    // with getBoundingClientRect, which includes transforms. Animating the
+    // section would move its own landing pads out from under the incoming
+    // icons.
+    <section
+      id="situations"
+      className="relative z-30 -mt-12 scroll-mt-24 rounded-t-[2.5rem] bg-paper py-20 shadow-[0_-30px_60px_-30px_rgba(23,25,28,0.13)] sm:-mt-16 sm:py-section"
+    >
       <div className="container-page">
         <div className="grid gap-4 lg:grid-cols-5">
           <Reveal className="lg:col-span-3">
@@ -47,10 +60,13 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
               <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 hidden lg:block xl:hidden">
                 <ChecklistArtifact />
               </div>
+              {/* Landing pad for the checklist card. An empty absolutely
+                  positioned box, so it's harmless at the breakpoints where
+                  nothing flies — no `hidden` needed. */}
               <div
                 data-fly-target="0"
                 aria-hidden
-                className="pointer-events-none absolute -right-6 bottom-8 hidden w-[280px] xl:block"
+                className="pointer-events-none absolute -right-6 bottom-8 h-[240px] w-[280px]"
               />
             </div>
           </Reveal>
@@ -79,7 +95,9 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
             <div id="situation-links" className="card-neutral h-full scroll-mt-24">
               <h3 className="font-display text-heading-sm text-ink">{linksPanel.heading}</h3>
               <nav className="mt-8 flex flex-col">
-                {PAIN_SLUGS.map((slug, i) => (
+                {PAIN_SLUGS.map((slug, i) => {
+                  const Icon = PAIN_ICONS[slug];
+                  return (
                   <Link
                     key={slug}
                     href={`/${locale}/${slug}`}
@@ -87,15 +105,19 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
                       i > 0 ? "border-t border-ink/[0.07]" : ""
                     }`}
                   >
-                    {/* The first three rows are where the remaining hero
-                        artifacts come to rest. The pad reserves the space
-                        at every breakpoint so the list doesn't reflow when
-                        the flight kicks in at xl. */}
-                    {i < 3 ? (
-                      <span data-fly-target={i + 1} aria-hidden className="h-9 w-9 shrink-0 rounded-[10px] bg-ink/[0.04]" />
-                    ) : (
-                      <span aria-hidden className="h-9 w-9 shrink-0" />
-                    )}
+                    {/* Each row's icon is also the landing pad for the
+                        matching icon flown down from the hero. The static
+                        copy is what shows below xl (and while the flight is
+                        still measuring); at xl it's made invisible — not
+                        removed — so the row keeps its exact layout and the
+                        arriving icon lands on the space it already occupies. */}
+                    <span
+                      data-fly-target={i + 1}
+                      aria-hidden
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-mist"
+                    >
+                      <Icon className="h-[18px] w-[18px] text-ink xl:invisible" />
+                    </span>
                     <span className="flex-1">{dict.pains[slug].shortLabel}</span>
                     <span
                       aria-hidden
@@ -104,7 +126,8 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
                       →
                     </span>
                   </Link>
-                ))}
+                  );
+                })}
               </nav>
             </div>
           </Reveal>

@@ -32,9 +32,17 @@ const config: Config = {
         hairline: "#ececec",
       },
       fontFamily: {
+        // NOTE the inner quotes on "Source Serif 4" — they are load-bearing.
+        // Tailwind writes family lists verbatim, so an unquoted entry emits
+        // `font-family:Source Serif 4,...`. A bare `4` isn't a valid CSS
+        // identifier (identifiers can't start with a digit), which makes the
+        // whole declaration invalid and the browser drops it — the headline
+        // then silently falls back to the body sans. Any family name with a
+        // digit or a space needs quoting here.
+        //
         // Signifier substitute — the display/headline serif. Stays at
         // weight 400 at every size; that restraint is the signature.
-        display: ["Source Serif 4", "ui-serif", "Georgia", "serif"],
+        display: ['"Source Serif 4"', "ui-serif", "Georgia", "serif"],
         // Sohne substitute — the body/UI/nav workhorse.
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
