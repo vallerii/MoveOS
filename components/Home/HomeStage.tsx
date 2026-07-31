@@ -194,24 +194,51 @@ export default function HomeStage({ children }: { children: ReactNode }) {
   useEffect(() => {
     measure();
 
-    const onResize = () => measure();
-    window.addEventListener("resize", onResize);
+    let cancelled = false;
+    const remeasure = () => {
+      if (!cancelled) measure();
+    };
+
+    window.addEventListener("resize", remeasure);
 
     // Webfonts land after first paint and reflow every headline, which moves
-    // both the slots and the targets. Re-measure once they're in.
-    let cancelled = false;
+    // both the slots and the targets. `fonts.ready` resolves when loading
+    // finishes, but the reflow it triggers hasn't been applied yet at that
+    // point — measuring immediately reads the pre-swap layout and every
+    // landing ends up uniformly offset. Two frames later it has settled.
     document.fonts?.ready.then(() => {
-      if (!cancelled) measure();
+      requestAnimationFrame(() => requestAnimationFrame(remeasure));
     });
 
     // The quote carousel in the section below changes height per slide;
     // observing the wrapper catches that and any other late layout shift.
-    const observer = new ResizeObserver(() => measure());
+    const observer = new ResizeObserver(remeasure);
     if (wrapperRef.current) observer.observe(wrapperRef.current);
+
+    // Belt and braces: re-measure while the flight is actually on screen.
+    // Late layout shifts (a lazy image, an extension injecting a bar, the
+    // scrollbar appearing) are cheap to absorb here — this is seven
+    // getBoundingClientRect reads, rAF-throttled, and it stops as soon as
+    // the flight window is behind us. `commit` drops the update when
+    // nothing moved, so a stable page settles to zero re-renders.
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        if (cancelled) return;
+        const hero = wrapperRef.current?.firstElementChild as HTMLElement | null;
+        const limit = hero ? hero.getBoundingClientRect().height * 1.25 : 0;
+        if (window.scrollY <= limit) measure();
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       cancelled = true;
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", remeasure);
+      window.removeEventListener("scroll", onScroll);
       observer.disconnect();
     };
   }, [measure]);
