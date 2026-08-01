@@ -52,8 +52,21 @@ const FLYERS: (() => ReactNode)[] = [
   }),
 ];
 
+/**
+ * Coordinate spaces matter here, because the hero is pinned from xl up.
+ *
+ * `start` is in VIEWPORT space: while the hero is stuck to the top of the
+ * screen its slots don't move, so a viewport-relative origin is the one that
+ * stays still. `end` is in DOCUMENT space: the section below scrolls
+ * normally, so its landing pads only hold still relative to the page.
+ *
+ * The overlay is therefore `fixed`, and each frame converts the end point
+ * into viewport space by subtracting the live scroll position. `startDocY`
+ * exists only for the reduced-motion path, which parks everything in an
+ * ordinary absolutely-positioned overlay instead.
+ */
 type Rect = { x: number; y: number; w: number };
-type Pair = { start: Rect; end: Rect };
+type Pair = { start: Rect; end: Rect; startDocY: number };
 
 /**
  * Sub-pixel-tolerant comparison, used to decide whether a re-measure is
@@ -76,7 +89,8 @@ function samePairs(a: Pair[] | null, b: Pair[] | null): boolean {
       close(pair.start.w, other.start.w) &&
       close(pair.end.x, other.end.x) &&
       close(pair.end.y, other.end.y) &&
-      close(pair.end.w, other.end.w)
+      close(pair.end.w, other.end.w) &&
+      close(pair.startDocY, other.startDocY)
     );
   });
 }
@@ -100,19 +114,35 @@ function Flyer({
   // Each departs on a slight stagger so the group reads as separate objects
   // rather than one rigid formation — the last is still moving when the
   // first has arrived. Fractions are of the measured flight distance.
-  const from = Math.min(index * 0.04, 0.24) * distance;
-  const to = (0.8 + Math.min(index * 0.02, 0.14)) * distance;
-  const span: [number, number] = [from, to];
-  const progress = scrollY;
+  //
+  // Everything is down by ~60% of that distance, well before the incoming
+  // section has finished covering the screen. Landing later looks like
+  // clutter: the elements are still crossing the panel while its own
+  // headings are already being read. Arriving early instead means they
+  // settle onto their pads and then travel up WITH the panel, which is what
+  // makes them read as part of it.
+  const from = Math.min(index * 0.03, 0.18) * distance;
+  const to = (0.5 + Math.min(index * 0.02, 0.12)) * distance;
 
-  const x = useTransform(progress, span, [pair.start.x, pair.end.x]);
-  const yTravel = useTransform(progress, span, [pair.start.y, pair.end.y]);
+  // 0 → 1 over this element's slice of the scroll, clamped so it stays put
+  // before it departs and after it lands.
+  const t = useTransform(scrollY, [from, to], [0, 1], { clamp: true });
+
+  const x = useTransform(t, (v) => pair.start.x + (pair.end.x - pair.start.x) * v);
   // Landing pads are smaller than the flying elements, so scale comes from
   // the measured widths rather than being picked by eye.
-  const scale = useTransform(progress, span, [1, pair.end.w / pair.start.w]);
+  const scale = useTransform(t, (v) => 1 + (pair.end.w / pair.start.w - 1) * v);
   // A shallow arc keeps the motion from reading as a straight linear slide.
-  const lift = useTransform(progress, [from, (from + to) / 2, to], [0, -16, 0]);
-  const y = useTransform([yTravel, lift], ([travel, arc]: number[]) => travel + arc);
+  const lift = useTransform(t, [0, 0.5, 1], [0, -16, 0]);
+
+  // The destination is a document coordinate, so it has to be pulled back
+  // into the fixed overlay's viewport space every frame. Once t reaches 1
+  // this reduces to "track the pad exactly", which is what keeps each icon
+  // glued to its row as the page keeps scrolling.
+  const y = useTransform([t, scrollY, lift], ([v, sy, arc]: number[]) => {
+    const endViewportY = pair.end.y - sy;
+    return pair.start.y + (endViewportY - pair.start.y) * v + arc;
+  });
 
   return (
     <motion.div className="absolute left-0 top-0 origin-top-left" style={{ x, y, scale }}>
@@ -158,12 +188,12 @@ export default function HomeStage({ children }: { children: ReactNode }) {
 
     // Below xl the hero has no room for a collage, so nothing flies and the
     // sections render their own static content instead.
-    if (!window.matchMedia("(min-width: 1280px)").matches) {
+    if (!window.matchMedia("(min-width: 1280px) and (min-height: 780px)").matches) {
       commit(null);
       return;
     }
 
-    const base = wrapper.getBoundingClientRect();
+    const scrolled = window.scrollY;
     const next: Pair[] = [];
 
     for (let i = 0; i < FLYERS.length; i += 1) {
@@ -179,8 +209,12 @@ export default function HomeStage({ children }: { children: ReactNode }) {
       if (!s.width || !t.width) return commit(null);
 
       next.push({
-        start: { x: s.left - base.left, y: s.top - base.top, w: s.width },
-        end: { x: t.left - base.left, y: t.top - base.top, w: t.width },
+        // Viewport space — the hero is pinned, so these hold still.
+        start: { x: s.left, y: s.top, w: s.width },
+        // Document space — the section below scrolls, so only a page-relative
+        // origin is stable. Converted back per frame in Flyer.
+        end: { x: t.left, y: t.top + scrolled, w: t.width },
+        startDocY: s.top + scrolled,
       });
     }
 
@@ -247,23 +281,31 @@ export default function HomeStage({ children }: { children: ReactNode }) {
     <div ref={wrapperRef} className="relative">
       {children}
 
-      {/* Overlay lives in the wrapper's coordinate space (absolute, not
-          fixed) so the elements scroll with the page and the measured
-          rectangles stay valid. It never intercepts pointer events.
-          z-40 puts it above the situations section (z-30), which overlaps
+      {/* The animated overlay is FIXED, because the hero it launches from is
+          pinned: viewport space is the frame in which the departure points
+          hold still. Flyer converts each landing point out of document space
+          per frame. It never intercepts pointer events.
+
+          z-40 puts it above the situations section (z-30) that rides over
           the hero — otherwise the icons would slide underneath their own
           landing pads on the way down. */}
       {pairs && distance > 0 && (
-        <div aria-hidden className="pointer-events-none absolute inset-0 z-40">
+        <div
+          aria-hidden
+          className={`pointer-events-none z-40 ${
+            reduceMotion ? "absolute inset-0" : "fixed inset-0"
+          }`}
+        >
           {pairs.map((pair, i) =>
             reduceMotion ? (
               // Reduced motion: they still need to exist, they just don't
-              // travel. Parked at their hero positions, which is the
-              // composition the section was designed around anyway.
+              // travel. Parked at their hero positions in ordinary document
+              // space, which is the composition the section was designed
+              // around anyway.
               <div
                 key={i}
                 className="absolute left-0 top-0 origin-top-left"
-                style={{ transform: `translate(${pair.start.x}px, ${pair.start.y}px)` }}
+                style={{ transform: `translate(${pair.start.x}px, ${pair.startDocY}px)` }}
               >
                 {FLYERS[i]()}
               </div>

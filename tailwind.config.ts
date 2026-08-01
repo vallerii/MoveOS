@@ -89,6 +89,14 @@ const config: Config = {
         overlay: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 8px 40px 0px",
         popover: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.08) 0px 4px 24px 0px",
       },
+      // Pinning the hero means committing it to exactly one viewport, so the
+      // effect is only safe where its content actually fits — otherwise the
+      // foot of it (the badges row) gets clipped by its own overflow. This
+      // gates on height as well as width; below it the hero is an ordinary
+      // block in the flow and nothing is lost but the effect.
+      screens: {
+        pin: { raw: "(min-width: 1280px) and (min-height: 780px)" },
+      },
       maxWidth: {
         page: "1200px",
       },

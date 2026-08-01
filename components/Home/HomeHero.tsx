@@ -31,7 +31,12 @@ type Props = {
  */
 export default function HomeHero({ copy }: Props) {
   return (
-    <section className="relative overflow-hidden bg-paper pb-24 pt-16 sm:pb-32 sm:pt-24">
+    // At `pin` (wide AND tall enough — see tailwind.config.ts) the hero is
+    // pinned: it holds one viewport exactly and stops moving, so the section
+    // below climbs over it while the headline scales back and fades.
+    // Everywhere else it stays an ordinary block in the flow — committing a
+    // hero to one viewport it doesn't fit in only clips its own foot.
+    <section className="relative overflow-hidden bg-paper pb-24 pt-16 sm:pb-32 sm:pt-24 pin:sticky pin:top-0 pin:flex pin:h-svh pin:flex-col pin:justify-center pin:py-0">
       <HeroGlow />
 
       {/* Departure points for the flying elements — see HomeStage.
@@ -102,11 +107,19 @@ export default function HomeHero({ copy }: Props) {
         </RecedingTitle>
       </div>
 
+      {/* Tighter top margin once the hero is pinned — it has one viewport to
+          fit into and the badges are the row that would otherwise fall off
+          the bottom edge. */}
       <Reveal delay={400}>
-        <div className="container-page relative mt-20 sm:mt-28">
-          <div className="mx-auto grid max-w-4xl grid-cols-2 divide-x divide-y divide-hairline border-y border-l border-hairline sm:grid-cols-4 sm:divide-y-0 sm:border-l-0">
+        <div className="container-page relative mt-20 sm:mt-28 pin:mt-10">
+          {/* Flex, not a fixed grid. Every locale ships three badges, but a
+              hardcoded column count leaves a phantom empty cell the moment
+              that number changes — `flex-1` divides the row by whatever the
+              copy actually contains. Same construction as the pain-page
+              hero's badge row. */}
+          <div className="mx-auto flex max-w-3xl flex-col divide-y divide-hairline border-y border-hairline sm:flex-row sm:divide-x sm:divide-y-0">
             {copy.hero.badges.map((label) => (
-              <div key={label} className="px-4 py-5 text-center">
+              <div key={label} className="flex-1 px-4 py-5 text-center">
                 <p className="text-caption text-slate">{label}</p>
               </div>
             ))}

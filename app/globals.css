@@ -31,7 +31,14 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* `clip`, NOT `hidden`. Both stop sideways scrolling, but `overflow:
+     hidden` makes the element a scroll container, and a scroll container
+     anywhere up the tree silently disables `position: sticky` for every
+     descendant. With `hidden` here the sticky header, the sticky section
+     headings and the pinned hero all quietly degrade to static. `clip`
+     forbids scrolling outright, so no scroll container is created and
+     sticky keeps working. */
+  overflow-x: clip;
 }
 
 body {
@@ -40,7 +47,11 @@ body {
      darker page background. */
   background-color: var(--color-paper);
   color: var(--color-ink);
-  overflow-x: hidden;
+  /* Same reasoning as on html — see above. Decorative layers (the hero
+     glow, the artifact collage) intentionally bleed past their own edges,
+     and this keeps that from turning into a horizontal scrollbar without
+     breaking sticky positioning. */
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 

@@ -38,13 +38,16 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
     // icons.
     <section
       id="situations"
-      className="relative z-30 -mt-12 scroll-mt-24 rounded-t-[2.5rem] bg-paper py-20 shadow-[0_-30px_60px_-30px_rgba(23,25,28,0.13)] sm:-mt-16 sm:py-section"
+      className="relative z-30 -mt-12 scroll-mt-24 rounded-t-[2.5rem] bg-paper/50 py-20 shadow-[0_-30px_60px_-30px_rgba(23,25,28,0.13)] sm:-mt-16 sm:py-section"
     >
       <div className="container-page">
         <div className="grid gap-4 lg:grid-cols-5">
           <Reveal className="lg:col-span-3">
             <div className="card-neutral relative flex h-full min-h-[22rem] flex-col justify-center overflow-hidden">
-              <div className="relative z-10 max-w-md">
+              {/* Narrower from lg, where the checklist artifact occupies the
+                  panel's bottom-right corner — at max-w-md the body copy runs
+                  straight under the card. */}
+              <div className="relative z-10 max-w-md lg:max-w-sm">
                 <h3 className="font-display text-heading text-ink">{whatWeDo.heading}</h3>
                 <p className="mt-5 text-caption text-slate">{whatWeDo.body}</p>
                 <div className="mt-8">
@@ -57,7 +60,7 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
               {/* Landing pad for the checklist artifact flown in from the
                   hero (see HomeStage). Below xl nothing flies, so the
                   artifact renders here statically instead. */}
-              <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 hidden lg:block xl:hidden">
+              <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 hidden lg:block pin:hidden">
                 <ChecklistArtifact />
               </div>
               {/* Landing pad for the checklist card. An empty absolutely
@@ -116,7 +119,7 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
                       aria-hidden
                       className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-mist"
                     >
-                      <Icon className="h-[18px] w-[18px] text-ink xl:invisible" />
+                      <Icon className="h-[18px] w-[18px] text-ink pin:invisible" />
                     </span>
                     <span className="flex-1">{dict.pains[slug].shortLabel}</span>
                     <span
