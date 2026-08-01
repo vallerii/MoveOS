@@ -38,7 +38,7 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
     // icons.
     <section
       id="situations"
-      className="relative z-30 -mt-12 scroll-mt-24 rounded-t-[2.5rem] bg-paper/50 py-20 shadow-[0_-30px_60px_-30px_rgba(23,25,28,0.13)] sm:-mt-16 sm:py-section"
+      className="relative z-30 -mt-12 scroll-mt-24 rounded-t-[2.5rem] bg-paper py-20 shadow-[0_-30px_60px_-30px_rgba(23,25,28,0.13)] sm:-mt-16 sm:py-section"
     >
       <div className="container-page">
         <div className="grid gap-4 lg:grid-cols-5">

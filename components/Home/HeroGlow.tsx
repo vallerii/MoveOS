@@ -28,14 +28,18 @@ export default function HeroGlow() {
       {/* Rose, offset right and slightly higher — gives the bloom a centre of
           gravity instead of a symmetrical halo. */}
       <div
-        className="absolute left-[63%] top-[28%] h-[500px] w-[700px] -translate-x-1/2 rounded-full opacity-95 blur-[90px]"
+        className="absolute left-[63%] top-[20%] h-[500px] w-[700px] -translate-x-1/2 rounded-full opacity-95 blur-[90px]"
         style={{ background: "radial-gradient(closest-side, #f4b3a6, transparent)" }}
       />
       {/* Lavender, offset left and lower — the cool counterweight that keeps
           the warm tones from reading as a single orange smear. */}
       <div
+        className="absolute left-[40%] top-[16%] h-[460px] w-[660px] -translate-x-1/2 rounded-full opacity-85 blur-[90px]"
+        style={{ background: "radial-gradient(closest-side, #ac9fee, transparent)" }}
+      />
+      <div
         className="absolute left-[33%] top-[42%] h-[460px] w-[660px] -translate-x-1/2 rounded-full opacity-85 blur-[90px]"
-        style={{ background: "radial-gradient(closest-side, #cdc6ec, transparent)" }}
+        style={{ background: "radial-gradient(closest-side, #98c0eecc, transparent)" }}
       />
       {/* The hero clips its own overflow, which cuts the blooms off with a
           visible horizontal seam at the section boundary. This fade pins the

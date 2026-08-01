@@ -2,6 +2,7 @@ import Reveal from "../Reveal";
 import PillButton from "../PillButton";
 import HeroGlow from "./HeroGlow";
 import RecedingTitle from "./RecedingTitle";
+import FadeOnScroll from "./FadeOnScroll";
 import type { HomeCopy } from "@/lib/i18n/home";
 
 type Props = {
@@ -111,20 +112,24 @@ export default function HomeHero({ copy }: Props) {
           fit into and the badges are the row that would otherwise fall off
           the bottom edge. */}
       <Reveal delay={400}>
-        <div className="container-page relative mt-20 sm:mt-28 pin:mt-10">
-          {/* Flex, not a fixed grid. Every locale ships three badges, but a
-              hardcoded column count leaves a phantom empty cell the moment
-              that number changes — `flex-1` divides the row by whatever the
-              copy actually contains. Same construction as the pain-page
-              hero's badge row. */}
-          <div className="mx-auto flex max-w-3xl flex-col divide-y divide-hairline border-y border-hairline sm:flex-row sm:divide-x sm:divide-y-0">
-            {copy.hero.badges.map((label) => (
-              <div key={label} className="flex-1 px-4 py-5 text-center">
-                <p className="text-caption text-slate">{label}</p>
-              </div>
-            ))}
+        {/* Fades out on scroll — the row sits at the foot of the pinned hero,
+            which is the first thing the incoming section slides over. */}
+        <FadeOnScroll>
+          <div className="container-page relative mt-20 sm:mt-28 pin:mt-10">
+            {/* Flex, not a fixed grid. Every locale ships three badges, but a
+                hardcoded column count leaves a phantom empty cell the moment
+                that number changes — `flex-1` divides the row by whatever the
+                copy actually contains. Same construction as the pain-page
+                hero's badge row. */}
+            <div className="mx-auto flex max-w-3xl flex-col divide-y divide-hairline border-y border-hairline sm:flex-row sm:divide-x sm:divide-y-0">
+              {copy.hero.badges.map((label) => (
+                <div key={label} className="flex-1 px-4 py-5 text-center">
+                  <p className="text-caption text-slate">{label}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </FadeOnScroll>
       </Reveal>
     </section>
   );

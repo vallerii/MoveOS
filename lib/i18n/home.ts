@@ -34,7 +34,7 @@ export interface HomeCopy {
   trust: {
     heading: string;
     subheading: string;
-    facts: { q: string; a: string }[];
+    facts: { label: string; q: string; a: string }[];
     /** Fourth, wider CTA card at the end of the facts grid — same
      * accent-glow treatment as WhatYouGet's "resultLabel" card, but
      * clickable through to the quiz. */
@@ -131,19 +131,22 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       subheading: "A few things most tenants in Barcelona don't find out until it's too late.",
       facts: [
         {
+          label: "Where it's held",
           q: "Your deposit isn't sitting with your landlord.",
           a: "In Catalonia, the legal deposit is held by INCASÒL, not your landlord's personal account — most tenants never check this.",
         },
         {
+          label: "How often it happens",
           q: "Deposit disputes are one of the most common conflicts between tenants and landlords in Spain.",
           a: "Without a signed, photographed move-in and move-out report, it's hard for either side to prove what actually happened.",
         },
         {
+          label: "Timing",
           q: "You usually decide to move 1–2 months before your landlord finds out.",
           a: "That gap is exactly where most of the stress — and most of the mistakes — happen.",
         },
       ],
-      ctaCard: { badge: "Free · 2 minutes", text: "Find out what your situation is →" },
+      ctaCard: { badge: "Free · 15 minutes", text: "Find out what your situation is →" },
     },
     howItWorks: {
       heading: "How It Works",
@@ -249,19 +252,22 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       subheading: "Algunas cosas que la mayoría de inquilinos en Barcelona descubre demasiado tarde.",
       facts: [
         {
+          label: "Dónde está",
           q: "Tu fianza no la tiene tu casero.",
           a: "En Cataluña, la fianza legal la custodia el INCASÒL, no la cuenta personal del propietario — casi nadie lo comprueba.",
         },
         {
+          label: "Con qué frecuencia",
           q: "Las disputas por la fianza son uno de los conflictos más comunes entre inquilinos y propietarios en España.",
           a: "Sin un acta firmada y con fotos de entrada y salida, es difícil que cualquiera de las partes pueda demostrar lo que pasó.",
         },
         {
+          label: "Plazos",
           q: "Normalmente decides mudarte 1-2 meses antes de que tu casero se entere.",
           a: "En ese margen es donde ocurre la mayor parte del estrés — y de los errores.",
         },
       ],
-      ctaCard: { badge: "Gratis · 2 minutos", text: "Descubre cuál es tu situación →" },
+      ctaCard: { badge: "Gratis · 15 minutos", text: "Descubre cuál es tu situación →" },
     },
     howItWorks: {
       heading: "Cómo Funciona",
@@ -365,19 +371,22 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       subheading: "Узнай то, что большинство арендаторов в Барселоне узнают слишком поздно.",
       facts: [
         {
+          label: "Где лежит",
           q: "Ваш депозит хранится не у владельца.",
           a: "В Каталонии обязательный депозит хранится в INCASÒL, а не на личном счёте владельца — это можно проверить, но почти никто не проверяет.",
         },
         {
+          label: "Как часто",
           q: "Споры из-за депозита — частый конфликт между арендатором и владельцем.",
           a: "Без подписанного и сфотографированного акта на въезд и выезд ни одна из сторон не может доказать, что произошло на самом деле.",
         },
         {
+          label: "Сроки",
           q: "Обычно вы решаете съехать за 1-2 месяца до того, как об этом узнаёт владелец.",
           a: "Именно в этот промежуток происходит больше всего стресса — и больше всего ошибок.",
         },
       ],
-      ctaCard: { badge: "Бесплатно · 2 минуты", text: "Узнайте, какая у вас ситуация →" },
+      ctaCard: { badge: "Бесплатно · 15 минут", text: "Узнайте, какая у вас ситуация →" },
     },
     howItWorks: {
       heading: "Как это работает",

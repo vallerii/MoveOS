@@ -29,14 +29,32 @@ export default function PainQuotesCarousel({ quotes }: Props) {
   const current = quotes[index];
 
   return (
-    <div className="card-neutral flex h-full flex-col justify-between">
-      <div>
+    <div className="card-neutral relative flex h-full flex-col justify-between overflow-hidden">
+      {/* Soft light inside the card, clipped to its own rounded corners.
+          This panel is sized by the situation list beside it, so with a short
+          quote it leaves a large dead area in the middle — the glow gives
+          that space something to do without adding another element to read.
+          Two heavily blurred blooms, warm then cool, at very low opacity, so
+          the Mist surface still reads as Mist and the type keeps its
+          contrast. Sits at z-0 under everything. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <div
+          className="absolute left-[-20%] bottom-[-30%] h-[420px] w-[520px]  rounded-full opacity-70 blur-[70px]"
+          style={{ background: "radial-gradient(closest-side, #98c0eecc, transparent)" }}
+        />
+        <div
+          className="absolute left-[28%] bottom-[-40%] h-[320px] w-[400px] rounded-full opacity-50 blur-[70px]"
+          style={{ background: "radial-gradient(closest-side, #ac9fee, transparent)" }}
+        />
+      </div>
+
+      <div className="relative z-10">
         <p className="tag">{String(index + 1).padStart(2, "0")}</p>
         <p className="mt-6 font-display text-heading-sm text-ink">{current.quote}</p>
         <p className="mt-5 text-caption text-slate">{current.resolved}</p>
       </div>
 
-      <div className="mt-10">
+      <div className="relative z-10 mt-10">
         <p className="text-meta text-ash">{current.name}</p>
         <div className="mt-5 flex gap-1.5">
           {quotes.map((_, i) => (
