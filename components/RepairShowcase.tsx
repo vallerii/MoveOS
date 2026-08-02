@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Reveal from "./Reveal";
+import Glow from "./Glow";
+import RepairIllustration from "./RepairIllustration";
 import PillButton from "./PillButton";
 
 type Step = { title: string; body: string; highlight?: string };
@@ -15,15 +16,6 @@ type Props = {
   ctaLabel: string;
 };
 
-// One photo per step, matched by position — a design choice, not
-// translated content, same convention as the pain-indexed maps elsewhere.
-const images = [
-  "/repair/light-bulb.png", // bulbs and fittings
-  "/repair/bathroom-tile.png", // bathroom grout and limescale
-  "/repair/paint-wall.png", // wall scuffs and fixture marks
-  "/repair/wood-floor.png", // floor scratches
-];
-
 /**
  * Only used on /repair. These are the one place in the site where real
  * photography is warranted — they're the subject matter, not decoration —
@@ -31,7 +23,7 @@ const images = [
  * reserves for pictures (cards keep 24px; images step down).
  */
 export default function RepairShowcase({ heading, intro, steps, ctaText, ctaLabel }: Props) {
-  const cards = steps.map((step, i) => ({ ...step, image: images[i % images.length] }));
+  const cards = steps;
 
   return (
     <section className="bg-paper py-20 sm:py-section">
@@ -47,14 +39,18 @@ export default function RepairShowcase({ heading, intro, steps, ctaText, ctaLabe
           {cards.map((card, i) => (
             <Reveal key={card.title} delay={i * 80}>
               <div className="card-neutral flex h-full flex-col !p-5">
+                {/* Same square slot the photographs filled, same size — only
+                    the medium changed. A bloom sits under each drawing so the
+                    white tile isn't just a flat panel behind a line drawing;
+                    it's scaled right down because the tile is ~230px, and at
+                    full size only the blooms' pale edge would land inside. */}
                 <div className="relative aspect-square w-full overflow-hidden rounded-image bg-paper">
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, 50vw"
-                    className="object-contain p-4"
+                  <Glow
+                    blooms={i % 2 === 0 ? ["peach", "rose"] : ["lavender", "sky"]}
+                    scale={0.3}
+                    intensity={0.9}
                   />
+                  <RepairIllustration index={i} className="relative z-10 h-full w-full p-4 text-ink" />
                 </div>
                 <p className="mt-6 text-heading-sm text-ink">{card.title}</p>
                 <p className="mt-3 text-caption text-slate">{card.body}</p>

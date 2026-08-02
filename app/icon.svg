@@ -1,13 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="16" fill="#FAF8F3" />
+  <!-- Favicon: "OS" in italic serif over the site's own bloom wash.
+       The blooms are plain radial gradients rather than blurred shapes: a
+       favicon is rasterised down to 16px, where a Gaussian blur costs render
+       time and buys nothing, while a gradient fading to transparent is
+       already soft. The serif is named generically (Georgia / Times) because
+       a favicon renders outside the page and can't reach the site's
+       webfonts. -->
+  <defs>
+    <radialGradient id="peach" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6bf98" stop-opacity="1" />
+      <stop offset="100%" stop-color="#f6bf98" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="rose" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f19c8c" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#f19c8c" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="lavender" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b8ade8" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#b8ade8" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="sky" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8ab6ea" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#8ab6ea" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id="rounded">
+      <rect width="64" height="64" rx="14" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#rounded)">
+    <rect width="64" height="64" fill="#ffffff" />
+    <ellipse cx="36" cy="42" rx="42" ry="28" fill="url(#peach)" />
+    <ellipse cx="52" cy="22" rx="30" ry="24" fill="url(#rose)" />
+    <ellipse cx="18" cy="24" rx="28" ry="24" fill="url(#lavender)" />
+    <ellipse cx="8" cy="54" rx="28" ry="22" fill="url(#sky)" />
+  </g>
+
   <text
     x="32"
-    y="43"
+    y="45"
     text-anchor="middle"
-    font-family="Arial, Helvetica, sans-serif"
-    font-weight="800"
-    font-size="30"
-    letter-spacing="-1"
-    fill="#0EA5A8"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-style="italic"
+    font-size="36"
+    letter-spacing="-1.5"
+    fill="#17191c"
   >OS</text>
 </svg>

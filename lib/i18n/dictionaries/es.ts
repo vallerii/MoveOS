@@ -15,9 +15,9 @@ const es: Dictionary = {
   pains: {
     deposit: {
       eyebrow: "Revisión gratuita de tu fianza · Barcelona",
-      h1: "No pierdas tu fianza al dejar el piso",
+      h1: "El 80% de los inquilinos pierde su fianza al mudarse",
       subheading:
-        "La mayoría de inquilinos pierde parte de su fianza simplemente por no conocer sus derechos. Consigue una revisión gratuita de tu fianza y descubre qué hacer antes de entregar las llaves para recuperarla entera.",
+        "Consigue una revisión gratuita de tu fianza y descubre qué hacer antes de entregar las llaves para recuperarla entera.",
       metaTitle: "No pierdas tu fianza al mudarte",
       metaDescription:
         "Revisión gratuita para inquilinos en Barcelona: qué hacer antes de entregar las llaves para recuperar tu fianza entera, sin errores comunes.",

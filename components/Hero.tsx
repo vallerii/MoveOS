@@ -46,7 +46,7 @@ export default function Hero({ pain, dict }: Props) {
           artifacts, which is exactly what made six pages promising a personal
           plan read as one template. Drawn at full ink rather than tinted
           back — at this size a faint line just reads as a smudge. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden xl:block">
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-10 block max-xl:hidden">
         <div className="container-page relative h-full">
           <PainIllustration
             pain={pain}
@@ -65,7 +65,7 @@ export default function Hero({ pain, dict }: Props) {
         {/* Same treatment as the homepage: the headline scales back, drifts
             up and dissolves on scroll. */}
         <RecedingTitle>
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           <Reveal>
             <p className="tag">{copy.eyebrow}</p>
           </Reveal>
@@ -111,7 +111,7 @@ export default function Hero({ pain, dict }: Props) {
 
       {/* Fades out on scroll, like the homepage's — it sits at the foot of a
           full-height hero, which is the first thing the next section meets. */}
-      <FadeOnScroll>
+      {/* <FadeOnScroll> */}
         <div className="container-page relative z-10 mt-16 sm:mt-20">
           <div className="mx-auto flex max-w-3xl flex-col divide-y divide-hairline border-y border-hairline sm:flex-row sm:divide-x sm:divide-y-0">
             {copy.badges.map((label) => (
@@ -121,7 +121,7 @@ export default function Hero({ pain, dict }: Props) {
             ))}
           </div>
         </div>
-      </FadeOnScroll>
+      {/* </FadeOnScroll> */}
     </section>
   );
 }

@@ -54,6 +54,15 @@ function CloseIcon({ className = "h-5 w-5" }: { className?: string }) {
  *   - lg–xl : a single "Topics ▾" trigger with a hover dropdown
  *   - < lg  : burger menu
  * The language switcher lives in the footer, and in the burger panel below lg.
+ *
+ * Breakpoint visibility is written as `flex max-xl:hidden` rather than the
+ * more usual `hidden xl:flex`. Same result, but it never puts the bare class
+ * `hidden` on an element. `.hidden` is an unusually collision-prone name —
+ * plenty of third-party stylesheets (browser extensions especially) define
+ * their own, and theirs loads after ours, so at equal specificity it wins and
+ * the element stays hidden at every width. That's what emptied this header
+ * down to the logo. `max-xl:hidden` compiles to a differently-named class, so
+ * nothing else can claim it.
  */
 export default function Header({ locale, dict }: Props) {
   const pathname = usePathname() || `/${locale}`;
@@ -78,7 +87,7 @@ export default function Header({ locale, dict }: Props) {
         </Link>
 
         {/* Full nav — wide screens only, so six labels never wrap. */}
-        <nav className="hidden items-center gap-7 xl:flex">
+        <nav className="flex items-center gap-7 max-xl:hidden">
           {links.map((l) => (
             <Link
               key={l.slug}
@@ -95,7 +104,7 @@ export default function Header({ locale, dict }: Props) {
 
         {/* Mid tier — links don't fit yet, collapse into one hover dropdown
             instead of wrapping or squeezing. */}
-        <div className="hidden lg:block xl:hidden">
+        <div className="block max-lg:hidden xl:hidden">
           <div className="group relative">
             <button
               type="button"
@@ -124,7 +133,7 @@ export default function Header({ locale, dict }: Props) {
         </div>
 
         <div className="flex items-center gap-4">
-          <PillButton href={ctaHref} variant="filled" className="hidden !py-2.5 !text-[15px] lg:inline-flex">
+          <PillButton href={ctaHref} variant="filled" className="inline-flex !py-2.5 !text-[15px] max-lg:hidden">
             {dict.nav.bookButton}
           </PillButton>
 

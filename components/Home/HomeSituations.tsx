@@ -60,7 +60,7 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
               {/* Landing pad for the checklist artifact flown in from the
                   hero (see HomeStage). Below xl nothing flies, so the
                   artifact renders here statically instead. */}
-              <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 hidden lg:block pin:hidden">
+              <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 block max-lg:hidden pin:hidden">
                 <ChecklistArtifact />
               </div>
               {/* Landing pad for the checklist card. An empty absolutely

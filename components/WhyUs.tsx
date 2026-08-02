@@ -38,7 +38,7 @@ export default function WhyUs({ dict, pain }: Props) {
               promises — which is exactly the copy-paste feel these pages were
               supposed to lose. */}
           <Reveal delay={120} direction="right">
-            <div aria-hidden className="relative mx-auto hidden w-full max-w-md sm:block">
+            <div aria-hidden className="relative mx-auto block w-full max-w-md max-sm:hidden">
               <Glow
                 blooms={["peach", "lavender"]}
                 scale={0.65}
