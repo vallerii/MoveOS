@@ -13,7 +13,7 @@ const howItWorksIcons = [PhoneCallIcon, ClipboardCheckIcon, ShieldCheckIcon];
 export default function HomeHowItWorks({ copy }: Props) {
   return (
     <section className="relative py-20 sm:py-28 bg-gradient-to-b from-white to-[#EFEFEE] overflow-hidden">
-      <div className="pointer-events-none absolute top-[10%] right-[-30%] h-[20rem] w-[20rem] rounded-full bg-brand-primary/10 blur-3xl sm:right-[10%]" />
+      <div className="pointer-events-none absolute top-[30%] left-[10%] h-[20rem] w-[20rem] rounded-full bg-brand-primary/10 blur-3xl sm:right-[10%]" />
       <div className="container-page relative">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">

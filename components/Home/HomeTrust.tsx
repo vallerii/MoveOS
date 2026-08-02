@@ -13,7 +13,7 @@ const trustFactIcons = [ScaleIcon, DocumentTextIcon, ClockIcon];
 // build urgency before the "how it works" step.
 export default function HomeTrust({ copy }: Props) {
   return (
-    <section className="bg-gradient-to-b  from-[#EFEFEE] to-white py-20 sm:py-28 relative">
+    <section className=" bg-[#EFEFEE] py-20 sm:py-28 relative">
       <div className="container-page">
         <Reveal>
           <div className="mx-auto max-w-xl text-center">
@@ -25,15 +25,20 @@ export default function HomeTrust({ copy }: Props) {
         </Reveal>
 
         <div className="mt-12 grid gap-5 lg:grid-cols-4">
-          {copy.trust.facts.map(({ q, a }, i) => {
+          {copy.trust.facts.map(({ title, q, a }, i) => {
             const Icon = trustFactIcons[i] ?? CheckCircleIcon;
             return (
               <Reveal key={q} delay={i * 90} direction="right">
                 <div className="card relative flex h-full flex-col overflow-hidden">
-                  <Icon className="absolute -right-4 -top-2 h-20 w-20 text-brand-primary opacity-20" />
+                  <Icon className="absolute -right-4 -top-2 h-16 w-16 text-brand-primary opacity-20" />
                   <Icon className="h-6 w-6 text-brand-primary mt-2" />
-                  <p className="mt-3 pr-8 text-card-title text-brand-ink">{q}</p>
-                  <p className="mt-3 text-small text-brand-ink/70">{a}</p>
+                  {/* Short label first (article-teaser style), then the old
+                      `q` sentence as a secondary line, then `a` as the
+                      description — was a single oversized title (up to 24px,
+                      wrapping to 2-3 lines) dominating the card. */}
+                  <p className="mt-3 pr-6 text-lg font-extrabold text-brand-ink">{title}</p>
+                  <p className="mt-2 font-semibold text-brand-ink">{q}</p>
+                  <p className="mt-2 text-small text-brand-ink/70">{a}</p>
                 </div>
               </Reveal>
             );
