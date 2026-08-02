@@ -211,7 +211,14 @@ const en: Dictionary = {
       },
     ],
     resultLabel: "The Result",
-    resultText: "Leave with everything sorted — deposit, admin, and belongings.",
+    resultText: {
+      deposit: "Leave with your full deposit back",
+      admin: "Leave with nothing left hanging: bills, subscriptions, registration",
+      belongings: "Leave knowing where every piece of furniture ended up",
+      urgent: "Leave with no penalties and no lost deposit — even on short notice",
+      buyout: "Leave with up to €2,000 and your deposit back the same day",
+      repair: "Leave having spent the minimum on repairs — and not a euro more",
+    },
   },
   didYouKnow: {
     heading: "Did You Know?",
@@ -362,6 +369,40 @@ const en: Dictionary = {
       lt1m: "Within 1 month",
       m1to3: "In 1–3 months",
       later: "More than 3 months / not sure yet",
+    },
+    topic: {
+      deposit: {
+        question: "Do you have photos and an inventory from move-in?",
+        options: ["Yes, photos and inventory", "Photos only", "Neither"],
+      },
+      admin: {
+        question: "What have you already moved to the new address?",
+        options: ["Nothing yet", "Some of the bills", "Almost everything"],
+      },
+      belongings: {
+        question: "What's staying in the flat?",
+        options: ["Furniture", "Smaller items and appliances", "Both furniture and items"],
+      },
+      urgent: {
+        question: "Have you given your landlord notice?",
+        options: ["Yes, in writing", "Verbally", "Not yet"],
+      },
+      buyout: {
+        question: "How long is left on your contract?",
+        options: ["Under 6 months", "6 to 12 months", "Over a year"],
+      },
+      repair: {
+        question: "What needs putting right?",
+        options: ["Walls and paintwork", "Plumbing or electrics", "Not sure yet"],
+      },
+    },
+    dataNotice: "Your details are used only by the MoveOS team, and only for this consultation.",
+    dataNoticeLink: "Privacy policy",
+    otherCity: {
+      heading: "We're only in Barcelona for now",
+      body: "We haven't launched in your city yet. Write to us and we'll tell you when we do — and send you the free move-out checklist in the meantime.",
+      button: "Write to us",
+      back: "Pick another city",
     },
   },
   results: {

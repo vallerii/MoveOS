@@ -1,4 +1,4 @@
-import type { Dictionary, Locale } from "@/lib/i18n/types";
+import type { Dictionary, Locale, PainSlug } from "@/lib/i18n/types";
 import Reveal from "../Reveal";
 import QuizWizard from "./QuizWizard";
 import Glow from "../Glow";
@@ -6,6 +6,8 @@ import Glow from "../Glow";
 type Props = {
   locale: Locale;
   dict: Dictionary;
+  /** Absent on the homepage, where there is no single topic. */
+  pain?: PainSlug;
 };
 
 /**
@@ -17,7 +19,7 @@ type Props = {
  * genuinely a piece of product UI, so it gets the artifact treatment: white
  * surface, 20px radius, the system's only real shadow.
  */
-export default function QuizSection({ locale, dict }: Props) {
+export default function QuizSection({ locale, dict, pain }: Props) {
   return (
     <section id="quiz" className="scroll-mt-24 bg-paper py-20 sm:py-section relative">
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -66,7 +68,7 @@ export default function QuizSection({ locale, dict }: Props) {
         <div className="relative mx-auto mt-14 max-w-2xl">
           <Reveal delay={100} className="relative z-10">
             <div className="card-artifact min-h-[440px] p-6 sm:p-10">
-              <QuizWizard locale={locale} dict={dict} />
+              <QuizWizard locale={locale} dict={dict} pain={pain} />
             </div>
           </Reveal>
         </div>

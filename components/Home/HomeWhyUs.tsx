@@ -30,15 +30,15 @@ export default function HomeWhyUs({ copy }: Props) {
 
           {/* The card is a white floating artifact on a Fog band, which
               leaves it fairly flat. Two of the hero's blooms sit under it —
-              not all three, that's a hero-scale gesture — so the card reads
-              as lit from behind. The layer is inset well past the card's own
-              edges so the light spills out around it rather than stopping at
-              them, and it's scaled back with `intensity` since it's lighting
-              one card, not a whole viewport. */}
+              not all four, that's a hero-scale gesture — so the card reads as
+              lit from behind. Scaled to roughly the card rather than the
+              viewport, so what lands behind it is the blooms' saturated
+              centre and not their washed-out edge. */}
           <div className="relative">
             <Glow
               blooms={["peach", "lavender"]}
-              intensity={0.6}
+              scale={0.55}
+              intensity={0.85}
               className="absolute right-[50%] top-[10%]"
             />
             <Reveal delay={120} direction="right" className="relative z-10">

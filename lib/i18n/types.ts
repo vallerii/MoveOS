@@ -72,7 +72,9 @@ export interface Dictionary {
     subheading: string;
     items: { badge: string; title: string; pains: PainSlug[] }[];
     resultLabel: string;
-    resultText: string;
+    /** One line per page — six landing pages sharing one
+     * closing line is what made them read as copy-paste. */
+    resultText: Record<PainSlug, string>;
   };
   didYouKnow: {
     heading: string;
@@ -108,6 +110,16 @@ export interface Dictionary {
       m1to3: string;
       later: string;
     };
+    /** Second step, different on every landing page — the whole promise
+     * of these pages is a personal plan rather than a generic checklist,
+     * which doesn't survive asking all six the same questions. */
+    topic: Record<PainSlug, { question: string; options: string[] }>;
+    /** Shown under every step: the quiz ends up collecting a landlord's
+     * contact details, so it says plainly who sees them. */
+    dataNotice: string;
+    dataNoticeLink: string;
+    /** "Other city" is a real answer, not a dead end. */
+    otherCity: { heading: string; body: string; button: string; back: string };
   };
   results: {
     qualified: {

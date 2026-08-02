@@ -211,7 +211,14 @@ const es: Dictionary = {
       },
     ],
     resultLabel: "El resultado",
-    resultText: "Vete con todo resuelto: fianza, trámites y pertenencias.",
+    resultText: {
+      deposit: "Vete con tu fianza devuelta al completo",
+      admin: "Vete sin dejar ningún cabo suelto: facturas, suscripciones, padrón",
+      belongings: "Vete sabiendo dónde acabó cada mueble y cada caja",
+      urgent: "Vete sin penalizaciones ni fianza perdida, aunque vayas justo de plazo",
+      buyout: "Vete con hasta 2.000 € y tu fianza el mismo día",
+      repair: "Vete habiendo gastado lo mínimo en arreglos, ni un euro de más",
+    },
   },
   didYouKnow: {
     heading: "¿Sabías que…?",
@@ -362,6 +369,40 @@ const es: Dictionary = {
       lt1m: "En menos de 1 mes",
       m1to3: "En 1–3 meses",
       later: "Más de 3 meses / aún no lo sé",
+    },
+    topic: {
+      deposit: {
+        question: "¿Tienes fotos e inventario de la entrada?",
+        options: ["Sí, fotos e inventario", "Solo fotos", "Ninguno de los dos"],
+      },
+      admin: {
+        question: "¿Qué has cambiado ya a la nueva dirección?",
+        options: ["Todavía nada", "Algunas facturas", "Casi todo"],
+      },
+      belongings: {
+        question: "¿Qué se queda en el piso?",
+        options: ["Muebles", "Objetos pequeños y electrodomésticos", "Muebles y objetos"],
+      },
+      urgent: {
+        question: "¿Ya has avisado al propietario?",
+        options: ["Sí, por escrito", "De palabra", "Todavía no"],
+      },
+      buyout: {
+        question: "¿Cuánto queda de contrato?",
+        options: ["Menos de 6 meses", "Entre 6 y 12 meses", "Más de un año"],
+      },
+      repair: {
+        question: "¿Qué hay que arreglar?",
+        options: ["Paredes y pintura", "Fontanería o electricidad", "Aún no lo sé"],
+      },
+    },
+    dataNotice: "Tus datos los usa solo el equipo de MoveOS, y solo para esta consulta.",
+    dataNoticeLink: "Política de privacidad",
+    otherCity: {
+      heading: "De momento solo estamos en Barcelona",
+      body: "Todavía no hemos llegado a tu ciudad. Escríbenos y te avisamos cuando lo hagamos; mientras tanto te mandamos la checklist de mudanza gratis.",
+      button: "Escríbenos",
+      back: "Elegir otra ciudad",
     },
   },
   results: {

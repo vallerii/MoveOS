@@ -82,7 +82,7 @@ export default function PainPage({ params }: { params: Params }) {
         ))}
       <WhatYouGet dict={dict} pain={pain} />
       <WhyUs dict={dict} pain={pain} />
-      <QuizSection locale={locale} dict={dict} />
+      <QuizSection locale={locale} dict={dict} pain={pain} />
     </main>
   );
 }

@@ -1,6 +1,9 @@
 import Reveal from "./Reveal";
 import PillButton from "./PillButton";
-import { ChecklistArtifact, DocumentArtifact, StatArtifact, TimelineArtifact } from "./Artifacts";
+import PainIllustration from "./PainIllustration";
+import HeroGlow from "./Home/HeroGlow";
+import RecedingTitle from "./Home/RecedingTitle";
+import FadeOnScroll from "./Home/FadeOnScroll";
 import type { Dictionary, Locale, PainSlug } from "@/lib/i18n/types";
 
 type Props = {
@@ -10,45 +13,58 @@ type Props = {
 };
 
 /**
- * Per-pain hero — a centred oversized serif headline with a subhead and a
- * pill button pair, surrounded by four floating product artifacts that
- * overlap the canvas at varied offsets. That collage IS the hero image; the
- * isometric city/route illustrations that used to sit behind this section
- * are gone, since this system uses product-UI imagery only.
- *
- * The artifacts are decorative and hidden from assistive tech — they carry
+ * Per-pain hero — one viewport tall, with a centred oversized serif headline
+ * and a pill button pair, and two of the page's own drawings either side of
+ * it. Both drawings are decorative and hidden from assistive tech; they carry
  * no copy, so nothing is lost by skipping them.
  *
- * The badge row below the fold moved from icon-in-a-tinted-circle to a
- * hairline-ruled row of plain type: badges are metadata, and metadata in
- * this system doesn't get colour or containers.
+ * Shares the homepage's scroll behaviour: the headline recedes and dissolves
+ * (RecedingTitle) while the badge row fades (FadeOnScroll), over the same
+ * four-bloom wash (HeroGlow). Those three live under components/Home/ because
+ * that's where they were first needed — worth moving up a level if a third
+ * page ever wants them.
  */
 export default function Hero({ pain, dict }: Props) {
   const copy = dict.pains[pain];
 
   return (
-    <section className="relative overflow-hidden bg-paper pb-24 pt-16 sm:pb-32 sm:pt-24">
-      {/* Artifact collage — absolutely placed around the headline column on
-          large screens only. Below xl there isn't room to overlap anything
-          without colliding with the copy, so they simply don't render. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
+    // One viewport tall, content centred, so both drawings and the whole
+    // headline block land above the fold rather than needing a scroll.
+    <section className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-paper py-20">
+      <HeroGlow />
+
+      {/* Collage around the headline column, on large screens only — below xl
+          there's no room to place anything beside the copy without colliding
+          with it.
+
+          Two different drawings per page, both SVG: the object that names the
+          situation on the left, and a second related object on the right.
+          Sized to the gutter the centred headline column leaves — a 1200px
+          container minus a 768px text column is ~215px a side, so anything
+          wider than that lands on the words.
+          Every pain page used to open on the identical four product
+          artifacts, which is exactly what made six pages promising a personal
+          plan read as one template. Drawn at full ink rather than tinted
+          back — at this size a faint line just reads as a smudge. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden xl:block">
         <div className="container-page relative h-full">
-          <div className="absolute left-0 top-4 animate-drift">
-            <ChecklistArtifact />
-          </div>
-          <div className="absolute right-0 top-16">
-            <StatArtifact value="1 840 €" delta="↑ 3.2×" />
-          </div>
-          <div className="absolute bottom-6 left-6">
-            <TimelineArtifact />
-          </div>
-          <div className="absolute bottom-0 right-10 animate-drift">
-            <DocumentArtifact />
-          </div>
+          <PainIllustration
+            pain={pain}
+            variant="primary"
+            className="absolute left-0 top-[20%] h-40 w-40 animate-drift text-ink"
+          />
+          <PainIllustration
+            pain={pain}
+            variant="secondary"
+            className="absolute bottom-[20%] right-0 h-40 w-40 text-ink"
+          />
         </div>
       </div>
 
-      <div className="container-page relative">
+      <div className="container-page relative z-10">
+        {/* Same treatment as the homepage: the headline scales back, drifts
+            up and dissolves on scroll. */}
+        <RecedingTitle>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <p className="tag">{copy.eyebrow}</p>
@@ -68,10 +84,21 @@ export default function Hero({ pain, dict }: Props) {
             {/* Filled primary always pairs with a ghost secondary on the
                 same baseline — that pairing is structural in this system. */}
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <PillButton href="#quiz" className="w-full sm:w-auto">
-                {/* Shorter label on mobile, full label from sm and up. */}
-                <span className="sm:!hidden">{copy.heroCtaMobile ?? copy.heroCta}</span>
-                <span className="hidden sm:!inline">{copy.heroCta}</span>
+              {/* Shorter label on mobile, full label from sm up. Both spans
+                  are always in the DOM and only one is shown by CSS, so
+                  anything that reads the DOM rather than the rendered page —
+                  screen readers, and the text extraction that flagged this —
+                  saw the label twice in a row. `aria-hidden` on each and one
+                  accessible name on the link itself fixes that: assistive
+                  tech gets the full label once, sighted users still get the
+                  responsive one. */}
+              <PillButton href="#quiz" aria-label={copy.heroCta} className="w-full sm:w-auto">
+                <span aria-hidden className="sm:!hidden">
+                  {copy.heroCtaMobile ?? copy.heroCta}
+                </span>
+                <span aria-hidden className="hidden sm:!inline">
+                  {copy.heroCta}
+                </span>
               </PillButton>
               <PillButton href="#didyouknow" variant="ghost" className="w-full sm:w-auto">
                 {dict.nav.bookButton}
@@ -79,10 +106,13 @@ export default function Hero({ pain, dict }: Props) {
             </div>
           </Reveal>
         </div>
+        </RecedingTitle>
       </div>
 
-      <Reveal delay={400}>
-        <div className="container-page relative mt-20 sm:mt-28">
+      {/* Fades out on scroll, like the homepage's — it sits at the foot of a
+          full-height hero, which is the first thing the next section meets. */}
+      <FadeOnScroll>
+        <div className="container-page relative z-10 mt-16 sm:mt-20">
           <div className="mx-auto flex max-w-3xl flex-col divide-y divide-hairline border-y border-hairline sm:flex-row sm:divide-x sm:divide-y-0">
             {copy.badges.map((label) => (
               <div key={label} className="flex-1 px-3 py-5 text-center">
@@ -91,7 +121,7 @@ export default function Hero({ pain, dict }: Props) {
             ))}
           </div>
         </div>
-      </Reveal>
+      </FadeOnScroll>
     </section>
   );
 }
