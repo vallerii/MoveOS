@@ -16,9 +16,9 @@ const en: Dictionary = {
     deposit: {
       img: "/deposit.png",
       eyebrow: "Free Deposit Protection Review · Barcelona",
-      h1: "Don't Lose Your Deposit When You Move Out",
+      h1: "80% of renters lose their deposit when they move out",
       subheading:
-        "Most tenants lose part of their deposit simply because they don't know their rights. Get a free deposit review and find out what to do before handing back the keys — so you get it all back.",
+        "Get a free deposit review and find out what to do before handing back the keys — so you get it all back.",
       metaTitle: "Don't Lose Your Rental Deposit",
       metaDescription:
         "Free deposit check for Barcelona renters: what to do before handing back the keys so you get your full deposit back — no common mistakes.",
