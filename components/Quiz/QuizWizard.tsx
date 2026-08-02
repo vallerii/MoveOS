@@ -100,14 +100,24 @@ export default function QuizWizard({ locale, dict, pain }: Props) {
       <div className="mx-auto w-full max-w-xl text-center">
         <h4 className="font-display text-heading-sm text-ink">{q.otherCity.heading}</h4>
         <p className="mx-auto mt-4 max-w-md text-caption text-slate">{q.otherCity.body}</p>
+        {/* The checklist is the thing we can actually give someone outside
+            Barcelona today, so it's the primary action. Writing to us is
+            still offered, but as an aside rather than a button — it's a
+            promise to follow up later, not something to do now. */}
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <PillButton href={`mailto:${CONTACT_EMAIL}`} className="w-full sm:w-auto">
-            {q.otherCity.button}
+          <PillButton href={`/checklists/${locale}/generic.pdf`} download className="w-full sm:w-auto">
+            {dict.results.downloadPdf}
           </PillButton>
           <PillButton href={`/${locale}/checklist/generic`} internal variant="ghost" className="w-full sm:w-auto">
             {dict.results.viewChecklistButton}
           </PillButton>
         </div>
+        <p className="mt-6 text-meta text-ash">
+          {dict.results.qualified.emailAltText}{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4 hover:text-ink">
+            {CONTACT_EMAIL}
+          </a>
+        </p>
         <button
           type="button"
           onClick={restart}

@@ -401,7 +401,6 @@ const en: Dictionary = {
     otherCity: {
       heading: "We're only in Barcelona for now",
       body: "We haven't launched in your city yet. Write to us and we'll tell you when we do — and send you the free move-out checklist in the meantime.",
-      button: "Write to us",
       back: "Pick another city",
     },
   },
@@ -422,6 +421,7 @@ const en: Dictionary = {
       body: "Right now we're focused on Barcelona renters moving out in the next few months — but here's a free checklist with the essentials for anyone moving out of a rental in Spain.",
       checklistHeading: "What to know before moving out in Spain",
     },
+    checklistAltText: "Or download the free move-out checklist:",
     downloadPdf: "Download as PDF",
     restartButton: "Start over",
     viewChecklistButton: "Open checklist",

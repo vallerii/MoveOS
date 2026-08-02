@@ -1,5 +1,5 @@
-import Reveal from "./Reveal";
 import type { Dictionary, PainSlug } from "@/lib/i18n/types";
+import Reveal from "./Reveal";
 
 type Props = { dict: Dictionary; pain: PainSlug };
 
@@ -39,10 +39,20 @@ export default function DidYouKnow({ dict, pain }: Props) {
                 if (featured) {
                   return (
                     <Reveal key={q} delay={i * 90} direction="right">
-                      <div className="card-peach">
-                        <p className="text-meta text-sienna/60">{index}</p>
-                        <p className="mt-4 text-heading-sm font-w450 text-sienna">{q}</p>
-                        <p className="mt-3 text-caption text-sienna/80">{a}</p>
+                      <div className="relative overflow-hidden card-neutral">
+                        <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+                          <div
+                            className="absolute left-[-20%] bottom-[-30%] h-[420px] w-[520px]  rounded-full opacity-70 blur-[70px]"
+                            style={{ background: "radial-gradient(closest-side, #98c0eecc, transparent)" }}
+                          />
+                          <div
+                            className="absolute left-[28%] bottom-[-40%] h-[320px] w-[400px] rounded-full opacity-50 blur-[70px]"
+                            style={{ background: "radial-gradient(closest-side, #ac9fee, transparent)" }}
+                          />
+                        </div>
+                        <p className="text-meta text-sienna/60 z-10 relative ">{index}</p>
+                        <p className="mt-4 text-heading-sm font-w450 text-ink z-10 relative">{q}</p>
+                        <p className="mt-3 text-caption text-slate z-10 relative">{a}</p>
                       </div>
                     </Reveal>
                   );

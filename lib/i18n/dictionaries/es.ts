@@ -401,7 +401,6 @@ const es: Dictionary = {
     otherCity: {
       heading: "De momento solo estamos en Barcelona",
       body: "Todavía no hemos llegado a tu ciudad. Escríbenos y te avisamos cuando lo hagamos; mientras tanto te mandamos la checklist de mudanza gratis.",
-      button: "Escríbenos",
       back: "Elegir otra ciudad",
     },
   },
@@ -422,6 +421,7 @@ const es: Dictionary = {
       body: "Ahora mismo nos centramos en inquilinos de Barcelona que se mudan en los próximos meses — pero aquí tienes un checklist gratuito con lo esencial para cualquiera que deje un alquiler en España.",
       checklistHeading: "Lo que debes saber antes de mudarte en España",
     },
+    checklistAltText: "O descarga la checklist de mudanza gratis:",
     downloadPdf: "Descargar en PDF",
     restartButton: "Empezar de nuevo",
     viewChecklistButton: "Abrir checklist",

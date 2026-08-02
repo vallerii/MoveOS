@@ -1,7 +1,7 @@
 import Reveal from "./Reveal";
-import { StatArtifact, TimelineArtifact } from "./Artifacts";
 import type { Dictionary, PainSlug } from "@/lib/i18n/types";
 import Glow from "./Glow";
+import WhyUsScene from "./WhyUsScene";
 
 type Props = { dict: Dictionary; pain: PainSlug };
 
@@ -32,22 +32,20 @@ export default function WhyUs({ dict, pain }: Props) {
             </div>
           </Reveal>
 
-          {/* Product artifacts stand in for the section image — cropped UI
-              fragments floating on the fog band, per the imagery rules. */}
+          {/* The section image is a drawing of what the sentence beside it
+              promises, and it changes with that sentence. It used to be the
+              same two product artifacts on all six pages, under six different
+              promises — which is exactly the copy-paste feel these pages were
+              supposed to lose. */}
           <Reveal delay={120} direction="right">
-            <div aria-hidden className="relative mx-auto hidden h-[320px] w-full max-w-md sm:block">
+            <div aria-hidden className="relative mx-auto hidden w-full max-w-md sm:block">
               <Glow
                 blooms={["peach", "lavender"]}
                 scale={0.65}
                 intensity={0.65}
-                className="absolute right-[50%] top-[30%]"
+                className="absolute right-[50%] top-[40%]"
               />
-              <div className="absolute left-0 top-4 animate-drift">
-                <StatArtifact value="1 840 €" delta="↑ 3.2×" />
-              </div>
-              <div className="absolute bottom-4 right-0">
-                <TimelineArtifact />
-              </div>
+              <WhyUsScene pain={pain} className="relative z-10 w-full text-ink" />
             </div>
           </Reveal>
         </div>

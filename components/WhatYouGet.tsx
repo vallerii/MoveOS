@@ -51,26 +51,16 @@ export default function WhatYouGet({ dict, pain }: Props) {
               the card's own radius, sat under the type at z-0, and at half
               intensity: this is a short full-width band, not a viewport, and
               the blooms are sized for the latter. */}
-          <div className="relative mt-4 overflow-hidden rounded-card bg-mist">
+          <div className="relative mt-4 overflow-hidden card-peach">
             {/* Scaled right down: this card is ~240px tall and the blooms are
                 sized for a viewport, so at full size only their pale outer
                 edge lands inside it. Shrinking brings the saturated centre
                 into the box, which is what actually makes it read as light
                 rather than as a grey tint. */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-              <div
-                className="absolute left-[-10%]  h-[420px] w-[520px]  rounded-full opacity-90 blur-[70px]"
-                style={{ background: "radial-gradient(closest-side, #98c0eecc, transparent)" }}
-              />
-              <div
-                className="absolute left-[20%]  h-[320px] w-[400px] rounded-full opacity-70 blur-[70px]"
-                style={{ background: "radial-gradient(closest-side, #ac9fee, transparent)" }}
-              />
-            </div>
-            {/* <Glow blooms={["lavender", "sky"]} scale={0.34} intensity={1} /> */}
+            
             <div className="relative z-10 flex flex-col gap-6 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
-              <span className="tag shrink-0">{resultLabel}</span>
-              <p className="max-w-2xl font-display text-heading text-ink">{resultText[pain]}</p>
+              <span className="tag shrink-0 text-sienna/50">{resultLabel}</span>
+              <p className="max-w-2xl font-display text-heading text-sienna">{resultText[pain]}</p>
             </div>
           </div>
         </Reveal>

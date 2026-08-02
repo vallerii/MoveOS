@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/config";
 import PillButton from "../PillButton";
@@ -25,7 +26,12 @@ export default function Result({ locale, dict, qualified, onRestart }: Props) {
 
   return (
     <div className="mx-auto max-w-2xl">
-      {qualified && (
+      {qualified ? (
+        // Offered the call, so the call is the whole answer. The checklist
+        // used to follow as a second full card, which made the result screen
+        // twice as tall and gave the visitor a competing action right under
+        // the one we actually want. It's still here, just demoted to an
+        // aside in the same voice as the email line above it.
         <div className="card-peach">
           <h4 className="font-display text-heading-sm text-sienna">{dict.results.qualified.bookingHeading}</h4>
           <p className="mt-3 text-caption text-sienna/80">{dict.results.qualified.bookingBody}</p>
@@ -45,28 +51,40 @@ export default function Result({ locale, dict, qualified, onRestart }: Props) {
               {CONTACT_EMAIL}
             </a>
           </p>
+          <p className="mt-2 text-meta text-sienna/70">
+            {dict.results.checklistAltText}{" "}
+            <Link href={`/${locale}/checklist/${checklistType}`} className="underline underline-offset-4">
+              {dict.results.viewChecklistButton}
+            </Link>{" "}
+            ·{" "}
+            <a href={pdfHref} download className="underline underline-offset-4">
+              {dict.results.downloadPdf}
+            </a>
+          </p>
+        </div>
+      ) : (
+        // Not offered the call — the checklist is the only thing on the
+        // screen, so it keeps its card and its buttons.
+        <div className="card-neutral">
+          <h4 className="font-display text-heading-sm text-ink">
+            {dict.results.notQualified.checklistHeading}
+          </h4>
+          <p className="mt-3 text-caption text-slate">{checklist.intro}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <PillButton href={pdfHref} download className="w-full sm:w-auto">
+              {dict.results.downloadPdf}
+            </PillButton>
+            <PillButton
+              href={`/${locale}/checklist/${checklistType}`}
+              internal
+              variant="ghost"
+              className="w-full sm:w-auto"
+            >
+              {dict.results.viewChecklistButton}
+            </PillButton>
+          </div>
         </div>
       )}
-
-      <div className={`card-neutral ${qualified ? "mt-4" : ""}`}>
-        <h4 className="font-display text-heading-sm text-ink">
-          {qualified ? dict.results.qualified.checklistHeading : dict.results.notQualified.checklistHeading}
-        </h4>
-        <p className="mt-3 text-caption text-slate">{checklist.intro}</p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <PillButton href={pdfHref} download className="w-full sm:w-auto">
-            {dict.results.downloadPdf}
-          </PillButton>
-          <PillButton
-            href={`/${locale}/checklist/${checklistType}`}
-            internal
-            variant="ghost"
-            className="w-full sm:w-auto"
-          >
-            {dict.results.viewChecklistButton}
-          </PillButton>
-        </div>
-      </div>
 
       <button
         type="button"

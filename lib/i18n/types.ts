@@ -119,7 +119,7 @@ export interface Dictionary {
     dataNotice: string;
     dataNoticeLink: string;
     /** "Other city" is a real answer, not a dead end. */
-    otherCity: { heading: string; body: string; button: string; back: string };
+    otherCity: { heading: string; body: string; back: string };
   };
   results: {
     qualified: {
@@ -139,6 +139,9 @@ export interface Dictionary {
       checklistHeading: string;
     };
     downloadPdf: string;
+    /** Lead-in for the checklist links offered as an aside once a visitor
+     * has already been given the call. */
+    checklistAltText: string;
     restartButton: string;
     viewChecklistButton: string;
   };
