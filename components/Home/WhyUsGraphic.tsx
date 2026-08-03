@@ -22,39 +22,69 @@ function HomeNodeIcon({ className = "h-6 w-6" }: { className?: string }) {
 }
 
 type Props = {
-  /** Concrete "what we do" lines (full sentences, not single words). */
+  /** Concrete "what we do" lines (full sentences, not single words).
+   * Rendered only when `card` is absent. */
   advantages: string[];
+  /**
+   * Richer "what you'll have in hand after moving out" version of the
+   * card — heading + short description followed by the full document
+   * checklist. Takes over from `advantages` when present (RU-only for
+   * now, see move_out_help_copy_draft.md).
+   */
+  card?: {
+    heading: string;
+    description: string;
+    items: string[];
+    note?: string;
+  };
 };
 
 /**
- * Dark "what we do" card for the homepage-only WhyUs section — a checklist
- * of concrete actions. The dashed lines + icon nodes are a faint full-card
- * background layer (low opacity, z-0, spread across the whole card) rather
- * than a corner cluster — they were previously confined to one corner and
- * ended up sitting on top of the checklist text once it wrapped to longer
- * sentences. Deliberately separate from the shared
- * WhyUsBackground/WhyUs.tsx used on pain pages.
+ * Dark "what we do" card for the homepage-only WhyUs section. The dashed
+ * lines + icon nodes are a faint full-card background layer (low opacity,
+ * z-0, spread across the whole card) rather than a corner cluster — they
+ * were previously confined to one corner and ended up sitting on top of
+ * the checklist text once it wrapped to longer sentences. Deliberately
+ * separate from the shared WhyUsBackground/WhyUs.tsx used on pain pages.
  */
-export default function WhyUsGraphic({ advantages }: Props) {
+export default function WhyUsGraphic({ advantages, card }: Props) {
   return (
     <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0B1717] p-6 sm:p-8">
       {/* Background layer — z-0, low opacity, spans the full card so it
           reads as ambient texture behind the content instead of a
           competing element. */}
-      
 
-      <p className="relative z-10 text-sm font-bold text-white">
+
+      <p className="absolute bottom-[-0.5rem] right-[-0.5rem] z-0 text-[60px] font-bold text-white opacity-5">
         Move<span className="text-brand-primary">OS</span>
       </p>
 
-      <ul className="relative z-10 mt-6 space-y-5">
-        {advantages.map((text) => (
-          <li key={text} className="flex items-start gap-3">
-            <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-brand-accent" />
-            <p className="text-sm text-white/90 sm:text-base">{text}</p>
-          </li>
-        ))}
-      </ul>
+      {card ? (
+        <>
+          <p className="relative z-10 mt-4 text-base font-extrabold text-white sm:text-lg">{card.heading}</p>
+          <p className="relative z-10 mt-2 text-sm text-white/70">{card.description}</p>
+
+          <ul className="relative z-10 mt-5 grid grid-cols-1 gap-x-5 gap-y-3 sm:grid-cols-2">
+            {card.items.map((text) => (
+              <li key={text} className="flex items-center gap-2">
+                <CheckCircleIcon className="h-4 w-4 shrink-0 text-brand-accent" />
+                <span className="text-sm text-white/90">{text}</span>
+              </li>
+            ))}
+          </ul>
+
+          {card.note && <p className="relative z-10 mt-5 text-xs text-white/50">{card.note}</p>}
+        </>
+      ) : (
+        <ul className="relative z-10 mt-6 space-y-5">
+          {advantages.map((text) => (
+            <li key={text} className="flex items-start gap-3">
+              <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-brand-accent" />
+              <p className="text-sm text-white/90 sm:text-base">{text}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

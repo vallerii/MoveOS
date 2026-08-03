@@ -34,7 +34,7 @@ export default function HomeWhyUs({ copy }: Props) {
         </Reveal>
 
         <Reveal delay={100} direction="right">
-          <WhyUsGraphic advantages={copy.whyUs.advantages} />
+          <WhyUsGraphic advantages={copy.whyUs.advantages} card={copy.whyUs.card} />
         </Reveal>
       </div>
     </section>

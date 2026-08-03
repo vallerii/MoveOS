@@ -56,8 +56,25 @@ export interface HomeCopy {
     heading: string;
     intro: string;
     /** Short one-or-two-word advantages shown as a checklist inside the
-     * dark graphic card (homepage only). */
+     * dark graphic card (homepage only). Rendered only when `card` (below)
+     * is absent for the locale. */
     advantages: string[];
+    /**
+     * Richer version of the "MoveOS" card content — a heading + short
+     * description ("what you'll have in hand after moving out") followed
+     * by the full document/evidence checklist, replacing the plain
+     * `advantages` sentences when present.
+     *
+     * Optional — RU-only for now (EN/ES not translated yet, see
+     * move_out_help_copy_draft.md); WhyUsGraphic falls back to `advantages`
+     * when `card` is absent for a locale.
+     */
+    card?: {
+      heading: string;
+      description: string;
+      items: string[];
+      note?: string;
+    };
   };
   /**
    * "What exactly is included" block — sits between whyUs and the quiz.
@@ -505,6 +522,26 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         "Оцениваем, что из ремонта действительно нужно, а что — естественный износ.",
         "Находим, куда передать мебель и вещи, если им некуда деться.",
       ],
+      card: {
+        heading: "Что вы получите на руки после выезда",
+        description:
+          "Не просто чек-лист, а организованная папка с доказательствами — вместо десятка случайных фото в галерее телефона, которую можно предъявить в любой момент, если возникнет спор.",
+        items: [
+          "Договор аренды",
+          "Опись имущества при въезде",
+          "Фото квартиры до ремонта",
+          "Фото квартиры после ремонта",
+          "Финальные фото каждой комнаты",
+          "Финальное видео всей квартиры",
+          "Показания счётчиков",
+          "Подтверждения закрытия коммунальных договоров",
+          "Акт передачи ключей",
+          "Подписанный акт передачи квартиры",
+          "Подтверждения всех платежей",
+          "Документы по депозиту (fianza)",
+        ],
+        note: "Ничего из этого не удаляется, пока депозит не вернулся и все вопросы не закрыты.",
+      },
     },
     included: {
       heading: "Что именно входит в помощь",

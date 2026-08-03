@@ -16,9 +16,11 @@ type Props = {
 // Homepage — assembled from per-block components in components/Home/.
 // Order after the hero: situation picker first (gets an anxious visitor to
 // their specific problem as fast as possible), then trust facts, how it
-// works, the positioning statement, a per-situation breakdown of what's
-// included (right before the quiz — the last rational objection to answer
-// before asking for the quiz commitment), and the quiz itself.
+// works, the positioning statement (its "MoveOS" card lists what you'll
+// have in hand after moving out — see HomeWhyUs/WhyUsGraphic), a
+// per-situation breakdown of what's included (right before the quiz — the
+// last rational objection to answer before asking for the quiz
+// commitment), and the quiz itself.
 export default function Home({ locale, dict }: Props) {
   const copy = HOME_COPY[locale];
 
@@ -28,7 +30,6 @@ export default function Home({ locale, dict }: Props) {
       <HomeSituations locale={locale} dict={dict} copy={copy} />
       <HomeTrust copy={copy} />
       <HomeHowItWorks copy={copy} />
-      
       <HomeIncluded copy={copy} />
       <HomeWhyUs copy={copy} />
       {/* QUIZ — the same generic city/timeframe quiz used at the bottom of
