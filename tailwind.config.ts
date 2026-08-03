@@ -55,7 +55,16 @@ const config: Config = {
       // signature: -0.025em at display, -0.015em at heading, -0.009em at
       // the 26/18px tiers, 0 at body sizes.
       fontSize: {
-        display: ["clamp(2.75rem, 1.6rem + 5.2vw, 5.625rem)", { lineHeight: "1.12", letterSpacing: "-0.025em", fontWeight: "400" }],
+        // Floor and slope both lowered from the original clamp(2.75rem,
+        // 1.6rem + 5.2vw, 5.625rem) — at narrow phone widths (~320-390px)
+        // the old curve floored at 2.75rem/44px, which was wide enough to
+        // wrap short lines like "с уверенностью." mid-phrase (orphaning a
+        // single word, e.g. just "с", on its own line). The steeper slope
+        // (6.3vw vs 5.2vw) means this still reaches the same 5.625rem max
+        // at the same ~1238px viewport width the old curve did, so tablet/
+        // desktop sizing is effectively unchanged — only the narrow-phone
+        // end of the curve moved.
+        display: ["clamp(2rem, 0.75rem + 6.3vw, 5.625rem)", { lineHeight: "1.12", letterSpacing: "-0.025em", fontWeight: "400" }],
         "heading-lg": ["clamp(2.25rem, 1.5rem + 3.4vw, 4rem)", { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "400" }],
         heading: ["clamp(1.875rem, 1.35rem + 2.2vw, 2.75rem)", { lineHeight: "1.2", letterSpacing: "-0.015em", fontWeight: "400" }],
         "heading-sm": ["clamp(1.375rem, 1.2rem + 0.75vw, 1.625rem)", { lineHeight: "1.18", letterSpacing: "-0.009em", fontWeight: "400" }],
