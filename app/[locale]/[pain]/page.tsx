@@ -7,6 +7,7 @@ import WhatYouGet from "@/components/WhatYouGet";
 import DidYouKnow from "@/components/DidYouKnow";
 import HowItWorks from "@/components/HowItWorks";
 import RepairShowcase from "@/components/RepairShowcase";
+import RepairFurniture from "@/components/RepairFurniture";
 import WhyUs from "@/components/WhyUs";
 import QuizSection from "@/components/Quiz/QuizSection";
 
@@ -80,6 +81,9 @@ export default function PainPage({ params }: { params: Params }) {
         ) : (
           <HowItWorks pain={pain} {...howItWorks} />
         ))}
+      {pain === "repair" && dict.pains.repair.furniture && (
+        <RepairFurniture {...dict.pains.repair.furniture} />
+      )}
       <WhatYouGet dict={dict} pain={pain} />
       <WhyUs dict={dict} pain={pain} />
       <QuizSection locale={locale} dict={dict} pain={pain} />

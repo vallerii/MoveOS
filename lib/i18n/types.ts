@@ -66,6 +66,19 @@ export interface Dictionary {
           highlight?: string;
         }[];
       };
+      // Optional — only populated for repair. Wear-vs-damage examples for
+      // furnished apartments, rendered by RepairFurniture right after
+      // RepairShowcase. Separate from howItWorks.steps because it only
+      // applies when the apartment came furnished, not to every renter.
+      furniture?: {
+        heading: string;
+        intro?: string;
+        items: {
+          label: string;
+          verdict: "wear" | "damage";
+          note: string;
+        }[];
+      };
     }
   >;
   whatYouGet: {

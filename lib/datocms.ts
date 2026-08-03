@@ -107,7 +107,6 @@ const TRUST_ARTICLES_QUERY = `
 /** Published articles for the homepage "Прежде чем сдать ключи" trust section, newest first, capped at 3. */
 export async function getTrustArticles(locale: ArticleLocale): Promise<ArticleSummary[]> {
   const data = await datocmsFetch<{ allArticles: ArticleSummary[] }>(TRUST_ARTICLES_QUERY, { locale });
-  console.log("getTrustArticles data:", data);
   return (data?.allArticles ?? []).slice(0, MAX_TRUST_ARTICLES);
 }
 
