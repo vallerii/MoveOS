@@ -1,17 +1,28 @@
+import Link from "next/link";
+import Image from "next/image";
 import Reveal from "../Reveal";
 import GlareLink from "../GlareLink";
 import { ScaleIcon, DocumentTextIcon, ClockIcon, CheckCircleIcon, MagnifyingGlassIcon } from "../icons";
 import type { HomeCopy } from "@/lib/i18n/home";
+import type { Locale } from "@/lib/i18n/types";
+import type { ArticleSummary } from "@/lib/datocms";
 
 type Props = {
   copy: HomeCopy;
+  locale: Locale;
+  /** Published articles from DatoCMS (see lib/datocms.ts getTrustArticles),
+   * newest first, already capped at 3 by the caller. */
+  articles: ArticleSummary[];
 };
 
 const trustFactIcons = [ScaleIcon, DocumentTextIcon, ClockIcon];
 
-// A handful of concrete, sourced facts (not manufactured social proof) to
-// build urgency before the "how it works" step.
-export default function HomeTrust({ copy }: Props) {
+// Concrete, sourced articles (not manufactured social proof) to build
+// urgency before the "how it works" step. Card content (title/description/
+// image) now comes from DatoCMS's Article model instead of being hardcoded
+// here — see lib/datocms.ts and app/[locale]/blog/[slug]/page.tsx for the
+// pages these cards link to.
+export default function HomeTrust({ copy, locale, articles }: Props) {
   return (
     <section className=" bg-[#EFEFEE] py-20 sm:py-28 relative">
       <div className="container-page">
@@ -25,31 +36,40 @@ export default function HomeTrust({ copy }: Props) {
         </Reveal>
 
         <div className="mt-12 grid gap-5 lg:grid-cols-4">
-          {copy.trust.facts.map(({ title, q, a }, i) => {
+          {articles.map(({ slug, title, description, image }, i) => {
             const Icon = trustFactIcons[i] ?? CheckCircleIcon;
             return (
-              <Reveal key={q} delay={i * 90} direction="right">
-                <div className="card relative flex h-full flex-col overflow-hidden">
-                  <Icon className="absolute -right-4 -top-2 h-16 w-16 text-brand-primary opacity-20" />
-                  <Icon className="h-6 w-6 text-brand-primary mt-2" />
-                  {/* Short label first (article-teaser style), then the old
-                      `q` sentence as a secondary line, then `a` as the
-                      description — was a single oversized title (up to 24px,
-                      wrapping to 2-3 lines) dominating the card. */}
+              <Reveal key={slug} delay={i * 90} direction="right">
+                <Link href={`/${locale}/blog/${slug}`} className="card relative flex h-full flex-col overflow-hidden">
+                  {image ? (
+                    <div className="relative -mx-4 -mt-4 mb-3 h-32 w-[calc(100%+2rem)] overflow-hidden rounded-t-2xl sm:-mx-6 sm:-mt-6 sm:h-36 sm:w-[calc(100%+3rem)]">
+                      <Image
+                        src={image.url}
+                        alt={image.alt ?? title}
+                        fill
+                        sizes="(min-width: 1024px) 25vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      <Icon className="absolute -right-4 -top-2 h-16 w-16 text-brand-primary opacity-20" />
+                      <Icon className="h-6 w-6 text-brand-primary mt-2" />
+                    </>
+                  )}
                   <p className="mt-3 pr-6 text-lg font-extrabold text-brand-ink">{title}</p>
-                  <p className="mt-2 font-semibold text-brand-ink">{q}</p>
-                  <p className="mt-2 text-small text-brand-ink/70">{a}</p>
-                </div>
+                  <p className="mt-2 text-small text-brand-ink/70">{description}</p>
+                </Link>
               </Reveal>
             );
           })}
 
-          {/* 4th card, same row as the facts — same accent-glow treatment as
-              WhatYouGet's "resultLabel" card, but clickable through to the
-              quiz. The grid's default stretch makes every card match the
-              row's tallest item, which is this one (min-h below), so all
-              four end up the same height. */}
-          <Reveal delay={copy.trust.facts.length * 90} direction="right">
+          {/* CTA card, same row as the article cards — same accent-glow
+              treatment as WhatYouGet's "resultLabel" card, but clickable
+              through to the quiz. The grid's default stretch makes every
+              card match the row's tallest item, which is this one
+              (min-h below), so all cards end up the same height. */}
+          <Reveal delay={articles.length * 90} direction="right">
             <GlareLink
               href="#quiz"
               className="h-full min-h-[14rem] flex-col items-start justify-center gap-4 rounded-2xl border border-brand-accent/50 bg-brand-accent/10 p-6 shadow-[0_0_0_1px_rgba(244,185,66,0.15),0_20px_45px_-15px_rgba(244,185,66,0.45)] sm:p-8 lg:min-h-[26rem]"

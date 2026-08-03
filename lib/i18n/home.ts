@@ -34,14 +34,11 @@ export interface HomeCopy {
   trust: {
     heading: string;
     subheading: string;
-    // `title` is a short (1-3 word) label shown above `q`/`a` — turns each
-    // card into a mini article-style teaser (short heading, then the two
-    // lines of copy) instead of leading with the long `q` sentence as the
-    // card's headline.
-    facts: { title: string; q: string; a: string }[];
-    /** Fourth, wider CTA card at the end of the facts grid — same
+    /** Wider CTA card at the end of the article-cards grid — same
      * accent-glow treatment as WhatYouGet's "resultLabel" card, but
-     * clickable through to the quiz. */
+     * clickable through to the quiz. The article cards themselves come
+     * from DatoCMS (see lib/datocms.ts getTrustArticles), not from this
+     * dictionary — see components/Home/HomeTrust.tsx. */
     ctaCard: { badge: string; text: string };
   };
   howItWorks: {
@@ -164,23 +161,6 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
     trust: {
       heading: "Before You Hand Back the Keys",
       subheading: "A few things most tenants in Barcelona don't find out until it's too late.",
-      facts: [
-        {
-          title: "Where It's Held",
-          q: "Your deposit isn't sitting with your landlord.",
-          a: "In Catalonia, the legal deposit is held by INCASÒL, not your landlord's personal account — most tenants never check this.",
-        },
-        {
-          title: "How Common",
-          q: "Deposit disputes are one of the most common conflicts between tenants and landlords in Spain.",
-          a: "Without a signed, photographed move-in and move-out report, it's hard for either side to prove what actually happened.",
-        },
-        {
-          title: "Timing",
-          q: "You usually decide to move 1–2 months before your landlord finds out.",
-          a: "That gap is exactly where most of the stress — and most of the mistakes — happen.",
-        },
-      ],
       ctaCard: { badge: "Free · 15 minutes", text: "Find out what your situation is →" },
     },
     howItWorks: {
@@ -320,23 +300,6 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
     trust: {
       heading: "Antes de Devolver las Llaves",
       subheading: "Algunas cosas que la mayoría de inquilinos en Barcelona descubre demasiado tarde.",
-      facts: [
-        {
-          title: "Dónde está",
-          q: "Tu fianza no la tiene tu casero.",
-          a: "En Cataluña, la fianza legal la custodia el INCASÒL, no la cuenta personal del propietario — casi nadie lo comprueba.",
-        },
-        {
-          title: "Con qué frecuencia",
-          q: "Las disputas por la fianza son uno de los conflictos más comunes entre inquilinos y propietarios en España.",
-          a: "Sin un acta firmada y con fotos de entrada y salida, es difícil que cualquiera de las partes pueda demostrar lo que pasó.",
-        },
-        {
-          title: "Los plazos",
-          q: "Normalmente decides mudarte 1-2 meses antes de que tu casero se entere.",
-          a: "En ese margen es donde ocurre la mayor parte del estrés — y de los errores.",
-        },
-      ],
       ctaCard: { badge: "Gratis · 15 minutos", text: "Descubre cuál es tu situación →" },
     },
     howItWorks: {
@@ -474,23 +437,6 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
     trust: {
       heading: "Прежде чем сдать ключи",
       subheading: "Узнай то, что большинство арендаторов в Барселоне узнают слишком поздно.",
-      facts: [
-        {
-          title: "Где лежит",
-          q: "Ваш депозит хранится не у владельца.",
-          a: "В Каталонии обязательный депозит хранится в INCASÒL, а не на личном счёте владельца — это можно проверить, но почти никто не проверяет.",
-        },
-        {
-          title: "Как часто",
-          q: "Споры из-за депозита — частый конфликт между арендатором и владельцем.",
-          a: "Без подписанного и сфотографированного акта на въезд и выезд ни одна из сторон не может доказать, что произошло на самом деле.",
-        },
-        {
-          title: "Сроки",
-          q: "Обычно вы решаете съехать за 1-2 месяца до того, как об этом узнаёт владелец.",
-          a: "Именно в этот промежуток происходит больше всего стресса — и больше всего ошибок.",
-        },
-      ],
       ctaCard: { badge: "Бесплатно · 15 минут", text: "Узнайте, какая у вас ситуация →" },
     },
     howItWorks: {

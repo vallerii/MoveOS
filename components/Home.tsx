@@ -6,6 +6,7 @@ import HomeHowItWorks from "./Home/HomeHowItWorks";
 import HomeWhyUs from "./Home/HomeWhyUs";
 import HomeIncluded from "./Home/HomeIncluded";
 import { HOME_COPY } from "@/lib/i18n/home";
+import { getTrustArticles } from "@/lib/datocms";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 
 type Props = {
@@ -21,14 +22,15 @@ type Props = {
 // per-situation breakdown of what's included (right before the quiz — the
 // last rational objection to answer before asking for the quiz
 // commitment), and the quiz itself.
-export default function Home({ locale, dict }: Props) {
+export default async function Home({ locale, dict }: Props) {
   const copy = HOME_COPY[locale];
+  const trustArticles = await getTrustArticles(locale);
 
   return (
     <main>
       <HomeHero copy={copy} />
       <HomeSituations locale={locale} dict={dict} copy={copy} />
-      <HomeTrust copy={copy} />
+      <HomeTrust copy={copy} locale={locale} articles={trustArticles} />
       <HomeHowItWorks copy={copy} />
       <HomeIncluded copy={copy} />
       <HomeWhyUs copy={copy} />
