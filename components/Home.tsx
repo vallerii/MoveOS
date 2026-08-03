@@ -4,8 +4,10 @@ import HomeHero from "./Home/HomeHero";
 import HomeSituations from "./Home/HomeSituations";
 import HomeTrust from "./Home/HomeTrust";
 import HomeHowItWorks from "./Home/HomeHowItWorks";
+import HomeIncluded from "./Home/HomeIncluded";
 import HomeWhyUs from "./Home/HomeWhyUs";
 import { HOME_COPY } from "@/lib/i18n/home";
+import { getTrustArticles } from "@/lib/datocms";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 
 type Props = {
@@ -15,10 +17,11 @@ type Props = {
 
 // Homepage — assembled from per-block components in components/Home/.
 // Order after the hero: situation picker first (gets an anxious visitor to
-// their specific problem as fast as possible), then trust facts, how it
-// works, the positioning statement, and the quiz.
-export default function Home({ locale, dict }: Props) {
+// their specific problem as fast as possible), then trust articles, how it
+// works, what's included, the positioning statement, and the quiz.
+export default async function Home({ locale, dict }: Props) {
   const copy = HOME_COPY[locale];
+  const trustArticles = await getTrustArticles(locale);
 
   return (
     <main>
@@ -29,8 +32,9 @@ export default function Home({ locale, dict }: Props) {
         <HomeHero copy={copy} />
         <HomeSituations locale={locale} dict={dict} copy={copy} />
       </HomeStage>
-      <HomeTrust copy={copy} />
+      <HomeTrust copy={copy} locale={locale} articles={trustArticles} />
       <HomeHowItWorks copy={copy} />
+      <HomeIncluded copy={copy} />
       <HomeWhyUs copy={copy} />
 
       {/* QUIZ — the same generic city/timeframe quiz used at the bottom of

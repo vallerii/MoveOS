@@ -23,8 +23,14 @@ export default function HomeWhyUs({ copy }: Props) {
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <div>
-              <h2 className="font-display text-heading-lg text-ink">{copy.whyUs.eyebrow}</h2>
-              <p className="mt-6 max-w-md text-body text-slate">{copy.whyUs.intro}</p>
+              <Glow
+                blooms={["peach", "lavender"]}
+                scale={0.8}
+                intensity={0.8}
+                className="absolute left-[20%] top-[10%]"
+              />
+              <h2 className="font-display text-heading-lg text-ink z-10 relative">{copy.whyUs.eyebrow}</h2>
+              <p className="mt-6 max-w-md text-body text-slate z-10 relative">{copy.whyUs.intro}</p>
             </div>
           </Reveal>
 
@@ -35,14 +41,9 @@ export default function HomeWhyUs({ copy }: Props) {
               viewport, so what lands behind it is the blooms' saturated
               centre and not their washed-out edge. */}
           <div className="relative">
-            <Glow
-              blooms={["peach", "lavender"]}
-              scale={0.55}
-              intensity={0.85}
-              className="absolute right-[50%] top-[10%]"
-            />
+            
             <Reveal delay={120} direction="right" className="relative z-10">
-              <WhyUsGraphic advantages={copy.whyUs.advantages} />
+              <WhyUsGraphic advantages={copy.whyUs.advantages} card={copy.whyUs.card} />
             </Reveal>
           </div>
         </div>

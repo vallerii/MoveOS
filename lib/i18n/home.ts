@@ -34,10 +34,10 @@ export interface HomeCopy {
   trust: {
     heading: string;
     subheading: string;
-    facts: { label: string; q: string; a: string }[];
-    /** Fourth, wider CTA card at the end of the facts grid — same
-     * accent-glow treatment as WhatYouGet's "resultLabel" card, but
-     * clickable through to the quiz. */
+    /** Wider CTA card at the end of the article-cards grid — the system's
+     * one card-peach usage on this page. The article cards themselves come
+     * from DatoCMS (see lib/datocms.ts getTrustArticles), not from this
+     * dictionary — see components/Home/HomeTrust.tsx. */
     ctaCard: { badge: string; text: string };
   };
   howItWorks: {
@@ -52,8 +52,38 @@ export interface HomeCopy {
     heading: string;
     intro: string;
     /** Short one-or-two-word advantages shown as a checklist inside the
-     * dark graphic card (homepage only). */
+     * WhyUsGraphic card (homepage only). Rendered only when `card` (below)
+     * is absent for the locale. */
     advantages: string[];
+    /**
+     * Richer version of the WhyUsGraphic card content — a heading + short
+     * description ("what you'll have in hand after moving out") followed
+     * by the full document/evidence checklist, replacing the plain
+     * `advantages` sentences when present.
+     *
+     * Optional — RU-only for now (EN/ES not translated yet); WhyUsGraphic
+     * falls back to `advantages` when `card` is absent for a locale.
+     */
+    card?: {
+      heading: string;
+      description: string;
+      items: string[];
+      note?: string;
+    };
+  };
+  /**
+   * "What exactly is included" block — sits between HomeWhyUs and the
+   * quiz. Expands on situations.linksPanel by spelling out, per pain, what
+   * the free help actually covers. `items` is in PAIN_SLUGS order
+   * (deposit, admin, belongings, urgent, buyout, repair) so it maps 1:1 to
+   * PAIN_ICONS/PAIN_SLUGS in HomeIncluded rather than needing its own
+   * per-pain keying.
+   */
+  included: {
+    heading: string;
+    subheading: string;
+    items: { title: string; body: string }[];
+    ctaCard: { heading: string; body: string; button: string };
   };
 }
 
@@ -129,23 +159,6 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
     trust: {
       heading: "Before You Hand Back the Keys",
       subheading: "A few things most tenants in Barcelona don't find out until it's too late.",
-      facts: [
-        {
-          label: "Where it's held",
-          q: "Your deposit isn't sitting with your landlord.",
-          a: "In Catalonia, the legal deposit is held by INCASÒL, not your landlord's personal account — most tenants never check this.",
-        },
-        {
-          label: "How often it happens",
-          q: "Deposit disputes are one of the most common conflicts between tenants and landlords in Spain.",
-          a: "Without a signed, photographed move-in and move-out report, it's hard for either side to prove what actually happened.",
-        },
-        {
-          label: "Timing",
-          q: "You usually decide to move 1–2 months before your landlord finds out.",
-          a: "That gap is exactly where most of the stress — and most of the mistakes — happen.",
-        },
-      ],
       ctaCard: { badge: "Free · 15 minutes", text: "Find out what your situation is →" },
     },
     howItWorks: {
@@ -177,6 +190,41 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         "We assess what actually needs repairing versus normal wear and tear.",
         "We find where your furniture and belongings can go when there's nowhere for them.",
       ],
+    },
+    included: {
+      heading: "Exactly What's Included in the Help",
+      subheading: "Concrete steps for each of the 6 situations — not generic advice.",
+      items: [
+        {
+          title: "Deposit",
+          body: "We review your move-in/move-out report and photos and tell you how to get your full deposit back — no illegal deductions.",
+        },
+        {
+          title: "Moving Admin",
+          body: "We build your admin checklist — internet, bank, padrón, subscriptions — and handle part of it for you, so nothing comes back to bite you.",
+        },
+        {
+          title: "Furniture & Belongings",
+          body: "We inventory your furniture and belongings and find where they can go — sell, donate, or store, if there's nowhere for them.",
+        },
+        {
+          title: "Urgent Move-Out",
+          body: "We go through your lease and notice period so you can move out early without penalties or losing your deposit.",
+        },
+        {
+          title: "Move-Out Bonus",
+          body: "If you're renting below market, we assess the gap and offer a bonus up to €2,000 plus your deposit back the same day — no month-long wait.",
+        },
+        {
+          title: "Minor Repairs",
+          body: "We review before/after photos and fix only what's actually needed for your deposit back — no overpaying for a full renovation.",
+        },
+      ],
+      ctaCard: {
+        heading: "Free, Until You Decide Otherwise",
+        body: "A 15-minute consultation, a local Barcelona team, no obligation at any step.",
+        button: "Get My Free Review →",
+      },
     },
   },
   es: {
@@ -250,23 +298,6 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
     trust: {
       heading: "Antes de Devolver las Llaves",
       subheading: "Algunas cosas que la mayoría de inquilinos en Barcelona descubre demasiado tarde.",
-      facts: [
-        {
-          label: "Dónde está",
-          q: "Tu fianza no la tiene tu casero.",
-          a: "En Cataluña, la fianza legal la custodia el INCASÒL, no la cuenta personal del propietario — casi nadie lo comprueba.",
-        },
-        {
-          label: "Con qué frecuencia",
-          q: "Las disputas por la fianza son uno de los conflictos más comunes entre inquilinos y propietarios en España.",
-          a: "Sin un acta firmada y con fotos de entrada y salida, es difícil que cualquiera de las partes pueda demostrar lo que pasó.",
-        },
-        {
-          label: "Plazos",
-          q: "Normalmente decides mudarte 1-2 meses antes de que tu casero se entere.",
-          a: "En ese margen es donde ocurre la mayor parte del estrés — y de los errores.",
-        },
-      ],
       ctaCard: { badge: "Gratis · 15 minutos", text: "Descubre cuál es tu situación →" },
     },
     howItWorks: {
@@ -298,6 +329,41 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         "Evaluamos qué reparación hace falta de verdad, frente al desgaste normal.",
         "Encontramos dónde puede ir tu mobiliario y tus cosas cuando no tienen sitio.",
       ],
+    },
+    included: {
+      heading: "Qué incluye exactamente la ayuda",
+      subheading: "Pasos concretos para cada una de las 6 situaciones — no consejos genéricos.",
+      items: [
+        {
+          title: "Fianza",
+          body: "Revisamos el acta y las fotos de entrada y salida y te decimos cómo recuperar tu fianza completa — sin deducciones ilegales.",
+        },
+        {
+          title: "Trámites de mudanza",
+          body: "Hacemos tu checklist de trámites — internet, banco, padrón, suscripciones — y gestionamos parte por ti, para que nada se te escape.",
+        },
+        {
+          title: "Muebles y pertenencias",
+          body: "Hacemos un inventario de tus muebles y pertenencias y buscamos dónde llevarlos — vender, donar o guardar, si no tienen sitio.",
+        },
+        {
+          title: "Mudanza urgente",
+          body: "Revisamos tu contrato y el plazo de preaviso para que puedas mudarte antes sin penalizaciones ni perder la fianza.",
+        },
+        {
+          title: "Bono por mudanza",
+          body: "Si tu alquiler está por debajo de mercado, evaluamos la diferencia y te ofrecemos un bono de hasta 2.000 € más la fianza el mismo día, sin esperar un mes.",
+        },
+        {
+          title: "Pequeñas reparaciones",
+          body: "Revisamos fotos de antes y después y reparamos solo lo necesario para recuperar tu fianza — sin pagar de más por una reforma completa.",
+        },
+      ],
+      ctaCard: {
+        heading: "Gratis, hasta que decidas lo contrario",
+        body: "Consulta de 15 minutos, equipo local en Barcelona, sin compromiso en ningún paso.",
+        button: "Hacer mi revisión gratuita →",
+      },
     },
   },
   ru: {
@@ -369,23 +435,6 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
     trust: {
       heading: "Прежде чем сдать ключи",
       subheading: "Узнай то, что большинство арендаторов в Барселоне узнают слишком поздно.",
-      facts: [
-        {
-          label: "Где лежит",
-          q: "Ваш депозит хранится не у владельца.",
-          a: "В Каталонии обязательный депозит хранится в INCASÒL, а не на личном счёте владельца — это можно проверить, но почти никто не проверяет.",
-        },
-        {
-          label: "Как часто",
-          q: "Споры из-за депозита — частый конфликт между арендатором и владельцем.",
-          a: "Без подписанного и сфотографированного акта на въезд и выезд ни одна из сторон не может доказать, что произошло на самом деле.",
-        },
-        {
-          label: "Сроки",
-          q: "Обычно вы решаете съехать за 1-2 месяца до того, как об этом узнаёт владелец.",
-          a: "Именно в этот промежуток происходит больше всего стресса — и больше всего ошибок.",
-        },
-      ],
       ctaCard: { badge: "Бесплатно · 15 минут", text: "Узнайте, какая у вас ситуация →" },
     },
     howItWorks: {
@@ -417,6 +466,61 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         "Оцениваем, что из ремонта действительно нужно, а что — естественный износ.",
         "Находим, куда передать мебель и вещи, если им некуда деться.",
       ],
+      card: {
+        heading: "Что вы получите на руки после выезда",
+        description:
+          "Не просто чек-лист, а организованная папка с доказательствами — вместо десятка случайных фото в галерее телефона, которую можно предъявить в любой момент, если возникнет спор.",
+        items: [
+          "Договор аренды",
+          "Опись имущества при въезде",
+          "Фото квартиры до ремонта",
+          "Фото квартиры после ремонта",
+          "Финальные фото каждой комнаты",
+          "Финальное видео всей квартиры",
+          "Показания счётчиков",
+          "Подтверждения закрытия коммунальных договоров",
+          "Акт передачи ключей",
+          "Подписанный акт передачи квартиры",
+          "Подтверждения всех платежей",
+          "Документы по депозиту (fianza)",
+        ],
+        note: "Ничего из этого не удаляется, пока депозит не вернулся и все вопросы не закрыты.",
+      },
+    },
+    included: {
+      heading: "Что именно входит в помощь",
+      subheading: "По каждой из 6 ситуаций — конкретные шаги, а не общие слова.",
+      items: [
+        {
+          title: "Депозит",
+          body: "Проверяем акт и фото на въезд и выезд и подсказываем, как вернуть депозит полностью — без незаконных удержаний.",
+        },
+        {
+          title: "Бытовые дела",
+          body: "Собираем чек-лист бытовых дел — интернет, банк, padrón, подписки — и часть делаем за вас, чтобы ничего не всплыло после переезда.",
+        },
+        {
+          title: "Мебель и вещи",
+          body: "Составляем опись мебели и вещей и находим, куда их передать — продать, отдать или сдать на хранение, если им некуда деться.",
+        },
+        {
+          title: "Срочный выезд",
+          body: "Разбираем ваш договор и сроки уведомления, чтобы съехать раньше срока без штрафов и потери депозита.",
+        },
+        {
+          title: "Бонус за выезд",
+          body: "Если снимаете квартиру дешевле рынка — оценим разницу и предложим бонус до 2000 € плюс депозит в день выезда, без ожидания месяца.",
+        },
+        {
+          title: "Мелкий ремонт",
+          body: "Смотрим фото до/после и чиним только то, что действительно нужно для возврата депозита — без переплаты за капитальный ремонт.",
+        },
+      ],
+      ctaCard: {
+        heading: "Всё бесплатно, пока вы не решите иначе",
+        body: "15-минутная консультация, локальная команда в Барселоне, без обязательств на любом шаге.",
+        button: "Пройти бесплатную проверку →",
+      },
     },
   },
 };

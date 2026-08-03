@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { LOCALES, PAIN_SLUGS } from "@/lib/i18n/types";
 import { SITE_URL } from "@/lib/config";
+import { getAllArticleSlugs } from "@/lib/datocms";
 
 const CHECKLIST_TYPES = ["qualified", "generic"] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
@@ -43,6 +44,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.1,
     });
+  }
+
+  // Articles from DatoCMS (see lib/datocms.ts) — same pattern as pain
+  // pages, one URL per locale × slug.
+  for (const locale of LOCALES) {
+    const slugs = await getAllArticleSlugs(locale);
+    for (const slug of slugs) {
+      entries.push({
+        url: `${SITE_URL}/${locale}/blog/${slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
   }
 
   return entries;
