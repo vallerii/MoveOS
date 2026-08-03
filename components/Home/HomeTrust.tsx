@@ -58,9 +58,9 @@ export default function HomeTrust({ copy, locale, articles }: Props) {
           <div className="grid gap-4 sm:grid-cols-2 lg:col-span-6 lg:grid-cols-3">
             {articles.map(({ slug, title, description, image }, i) => (
               <Reveal key={slug} delay={i * 80} direction="right" className="h-full">
-                <Link href={`/${locale}/blog/${slug}`} className="card-neutral flex h-full flex-col !p-6">
+                <Link href={`/${locale}/blog/${slug}`} className="card-neutral flex h-full flex-col">
                   {image && (
-                    <div className="relative -mx-6 -mt-6 mb-5 h-32 w-[calc(100%+3rem)] overflow-hidden rounded-t-card">
+                    <div className="relative -mx-4 -mt-4 mb-5 h-32 w-[calc(100%+2rem)] overflow-hidden rounded-t-card sm:-mx-8 sm:-mt-8 sm:w-[calc(100%+4rem)]">
                       <Image
                         src={image.url}
                         alt={image.alt ?? title}
@@ -80,7 +80,7 @@ export default function HomeTrust({ copy, locale, articles }: Props) {
           <Reveal delay={articles.length * 80} direction="right" className="lg:col-span-3">
             <Link
               href="#quiz"
-              className="card-peach group relative flex flex-col justify-between overflow-hidden !p-8 transition-opacity hover:opacity-90"
+              className="card-peach group relative flex flex-col justify-between overflow-hidden transition-opacity hover:opacity-90"
             >
               {/* The one icon in this section, and it sits in the background
                   rather than in the content flow: centred vertically, nudged

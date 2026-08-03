@@ -50,7 +50,7 @@ function Tick({ className = "h-5 w-5" }: { className?: string }) {
 export default function WhyUsGraphic({ advantages, card }: Props) {
   if (card) {
     return (
-      <div className="card-artifact p-6 sm:p-8">
+      <div className="card-artifact p-4 sm:p-8">
         <p className="text-heading-sm text-ink">{card.heading}</p>
         <p className="mt-3 text-caption text-slate">{card.description}</p>
 
@@ -69,7 +69,7 @@ export default function WhyUsGraphic({ advantages, card }: Props) {
   }
 
   return (
-    <div className="card-artifact p-6 sm:p-8">
+    <div className="card-artifact p-4 sm:p-8">
       <div className="flex items-center justify-between border-b border-hairline pb-5">
         <span className="font-display text-xl text-ink">MoveOS</span>
         <span className="text-meta text-ash">{String(advantages.length).padStart(2, "0")}</span>

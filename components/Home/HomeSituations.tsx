@@ -43,7 +43,32 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
       <div className="container-page">
         <div className="grid gap-4 lg:grid-cols-5">
           <Reveal className="lg:col-span-3">
-            <div className="card-neutral relative flex h-full min-h-[22rem] flex-col justify-center overflow-hidden">
+            {/* `overflow-hidden` only from lg — below that the artifact
+                deliberately bleeds past the card's top-right corner (see
+                below), and clipping it there is what caused it to read as
+                "cut off". At lg+ it sits flush inside the bottom-right
+                corner instead, where clipping the odd sub-pixel of overlap
+                is the point. */}
+            <div className="card-neutral relative flex h-full min-h-[22rem] flex-col justify-center lg:overflow-hidden">
+              {/* Checklist artifact. Below lg it's a normal (non-flying)
+                  static graphic, deliberately placed ABOVE the copy and
+                  anchored to the card's own top-right corner: `-mr-4 -mt-4`
+                  cancels exactly the card's mobile padding (p-4) so the
+                  unscaled corner sits flush on the card's outer edge, then
+                  `scale-[0.72]` with `origin-top-right` shrinks it toward
+                  that same corner — the net effect is the card peeking out
+                  over the top and right edge rather than sitting inside the
+                  text flow or, worse, absolutely centered on top of it.
+                  From lg it's the landing pad for the version flown in from
+                  the hero (see HomeStage) — position must match
+                  data-fly-target="0" below exactly. */}
+              <div
+                aria-hidden
+                className="pointer-events-none relative z-0 -mr-4 -mt-4 mb-6 ml-auto w-fit origin-top-right scale-[0.72] sm:scale-90 lg:absolute lg:inset-auto lg:-right-6 lg:bottom-8 lg:top-auto lg:z-0 lg:m-0 lg:w-auto lg:scale-100"
+              >
+                <ChecklistArtifact />
+              </div>
+
               {/* Narrower from lg, where the checklist artifact occupies the
                   panel's bottom-right corner — at max-w-md the body copy runs
                   straight under the card. */}
@@ -57,12 +82,6 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
                 </div>
               </div>
 
-              {/* Landing pad for the checklist artifact flown in from the
-                  hero (see HomeStage). Below xl nothing flies, so the
-                  artifact renders here statically instead. */}
-              <div aria-hidden className="pointer-events-none absolute -right-6 bottom-8 block max-lg:hidden pin:hidden">
-                <ChecklistArtifact />
-              </div>
               {/* Landing pad for the checklist card. An empty absolutely
                   positioned box, so it's harmless at the breakpoints where
                   nothing flies — no `hidden` needed. */}

@@ -62,6 +62,35 @@ body {
   font-optical-sizing: auto;
 }
 
+@layer utilities {
+  /* Collision-safe stand-in for the bare `hidden` utility.
+   *
+   * Several breakpoint-collapse spots (Header's nav tiers, Hero/HomeSituations'
+   * decorative artifacts, WhyUs' image) were written as `block max-{bp}:hidden`
+   * specifically to avoid ever putting the literal class `hidden` on an
+   * element — `.hidden` is unusually collision-prone (third-party stylesheets,
+   * browser extensions especially, commonly define their own, and at equal
+   * specificity a later one wins for every width).
+   *
+   * That pattern silently broke: this project's `pin` screen (see
+   * tailwind.config.ts) is a `{ raw: ... }` entry rather than a plain
+   * min-width string, and Tailwind's automatic `max-*` variant generation
+   * can't derive a max-width counterpart from a raw screen — it disables
+   * `max-*` generation for every breakpoint project-wide when any screen
+   * isn't a simple string, not just for `pin` itself. `max-lg:hidden` etc.
+   * were therefore compiling to nothing, so those elements never actually
+   * hid on narrower screens.
+   *
+   * `u-hidden` gets the same collision immunity (an app-specific class name
+   * nothing else will define) without depending on `max-*` variant
+   * generation: pair it with an ordinary forward variant, e.g.
+   * `u-hidden lg:block` instead of `block max-lg:hidden`.
+   */
+  .u-hidden {
+    display: none;
+  }
+}
+
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-page px-5 sm:px-8;
@@ -89,13 +118,13 @@ body {
      The workhorse surface: flat, soft, quiet. No border, no shadow — the
      radius and the tonal step away from Paper do all the work. */
   .card-neutral {
-    @apply rounded-card bg-mist p-6 sm:p-8;
+    @apply rounded-card bg-mist p-4 sm:p-8;
   }
 
   /* Editorial accent. At most ONE per page, and only ever on a Paper or
      Mist background so it reads warm-on-neutral. Sienna is its ink. */
   .card-peach {
-    @apply rounded-card bg-peach p-8 text-sienna sm:p-10;
+    @apply rounded-card bg-peach p-4 text-sienna sm:p-10;
   }
 
   /* The only elements in the system that earn elevation — cropped product

@@ -46,7 +46,7 @@ export default function Hero({ pain, dict }: Props) {
           artifacts, which is exactly what made six pages promising a personal
           plan read as one template. Drawn at full ink rather than tinted
           back — at this size a faint line just reads as a smudge. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-10 block max-xl:hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-10 u-hidden xl:block">
         <div className="container-page relative h-full">
           <PainIllustration
             pain={pain}
