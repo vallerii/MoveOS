@@ -24,9 +24,9 @@ export default function HowItWorks({ heading, subheading, steps }: Props) {
     <section className="bg-fog py-20 sm:py-section">
       <div className="container-page">
         <Reveal>
-          <div className="max-w-2xl">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-heading-lg text-ink">{heading}</h2>
-            {subheading && <p className="mt-6 max-w-xl text-body text-slate">{subheading}</p>}
+            {subheading && <p className="mx-auto mt-6 max-w-xl text-body text-slate">{subheading}</p>}
           </div>
         </Reveal>
 
