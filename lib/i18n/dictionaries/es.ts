@@ -24,6 +24,24 @@ const es: Dictionary = {
       heroCta: "Consigue tu revisión de fianza",
       shortLabel: "Fianza",
       badges: ["Recupera tu fianza entera", "Respuesta en 15 minutos", "Gratis, sin compromiso"],
+      relatedPains: {
+        heading: "Otras situaciones en las que ayudamos",
+        linkLabel: "Saber más",
+        items: [
+          {
+            pain: "repair",
+            teaser: "¿Temes que te retengan la fianza por reparaciones? Solo arreglamos lo que realmente hace falta.",
+          },
+          {
+            pain: "admin",
+            teaser: "Una suscripción olvidada o un contador sin dar de baja suele aparecer meses después.",
+          },
+          {
+            pain: "belongings",
+            teaser: "¿Te ha quedado mobiliario o cosas sin sitio? Te ayudamos a guardarlas o venderlas.",
+          },
+        ],
+      },
     },
     admin: {
       eyebrow: "Revisión gratuita de trámites de mudanza · Barcelona",
@@ -36,6 +54,24 @@ const es: Dictionary = {
       heroCta: "Consigue tu revisión de trámites",
       shortLabel: "Trámites de mudanza",
       badges: ["Todo quedará resuelto", "Tu checklist personal", "Gratis, 15 minutos"],
+      relatedPains: {
+        heading: "Otras situaciones en las que ayudamos",
+        linkLabel: "Saber más",
+        items: [
+          {
+            pain: "deposit",
+            teaser: "¿Quieres estar seguro de que recuperas tu fianza entera? Consigue una revisión gratuita.",
+          },
+          {
+            pain: "urgent",
+            teaser: "¿Te vas antes de tiempo? Descubre qué compensación es realmente legal antes de avisar.",
+          },
+          {
+            pain: "belongings",
+            teaser: "¿Te ha quedado mobiliario o cosas por ahí? Te ayudamos a guardarlas o venderlas.",
+          },
+        ],
+      },
     },
     belongings: {
       eyebrow: "Revisión gratuita de mudanza · Barcelona",
@@ -48,6 +84,24 @@ const es: Dictionary = {
       heroCta: "Consigue tu revisión de pertenencias",
       shortLabel: "Muebles y pertenencias",
       badges: ["Un plan claro para tus cosas", "Sin gastos de última hora", "Gratis, sin compromiso"],
+      relatedPains: {
+        heading: "Otras situaciones en las que ayudamos",
+        linkLabel: "Saber más",
+        items: [
+          {
+            pain: "repair",
+            teaser: "¿Temes que un arañazo o un golpe te cueste la fianza? Solo arreglamos lo que realmente hace falta.",
+          },
+          {
+            pain: "admin",
+            teaser: "¿Diste de baja el internet, el banco y las suscripciones de tu antigua dirección? Revisa tu checklist de trámites.",
+          },
+          {
+            pain: "deposit",
+            teaser: "¿Quieres saber de antemano si recuperarás la fianza entera? Consigue una revisión gratuita.",
+          },
+        ],
+      },
     },
     urgent: {
       eyebrow: "Revisión gratuita de mudanza urgente · Barcelona",
@@ -60,6 +114,24 @@ const es: Dictionary = {
       heroCta: "Consigue tu revisión de mudanza urgente",
       shortLabel: "Mudanza urgente",
       badges: ["Evita penalizaciones", "Protege tu fianza", "Respuesta en 15 minutos"],
+      relatedPains: {
+        heading: "Otras situaciones en las que ayudamos",
+        linkLabel: "Saber más",
+        items: [
+          {
+            pain: "buyout",
+            teaser: "¿Tu contrato tiene un precio muy por debajo del mercado? Descubre si puedes salir ganando en vez de solo irte.",
+          },
+          {
+            pain: "deposit",
+            teaser: "¿Te preocupa tu fianza? Consigue una revisión gratuita y sabe a qué atenerte de antemano.",
+          },
+          {
+            pain: "admin",
+            teaser: "¿Vas justo de tiempo con muchos trámites pendientes? Te ayudamos a dejarlo todo resuelto antes de irte.",
+          },
+        ],
+      },
     },
     buyout: {
       eyebrow: "Traspaso de tu contrato de alquiler · Barcelona",
@@ -96,6 +168,24 @@ const es: Dictionary = {
           {
             title: "Decides tú",
             body: "Si aceptas, gestionamos el traspaso y tu fianza vuelve el mismo día de la salida. Si no, no pagas nada y no pierdes nada.",
+          },
+        ],
+      },
+      relatedPains: {
+        heading: "Otras situaciones en las que ayudamos",
+        linkLabel: "Saber más",
+        items: [
+          {
+            pain: "urgent",
+            teaser: "¿Necesitas irte antes de tiempo? Descubre qué compensación es realmente legal antes de avisar.",
+          },
+          {
+            pain: "deposit",
+            teaser: "¿Quieres estar seguro de que recuperas tu fianza entera? Consigue una revisión gratuita.",
+          },
+          {
+            pain: "repair",
+            teaser: "¿Temes que te retengan la fianza por pequeñas reparaciones? Solo arreglamos lo que realmente hace falta.",
           },
         ],
       },

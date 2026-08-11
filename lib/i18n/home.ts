@@ -85,6 +85,14 @@ export interface HomeCopy {
     items: { title: string; body: string }[];
     ctaCard: { heading: string; body: string; button: string };
   };
+  /** Site-wide objection-handling FAQ — sits right after HomeWhyUs, before
+   * the quiz. Reuses the same FAQ component/shape as the per-pain FAQ on
+   * /repair (components/FAQ.tsx). */
+  faq: {
+    heading: string;
+    subheading?: string;
+    items: { q: string; a: string }[];
+  };
 }
 
 export const HOME_COPY: Record<Locale, HomeCopy> = {
@@ -226,6 +234,36 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         button: "Get My Free Review →",
       },
     },
+    faq: {
+      heading: "Frequently Asked Questions",
+      subheading: "What people usually ask before telling us their situation.",
+      items: [
+        {
+          q: "Is it really free?",
+          a: "Yes. We make money by helping the next tenant move into your place — not by charging you.",
+        },
+        {
+          q: "How long does it take?",
+          a: "The first call is 15 minutes. After that it depends on your case — some things get sorted in a day, others take a couple of weeks.",
+        },
+        {
+          q: "I've got several problems at once — deposit, repairs, furniture. Can you help with all of it?",
+          a: "Yes. One call, and we go through your whole situation — not just one item.",
+        },
+        {
+          q: "Do you only work in Barcelona?",
+          a: "For now, yes. If you're renting just outside the city, reach out and we'll look at your situation individually.",
+        },
+        {
+          q: "Can you talk to my landlord on my behalf?",
+          a: "Yes. If it helps, we reach out to your landlord directly and handle disputed points on your behalf.",
+        },
+        {
+          q: "What if my situation doesn't match any of the six?",
+          a: "Reach out anyway — almost every move-out situation overlaps with one of them, and we'll help you figure it out.",
+        },
+      ],
+    },
   },
   es: {
     hero: {
@@ -364,6 +402,36 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         body: "Consulta de 15 minutos, equipo local en Barcelona, sin compromiso en ningún paso.",
         button: "Hacer mi revisión gratuita →",
       },
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      subheading: "Lo que normalmente se pregunta antes de contarnos tu situación.",
+      items: [
+        {
+          q: "¿Es de verdad gratis?",
+          a: "Sí. Ganamos dinero ayudando al siguiente inquilino a instalarse en tu piso — no cobrándote a ti.",
+        },
+        {
+          q: "¿Cuánto tiempo lleva?",
+          a: "La primera llamada dura 15 minutos. A partir de ahí depende de tu caso: algunas cosas se resuelven en un día, otras en un par de semanas.",
+        },
+        {
+          q: "Tengo varios problemas a la vez — fianza, reparaciones, muebles. ¿Ayudáis con todo?",
+          a: "Sí. Una sola llamada, y repasamos toda tu situación — no solo un punto.",
+        },
+        {
+          q: "¿Solo trabajáis en Barcelona?",
+          a: "Por ahora sí. Si alquilas cerca, en el área metropolitana, escríbenos y valoramos tu caso de forma individual.",
+        },
+        {
+          q: "¿Podéis hablar con mi propietario en mi nombre?",
+          a: "Sí. Si hace falta, contactamos directamente con tu propietario y gestionamos los puntos de conflicto en tu nombre.",
+        },
+        {
+          q: "¿Y si mi situación no encaja en ninguna de las seis?",
+          a: "Escríbenos igualmente — casi cualquier situación de mudanza se cruza con alguna de ellas, y te ayudamos a resolverlo.",
+        },
+      ],
     },
   },
   ru: {
@@ -521,6 +589,36 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         body: "15-минутная консультация, локальная команда в Барселоне, без обязательств на любом шаге.",
         button: "Пройти проверку →",
       },
+    },
+    faq: {
+      heading: "Частые вопросы",
+      subheading: "То, что обычно спрашивают перед тем, как рассказать нам свою ситуацию.",
+      items: [
+        {
+          q: "Это правда бесплатно?",
+          a: "Да. Мы зарабатываем, когда помогаем сдать квартиру следующему арендатору после вас — а не с вас.",
+        },
+        {
+          q: "Сколько это займёт?",
+          a: "Первый разговор — 15 минут. Дальше зависит от ситуации: что-то решается за день, что-то — за пару недель.",
+        },
+        {
+          q: "У меня сразу несколько проблем — депозит, ремонт, мебель. Поможете со всем?",
+          a: "Да. Один разговор — и мы разбираем всю ситуацию целиком, а не по одному пункту.",
+        },
+        {
+          q: "Вы работаете только в Барселоне?",
+          a: "Пока да. Если снимаете в пригороде — напишите нам, разберём вашу ситуацию индивидуально.",
+        },
+        {
+          q: "Можете ли вы поговорить с владельцем от моего имени?",
+          a: "Да. Если нужно, мы сами выходим на связь с владельцем и разбираем спорные вопросы от вашего имени.",
+        },
+        {
+          q: "А если моя ситуация не похожа ни на одну из шести?",
+          a: "Напишите всё равно — почти любая ситуация при выезде пересекается с одной из них, разберёмся вместе.",
+        },
+      ],
     },
   },
 };

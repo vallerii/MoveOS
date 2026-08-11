@@ -28,7 +28,7 @@ export default function FAQ({ heading, subheading, items }: Props) {
           </div>
         </Reveal>
 
-        <div className="mx-auto mt-16 max-w-3xl border-t border-hairline">
+        <div className="mx-auto mt-16 w-full border-t border-hairline">
           {items.map(({ q, a }, i) => (
             <Reveal key={q} delay={i * 60}>
               <details className="group border-b border-hairline py-6">

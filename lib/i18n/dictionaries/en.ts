@@ -24,6 +24,24 @@ const en: Dictionary = {
       heroCta: "Get My Deposit Review",
       shortLabel: "Deposit",
       badges: ["Get your full deposit back", "Answers in 15 minutes", "Free, no obligation"],
+      relatedPains: {
+        heading: "Other Situations We Help With",
+        linkLabel: "Learn more",
+        items: [
+          {
+            pain: "repair",
+            teaser: "Worried your deposit will be withheld over repairs? We only fix what's actually needed.",
+          },
+          {
+            pain: "admin",
+            teaser: "A forgotten subscription or an unclosed meter has a way of showing up months later.",
+          },
+          {
+            pain: "belongings",
+            teaser: "Got leftover furniture or belongings with nowhere to go? We'll help you store or sell them.",
+          },
+        ],
+      },
     },
     admin: {
       eyebrow: "Free Move-Out Admin Check · Barcelona",
@@ -36,6 +54,24 @@ const en: Dictionary = {
       heroCta: "Get My Admin Review",
       shortLabel: "Moving Admin",
       badges: ["Everything done properly", "Your own checklist", "Free, 15 minutes"],
+      relatedPains: {
+        heading: "Other Situations We Help With",
+        linkLabel: "Learn more",
+        items: [
+          {
+            pain: "deposit",
+            teaser: "Want to be sure your deposit comes back in full? Get a free review of your situation.",
+          },
+          {
+            pain: "urgent",
+            teaser: "Moving out early? Find out what compensation is actually legal before you give notice.",
+          },
+          {
+            pain: "belongings",
+            teaser: "Got leftover furniture or belongings? We'll help you store or sell them.",
+          },
+        ],
+      },
     },
     belongings: {
       eyebrow: "Free Move-Out Review · Barcelona",
@@ -48,6 +84,24 @@ const en: Dictionary = {
       heroCta: "Get My Belongings Review",
       shortLabel: "Furniture & Belongings",
       badges: ["A clear plan for your stuff", "No last-minute costs", "Free, no obligation"],
+      relatedPains: {
+        heading: "Other Situations We Help With",
+        linkLabel: "Learn more",
+        items: [
+          {
+            pain: "repair",
+            teaser: "Worried about a scratch or a chip costing you your deposit? We only fix what's actually needed.",
+          },
+          {
+            pain: "admin",
+            teaser: "Did you remember to close the internet, bank, and subscriptions at your old address? Check your admin checklist.",
+          },
+          {
+            pain: "deposit",
+            teaser: "Want to know ahead of time whether your deposit will come back in full? Get a free review.",
+          },
+        ],
+      },
     },
     urgent: {
       eyebrow: "Free Urgent Move-Out Review · Barcelona",
@@ -60,6 +114,24 @@ const en: Dictionary = {
       heroCta: "Get My Urgent Move-Out Review",
       shortLabel: "Urgent Move-Out",
       badges: ["No early move-out penalties", "Protect your deposit", "Answers in 15 minutes"],
+      relatedPains: {
+        heading: "Other Situations We Help With",
+        linkLabel: "Learn more",
+        items: [
+          {
+            pain: "buyout",
+            teaser: "Is your lease priced well below market? Find out if you can come out ahead instead of just leaving.",
+          },
+          {
+            pain: "deposit",
+            teaser: "Worried about your deposit? Get a free review and know where you stand ahead of time.",
+          },
+          {
+            pain: "admin",
+            teaser: "Short on time with a lot of admin to close out? We'll help you get it all done before you move.",
+          },
+        ],
+      },
     },
     buyout: {
       eyebrow: "Lease Reassignment · Barcelona",
@@ -96,6 +168,24 @@ const en: Dictionary = {
           {
             title: "You decide",
             body: "If you agree, we handle the deal and your deposit comes back the day you move out. If not, you pay nothing and lose nothing.",
+          },
+        ],
+      },
+      relatedPains: {
+        heading: "Other Situations We Help With",
+        linkLabel: "Learn more",
+        items: [
+          {
+            pain: "urgent",
+            teaser: "Need to move out early? Find out what compensation is actually legal before you give notice.",
+          },
+          {
+            pain: "deposit",
+            teaser: "Want to be sure your deposit comes back in full? Get a free review of your situation.",
+          },
+          {
+            pain: "repair",
+            teaser: "Worried your deposit will be withheld over small repairs? We only fix what's actually needed.",
           },
         ],
       },

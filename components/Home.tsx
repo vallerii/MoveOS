@@ -6,6 +6,7 @@ import HomeTrust from "./Home/HomeTrust";
 import HomeHowItWorks from "./Home/HomeHowItWorks";
 import HomeIncluded from "./Home/HomeIncluded";
 import HomeWhyUs from "./Home/HomeWhyUs";
+import FAQ from "./FAQ";
 import { HOME_COPY } from "@/lib/i18n/home";
 import { getTrustArticles } from "@/lib/datocms";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
@@ -36,6 +37,7 @@ export default async function Home({ locale, dict }: Props) {
       <HomeHowItWorks copy={copy} />
       <HomeIncluded copy={copy} />
       <HomeWhyUs copy={copy} />
+      <FAQ {...copy.faq} />
 
       {/* QUIZ — the same generic city/timeframe quiz used at the bottom of
           every pain page (QuizWizard doesn't actually branch on `pain`, so
