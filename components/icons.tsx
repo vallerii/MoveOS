@@ -18,6 +18,15 @@ export function CheckCircleIcon({ className = "h-6 w-6" }: IconProps) {
   );
 }
 
+export function XCircleIcon({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9.5l5 5M14.5 9.5l-5 5" />
+    </svg>
+  );
+}
+
 export function ClockIcon({ className = "h-6 w-6" }: IconProps) {
   return (
     <svg {...base} className={className}>

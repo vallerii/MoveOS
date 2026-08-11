@@ -21,12 +21,20 @@ export default function WhyUs({ dict, pain }: Props) {
   return (
     <section className=" bg-[#98c0ee]/30 py-20 sm:py-section">
       <div className="container-page">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-14 lg:grid-cols-[2.5fr_1fr] lg:gap-16">
           <Reveal>
             <div>
               <h2 className="font-display text-heading-lg text-ink">{heading}</h2>
-              <p className="mt-6 max-w-md text-body text-slate">{intro}</p>
-              <p className="mt-10 max-w-md border-t border-hairline pt-10 font-display text-heading text-ink">
+              {intro[pain] && <p className="mt-6 max-w-md text-body text-slate">{intro[pain]}</p>}
+              <p
+                className={`whitespace-pre-line font-display text-ink ${
+                  // Without the intro line, this paragraph is standing in as
+                  // the section's main copy rather than a short pull-quote
+                  // under it — the pull-quote size (text-heading) reads too
+                  // heavy for two full sentences, so it steps down a size.
+                  intro[pain] ? "mt-10 border-t border-hairline pt-10 text-heading" : "mt-6 text-heading-sm"
+                }`}
+              >
                 {body[pain]}
               </p>
             </div>

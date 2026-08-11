@@ -65,7 +65,7 @@ export default function Hero({ pain, dict }: Props) {
         {/* Same treatment as the homepage: the headline scales back, drifts
             up and dissolves on scroll. */}
         <RecedingTitle>
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-5xl text-center">
           <Reveal>
             <p className="tag">{copy.eyebrow}</p>
           </Reveal>
@@ -73,7 +73,7 @@ export default function Hero({ pain, dict }: Props) {
           <Reveal delay={100}>
             {/* The display serif stays at weight 400 at every size — it
                 whispers authority rather than shouting in bold. */}
-            <h1 className="mt-6 font-display text-display text-ink">{copy.h1}</h1>
+            <h1 className="mt-6 whitespace-pre-line font-display text-display text-ink">{copy.h1}</h1>
           </Reveal>
 
           <Reveal delay={200}>

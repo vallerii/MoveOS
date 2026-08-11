@@ -102,18 +102,18 @@ const es: Dictionary = {
     },
     repair: {
       eyebrow: "Pequeñas reparaciones antes de entregar el piso · Barcelona",
-      h1: "¿Quieres recuperar tu fianza? Haz una pequeña reparación con nosotros",
+      h1: "¿Quieres recuperar tu fianza?\nHaz una pequeña reparación con nosotros",
       subheading:
-        "Reparamos solo lo que realmente hace falta para recuperar tu fianza — sin reforma completa ni gastos de más. Envíanos fotos de antes y después y te diremos qué merece la pena arreglar.",
+        "Reparamos solo lo que realmente hace falta para recuperar tu fianza — sin gastar de más en una reforma completa. Este enfoque ya ha ayudado a más de 100 inquilinos a recuperar su fianza al completo.",
       metaTitle: "Pequeñas reparaciones antes de mudarte",
       metaDescription:
         "Reparamos solo lo necesario para recuperar tu fianza — sin reforma completa ni gastos de más. Valoración gratuita con fotos antes/después.",
       heroCta: "Consigue tu valoración de reparación",
       shortLabel: "Pequeñas reparaciones",
-      badges: ["Recupera tu fianza entera", "Solo lo necesario", "Valoración gratuita con fotos"],
+      badges: ["Recupera tu fianza entera", "A tu medida", "Valoración gratuita con fotos"],
       howItWorks: {
         heading: "Sabemos exactamente qué hay que hacer",
-        intro: "Reparamos justo lo que más a menudo hace que se retenga la fianza al entregar el piso",
+        intro: "Estas son las cuatro categorías que más deciden si recuperas tu fianza",
         subheading: "¿Quieres saber qué necesita tu piso?",
         steps: [
           {
@@ -135,6 +135,112 @@ const es: Dictionary = {
             title: "Suelo",
             body: "Reparamos arañazos y desperfectos puntuales del suelo.",
             highlight: "Más barato que cambiarlo entero",
+          },
+        ],
+      },
+      secondaryHowItWorks: {
+        heading: "Cómo funciona",
+        subheading: "Desde la consulta gratuita hasta la fianza en tu cuenta — siete pasos, sin sorpresas en ninguno.",
+        startIndex: 0,
+        steps: [
+          {
+            title: "Consulta de 15 minutos",
+            body: "Hablamos gratis de tu situación y te explicamos qué hay que hacer — antes de reparar nada.",
+          },
+          {
+            title: "Envías fotos y el contrato",
+            body: "Fotos del piso al entrar y ahora, más el contrato (o la parte con las condiciones de devolución de la fianza).",
+          },
+          {
+            title: "Hacemos la valoración",
+            body: "Revisamos el estado a partir de tus fotos y te enviamos un presupuesto.",
+          },
+          {
+            title: "Confirmas el presupuesto",
+            body: "Aceptas el importe — buscamos fecha para hacer el trabajo.",
+          },
+          {
+            title: "Hacemos la reparación",
+            body: "Trabajo cuidadoso y a tiempo — sin nada de más ni prisas.",
+          },
+          {
+            title: "Entregas el piso",
+            body: "Entregas el piso al propietario sabiendo que ya está reparado lo necesario.",
+          },
+          {
+            title: "Recuperas la fianza",
+            body: "Devolución completa — sin retenciones por lo que ya hemos arreglado.",
+          },
+        ],
+      },
+      furnitureNotes: {
+        heading: "Si alquilaste un piso amueblado",
+        intro:
+          "Los daños y el desgaste de los muebles también son una causa habitual de retención de la fianza — pero no toda retención es legal: alquilar amueblado implica un desgaste normal.",
+        items: [
+          { title: "Mueble con quemadura (cigarro, plancha, vela)", verdict: "Daño", isDamage: true },
+          { title: "Tapicería desgastada de un sofá o sillón", verdict: "Desgaste normal", isDamage: false },
+          { title: "Golpe o grieta en una encimera o mesa", verdict: "Daño", isDamage: true },
+          { title: "Tela de cortinas o tapicería descolorida por el sol", verdict: "Desgaste normal", isDamage: false },
+          {
+            title: "Bisagras flojas de un armario o silla que cruje por el uso",
+            verdict: "Desgaste normal",
+            isDamage: false,
+          },
+          {
+            title: "Tapicería rota o arañazos profundos de objetos afilados",
+            verdict: "Daño",
+            isDamage: true,
+          },
+        ],
+      },
+      relatedPains: {
+        heading: "Otras situaciones en las que ayudamos",
+        linkLabel: "Saber más",
+        items: [
+          {
+            pain: "belongings",
+            teaser: "¿Te ha quedado mobiliario o cosas por ahí? Te ayudamos a guardarlas o venderlas.",
+          },
+          {
+            pain: "urgent",
+            teaser:
+              "¿Te vas antes de tiempo? Descubre si puedes evitar la penalización — e incluso salir ganando.",
+          },
+          {
+            pain: "buyout",
+            teaser:
+              "¿Tu contrato tiene un precio muy por debajo del mercado actual? Nos especializamos en el traspaso de contratos como el tuyo.",
+          },
+        ],
+      },
+      faq: {
+        heading: "Preguntas frecuentes",
+        subheading: "Lo que normalmente se pregunta antes de enviarnos fotos y el contrato.",
+        items: [
+          {
+            q: "¿Es de verdad gratis?",
+            a: "Sí — la consulta de 15 minutos y la valoración con fotos no cuestan nada. Solo pagas por la reparación en sí, y solo si decides seguir adelante.",
+          },
+          {
+            q: "¿Cuánto tarda la reparación?",
+            a: "Normalmente 3–5 días desde que confirmas el presupuesto. El plazo exacto depende del alcance del trabajo — lo acordamos antes para que esté listo antes de entregar las llaves.",
+          },
+          {
+            q: "¿Y si el presupuesto sale más caro que la fianza en riesgo?",
+            a: "Te lo diremos con honestidad en la valoración. Si no compensa, puedes no seguir adelante — no pagas nada.",
+          },
+          {
+            q: "¿Y si no estoy de acuerdo con el presupuesto?",
+            a: "No estás obligado a aceptarlo. Podemos hablar los detalles o puedes no seguir adelante — sin compromiso por tu parte.",
+          },
+          {
+            q: "¿Solo trabajáis en Barcelona?",
+            a: "Por ahora sí. Si alquilas cerca, en el área metropolitana, escríbenos y valoramos tu caso de forma individual.",
+          },
+          {
+            q: "¿Y si alquilo solo una habitación, no el piso entero?",
+            a: "También trabajamos con habitaciones — se aplican las mismas reglas de fianza y desgaste que en un piso completo.",
           },
         ],
       },
@@ -217,7 +323,7 @@ const es: Dictionary = {
       belongings: "Vete sabiendo dónde acabó cada mueble y cada caja",
       urgent: "Vete sin penalizaciones ni fianza perdida, aunque vayas justo de plazo",
       buyout: "Vete con hasta 2.000 € y tu fianza el mismo día",
-      repair: "Vete habiendo gastado lo mínimo en arreglos, ni un euro de más",
+      repair: "Vete sin retenciones en la fianza — porque no hay reparaciones de más",
     },
   },
   didYouKnow: {
@@ -337,14 +443,24 @@ const es: Dictionary = {
   whyUs: {
     eyebrow: "Por qué MoveOS",
     heading: "Cada mudanza es distinta",
-    intro: "Tu contrato, tu propietario, el estado del piso y tus plazos importan. Nuestro único trabajo es que te mudes sin estrés.",
+    intro: {
+      deposit: "Tu contrato, tu propietario, el estado del piso y tus plazos importan. Nuestro único trabajo es que te mudes sin estrés.",
+      admin: "Tu contrato, tu propietario, el estado del piso y tus plazos importan. Nuestro único trabajo es que te mudes sin estrés.",
+      belongings: "Tu contrato, tu propietario, el estado del piso y tus plazos importan. Nuestro único trabajo es que te mudes sin estrés.",
+      urgent: "Tu contrato, tu propietario, el estado del piso y tus plazos importan. Nuestro único trabajo es que te mudes sin estrés.",
+      buyout: "Tu contrato, tu propietario, el estado del piso y tus plazos importan. Nuestro único trabajo es que te mudes sin estrés.",
+      // Vacío a propósito — la línea de body del repair ya lleva dos
+      // frases en este bloque.
+      repair: "",
+    },
     body: {
       deposit: "Así te ayudamos: revisamos el acta y las fotos de la salida y te decimos cómo recuperar tu fianza completa.",
       admin: "Así te ayudamos: revisamos tus documentos y los errores, para que no pagues de más ni te culpen injustamente.",
       belongings: "Así te ayudamos: hacemos un inventario y organizamos la mudanza, para que nada se pierda ni se rompa.",
       urgent: "Así te ayudamos: te decimos qué hacer primero, paso a paso — sin pánico.",
       buyout: "Así te ayudamos: evaluamos la diferencia con el precio de mercado, asumimos el riesgo de la operación y te devolvemos la fianza el mismo día de la salida, sin esperar un mes.",
-      repair: "Así te ayudamos: revisamos tus fotos de antes y después, separamos el desgaste normal del daño real y reparamos lo mínimo necesario para recuperar toda tu fianza.",
+      repair:
+        "Ya hemos ayudado a más de 100 inquilinos a recuperar su fianza al completo.\n\nConsigue una consulta de salida completa y totalmente gratuita — repasamos tu situación exacta: qué tienes que hacer para recuperar tu fianza.",
     },
   },
   quizIntro: {

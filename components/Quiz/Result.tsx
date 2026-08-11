@@ -33,14 +33,14 @@ export default function Result({ locale, dict, qualified, onRestart }: Props) {
         // the one we actually want. It's still here, just demoted to an
         // aside in the same voice as the email line above it.
         <div className="card-peach">
-          <h4 className="font-display text-heading-sm text-sienna">{dict.results.qualified.bookingHeading}</h4>
-          <p className="mt-3 text-caption text-sienna/80">{dict.results.qualified.bookingBody}</p>
+          <h4 className="text-center font-display text-heading-sm text-ink">{dict.results.qualified.bookingHeading}</h4>
+          <p className="text-center mt-3 text-caption text-ink/80">{dict.results.qualified.bookingBody}</p>
           <div className="mt-8">
             <a
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex max-w-full items-center justify-center whitespace-nowrap rounded-full bg-sienna px-6 py-3.5 text-base text-peach transition-opacity hover:opacity-90"
+              className="inline-flex max-w-full w-full items-center justify-center whitespace-nowrap rounded-full bg-ink px-6 py-3.5 text-base text-peach transition-opacity hover:opacity-90"
             >
               {dict.results.qualified.bookingButton}
             </a>

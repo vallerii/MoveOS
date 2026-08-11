@@ -7,6 +7,9 @@ type Props = {
   heading: string;
   subheading: string;
   steps: Step[];
+  // Ordinal shown on the first step — defaults to 1. Repair's secondary
+  // block passes 0 to lead with a "step zero" consultation.
+  startIndex?: number;
 };
 
 /**
@@ -19,9 +22,9 @@ type Props = {
  * everywhere else. Icons were removed with the accent palette they depended
  * on; the ordinal already carries the sequence.
  */
-export default function HowItWorks({ heading, subheading, steps }: Props) {
+export default function HowItWorks({ heading, subheading, steps, startIndex = 1 }: Props) {
   return (
-    <section className="bg-fog py-20 sm:py-section">
+    <section className="py-20 sm:py-section">
       <div className="container-page">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
@@ -34,7 +37,7 @@ export default function HowItWorks({ heading, subheading, steps }: Props) {
           {steps.map(({ title, body }, i) => (
             <Reveal key={title} delay={i * 80}>
               <li className="grid gap-3 border-b border-hairline py-8 sm:grid-cols-12 sm:gap-8">
-                <span className="tag sm:col-span-2">{String(i + 1).padStart(2, "0")}</span>
+                <span className="tag sm:col-span-2">{String(i + startIndex).padStart(2, "0")}</span>
                 <p className="text-heading-sm text-ink sm:col-span-4">{title}</p>
                 <p className="text-caption text-slate sm:col-span-6">{body}</p>
               </li>

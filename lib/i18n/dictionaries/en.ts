@@ -102,18 +102,18 @@ const en: Dictionary = {
     },
     repair: {
       eyebrow: "Minor Repairs Before Handover · Barcelona",
-      h1: "Want Your Deposit Back? Make a Few Small Repairs With Us",
+      h1: "Want Your Deposit Back?\nMake a Few Small Repairs With Us",
       subheading:
-        "We only fix what actually matters for getting your deposit back — no full renovation, no overpaying. Send us before/after photos and we'll tell you exactly what's worth repairing.",
+        "We only fix what actually matters for getting your deposit back — no overpaying for a full renovation. This approach has already helped 100+ tenants get their deposit back in full.",
       metaTitle: "Small Repairs Before You Move Out",
       metaDescription:
         "We only fix what's needed to get your deposit back — no full renovation, no overpaying. Free repair assessment from before/after photos.",
       heroCta: "Get a Repair Assessment",
       shortLabel: "Minor Repairs",
-      badges: ["Get your full deposit back", "We fix only what's needed", "Free photo assessment"],
+      badges: ["Get your full deposit back", "Tailored to you", "Free photo assessment"],
       howItWorks: {
         heading: "We Know Exactly What Needs Doing",
-        intro: "We fix exactly what most often causes a deposit to be withheld at handover",
+        intro: "Four categories that most often decide whether your deposit comes back",
         subheading: "Want to know what your place needs?",
         steps: [
           {
@@ -135,6 +135,112 @@ const en: Dictionary = {
             title: "Floor",
             body: "We spot-fix scratches and chips in the flooring.",
             highlight: "Cheaper than full replacement",
+          },
+        ],
+      },
+      secondaryHowItWorks: {
+        heading: "How It Works",
+        subheading: "From your free consultation to the deposit in your account — seven steps, no surprises along the way.",
+        startIndex: 0,
+        steps: [
+          {
+            title: "15-Minute Consultation",
+            body: "We go over your situation for free and explain what actually needs doing — before we fix anything.",
+          },
+          {
+            title: "Send Photos & Lease",
+            body: "Photos of the apartment from move-in and now, plus your lease (or the part covering deposit conditions).",
+          },
+          {
+            title: "We Assess It",
+            body: "We review the condition from your photos and send you a repair estimate.",
+          },
+          {
+            title: "You Approve the Estimate",
+            body: "You agree to the price — we schedule the work.",
+          },
+          {
+            title: "We Do the Repairs",
+            body: "Careful, on-time work — nothing extra, no rushing.",
+          },
+          {
+            title: "You Hand Back the Keys",
+            body: "You hand the apartment back to your landlord, knowing the necessary repairs are already done.",
+          },
+          {
+            title: "You Get Your Deposit",
+            body: "Your deposit comes back in full — no deductions for anything we already fixed.",
+          },
+        ],
+      },
+      furnitureNotes: {
+        heading: "If You Rented a Furnished Apartment",
+        intro:
+          "Furniture damage and wear are also a common reason deposits get withheld — but not every withholding is legal: renting furnished means normal wear is expected.",
+        items: [
+          { title: "Furniture with burn marks (cigarette, iron, candle)", verdict: "Damage", isDamage: true },
+          { title: "Worn-down upholstery on a sofa or armchair", verdict: "Normal wear", isDamage: false },
+          { title: "A chip or crack in a tabletop from impact", verdict: "Damage", isDamage: true },
+          { title: "Sun-faded curtain or upholstery fabric", verdict: "Normal wear", isDamage: false },
+          {
+            title: "Loose cabinet hinges or a creaky chair from regular use",
+            verdict: "Normal wear",
+            isDamage: false,
+          },
+          {
+            title: "Torn upholstery or deep scratches from sharp objects",
+            verdict: "Damage",
+            isDamage: true,
+          },
+        ],
+      },
+      relatedPains: {
+        heading: "Other Situations We Help With",
+        linkLabel: "Learn more",
+        items: [
+          {
+            pain: "belongings",
+            teaser: "Got leftover furniture or belongings? We'll help you store or sell them.",
+          },
+          {
+            pain: "urgent",
+            teaser:
+              "Moving out early? Find out whether you can avoid the penalty — and even come out ahead.",
+          },
+          {
+            pain: "buyout",
+            teaser:
+              "Is your lease priced well below today's market rent? We specialize in buying out leases like yours.",
+          },
+        ],
+      },
+      faq: {
+        heading: "Frequently Asked Questions",
+        subheading: "What people usually ask before sending us photos and their lease.",
+        items: [
+          {
+            q: "Is it really free?",
+            a: "Yes — the 15-minute consultation and photo assessment cost nothing. You only pay for the repairs themselves, and only if you decide to go ahead.",
+          },
+          {
+            q: "How long do repairs take?",
+            a: "Usually 3–5 days once you approve the estimate. The exact timeline depends on the scope of work — we agree on it upfront so it's done before you hand back the keys.",
+          },
+          {
+            q: "What if the estimate costs more than the deposit at risk?",
+            a: "We'll tell you honestly at the assessment stage. If it's not worth it, you're free to walk away — you pay nothing.",
+          },
+          {
+            q: "What if I don't agree with the estimate?",
+            a: "You're not obligated to accept it. We can talk through the details, or you can walk away entirely — no strings attached.",
+          },
+          {
+            q: "Do you only work in Barcelona?",
+            a: "For now, yes. If you're renting just outside the city, reach out — we'll look at your situation individually.",
+          },
+          {
+            q: "What if I only rent a room, not the whole apartment?",
+            a: "We work with rooms too — the same deposit and wear-and-tear rules apply as for a full apartment.",
           },
         ],
       },
@@ -217,7 +323,7 @@ const en: Dictionary = {
       belongings: "Leave knowing where every piece of furniture ended up",
       urgent: "Leave with no penalties and no lost deposit — even on short notice",
       buyout: "Leave with up to €2,000 and your deposit back the same day",
-      repair: "Leave having spent the minimum on repairs — and not a euro more",
+      repair: "No unnecessary repairs — and no deposit withheld",
     },
   },
   didYouKnow: {
@@ -337,14 +443,29 @@ const en: Dictionary = {
   whyUs: {
     eyebrow: "Why MoveOS",
     heading: "Every move-out is different",
-    intro: "Your lease, your landlord, the apartment's condition, and your timeline all matter. Our only job is getting you through your move without stress.",
+    intro: {
+      deposit:
+        "Your lease, your landlord, the apartment's condition, and your timeline all matter. Our only job is getting you through your move without stress.",
+      admin:
+        "Your lease, your landlord, the apartment's condition, and your timeline all matter. Our only job is getting you through your move without stress.",
+      belongings:
+        "Your lease, your landlord, the apartment's condition, and your timeline all matter. Our only job is getting you through your move without stress.",
+      urgent:
+        "Your lease, your landlord, the apartment's condition, and your timeline all matter. Our only job is getting you through your move without stress.",
+      buyout:
+        "Your lease, your landlord, the apartment's condition, and your timeline all matter. Our only job is getting you through your move without stress.",
+      // Empty on purpose — the repair page's body line below already
+      // carries two sentences' worth of text in this block.
+      repair: "",
+    },
     body: {
       deposit: "Here's how we help: we review your move-out act and photos and tell you how to get your full deposit back.",
       admin: "Here's how we help: we go through your paperwork and flag mistakes, so you don't overpay or get blamed unfairly.",
       belongings: "Here's how we help: we build an inventory and plan your move, so nothing gets lost or broken.",
       urgent: "Here's how we help: we tell you exactly what to do first, step by step — no panic.",
       buyout: "Here's how we help: we assess the gap versus market price, take on the deal's risk, and pay your deposit back the day you move — no month-long wait.",
-      repair: "Here's how we help: we review your before/after photos, separate normal wear from real damage, and fix the minimum needed for your full deposit back.",
+      repair:
+        "We've already helped 100+ tenants get their deposit back in full.\n\nGet a full, completely free move-out consultation — we'll go through your exact situation: what you need to do to get your deposit back.",
     },
   },
   quizIntro: {

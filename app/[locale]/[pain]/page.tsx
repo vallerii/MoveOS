@@ -7,6 +7,9 @@ import WhatYouGet from "@/components/WhatYouGet";
 import DidYouKnow from "@/components/DidYouKnow";
 import HowItWorks from "@/components/HowItWorks";
 import RepairShowcase from "@/components/RepairShowcase";
+import FurnitureNotes from "@/components/FurnitureNotes";
+import RelatedPains from "@/components/RelatedPains";
+import FAQ from "@/components/FAQ";
 import WhyUs from "@/components/WhyUs";
 import QuizSection from "@/components/Quiz/QuizSection";
 
@@ -62,12 +65,14 @@ export default function PainPage({ params }: { params: Params }) {
   if (!isValid(params)) notFound();
   const { locale, pain } = params;
   const dict = getDictionary(locale);
-  const howItWorks = dict.pains[pain].howItWorks;
+  const { howItWorks, secondaryHowItWorks, furnitureNotes, relatedPains, faq } = dict.pains[pain];
 
   return (
     <main>
       <Hero locale={locale} pain={pain} dict={dict} />
       <DidYouKnow dict={dict} pain={pain} />
+      <WhatYouGet dict={dict} pain={pain} />
+
       {howItWorks &&
         (pain === "repair" ? (
           <RepairShowcase
@@ -79,9 +84,19 @@ export default function PainPage({ params }: { params: Params }) {
           />
         ) : (
           <HowItWorks pain={pain} {...howItWorks} />
-        ))}
-      <WhatYouGet dict={dict} pain={pain} />
+        ))
+      }
+      {relatedPains && <RelatedPains locale={locale} dict={dict} {...relatedPains} />}
+
+      {/* repair-only: the plain numbered-list "Как это работает" every other
+          pain page uses for its process steps — repair's `howItWorks` above
+          is spent on the RepairShowcase card grid instead. */}
+      {secondaryHowItWorks && <HowItWorks pain={pain} {...secondaryHowItWorks} />}
+      {furnitureNotes && <FurnitureNotes {...furnitureNotes} />}
       <WhyUs dict={dict} pain={pain} />
+      {/* Objection-handling, right before the ask — last chance to resolve
+          cost/timeline/"what if I disagree" doubts before the quiz. */}
+      {faq && <FAQ {...faq} />}
       <QuizSection locale={locale} dict={dict} pain={pain} />
     </main>
   );

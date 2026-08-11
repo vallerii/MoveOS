@@ -27,9 +27,9 @@ export default function WhatYouGet({ dict, pain }: Props) {
     <section className="bg-paper py-20 sm:py-section">
       <div className="container-page">
         <Reveal>
-          <div className="max-w-2xl">
+          <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-heading-lg text-ink">{heading}</h2>
-            <p className="mt-6 max-w-xl text-body text-slate">{subheading}</p>
+            <p className="mt-6 max-w-xl text-body text-slate mx-auto">{subheading}</p>
           </div>
         </Reveal>
 

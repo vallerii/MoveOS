@@ -65,6 +65,39 @@ export interface Dictionary {
           highlight?: string;
         }[];
       };
+      // Optional — a second, plain numbered-list "Как это работает" block in
+      // the standard HowItWorks style (same component every other pain page
+      // uses). Only populated for repair, where `howItWorks` above is spent
+      // on the RepairShowcase card grid instead of the process steps.
+      secondaryHowItWorks?: {
+        heading: string;
+        subheading: string;
+        // Optional — first step's ordinal (e.g. 0 to lead with a "step
+        // zero" consultation before the numbered process). Defaults to 1.
+        startIndex?: number;
+        steps: { title: string; body: string }[];
+      };
+      // Optional — furnished-rental wear-vs-damage examples. Only populated
+      // for repair.
+      furnitureNotes?: {
+        heading: string;
+        intro: string;
+        items: { title: string; verdict: string; isDamage: boolean }[];
+      };
+      // Optional — cross-links to sibling pain pages, teasing a situation the
+      // visitor may also be dealing with. Only populated for repair.
+      relatedPains?: {
+        heading: string;
+        linkLabel: string;
+        items: { pain: PainSlug; teaser: string }[];
+      };
+      // Optional — objection-handling FAQ shown right before the quiz. Only
+      // populated for repair.
+      faq?: {
+        heading: string;
+        subheading?: string;
+        items: { q: string; a: string }[];
+      };
     }
   >;
   whatYouGet: {
@@ -84,7 +117,9 @@ export interface Dictionary {
   whyUs: {
     eyebrow: string;
     heading: string;
-    intro: string;
+    // Per-pain — repair leaves this empty (the block already carries a lot
+    // of text there via `body`), other pages keep the shared line.
+    intro: Record<PainSlug, string>;
     body: Record<PainSlug, string>;
   };
   quizIntro: {
