@@ -15,13 +15,17 @@ type Props = {
 // Small homepage/footer-only strings — same reasoning as lib/i18n/home.ts:
 // these labels don't fit the per-pain `Dictionary` shape, so they live in a
 // local map here instead of widening the shared type for one component.
-const EXTRA: Record<Locale, { linksHeading: string; companyHeading: string; contact: string; home: string; bottomNote: string }> = {
+const EXTRA: Record<
+  Locale,
+  { linksHeading: string; companyHeading: string; contact: string; home: string; bottomNote: string; hostLink: string }
+> = {
   en: {
     linksHeading: "Move-Out Help",
     companyHeading: "Company",
     contact: "Contact us",
     home: "Home",
     bottomNote: "Free for every tenant.",
+    hostLink: "For Property Owners",
   },
   es: {
     linksHeading: "Ayuda con tu Mudanza",
@@ -29,6 +33,7 @@ const EXTRA: Record<Locale, { linksHeading: string; companyHeading: string; cont
     contact: "Contáctanos",
     home: "Inicio",
     bottomNote: "Gratis para cada inquilino.",
+    hostLink: "Para propietarios",
   },
   ru: {
     linksHeading: "Помощь с выездом",
@@ -36,6 +41,7 @@ const EXTRA: Record<Locale, { linksHeading: string; companyHeading: string; cont
     contact: "Написать нам",
     home: "Главная",
     bottomNote: "Бесплатно для каждого арендатора.",
+    hostLink: "Владельцам квартир",
   },
 };
 
@@ -95,6 +101,13 @@ export default function Footer({ locale, dict }: Props) {
             <nav className="mt-5 flex flex-col gap-3 text-caption text-slate">
               <Link href={`/${locale}`} className="transition-colors hover:text-ink">
                 {extra.home}
+              </Link>
+              <Link
+                href={`/${locale}/host`}
+                aria-current={currentSlug === "host" ? "page" : undefined}
+                className={`transition-colors ${currentSlug === "host" ? "text-ink" : "hover:text-ink"}`}
+              >
+                {extra.hostLink}
               </Link>
               <Link href={`/${locale}/privacy`} className="transition-colors hover:text-ink">
                 {dict.footer.privacy}

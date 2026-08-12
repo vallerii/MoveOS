@@ -61,8 +61,9 @@ export interface HomeCopy {
      * by the full document/evidence checklist, replacing the plain
      * `advantages` sentences when present.
      *
-     * Optional — RU-only for now (EN/ES not translated yet); WhyUsGraphic
-     * falls back to `advantages` when `card` is absent for a locale.
+     * Optional (kept that way for resilience) — populated for all three
+     * locales; WhyUsGraphic falls back to `advantages` when `card` is
+     * absent for a locale.
      */
     card?: {
       heading: string;

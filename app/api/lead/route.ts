@@ -26,6 +26,12 @@ export async function POST(req: NextRequest) {
     timeframe?: string;
     selectedPain?: string;
     qualified?: boolean;
+    // Landlord lead-capture fields — only sent by /[locale]/host's form
+    // (source: "host-lead-form"). Optional so the tenant-side quiz's POST
+    // body shape above is untouched.
+    propertyAddress?: string;
+    rooms?: string;
+    area?: string;
   };
 
   const name = String(data?.name ?? "").trim().slice(0, 200);
@@ -50,6 +56,9 @@ export async function POST(req: NextRequest) {
     timeframe: data?.timeframe ?? "unknown",
     selectedPain: data?.selectedPain ?? "unknown",
     qualified: Boolean(data?.qualified),
+    propertyAddress: data?.propertyAddress ?? undefined,
+    rooms: data?.rooms ?? undefined,
+    area: data?.area ?? undefined,
     page: req.headers.get("referer") ?? "unknown",
     userAgent: req.headers.get("user-agent") ?? "unknown",
     createdAt: new Date().toISOString(),

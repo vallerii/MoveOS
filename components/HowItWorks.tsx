@@ -1,15 +1,24 @@
 import Reveal from "./Reveal";
+import PillButton from "./PillButton";
 import type { PainSlug } from "@/lib/i18n/types";
 
 type Step = { title: string; body: string };
 type Props = {
-  pain: PainSlug;
+  // Optional — unused in the render below (kept only so pain pages can
+  // pass it without a cast). The standalone /host page has no PainSlug at
+  // all, which is what makes this optional rather than required.
+  pain?: PainSlug;
   heading: string;
   subheading: string;
   steps: Step[];
   // Ordinal shown on the first step — defaults to 1. Repair's secondary
   // block passes 0 to lead with a "step zero" consultation.
   startIndex?: number;
+  // Optional trailing CTA button, centred under the list — only /host's
+  // "Как всё начинается" block uses this; the pain pages' process blocks
+  // don't need a second CTA on top of the page's own hero/quiz asks.
+  cta?: string;
+  ctaHref?: string;
 };
 
 /**
@@ -22,7 +31,7 @@ type Props = {
  * everywhere else. Icons were removed with the accent palette they depended
  * on; the ordinal already carries the sequence.
  */
-export default function HowItWorks({ heading, subheading, steps, startIndex = 1 }: Props) {
+export default function HowItWorks({ heading, subheading, steps, startIndex = 1, cta, ctaHref = "#calculate" }: Props) {
   return (
     <section className="py-20 sm:py-section">
       <div className="container-page">
@@ -44,6 +53,14 @@ export default function HowItWorks({ heading, subheading, steps, startIndex = 1 
             </Reveal>
           ))}
         </ol>
+
+        {cta && (
+          <Reveal delay={steps.length * 80}>
+            <div className="mt-16 flex justify-center">
+              <PillButton href={ctaHref}>{cta}</PillButton>
+            </div>
+          </Reveal>
+        )}
       </div>
     </section>
   );
