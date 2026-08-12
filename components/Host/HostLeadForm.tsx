@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Reveal from "../Reveal";
 import type { Locale } from "@/lib/i18n/types";
+import HeroGlow from "../Home/HeroGlow";
 
 type Fields = {
   address: string;
@@ -80,17 +81,18 @@ export default function HostLeadForm({ locale, heading, body, cta, fields, conse
   const labelClass = "mb-2 block text-caption text-slate";
 
   return (
-    <section id="calculate" className="scroll-mt-24 bg-paper py-20 sm:py-section">
-      <div className="container-page">
+    <section id="calculate" className="relative scroll-mt-24 bg-paper py-20 sm:py-section">
+        <div className="pointer-events-none absolute inset-0 z-0 lg:left-[15%] w-full"><HeroGlow /></div>
+      <div className="container-page ">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-5">
-            <div className="lg:sticky lg:top-32">
+          <Reveal className="lg:col-span-6">
+            <div className="lg:top-32">
               <h2 className="font-display text-heading-lg text-ink">{heading}</h2>
-              <p className="mt-6 max-w-sm whitespace-pre-line text-body text-slate">{body}</p>
+              <p className="mt-6  whitespace-pre-line text-body text-slate">{body}</p>
             </div>
           </Reveal>
 
-          <Reveal className="lg:col-span-7" direction="right">
+          <Reveal className="lg:col-span-6" direction="right">
             <div className="card-neutral">
               {status === "success" ? (
                 <p className="py-8 text-center text-heading-sm text-ink">{success}</p>

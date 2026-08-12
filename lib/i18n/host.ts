@@ -22,6 +22,10 @@ export interface HostCopy {
     h1: string;
     subheading: string;
     cta: string;
+    // Optional — shorter CTA copy for narrow screens (same pattern as
+    // pains.*.heroCtaMobile in ./types.ts and earnings.ctaMobile above).
+    // Falls back to `cta`.
+    ctaMobile?: string;
   };
   earnings: {
     heading: string;
@@ -29,6 +33,10 @@ export interface HostCopy {
     listHeading: string;
     items: string[];
     cta: string;
+    // Optional — shorter CTA copy for narrow screens, same pattern as
+    // pains.*.heroCtaMobile in ./types.ts. This button's full label is long
+    // enough to wrap on a phone-width card; falls back to `cta`.
+    ctaMobile?: string;
     disclaimer: string;
   };
   services: {
@@ -116,6 +124,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       subheading:
         "Hand us the keys — we run the whole process: listing your apartment, guest communication, check-in, cleaning, condition checks and financial reporting.\n\nYou earn income from your property without dealing with the day-to-day of running a rental yourself.",
       cta: "Find Out What My Apartment Could Earn",
+      ctaMobile: "Check My Income",
     },
     earnings: {
       heading: "Your Apartment Could Earn More",
@@ -129,6 +138,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
         "expected owner income",
       ],
       cta: "Get My Apartment's Income Estimate",
+      ctaMobile: "Get My Estimate",
       disclaimer:
         "The estimate is individual and depends on location, the apartment's condition, the season and short-term rental rules in your specific city.",
     },
@@ -309,6 +319,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       subheading:
         "Danos las llaves — organizamos todo el proceso: publicación del piso, comunicación con los huéspedes, check-in, limpieza, control del estado y reportes financieros.\n\nObtienes ingresos de tu propiedad sin tener que ocuparte tú mismo del día a día del alquiler.",
       cta: "Saber cuánto puede generar mi piso",
+      ctaMobile: "Ver mi ingreso",
     },
     earnings: {
       heading: "Tu piso puede generar más",
@@ -322,6 +333,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
         "el ingreso esperado para el propietario",
       ],
       cta: "Obtener el cálculo de rentabilidad de mi piso",
+      ctaMobile: "Obtener cálculo",
       disclaimer:
         "El cálculo es individual y depende de la ubicación, el estado del piso, la temporada y la normativa de alquiler de temporada de cada ciudad.",
     },
@@ -502,6 +514,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       subheading:
         "Передайте нам ключи — мы организуем весь процесс: размещение квартиры, работу с гостями, заселение, уборку, контроль состояния и финансовую отчётность.\n\nВы получаете доход от квартиры без необходимости самостоятельно заниматься ежедневными вопросами аренды.",
       cta: "Узнать, сколько может приносить моя квартира",
+      ctaMobile: "Узнать доход",
     },
     earnings: {
       heading: "Ваша квартира может зарабатывать больше",
@@ -515,6 +528,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
         "ожидаемый доход владельца",
       ],
       cta: "Получить расчёт доходности квартиры",
+      ctaMobile: "Получить расчёт",
       disclaimer:
         "Расчёт индивидуален и зависит от расположения, состояния квартиры, сезона и правил краткосрочной аренды в конкретном городе.",
     },

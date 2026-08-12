@@ -1,3 +1,4 @@
+import Glow from "../Glow";
 import Reveal from "../Reveal";
 
 type Item = {
@@ -27,7 +28,7 @@ type Props = {
 export default function HostDetailRows({ items }: Props) {
   return (
     <section className="bg-fog py-20 sm:py-section">
-      <div className="container-page">
+      <div className="container-page relative z-10">
         <div className="mx-auto max-w-3xl border-t border-hairline">
           {items.map((item, i) => (
             <Reveal key={item.title} delay={i * 70}>

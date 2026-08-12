@@ -8,6 +8,7 @@ type Props = {
   listHeading: string;
   items: string[];
   cta: string;
+  ctaMobile?: string;
   disclaimer: string;
 };
 
@@ -17,13 +18,13 @@ type Props = {
  * right listing what the estimate covers. Everything here points at the
  * lead form (#calculate) rather than resolving on this page.
  */
-export default function HostEarnings({ heading, body, listHeading, items, cta, disclaimer }: Props) {
+export default function HostEarnings({ heading, body, listHeading, items, cta, ctaMobile, disclaimer }: Props) {
   return (
     <section className="bg-paper py-20 sm:py-section">
       <div className="container-page">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
-            <div className="lg:sticky lg:top-32">
+            <div className="">
               <h2 className="font-display text-heading-lg text-ink">{heading}</h2>
               <p className="mt-6  whitespace-pre-line text-body text-slate">{body}</p>
             </div>
@@ -40,8 +41,13 @@ export default function HostEarnings({ heading, body, listHeading, items, cta, d
                   </li>
                 ))}
               </ul>
-              <PillButton href="#calculate" className="mt-8 w-full sm:w-auto">
-                {cta}
+              <PillButton href="#calculate" aria-label={cta} className="mt-8 w-full sm:w-auto">
+                <span aria-hidden className="sm:!hidden">
+                  {ctaMobile ?? cta}
+                </span>
+                <span aria-hidden className="hidden sm:!inline">
+                  {cta}
+                </span>
               </PillButton>
               <p className="mt-6 text-meta text-ash">{disclaimer}</p>
             </div>

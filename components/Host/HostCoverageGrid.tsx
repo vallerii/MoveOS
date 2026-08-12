@@ -14,7 +14,7 @@ type Props = {
  */
 export default function HostCoverageGrid({ heading, items }: Props) {
   return (
-    <section className="bg-paper py-20 sm:py-section">
+    <section className="bg-[#98c0ee]/30 py-20 sm:py-section">
       <div className="container-page">
         <Reveal>
           <h2 className="mx-auto max-w-2xl text-center font-display text-heading-lg text-ink">{heading}</h2>

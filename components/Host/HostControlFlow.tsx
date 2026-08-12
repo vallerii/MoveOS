@@ -11,8 +11,10 @@ type Props = {
  * "Вы знаете, что происходит с квартирой" — the control/trust statement.
  * Centred like HowItWorks' heading block, closing on the draft's own
  * arrow-chain sentence ("кто → когда → в каком состоянии → сколько") shown
- * as one line inside a Mist card rather than broken into a segmented UI —
- * the arrows the copy already uses do that work on their own.
+ * as one line in the page's Accent Peach card — the same "Результат" treatment
+ * WhatYouGet spends its one peach card on for the pain pages (tag label +
+ * big serif line, sienna ink). System rule is one card-peach per page, so
+ * HostClosingCta gives this one up (see the comment there).
  */
 export default function HostControlFlow({ heading, body, flowIntro, flow }: Props) {
   return (
@@ -26,9 +28,9 @@ export default function HostControlFlow({ heading, body, flowIntro, flow }: Prop
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="card-neutral mx-auto mt-10 max-w-3xl text-center">
-            <p className="tag">{flowIntro}</p>
-            <p className="mt-4 text-heading-sm text-ink">{flow}</p>
+          <div className="card-peach mx-auto mt-10 max-w-3xl text-center">
+            <p className="tag text-sienna/50">{flowIntro}</p>
+            <p className="mt-4 font-display text-heading-sm text-sienna">{flow}</p>
           </div>
         </Reveal>
       </div>
