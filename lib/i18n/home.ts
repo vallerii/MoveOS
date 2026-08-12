@@ -198,6 +198,26 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         "We assess what actually needs repairing versus normal wear and tear.",
         "We find where your furniture and belongings can go when there's nowhere for them.",
       ],
+      card: {
+        heading: "What You'll Have in Hand After You Move Out",
+        description:
+          "Not just a checklist, but an organized folder of evidence — instead of a dozen random photos buried in your phone's gallery — ready to show at any moment if a dispute comes up.",
+        items: [
+          "Lease agreement",
+          "Move-in inventory",
+          "Photos of the apartment before repairs",
+          "Photos of the apartment after repairs",
+          "Final photos of every room",
+          "Final video of the whole apartment",
+          "Meter readings",
+          "Confirmations that utility contracts are closed",
+          "Key handover report",
+          "Signed apartment handover report",
+          "Proof of all payments",
+          "Deposit (fianza) documents",
+        ],
+        note: "None of this gets deleted until the deposit is back and everything is settled.",
+      },
     },
     included: {
       heading: "Exactly What's Included in the Help",
@@ -367,6 +387,26 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         "Evaluamos qué reparación hace falta de verdad, frente al desgaste normal.",
         "Encontramos dónde puede ir tu mobiliario y tus cosas cuando no tienen sitio.",
       ],
+      card: {
+        heading: "Lo que tendrás en mano después de mudarte",
+        description:
+          "No solo una checklist, sino una carpeta organizada de pruebas — en vez de una decena de fotos sueltas en la galería del móvil — lista para mostrar en cualquier momento si surge una disputa.",
+        items: [
+          "Contrato de alquiler",
+          "Inventario de entrada",
+          "Fotos del piso antes de la reparación",
+          "Fotos del piso después de la reparación",
+          "Fotos finales de cada habitación",
+          "Vídeo final de todo el piso",
+          "Lecturas de los contadores",
+          "Justificantes de baja de los contratos de suministros",
+          "Acta de entrega de llaves",
+          "Acta de entrega del piso firmada",
+          "Justificantes de todos los pagos",
+          "Documentos de la fianza",
+        ],
+        note: "Nada de esto se elimina hasta que la fianza vuelve y todo queda cerrado.",
+      },
     },
     included: {
       heading: "Qué incluye exactamente la ayuda",

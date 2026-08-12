@@ -3,7 +3,15 @@ import Glow from "./Glow";
 import RepairIllustration from "./RepairIllustration";
 import PillButton from "./PillButton";
 
-type Step = { title: string; body: string; highlight?: string };
+type Step = {
+  title: string;
+  body: string;
+  highlight?: string;
+  // Which drawing this card shows — keyed by subject (see
+  // RepairIllustration) so reordering `steps` in the dictionary can never
+  // silently pair a card with the wrong illustration.
+  icon?: "bulb" | "bathroom" | "walls" | "floor";
+};
 type Props = {
   heading: string;
   // Short line under the heading explaining the angle (repairs that
@@ -50,7 +58,10 @@ export default function RepairShowcase({ heading, intro, steps, ctaText, ctaLabe
                     scale={0.3}
                     intensity={0.9}
                   />
-                  <RepairIllustration index={i} className="relative z-10 h-full w-full p-4 text-ink" />
+                  <RepairIllustration
+                    kind={card.icon ?? "bulb"}
+                    className="relative z-10 h-full w-full p-4 text-ink"
+                  />
                 </div>
                 <p className="mt-6 text-heading-sm text-ink">{card.title}</p>
                 <p className="mt-3 text-caption text-slate">{card.body}</p>

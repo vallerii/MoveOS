@@ -1,4 +1,5 @@
-type Props = { index: number; className?: string };
+type Kind = "bulb" | "bathroom" | "walls" | "floor";
+type Props = { kind: Kind; className?: string };
 
 /**
  * Line-art versions of the four repair photos, one per card.
@@ -114,10 +115,18 @@ function FloorScene() {
   );
 }
 
-const SCENES = [BulbScene, TileScene, PaintScene, FloorScene];
+// Keyed by subject, not array position — a card's title/body order in the
+// dictionary can change (see lib/i18n/dictionaries) without ever silently
+// pairing the wrong drawing with the wrong card.
+const SCENES: Record<Kind, typeof BulbScene> = {
+  bulb: BulbScene,
+  bathroom: TileScene,
+  walls: PaintScene,
+  floor: FloorScene,
+};
 
-export default function RepairIllustration({ index, className = "" }: Props) {
-  const Scene = SCENES[index % SCENES.length];
+export default function RepairIllustration({ kind, className = "" }: Props) {
+  const Scene = SCENES[kind];
 
   return (
     <svg viewBox="0 0 240 240" className={className} aria-hidden focusable="false">

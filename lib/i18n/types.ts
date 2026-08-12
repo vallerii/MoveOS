@@ -63,6 +63,11 @@ export interface Dictionary {
           // repair matters). Only populated for repair; ignored by the plain
           // HowItWorks timeline (buyout).
           highlight?: string;
+          // Optional — which RepairIllustration scene this card shows.
+          // Only populated for repair. Keyed by subject rather than array
+          // position so reordering `steps` can never silently mismatch a
+          // card's title against the wrong drawing.
+          icon?: "bulb" | "bathroom" | "walls" | "floor";
         }[];
       };
       // Optional — a second, plain numbered-list "Как это работает" block in

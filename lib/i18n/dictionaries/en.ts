@@ -24,6 +24,32 @@ const en: Dictionary = {
       heroCta: "Get My Deposit Review",
       shortLabel: "Deposit",
       badges: ["Get your full deposit back", "Answers in 15 minutes", "Free, no obligation"],
+      howItWorks: {
+        heading: "How It Works",
+        subheading: "Five steps from the move-in report to money in your account — no surprises along the way.",
+        steps: [
+          {
+            title: "We pull up your move-in report and lease",
+            body: "We check what was recorded originally: damage, inventory, what the lease says about painting, walls, furniture, cleaning.",
+          },
+          {
+            title: "We determine what actually needs fixing",
+            body: "Only what isn't normal wear and tear — nothing extra, no \"repairing just in case.\"",
+          },
+          {
+            title: "We gather evidence at move-out",
+            body: "Photos of every room, continuous video with the date and meter readings, a handover report worded to protect you from claims three weeks later.",
+          },
+          {
+            title: "We file the return request with INCASÒL",
+            body: "We check the deposit is actually registered there, and track the one-month deadline — if it's missed, we claim the legal interest under Article 36 LAU.",
+          },
+          {
+            title: "We negotiate if the landlord stalls",
+            body: "If they won't sign the report or try to withhold money without grounds, we deal with them directly on your behalf.",
+          },
+        ],
+      },
       relatedPains: {
         heading: "Other Situations We Help With",
         linkLabel: "Learn more",
@@ -54,6 +80,32 @@ const en: Dictionary = {
       heroCta: "Get My Admin Review",
       shortLabel: "Moving Admin",
       badges: ["Everything done properly", "Your own checklist", "Free, 15 minutes"],
+      howItWorks: {
+        heading: "How It Works",
+        subheading: "Everything you need to close or transfer when you move — step by step, not one giant list.",
+        steps: [
+          {
+            title: "We build your personal to-do list",
+            body: "Which subscriptions, bills, and addresses need closing or transferring in your specific case — not a generic checklist.",
+          },
+          {
+            title: "We sort out electricity and gas",
+            body: "Transferring the account (cambio de titular) or closing it outright — whichever works better under your lease.",
+          },
+          {
+            title: "We close water, internet, mobile, alarm, insurance",
+            body: "And keep the cancellation confirmations in case an unexpected bill shows up six months later.",
+          },
+          {
+            title: "We update your address",
+            body: "Bank, insurance, padrón, subscriptions, deliveries — so mail and charges stop going to your old address.",
+          },
+          {
+            title: "We check everything's closed before handover",
+            body: "So your landlord has no formal excuse to delay your deposit.",
+          },
+        ],
+      },
       relatedPains: {
         heading: "Other Situations We Help With",
         linkLabel: "Learn more",
@@ -84,6 +136,32 @@ const en: Dictionary = {
       heroCta: "Get My Belongings Review",
       shortLabel: "Furniture & Belongings",
       badges: ["A clear plan for your stuff", "No last-minute costs", "Free, no obligation"],
+      howItWorks: {
+        heading: "How It Works",
+        subheading: "From inventory to the final handover report — the whole path that keeps the last week panic-free.",
+        steps: [
+          {
+            title: "We inventory your furniture and belongings",
+            body: "What you're taking, what you're not — before the last-week panic sets in.",
+          },
+          {
+            title: "We find where to pass on what you're not taking",
+            body: "Sell, donate, or put into storage — matched to your situation and timeline.",
+          },
+          {
+            title: "We arrange pickup and storage if needed",
+            body: "No rushing, no paying a premium for last-minute urgency.",
+          },
+          {
+            title: "We document the furniture's condition on photo/video before you leave",
+            body: "So there are no disputes over furniture listed in the lease as part of the flat.",
+          },
+          {
+            title: "We check the final list against the move-in inventory",
+            body: "So nothing shows up as \"missing\" at move-out that was never actually there.",
+          },
+        ],
+      },
       relatedPains: {
         heading: "Other Situations We Help With",
         linkLabel: "Learn more",
@@ -114,6 +192,32 @@ const en: Dictionary = {
       heroCta: "Get My Urgent Move-Out Review",
       shortLabel: "Urgent Move-Out",
       badges: ["No early move-out penalties", "Protect your deposit", "Answers in 15 minutes"],
+      howItWorks: {
+        heading: "How It Works",
+        subheading: "Leaving earlier than planned isn't a reason to lose money. Here's how we break it down.",
+        steps: [
+          {
+            title: "We go through your lease and notice period",
+            body: "How much notice your specific lease actually requires — it isn't always 30 days.",
+          },
+          {
+            title: "We prepare written notice",
+            body: "Email or burofax — a verbal heads-up isn't enough, it doesn't count legally.",
+          },
+          {
+            title: "We calculate the real compensation",
+            body: "By law it's usually capped at one month's rent, not the whole deposit, as many fear.",
+          },
+          {
+            title: "We help you plan the tight timeline",
+            body: "What to handle first so you're not losing time and money to first-day panic.",
+          },
+          {
+            title: "We negotiate with the landlord if they disagree",
+            body: "If they dispute the early move-out terms, we deal with them on your behalf.",
+          },
+        ],
+      },
       relatedPains: {
         heading: "Other Situations We Help With",
         linkLabel: "Learn more",
@@ -194,7 +298,7 @@ const en: Dictionary = {
       eyebrow: "Minor Repairs Before Handover · Barcelona",
       h1: "Want Your Deposit Back?\nMake a Few Small Repairs With Us",
       subheading:
-        "We only fix what actually matters for getting your deposit back — no overpaying for a full renovation. This approach has already helped 100+ tenants get their deposit back in full.",
+        "We only fix what your lease actually requires to get your deposit back. This approach has already helped 100+ tenants get their deposit back in full.",
       metaTitle: "Small Repairs Before You Move Out",
       metaDescription:
         "We only fix what's needed to get your deposit back — no full renovation, no overpaying. Free repair assessment from before/after photos.",
@@ -203,28 +307,32 @@ const en: Dictionary = {
       badges: ["Get your full deposit back", "Tailored to you", "Free photo assessment"],
       howItWorks: {
         heading: "We Know Exactly What Needs Doing",
-        intro: "Four categories that most often decide whether your deposit comes back",
+        intro: "We carry out repairs strictly according to the terms of your lease",
         subheading: "Want to know what your place needs?",
         steps: [
-          {
-            title: "Bulbs & Fittings",
-            body: "We replace burnt-out bulbs and small fittings.",
-            highlight: "A common reason deposits get withheld",
-          },
           {
             title: "Bathroom",
             body: "We remove limescale and clean the grout.",
             highlight: "No full renovation needed",
+            icon: "bathroom",
           },
           {
             title: "Walls",
             body: "We touch up scuffs and marks from fixtures.",
             highlight: "Fast, no extra cost",
+            icon: "walls",
           },
           {
             title: "Floor",
             body: "We spot-fix scratches and chips in the flooring.",
             highlight: "Cheaper than full replacement",
+            icon: "floor",
+          },
+          {
+            title: "Bulbs & Fittings",
+            body: "We replace burnt-out bulbs and small fittings.",
+            highlight: "A common reason deposits get withheld",
+            icon: "bulb",
           },
         ],
       },
@@ -397,7 +505,7 @@ const en: Dictionary = {
       },
       {
         badge: "Wrong Contractor",
-        title: "A regular repair crew doesn't know what landlords actually check at handover",
+        title: "A regular repair crew doesn't know what landlords check at handover — and won't get your full deposit back",
         pains: ["repair"],
       },
       {
@@ -524,8 +632,8 @@ const en: Dictionary = {
           a: "A well-documented condition — before and after the small fixes — clears up most landlord objections on its own.",
         },
         {
-          q: "A minimal budget doesn't mean a lost deposit.",
-          a: "As a repair company, we know exactly what landlords actually check at handover — and we only fix that.",
+          q: "In 90% of cases, landlords don't return the deposit in full.",
+          a: "The reasons are almost always the same and known in advance — you can deal with them before handing back the keys, not after.",
         },
       ],
     },

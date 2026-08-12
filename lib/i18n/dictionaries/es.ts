@@ -24,6 +24,32 @@ const es: Dictionary = {
       heroCta: "Consigue tu revisión de fianza",
       shortLabel: "Fianza",
       badges: ["Recupera tu fianza entera", "Respuesta en 15 minutos", "Gratis, sin compromiso"],
+      howItWorks: {
+        heading: "Cómo funciona",
+        subheading: "Cinco pasos desde el acta de entrada hasta el dinero en tu cuenta — sin sorpresas en ninguno.",
+        steps: [
+          {
+            title: "Recuperamos el acta y el contrato de entrada",
+            body: "Revisamos qué se dejó constancia al principio: daños, inventario, qué dice el contrato sobre pintura, paredes, muebles, limpieza.",
+          },
+          {
+            title: "Determinamos qué hace falta reparar de verdad",
+            body: "Solo lo que no es desgaste normal — nada de más y nada de \"por si acaso\".",
+          },
+          {
+            title: "Reunimos pruebas en la salida",
+            body: "Fotos de cada habitación, vídeo continuo con fecha y lecturas de los contadores, un acta de entrega redactada para protegerte de reclamaciones tres semanas después.",
+          },
+          {
+            title: "Solicitamos la devolución en INCASÒL",
+            body: "Comprobamos que la fianza está realmente registrada ahí y vigilamos el plazo de un mes — si se incumple, reclamamos los intereses legales según el artículo 36 de la LAU.",
+          },
+          {
+            title: "Negociamos si el propietario se retrasa",
+            body: "Si no firma el acta o intenta retener el dinero sin motivo, hablamos con él directamente en tu nombre.",
+          },
+        ],
+      },
       relatedPains: {
         heading: "Otras situaciones en las que ayudamos",
         linkLabel: "Saber más",
@@ -54,6 +80,32 @@ const es: Dictionary = {
       heroCta: "Consigue tu revisión de trámites",
       shortLabel: "Trámites de mudanza",
       badges: ["Todo quedará resuelto", "Tu checklist personal", "Gratis, 15 minutos"],
+      howItWorks: {
+        heading: "Cómo funciona",
+        subheading: "Todo lo que hay que cerrar o trasladar al mudarte, paso a paso — no una lista enorme de golpe.",
+        steps: [
+          {
+            title: "Hacemos tu lista personal de trámites",
+            body: "Qué suscripciones, facturas y direcciones hay que cerrar o trasladar en tu caso concreto — no una checklist genérica.",
+          },
+          {
+            title: "Nos ocupamos de la luz y el gas",
+            body: "Cambio de titular o baja completa — lo que más te convenga según tu contrato con el propietario.",
+          },
+          {
+            title: "Damos de baja agua, internet, móvil, alarma, seguro",
+            body: "Y guardamos los justificantes de baja por si aparece una factura inesperada seis meses después.",
+          },
+          {
+            title: "Actualizamos tu dirección",
+            body: "Banco, seguro, padrón, suscripciones, envíos — para que el correo y los cargos dejen de ir a tu antigua dirección.",
+          },
+          {
+            title: "Comprobamos que todo esté cerrado antes de entregar las llaves",
+            body: "Para que el propietario no tenga excusa formal para retrasar la devolución de la fianza.",
+          },
+        ],
+      },
       relatedPains: {
         heading: "Otras situaciones en las que ayudamos",
         linkLabel: "Saber más",
@@ -84,6 +136,32 @@ const es: Dictionary = {
       heroCta: "Consigue tu revisión de pertenencias",
       shortLabel: "Muebles y pertenencias",
       badges: ["Un plan claro para tus cosas", "Sin gastos de última hora", "Gratis, sin compromiso"],
+      howItWorks: {
+        heading: "Cómo funciona",
+        subheading: "Del inventario al acta final — todo el camino que evita el pánico de la última semana.",
+        steps: [
+          {
+            title: "Hacemos el inventario de tus muebles y pertenencias",
+            body: "Qué te llevas y qué no, antes de que empiece el pánico de la última semana.",
+          },
+          {
+            title: "Buscamos a quién dar lo que no te llevas",
+            body: "Vender, donar o guardar — según tu situación y tus plazos.",
+          },
+          {
+            title: "Organizamos la recogida y el almacenaje si hace falta",
+            body: "Sin prisas y sin pagar de más por la urgencia de última hora.",
+          },
+          {
+            title: "Documentamos el estado de los muebles en foto o vídeo antes de irte",
+            body: "Para que no queden reclamaciones sobre muebles que el contrato incluye como parte del piso.",
+          },
+          {
+            title: "Cotejamos la lista final con el inventario de entrada",
+            body: "Para que no aparezcan cosas \"perdidas\" en la salida que en realidad nunca existieron.",
+          },
+        ],
+      },
       relatedPains: {
         heading: "Otras situaciones en las que ayudamos",
         linkLabel: "Saber más",
@@ -114,6 +192,32 @@ const es: Dictionary = {
       heroCta: "Consigue tu revisión de mudanza urgente",
       shortLabel: "Mudanza urgente",
       badges: ["Evita penalizaciones", "Protege tu fianza", "Respuesta en 15 minutos"],
+      howItWorks: {
+        heading: "Cómo funciona",
+        subheading: "Irte antes de tiempo no tiene por qué costarte dinero. Así lo desglosamos, paso a paso.",
+        steps: [
+          {
+            title: "Revisamos tu contrato y el plazo de preaviso",
+            body: "Cuánto preaviso exige realmente tu contrato concreto — no siempre son 30 días.",
+          },
+          {
+            title: "Preparamos el preaviso por escrito",
+            body: "Email o burofax — avisar de palabra no es suficiente, no cuenta legalmente.",
+          },
+          {
+            title: "Calculamos la compensación real",
+            body: "Por ley suele ser como máximo una mensualidad, no la fianza entera, como muchos temen.",
+          },
+          {
+            title: "Te ayudamos a planificar los plazos ajustados",
+            body: "Qué hacer primero para no perder tiempo ni dinero por el pánico del primer día.",
+          },
+          {
+            title: "Negociamos con el propietario si no está de acuerdo",
+            body: "Si discute las condiciones de la salida anticipada, hablamos con él en tu nombre.",
+          },
+        ],
+      },
       relatedPains: {
         heading: "Otras situaciones en las que ayudamos",
         linkLabel: "Saber más",
@@ -194,7 +298,7 @@ const es: Dictionary = {
       eyebrow: "Pequeñas reparaciones antes de entregar el piso · Barcelona",
       h1: "¿Quieres recuperar tu fianza?\nHaz una pequeña reparación con nosotros",
       subheading:
-        "Reparamos solo lo que realmente hace falta para recuperar tu fianza — sin gastar de más en una reforma completa. Este enfoque ya ha ayudado a más de 100 inquilinos a recuperar su fianza al completo.",
+        "Reparamos solo lo que tu contrato realmente exige para recuperar tu fianza. Este enfoque ya ha ayudado a más de 100 inquilinos a recuperar su fianza al completo.",
       metaTitle: "Pequeñas reparaciones antes de mudarte",
       metaDescription:
         "Reparamos solo lo necesario para recuperar tu fianza — sin reforma completa ni gastos de más. Valoración gratuita con fotos antes/después.",
@@ -203,28 +307,32 @@ const es: Dictionary = {
       badges: ["Recupera tu fianza entera", "A tu medida", "Valoración gratuita con fotos"],
       howItWorks: {
         heading: "Sabemos exactamente qué hay que hacer",
-        intro: "Estas son las cuatro categorías que más deciden si recuperas tu fianza",
+        intro: "Hacemos las reparaciones siguiendo estrictamente las condiciones de tu contrato de alquiler",
         subheading: "¿Quieres saber qué necesita tu piso?",
         steps: [
-          {
-            title: "Bombillas y accesorios",
-            body: "Cambiamos bombillas fundidas y pequeños accesorios.",
-            highlight: "Causa habitual de retención de fianza",
-          },
           {
             title: "Baño",
             body: "Quitamos la cal y limpiamos las juntas.",
             highlight: "Sin reforma completa",
+            icon: "bathroom",
           },
           {
             title: "Paredes",
             body: "Repasamos marcas y desperfectos de fijaciones.",
             highlight: "Rápido y sin gastos de más",
+            icon: "walls",
           },
           {
             title: "Suelo",
             body: "Reparamos arañazos y desperfectos puntuales del suelo.",
             highlight: "Más barato que cambiarlo entero",
+            icon: "floor",
+          },
+          {
+            title: "Bombillas y accesorios",
+            body: "Cambiamos bombillas fundidas y pequeños accesorios.",
+            highlight: "Causa habitual de retención de fianza",
+            icon: "bulb",
           },
         ],
       },
@@ -397,7 +505,7 @@ const es: Dictionary = {
       },
       {
         badge: "El gremio equivocado",
-        title: "Una reforma cualquiera no sabe qué revisa realmente el propietario al entregar el piso",
+        title: "Una reforma cualquiera no sabe qué revisa el propietario al entregar el piso — y no te ayudará a recuperar la fianza entera",
         pains: ["repair"],
       },
       {
@@ -524,8 +632,8 @@ const es: Dictionary = {
           a: "Un estado bien documentado — antes y después de las pequeñas reparaciones — resuelve la mayoría de reclamaciones del propietario por sí solo.",
         },
         {
-          q: "Un presupuesto mínimo no significa perder la fianza.",
-          a: "Como empresa de reformas, sabemos exactamente qué revisa el propietario al entregar el piso — y solo arreglamos eso.",
+          q: "En el 90% de los casos, el propietario no devuelve la fianza completa.",
+          a: "Los motivos son casi siempre los mismos y se conocen de antemano — puedes resolverlos antes de entregar las llaves, no después.",
         },
       ],
     },
