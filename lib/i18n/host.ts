@@ -26,6 +26,10 @@ export interface HostCopy {
     // pains.*.heroCtaMobile in ./types.ts and earnings.ctaMobile above).
     // Falls back to `cta`.
     ctaMobile?: string;
+    // Badge row under the CTA — same construction as HomeCopy.hero.badges
+    // (flex-1 divided row, works for any count), just longer here: six
+    // service labels instead of three outcome badges.
+    badges: string[];
   };
   earnings: {
     heading: string;
@@ -122,9 +126,17 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       eyebrow: "For Property Owners · Barcelona",
       h1: "Rent Out Your Apartment Short-Term.\nWe Handle the Management.",
       subheading:
-        "Hand us the keys — we run the whole process: listing your apartment, guest communication, check-in, cleaning, condition checks and financial reporting.\n\nYou earn income from your property without dealing with the day-to-day of running a rental yourself.",
+        "We run the whole process — you earn income from your property without dealing with the day-to-day of running a rental yourself.",
       cta: "Find Out What My Apartment Could Earn",
       ctaMobile: "Check My Income",
+      badges: [
+        "Listing your apartment",
+        "Guest communication",
+        "Check-in",
+        "Cleaning",
+        "Condition checks",
+        "Financial reporting",
+      ],
     },
     earnings: {
       heading: "Your Apartment Could Earn More",
@@ -317,9 +329,17 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       eyebrow: "Para propietarios · Barcelona",
       h1: "Alquila tu piso por días.\nNosotros nos encargamos de la gestión.",
       subheading:
-        "Danos las llaves — organizamos todo el proceso: publicación del piso, comunicación con los huéspedes, check-in, limpieza, control del estado y reportes financieros.\n\nObtienes ingresos de tu propiedad sin tener que ocuparte tú mismo del día a día del alquiler.",
+        "Organizamos todo el proceso — obtienes ingresos de tu propiedad sin tener que ocuparte tú mismo del día a día del alquiler.",
       cta: "Saber cuánto puede generar mi piso",
       ctaMobile: "Ver mi ingreso",
+      badges: [
+        "Publicación del piso",
+        "Atención a los huéspedes",
+        "Entrada",
+        "Limpieza",
+        "Control del estado",
+        "Informes financieros",
+      ],
     },
     earnings: {
       heading: "Tu piso puede generar más",
@@ -512,9 +532,17 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       eyebrow: "Для владельцев квартир · Барселона",
       h1: "Сдавайте квартиру посуточно.\nУправление возьмём на себя.",
       subheading:
-        "Передайте нам ключи — мы организуем весь процесс: размещение квартиры, работу с гостями, заселение, уборку, контроль состояния и финансовую отчётность.\n\nВы получаете доход от квартиры без необходимости самостоятельно заниматься ежедневными вопросами аренды.",
+        "Мы организуем весь процесс — вы получаете доход от квартиры без необходимости самостоятельно заниматься ежедневными вопросами аренды.",
       cta: "Узнать, сколько может приносить моя квартира",
       ctaMobile: "Узнать доход",
+      badges: [
+        "Размещение квартиры",
+        "Работа с гостями",
+        "Заселение",
+        "Уборка",
+        "Контроль состояния",
+        "Финансовая отчётность",
+      ],
     },
     earnings: {
       heading: "Ваша квартира может зарабатывать больше",
