@@ -6,6 +6,7 @@ import PillButton from "../PillButton";
 import { ChevronDownIcon } from "../icons";
 import { PAIN_ICONS, PAIN_SLUGS } from "@/lib/pains";
 import type { HomeCopy } from "@/lib/i18n/home";
+import { BOOKING_URL } from "@/lib/config";
 
 type Props = {
   copy: HomeCopy;
@@ -120,7 +121,7 @@ export default function HomeIncluded({ copy }: Props) {
                 <p className="text-heading-sm text-ink">{included.ctaCard.heading}</p>
                 <p className="mt-3 text-caption text-slate">{included.ctaCard.body}</p>
               </div>
-              <PillButton href="#quiz" className="mt-8 w-fit">
+              <PillButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-8 w-fit">
                 {included.ctaCard.button}
               </PillButton>
             </div>

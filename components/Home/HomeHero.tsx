@@ -4,6 +4,7 @@ import HeroGlow from "./HeroGlow";
 import RecedingTitle from "./RecedingTitle";
 import FadeOnScroll from "./FadeOnScroll";
 import type { HomeCopy } from "@/lib/i18n/home";
+import { BOOKING_URL } from "@/lib/config";
 
 type Props = {
   copy: HomeCopy;
@@ -99,7 +100,13 @@ export default function HomeHero({ copy }: Props) {
                 <PillButton href="#situations" className="w-full sm:w-auto">
                   {copy.hero.cta}
                 </PillButton>
-                <PillButton href="#quiz" variant="ghost" className="w-full sm:w-auto">
+                <PillButton
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="ghost"
+                  className="w-full sm:w-auto"
+                >
                   {copy.situations.whatWeDo.cta}
                 </PillButton>
               </div>

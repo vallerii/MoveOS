@@ -2,6 +2,7 @@ import Reveal from "./Reveal";
 import Glow from "./Glow";
 import RepairIllustration from "./RepairIllustration";
 import PillButton from "./PillButton";
+import { BOOKING_URL } from "@/lib/config";
 
 type Step = {
   title: string;
@@ -76,7 +77,7 @@ export default function RepairShowcase({ heading, intro, steps, ctaText, ctaLabe
         <Reveal delay={250}>
           <div className="mt-16 flex flex-col items-start gap-6 border-t border-hairline pt-12 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-xl font-display text-heading text-ink">{ctaText}</p>
-            <PillButton href="#quiz" className="shrink-0">
+            <PillButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="shrink-0">
               {ctaLabel}
             </PillButton>
           </div>

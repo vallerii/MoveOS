@@ -39,10 +39,10 @@ export default async function Home({ locale, dict }: Props) {
       <HomeWhyUs copy={copy} />
       <FAQ {...copy.faq} />
 
-      {/* QUIZ — the same generic city/timeframe quiz used at the bottom of
-          every pain page (QuizWizard doesn't actually branch on `pain`, so
-          it works here as-is): a real path to a result for anyone who
-          scrolls this far without picking a card above. */}
+      {/* Closing contact block — the same static booking card every pain
+          page ends on now (see components/Quiz/QuizSection.tsx): a real
+          path to booking a call for anyone who scrolls this far without
+          picking a card above. */}
       <QuizSection locale={locale} dict={dict} />
     </main>
   );

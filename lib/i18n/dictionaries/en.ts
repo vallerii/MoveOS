@@ -11,6 +11,7 @@ const en: Dictionary = {
   },
   nav: {
     bookButton: "Free Move-Out Review",
+    callButton: "Book a Call",
   },
   pains: {
     deposit: {
@@ -670,6 +671,9 @@ const en: Dictionary = {
     heading: "Ready to move out with confidence?",
     subheading: "Answer a few quick questions — it takes less than a minute.",
   },
+  testimonial: {
+    heading: "What Tenants Say",
+  },
   footer: {
     tagline: "MoveOS — calm, informed move-outs in Barcelona.",
     privacy: "Privacy Policy",
@@ -733,6 +737,7 @@ const en: Dictionary = {
       bookingButton: "Pick a time",
       emailAltText: "Or email us directly",
       checklistHeading: "Your full move-out checklist",
+      cityNote: "We're currently only operating in Barcelona.",
     },
     notQualified: {
       badge: "Thanks for sharing",

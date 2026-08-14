@@ -27,8 +27,12 @@ export default function ArrowLink({ href, external = false, className = "", chil
   );
 
   if (external) {
+    // The only current caller (HomeSituations' "#quiz" link, now BOOKING_URL)
+    // points off-site, so external always opens in a new tab with noopener —
+    // there's no in-site use of `external` left to make that the wrong
+    // default for.
     return (
-      <a href={href} className={classes}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
         {content}
       </a>
     );

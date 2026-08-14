@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 import { PAIN_SLUGS } from "@/lib/pains";
 import { CONTACT_EMAIL } from "@/lib/config";
+import { HOST_FIRST_TIME_LOCALES } from "@/lib/i18n/hostFirstTime";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 type Props = {
@@ -17,7 +18,18 @@ type Props = {
 // local map here instead of widening the shared type for one component.
 const EXTRA: Record<
   Locale,
-  { linksHeading: string; companyHeading: string; contact: string; home: string; bottomNote: string; hostLink: string }
+  {
+    linksHeading: string;
+    companyHeading: string;
+    contact: string;
+    home: string;
+    bottomNote: string;
+    hostLink: string;
+    // Only rendered for locales in HOST_FIRST_TIME_LOCALES (see below) —
+    // kept here rather than made optional so every locale has ready copy
+    // the moment it's translated.
+    hostFirstTimeLink: string;
+  }
 > = {
   en: {
     linksHeading: "Move-Out Help",
@@ -26,6 +38,7 @@ const EXTRA: Record<
     home: "Home",
     bottomNote: "Free for every tenant.",
     hostLink: "For Property Owners",
+    hostFirstTimeLink: "First-Time Landlord",
   },
   es: {
     linksHeading: "Ayuda con tu Mudanza",
@@ -34,6 +47,7 @@ const EXTRA: Record<
     home: "Inicio",
     bottomNote: "Gratis para cada inquilino.",
     hostLink: "Para propietarios",
+    hostFirstTimeLink: "Primer alquiler",
   },
   ru: {
     linksHeading: "Помощь с выездом",
@@ -42,6 +56,7 @@ const EXTRA: Record<
     home: "Главная",
     bottomNote: "Бесплатно для каждого арендатора.",
     hostLink: "Владельцам квартир",
+    hostFirstTimeLink: "Первая сдача",
   },
 };
 
@@ -104,11 +119,22 @@ export default function Footer({ locale, dict }: Props) {
               </Link>
               <Link
                 href={`/${locale}/host`}
-                aria-current={currentSlug === "host" ? "page" : undefined}
-                className={`transition-colors ${currentSlug === "host" ? "text-ink" : "hover:text-ink"}`}
+                aria-current={pathname === `/${locale}/host` ? "page" : undefined}
+                className={`transition-colors ${pathname === `/${locale}/host` ? "text-ink" : "hover:text-ink"}`}
               >
                 {extra.hostLink}
               </Link>
+              {HOST_FIRST_TIME_LOCALES.includes(locale) && (
+                <Link
+                  href={`/${locale}/host/first-time`}
+                  aria-current={pathname === `/${locale}/host/first-time` ? "page" : undefined}
+                  className={`transition-colors ${
+                    pathname === `/${locale}/host/first-time` ? "text-ink" : "hover:text-ink"
+                  }`}
+                >
+                  {extra.hostFirstTimeLink}
+                </Link>
+              )}
               <Link href={`/${locale}/privacy`} className="transition-colors hover:text-ink">
                 {dict.footer.privacy}
               </Link>

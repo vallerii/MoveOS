@@ -6,6 +6,7 @@ import { ChecklistArtifact } from "../Artifacts";
 import { PAIN_ICONS, PAIN_SLUGS } from "@/lib/pains";
 import type { HomeCopy } from "@/lib/i18n/home";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
+import { BOOKING_URL } from "@/lib/config";
 
 type Props = {
   locale: Locale;
@@ -76,7 +77,7 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
                 <h3 className="font-display text-heading text-ink">{whatWeDo.heading}</h3>
                 <p className="mt-5 text-caption text-slate">{whatWeDo.body}</p>
                 <div className="mt-8">
-                  <ArrowLink href="#quiz" external>
+                  <ArrowLink href={BOOKING_URL} external>
                     {whatWeDo.cta}
                   </ArrowLink>
                 </div>

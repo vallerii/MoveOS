@@ -11,6 +11,7 @@ const ru: Dictionary = {
   },
   nav: {
     bookButton: "Бесплатная проверка выезда",
+    callButton: "Забронировать звонок",
   },
   pains: {
     deposit: {
@@ -674,6 +675,9 @@ const ru: Dictionary = {
     heading: "Готовы съехать спокойно и уверенно?",
     subheading: "Ответьте на несколько коротких вопросов — это займёт меньше минуты.",
   },
+  testimonial: {
+    heading: "Что говорят арендаторы",
+  },
   footer: {
     tagline: "MoveOS — спокойный и осознанный выезд в Барселоне.",
     privacy: "Политика конфиденциальности",
@@ -737,6 +741,7 @@ const ru: Dictionary = {
       bookingButton: "Выбрать время",
       emailAltText: "Или напишите нам на почту",
       checklistHeading: "Ваш полный чек-лист по выезду",
+      cityNote: "Пока мы работаем только в Барселоне.",
     },
     notQualified: {
       badge: "Спасибо, что рассказали",

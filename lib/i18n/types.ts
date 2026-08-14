@@ -26,6 +26,12 @@ export interface Dictionary {
   languageNames: Record<Locale, string>;
   nav: {
     bookButton: string;
+    /** The header's actual booking CTA — opens BOOKING_URL directly (see
+     * lib/config.ts), distinct from bookButton, which is reused as the
+     * per-pain hero's secondary "#didyouknow" scroll CTA and would read
+     * wrong ("Book a Call" pointing at a facts section, not a calendar)
+     * if the two were merged. */
+    callButton: string;
   };
   pains: Record<
     PainSlug,
@@ -131,6 +137,16 @@ export interface Dictionary {
     heading: string;
     subheading: string;
   };
+  /** Heading for the tenant testimonial block on each pain page (see
+   * components/PainTestimonial.tsx) — one shared line, not per-pain, since
+   * the quote beside it already carries the specific situation. The quote
+   * itself isn't authored here: it's reused from HomeCopy.situations.quotes
+   * (lib/i18n/home.ts), index-matched to PAIN_SLUGS, so the same six
+   * illustrative quotes the homepage carousel cycles through don't get a
+   * second, easy-to-drift-out-of-sync copy in this dictionary too. */
+  testimonial: {
+    heading: string;
+  };
   footer: {
     tagline: string;
     privacy: string;
@@ -171,6 +187,10 @@ export interface Dictionary {
       bookingButton: string;
       emailAltText: string;
       checklistHeading: string;
+      /** "We only work in Barcelona" line — shown on the static contact
+       * block every page now ends on (see components/Quiz/QuizSection.tsx),
+       * which no longer runs a city-qualifying quiz first. */
+      cityNote: string;
     };
     notQualified: {
       badge: string;

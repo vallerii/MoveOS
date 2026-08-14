@@ -5,6 +5,7 @@ import HeroGlow from "./Home/HeroGlow";
 import RecedingTitle from "./Home/RecedingTitle";
 import FadeOnScroll from "./Home/FadeOnScroll";
 import type { Dictionary, Locale, PainSlug } from "@/lib/i18n/types";
+import { BOOKING_URL } from "@/lib/config";
 
 type Props = {
   locale: Locale;
@@ -92,7 +93,13 @@ export default function Hero({ pain, dict }: Props) {
                   accessible name on the link itself fixes that: assistive
                   tech gets the full label once, sighted users still get the
                   responsive one. */}
-              <PillButton href="#quiz" aria-label={copy.heroCta} className="w-full sm:w-auto">
+              <PillButton
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={copy.heroCta}
+                className="w-full sm:w-auto"
+              >
                 <span aria-hidden className="sm:!hidden">
                   {copy.heroCtaMobile ?? copy.heroCta}
                 </span>

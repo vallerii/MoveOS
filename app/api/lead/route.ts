@@ -32,6 +32,10 @@ export async function POST(req: NextRequest) {
     propertyAddress?: string;
     rooms?: string;
     area?: string;
+    // First-time-landlord lead-capture field — only sent by
+    // /[locale]/host/first-time's form (source: "host-first-time-lead-form").
+    // Optional for the same reason as propertyAddress/rooms/area above.
+    plannedDate?: string;
   };
 
   const name = String(data?.name ?? "").trim().slice(0, 200);
@@ -59,6 +63,7 @@ export async function POST(req: NextRequest) {
     propertyAddress: data?.propertyAddress ?? undefined,
     rooms: data?.rooms ?? undefined,
     area: data?.area ?? undefined,
+    plannedDate: data?.plannedDate ?? undefined,
     page: req.headers.get("referer") ?? "unknown",
     userAgent: req.headers.get("user-agent") ?? "unknown",
     createdAt: new Date().toISOString(),

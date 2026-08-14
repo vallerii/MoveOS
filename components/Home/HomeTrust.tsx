@@ -5,6 +5,7 @@ import { MagnifyingGlassIcon } from "../icons";
 import type { HomeCopy } from "@/lib/i18n/home";
 import type { Locale } from "@/lib/i18n/types";
 import type { ArticleSummary } from "@/lib/datocms";
+import { BOOKING_URL } from "@/lib/config";
 
 type Props = {
   copy: HomeCopy;
@@ -78,8 +79,10 @@ export default function HomeTrust({ copy, locale, articles }: Props) {
           </div>
 
           <Reveal delay={articles.length * 80} direction="right" className="lg:col-span-3">
-            <Link
-              href="#quiz"
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="card-peach group relative flex flex-col justify-between overflow-hidden transition-opacity hover:opacity-90"
             >
               {/* The one icon in this section, and it sits in the background
@@ -97,7 +100,7 @@ export default function HomeTrust({ copy, locale, articles }: Props) {
               <p className="relative z-10 mt-28 font-display text-heading text-sienna">
                 {copy.trust.ctaCard.text}
               </p>
-            </Link>
+            </a>
           </Reveal>
         </div>
       </div>

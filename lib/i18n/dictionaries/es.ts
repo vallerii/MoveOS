@@ -11,6 +11,7 @@ const es: Dictionary = {
   },
   nav: {
     bookButton: "Revisión gratuita de tu mudanza",
+    callButton: "Reservar una llamada",
   },
   pains: {
     deposit: {
@@ -665,6 +666,9 @@ const es: Dictionary = {
     heading: "¿Listo para mudarte con confianza?",
     subheading: "Responde unas preguntas rápidas — te llevará menos de un minuto.",
   },
+  testimonial: {
+    heading: "Qué dicen los inquilinos",
+  },
   footer: {
     tagline: "MoveOS — mudanzas tranquilas e informadas en Barcelona.",
     privacy: "Política de privacidad",
@@ -728,6 +732,7 @@ const es: Dictionary = {
       bookingButton: "Elegir horario",
       emailAltText: "O escríbenos por email",
       checklistHeading: "Tu checklist completo de mudanza",
+      cityNote: "De momento solo operamos en Barcelona.",
     },
     notQualified: {
       badge: "Gracias por contarnos",

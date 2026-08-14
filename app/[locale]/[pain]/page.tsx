@@ -11,6 +11,7 @@ import FurnitureNotes from "@/components/FurnitureNotes";
 import RelatedPains from "@/components/RelatedPains";
 import FAQ from "@/components/FAQ";
 import WhyUs from "@/components/WhyUs";
+import PainTestimonial from "@/components/PainTestimonial";
 import QuizSection from "@/components/Quiz/QuizSection";
 
 type Params = { locale: string; pain: string };
@@ -94,10 +95,11 @@ export default function PainPage({ params }: { params: Params }) {
       {secondaryHowItWorks && <HowItWorks pain={pain} {...secondaryHowItWorks} />}
       {furnitureNotes && <FurnitureNotes {...furnitureNotes} />}
       <WhyUs dict={dict} pain={pain} />
+      <PainTestimonial dict={dict} locale={locale} pain={pain} />
       {/* Objection-handling, right before the ask — last chance to resolve
-          cost/timeline/"what if I disagree" doubts before the quiz. */}
+          cost/timeline/"what if I disagree" doubts before the booking card. */}
       {faq && <FAQ {...faq} />}
-      <QuizSection locale={locale} dict={dict} pain={pain} />
+      <QuizSection locale={locale} dict={dict} />
     </main>
   );
 }

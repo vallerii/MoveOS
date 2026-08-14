@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { PAIN_SLUGS } from "@/lib/i18n/types";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
+import { HOST_FIRST_TIME_LOCALES } from "@/lib/i18n/hostFirstTime";
+import { BOOKING_URL } from "@/lib/config";
 import { ChevronDownIcon } from "./icons";
 import LanguageSwitcher from "./LanguageSwitcher";
 import PillButton from "./PillButton";
@@ -16,20 +18,26 @@ type Props = {
 
 // Short label for the click-to-toggle nav trigger (see NOTE below) — not
 // part of the shared Dictionary since nothing else in the app needs it.
+// Named for the audience (tenants) rather than the mechanism ("Topics") to
+// read as the counterpart to HOST_MENU.trigger ("Владельцам") below.
 const MORE_LABEL: Record<Locale, string> = {
-  en: "Topics",
-  es: "Temas",
-  ru: "Услуги",
+  en: "For Tenants",
+  es: "Inquilinos",
+  ru: "Арендаторам",
 };
 
-// Link to /[locale]/host — a different audience (landlords, not tenants)
-// from the six PAIN_SLUGS links above, so it's kept as its own item rather
-// than folded into that list or its dropdown. Same "local map, not shared
-// Dictionary" reasoning as MORE_LABEL.
-const HOST_NAV_LABEL: Record<Locale, string> = {
-  en: "For Owners",
-  es: "Propietarios",
-  ru: "Владельцам",
+// Владельцам — a different audience (landlords, not tenants) from the six
+// PAIN_SLUGS links above, so it's kept as its own dropdown rather than
+// folded into that list. Two destinations now that there are two landlord
+// landing pages: the original short-term-rental management page
+// (/[locale]/host) and the first-time-landlord page
+// (/[locale]/host/first-time, see lib/i18n/hostFirstTime.ts). `firstTime`
+// is only ever shown for locales in HOST_FIRST_TIME_LOCALES — see hostLinks
+// below — so the en/es entries here are ready copy, not yet linked to.
+const HOST_MENU: Record<Locale, { trigger: string; shortTerm: string; firstTime: string }> = {
+  en: { trigger: "For Owners", shortTerm: "Short-Term Rental", firstTime: "First-Time Landlord" },
+  es: { trigger: "Propietarios", shortTerm: "Alquiler de temporada", firstTime: "Primer alquiler" },
+  ru: { trigger: "Владельцам", shortTerm: "Посуточно", firstTime: "Первая сдача" },
 };
 
 function MenuIcon({ className = "h-5 w-5" }: { className?: string }) {
@@ -58,12 +66,14 @@ function CloseIcon({ className = "h-5 w-5" }: { className?: string }) {
  * rule under the header would be the loudest hairline on the page.
  *
  * NOTE on breakpoints — two tiers:
- *   - >= lg : a single "Topics ▾" trigger that opens a click-to-toggle
- *     dropdown (not hover — was hover-only before, but a row of six links
- *     never fitting on one line at any width made "hover to discover them"
- *     the wrong default; a click trigger is also what mobile needs anyway,
- *     so this collapses what used to be three tiers into two consistent
- *     ones). Closes on an outside click, Escape, or picking a link.
+ *   - >= lg : two "Label ▾" triggers ("Арендаторам" for the six PAIN_SLUGS
+ *     links, "Владельцам" for the two landlord landing pages) that open a
+ *     click-to-toggle dropdown each (not hover — was hover-only before, but
+ *     a row of six links never fitting on one line at any width made "hover
+ *     to discover them" the wrong default; a click trigger is also what
+ *     mobile needs anyway, so this collapses what used to be three tiers
+ *     into two consistent ones). Each closes on an outside click, Escape,
+ *     or picking a link; opening one closes the other.
  *   - < lg  : burger menu
  * The language switcher lives in the footer, and in the burger panel below lg.
  *
@@ -89,11 +99,11 @@ export default function Header({ locale, dict }: Props) {
   const pathname = usePathname() || `/${locale}`;
   const [open, setOpen] = useState(false);
   const [topicsOpen, setTopicsOpen] = useState(false);
+  const [hostOpen, setHostOpen] = useState(false);
   const topicsRef = useRef<HTMLDivElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
 
-  const isHome = pathname === `/${locale}`;
   const currentSlug = pathname.split("/")[2];
-  const ctaHref = isHome ? "#situations" : "#quiz";
 
   const links = PAIN_SLUGS.map((slug) => ({
     slug,
@@ -102,16 +112,33 @@ export default function Header({ locale, dict }: Props) {
     active: slug === currentSlug,
   }));
 
-  // Click-to-toggle dropdown: closes on an outside click or Escape, since
-  // it no longer has hover's implicit "mouse left the area" dismissal.
+  const hostMenu = HOST_MENU[locale];
+  const hostLinks = [
+    { href: `/${locale}/host`, label: hostMenu.shortTerm, active: pathname === `/${locale}/host` },
+    // Only linked for locales that actually have a translated first-time
+    // page — see the comment on HOST_MENU above.
+    ...(HOST_FIRST_TIME_LOCALES.includes(locale)
+      ? [{ href: `/${locale}/host/first-time`, label: hostMenu.firstTime, active: pathname === `/${locale}/host/first-time` }]
+      : []),
+  ];
+  const isHostSection = hostLinks.some((l) => l.active);
+
+  // Click-to-toggle dropdowns: close on an outside click or Escape, since
+  // neither has hover's implicit "mouse left the area" dismissal. One
+  // effect covers both triggers — opening either closes the other.
   useEffect(() => {
-    if (!topicsOpen) return;
+    if (!topicsOpen && !hostOpen) return;
 
     function handlePointerDown(e: MouseEvent) {
-      if (topicsRef.current && !topicsRef.current.contains(e.target as Node)) setTopicsOpen(false);
+      const target = e.target as Node;
+      if (topicsRef.current && !topicsRef.current.contains(target)) setTopicsOpen(false);
+      if (hostRef.current && !hostRef.current.contains(target)) setHostOpen(false);
     }
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setTopicsOpen(false);
+      if (e.key === "Escape") {
+        setTopicsOpen(false);
+        setHostOpen(false);
+      }
     }
 
     document.addEventListener("mousedown", handlePointerDown);
@@ -120,7 +147,7 @@ export default function Header({ locale, dict }: Props) {
       document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [topicsOpen]);
+  }, [topicsOpen, hostOpen]);
 
   return (
     <header className="sticky top-0 z-50 bg-paper/80 backdrop-blur-md">
@@ -129,7 +156,7 @@ export default function Header({ locale, dict }: Props) {
           MoveOS
         </Link>
 
-        {/* Услуги + Владельцам, grouped and truly centred (absolute +
+        {/* Арендаторам + Владельцам, grouped and truly centred (absolute +
             -translate-x-1/2, not justify-between's uneven middle-child
             spacing — the logo and the CTA/burger group aren't the same
             width, so relying on flex spacing alone put this pair off-centre
@@ -168,14 +195,50 @@ export default function Header({ locale, dict }: Props) {
             )}
           </div>
 
-          <Link href={`/${locale}/host`} className="whitespace-nowrap text-base text-slate transition-colors hover:text-ink">
-            {HOST_NAV_LABEL[locale]}
-          </Link>
+          <div ref={hostRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setHostOpen((v) => !v)}
+              aria-haspopup="true"
+              aria-expanded={hostOpen}
+              className={`flex items-center gap-1.5 whitespace-nowrap text-base transition-colors hover:text-ink ${
+                isHostSection ? "text-ink" : "text-slate"
+              }`}
+            >
+              {hostMenu.trigger}
+              <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${hostOpen ? "rotate-180" : ""}`} />
+            </button>
+            {hostOpen && (
+              <div className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4">
+                <div className="rounded-card-sm bg-paper p-2 shadow-popover">
+                  {hostLinks.map((l) => (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      onClick={() => setHostOpen(false)}
+                      aria-current={l.active ? "page" : undefined}
+                      className={`block rounded-xl px-3.5 py-2.5 text-base transition-colors ${
+                        l.active ? "bg-mist text-ink" : "text-slate hover:bg-fog hover:text-ink"
+                      }`}
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <PillButton href={ctaHref} variant="filled" className="u-hidden !py-2.5 !text-[15px] lg:inline-flex">
-            {dict.nav.bookButton}
+          <PillButton
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="filled"
+            className="u-hidden !py-2.5 !text-[15px] lg:inline-flex"
+          >
+            {dict.nav.callButton}
           </PillButton>
 
           <button
@@ -208,21 +271,39 @@ export default function Header({ locale, dict }: Props) {
                   {l.label}
                 </Link>
               ))}
-              <Link
-                href={`/${locale}/host`}
-                onClick={() => setOpen(false)}
-                className="rounded-xl px-3.5 py-3 text-base text-slate transition-colors hover:bg-fog hover:text-ink"
-              >
-                {HOST_NAV_LABEL[locale]}
-              </Link>
+              {/* Owner links follow the tenant links in the same flat list —
+                  a nested accordion inside the already-scrollable mobile
+                  panel isn't worth the interaction cost for two extra rows.
+                  hostMenu.trigger acts as a plain-text section label since
+                  there's no click-to-toggle affordance needed here. */}
+              <p className="mt-5 px-3.5 text-meta text-ash">{hostMenu.trigger}</p>
+              {hostLinks.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={l.active ? "page" : undefined}
+                  className={`rounded-xl px-3.5 py-3 text-base transition-colors ${
+                    l.active ? "bg-mist text-ink" : "text-slate hover:bg-fog hover:text-ink"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              ))}
             </nav>
 
             <div className="mt-5 border-t border-hairline pt-5">
               <LanguageSwitcher locale={locale} languageNames={dict.languageNames} />
             </div>
 
-            <PillButton href={ctaHref} onClick={() => setOpen(false)} className="mt-4 flex w-full justify-center">
-              {dict.nav.bookButton}
+            <PillButton
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-4 flex w-full justify-center"
+            >
+              {dict.nav.callButton}
             </PillButton>
           </div>
         )}

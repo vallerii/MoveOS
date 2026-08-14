@@ -19,6 +19,11 @@ type Props = {
   // don't need a second CTA on top of the page's own hero/quiz asks.
   cta?: string;
   ctaHref?: string;
+  // Passed straight to the PillButton's <a> — undefined for every current
+  // caller except /host/first-time, which points ctaHref at BOOKING_URL
+  // (an external calendar link) rather than an in-page anchor.
+  ctaTarget?: string;
+  ctaRel?: string;
 };
 
 /**
@@ -31,7 +36,16 @@ type Props = {
  * everywhere else. Icons were removed with the accent palette they depended
  * on; the ordinal already carries the sequence.
  */
-export default function HowItWorks({ heading, subheading, steps, startIndex = 1, cta, ctaHref = "#calculate" }: Props) {
+export default function HowItWorks({
+  heading,
+  subheading,
+  steps,
+  startIndex = 1,
+  cta,
+  ctaHref = "#calculate",
+  ctaTarget,
+  ctaRel,
+}: Props) {
   return (
     <section className="py-20 sm:py-section">
       <div className="container-page">
@@ -57,7 +71,9 @@ export default function HowItWorks({ heading, subheading, steps, startIndex = 1,
         {cta && (
           <Reveal delay={steps.length * 80}>
             <div className="mt-16 flex justify-center">
-              <PillButton href={ctaHref}>{cta}</PillButton>
+              <PillButton href={ctaHref} target={ctaTarget} rel={ctaRel}>
+                {cta}
+              </PillButton>
             </div>
           </Reveal>
         )}
