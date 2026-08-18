@@ -29,6 +29,14 @@ const EXTRA: Record<
     // kept here rather than made optional so every locale has ready copy
     // the moment it's translated.
     hostFirstTimeLink: string;
+    // The two checklist variants (dict.checklist.qualified / .generic) —
+    // moved here from the closing QuizSection booking card, which used to
+    // link the "qualified" one only. This is now their only in-app entry
+    // point, so both need a place, and a short label distinguishing them
+    // (view/download action words come from dict.results, reused as-is).
+    checklistsHeading: string;
+    checklistQualified: string;
+    checklistGeneric: string;
   }
 > = {
   en: {
@@ -39,6 +47,9 @@ const EXTRA: Record<
     bottomNote: "Free for every tenant.",
     hostLink: "For Property Owners",
     hostFirstTimeLink: "First-Time Landlord",
+    checklistsHeading: "Move-out checklists",
+    checklistQualified: "Barcelona",
+    checklistGeneric: "Spain (general)",
   },
   es: {
     linksHeading: "Ayuda con tu Mudanza",
@@ -48,6 +59,9 @@ const EXTRA: Record<
     bottomNote: "Gratis para cada inquilino.",
     hostLink: "Para propietarios",
     hostFirstTimeLink: "Primer alquiler",
+    checklistsHeading: "Checklists de mudanza",
+    checklistQualified: "Barcelona",
+    checklistGeneric: "España (general)",
   },
   ru: {
     linksHeading: "Помощь с выездом",
@@ -57,6 +71,9 @@ const EXTRA: Record<
     bottomNote: "Бесплатно для каждого арендатора.",
     hostLink: "Владельцам квартир",
     hostFirstTimeLink: "Первая сдача",
+    checklistsHeading: "Чек-листы по выезду",
+    checklistQualified: "Барселона",
+    checklistGeneric: "Испания (общий)",
   },
 };
 
@@ -145,7 +162,44 @@ export default function Footer({ locale, dict }: Props) {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-hairline pt-8 text-meta text-ash sm:flex-row">
+        {/* The two checklist variants' only in-app entry point now that the
+            QuizSection booking card no longer links them directly — kept to
+            one quiet line rather than a fifth grid column, matching this
+            footer's "no decoration, plain type" brief. */}
+        <div className="mt-16 border-t border-hairline pt-8 text-meta text-ash">
+          {extra.checklistsHeading}:{" "}
+          <Link
+            href={`/${locale}/checklist/qualified`}
+            className="underline underline-offset-4 hover:text-ink"
+          >
+            {extra.checklistQualified} — {dict.results.viewChecklistButton}
+          </Link>{" "}
+          ·{" "}
+          <a
+            href={`/checklists/${locale}/qualified.pdf`}
+            download
+            className="underline underline-offset-4 hover:text-ink"
+          >
+            {dict.results.downloadPdf}
+          </a>{" "}
+          ·{" "}
+          <Link
+            href={`/${locale}/checklist/generic`}
+            className="underline underline-offset-4 hover:text-ink"
+          >
+            {extra.checklistGeneric} — {dict.results.viewChecklistButton}
+          </Link>{" "}
+          ·{" "}
+          <a
+            href={`/checklists/${locale}/generic.pdf`}
+            download
+            className="underline underline-offset-4 hover:text-ink"
+          >
+            {dict.results.downloadPdf}
+          </a>
+        </div>
+
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-hairline pt-8 text-meta text-ash sm:flex-row">
           <span>© {new Date().getFullYear()} MoveOS</span>
           <span>{extra.bottomNote}</span>
         </div>

@@ -102,12 +102,42 @@ export interface Dictionary {
         linkLabel: string;
         items: { pain: PainSlug; teaser: string }[];
       };
-      // Optional — objection-handling FAQ shown right before the quiz. Only
-      // populated for repair.
+      // Optional — objection-handling FAQ shown right before the quiz.
+      // Populated for every pain page (each with its own pain-specific
+      // questions, written to continue that page's funnel into the booking
+      // ask right below it) — technically still optional since /host and
+      // /host/first-time have no PainSlug at all.
       faq?: {
         heading: string;
         subheading?: string;
         items: { q: string; a: string }[];
+      };
+      // Optional — the buyout page's "estimate your bonus" mini-calculator
+      // (components/Quiz/BuyoutCalculator.tsx): three quick property
+      // questions (district, size, how long ago the lease was signed)
+      // resolve to an illustrative bonus range, capped at the 2000€ ceiling
+      // quoted elsewhere on this page. It's a teaser, not a quote — the
+      // real number still only comes from the free call once we've seen the
+      // actual lease (see howItWorks step 4, "Exact numbers"). Only
+      // populated for buyout.
+      //
+      // `district.options`, `size.options` and `contractAge.options` are
+      // ordered arrays — the calculator indexes into them by position to
+      // look up its internal rate/gap constants, so the option order must
+      // stay identical across all three locale files (see the constants at
+      // the top of BuyoutCalculator.tsx).
+      calculator?: {
+        heading: string;
+        subheading: string;
+        district: { question: string; options: string[] };
+        size: { question: string; options: string[] };
+        contractAge: { question: string; options: string[] };
+        resultHeading: string;
+        /** Template with {min} and {max} placeholders (see formatTemplate). */
+        resultBody: string;
+        /** Shown under the result — this is an estimate, not a quote. */
+        disclaimer: string;
+        ctaLabel: string;
       };
     }
   >;
@@ -137,15 +167,21 @@ export interface Dictionary {
     heading: string;
     subheading: string;
   };
-  /** Heading for the tenant testimonial block on each pain page (see
-   * components/PainTestimonial.tsx) — one shared line, not per-pain, since
-   * the quote beside it already carries the specific situation. The quote
-   * itself isn't authored here: it's reused from HomeCopy.situations.quotes
-   * (lib/i18n/home.ts), index-matched to PAIN_SLUGS, so the same six
-   * illustrative quotes the homepage carousel cycles through don't get a
-   * second, easy-to-drift-out-of-sync copy in this dictionary too. */
+  /** Tenant testimonial block on each pain page (see
+   * components/PainTestimonial.tsx) — one shared heading, not per-pain,
+   * since the quotes beside it already carry the specific situation.
+   *
+   * `items` is optional and per-pain: 2-3 short illustrative quotes
+   * (hook/quote/name, same shape as HostTestimonials'/
+   * HostFirstTimeTestimonials' cards) rendered as a static card row once a
+   * locale has them authored. Left undefined for a pain/locale that doesn't
+   * have dedicated quotes yet, in which case PainTestimonial falls back to
+   * the single shared quote from HomeCopy.situations.quotes
+   * (lib/i18n/home.ts) it always used before — so EN/ES keep working
+   * unchanged until they get their own set. */
   testimonial: {
     heading: string;
+    items?: Record<PainSlug, { hook: string; quote: string; name: string }[]>;
   };
   footer: {
     tagline: string;

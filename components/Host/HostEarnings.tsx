@@ -41,7 +41,7 @@ export default function HostEarnings({ heading, body, listHeading, items, cta, c
                   </li>
                 ))}
               </ul>
-              <PillButton href="#calculate" aria-label={cta} className="mt-8 w-full sm:w-auto">
+              <PillButton href="#calculate" aria-label={cta} variant="ghost" className="mt-8 w-full">
                 <span aria-hidden className="sm:!hidden">
                   {ctaMobile ?? cta}
                 </span>

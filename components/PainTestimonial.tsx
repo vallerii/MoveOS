@@ -11,28 +11,56 @@ type Props = {
 };
 
 /**
- * Tenant testimonial block for the pain pages — same shape as
- * /host/first-time's HostFirstTimeTestimonials (heading beside a
- * PainQuotesCarousel card, not a title-then-grid stack), reused here for
- * the tenant side rather than rebuilt: same component, same card, same
- * dot-pagination mechanics.
+ * Tenant testimonial block for the pain pages.
  *
- * The one real difference is content, not layout: each pain page only has
- * ONE illustrative quote of its own — HomeCopy.situations.quotes
- * (lib/i18n/home.ts) already carries exactly six, index-matched 1:1 to
- * PAIN_SLUGS ("Разобрали процедуру и сроки. Депозит защищён." is quotes[0],
- * for `deposit`, and so on) — rather than author six more per-pain quotes
- * (×3 locales) that would just be near-duplicates of ones already
- * illustrating the same situation on the homepage. PainQuotesCarousel takes
- * an array, so this passes a single-item one: the dot row collapses to one
- * dot and the 5s auto-advance is a no-op, which is fine — the component
- * doesn't need a single-item special case to look right.
+ * Primary path: dict.testimonial.items[pain] — 2-3 short quotes authored
+ * specifically for this pain, rendered as a static card row, same pattern
+ * as /host's HostTestimonials and /host/first-time's
+ * HostFirstTimeTestimonials (heading centred above a sm:grid-cols-3 of
+ * hook/quote/name cards). Static rather than an auto-advancing carousel on
+ * purpose — this section sits right before the page's FAQ/booking ask, so
+ * the visitor should be able to scan every proof point at their own pace
+ * rather than have the content change under them mid-read.
+ *
+ * Fallback: a locale/pain without its own `items` yet (see lib/i18n/types.ts)
+ * falls back to the single shared quote from HomeCopy.situations.quotes
+ * (lib/i18n/home.ts, index-matched 1:1 to PAIN_SLUGS) in the original
+ * heading-beside-a-card layout — so EN/ES keep rendering something
+ * meaningful until they get their own authored set.
  *
  * Placed between WhyUs and FAQ/the closing contact block: last piece of
  * social proof right before the page's ask, same position Testimonials
  * has on /host and /host/first-time.
  */
 export default function PainTestimonial({ dict, locale, pain }: Props) {
+  const items = dict.testimonial.items?.[pain];
+
+  if (items && items.length > 0) {
+    return (
+      <section className="bg-fog py-20 sm:py-section">
+        <div className="container-page">
+          <Reveal>
+            <h2 className="mx-auto max-w-2xl text-center font-display text-heading-lg text-ink">
+              {dict.testimonial.heading}
+            </h2>
+          </Reveal>
+
+          <div className="mt-16 grid gap-4 sm:grid-cols-3">
+            {items.map((item, i) => (
+              <Reveal key={item.name} delay={i * 70}>
+                <div className="card-neutral flex h-full flex-col bg-paper">
+                  <p className="font-display text-heading-sm text-ink">{item.hook}</p>
+                  <p className="mt-4 flex-1 text-caption text-slate">{item.quote}</p>
+                  <p className="mt-6 border-t border-hairline pt-4 text-meta text-ash">{item.name}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   const quote = HOME_COPY[locale].situations.quotes[PAIN_SLUGS.indexOf(pain)];
   if (!quote) return null;
 

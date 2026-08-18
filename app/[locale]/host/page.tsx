@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/types";
 import { HOST_COPY, HOST_LOCALES } from "@/lib/i18n/host";
+import { BOOKING_URL } from "@/lib/config";
 import HostHero from "@/components/Host/HostHero";
 import HostEarnings from "@/components/Host/HostEarnings";
 import HostServices from "@/components/Host/HostServices";
@@ -74,19 +75,19 @@ export default function HostPage({ params }: { params: Params }) {
     <main>
       <HostHero {...copy.hero} />
       <HostEarnings {...copy.earnings} />
-      <HostServices {...copy.services} />
-      <HostControlFlow {...copy.control} />
-      <HostDetailRows items={copy.details.items} />
       <HowItWorks
         heading={copy.howItWorks.heading}
         subheading=""
         steps={copy.howItWorks.steps}
-        cta={copy.howItWorks.cta}
+        // cta={copy.howItWorks.cta}
       />
       <HostCoverageGrid {...copy.coverage} />
+      <HostControlFlow {...copy.control} />
+      <HostDetailRows items={copy.details.items} />
+      <HostServices {...copy.services} />
       <HostTestimonials {...copy.testimonials} />
       <HostLeadForm locale={locale} {...copy.leadForm} />
-      <HostClosingCta {...copy.closingCta} />
+      <HostClosingCta {...copy.closingCta} ctaHref={BOOKING_URL} ctaTarget="_blank" ctaRel="noopener noreferrer" />
     </main>
   );
 }

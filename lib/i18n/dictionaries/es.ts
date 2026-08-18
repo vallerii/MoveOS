@@ -69,6 +69,32 @@ const es: Dictionary = {
           },
         ],
       },
+      faq: {
+        heading: "Preguntas frecuentes",
+        subheading: "Lo que normalmente se pregunta antes de reservar una revisión gratuita de la fianza.",
+        items: [
+          {
+            q: "¿Es de verdad gratis?",
+            a: "Sí — la revisión de 15 minutos no cuesta nada y no te compromete a nada. No nos quedamos con ningún porcentaje de la fianza que recuperes.",
+          },
+          {
+            q: "No conservo el acta de entrada — ¿es un problema?",
+            a: "No es determinante. Trabajamos con lo que tengas — fotos, mensajes con el propietario, incluso tu recuerdo del estado del piso — y vemos cómo protegerte sin ella.",
+          },
+          {
+            q: "¿Cuánto tarda la devolución de la fianza?",
+            a: "Por ley, no más de un mes desde que entregas las llaves. Si el propietario se retrasa, reclamamos los intereses legales según el artículo 36 de la LAU.",
+          },
+          {
+            q: "¿Y si el propietario se niega directamente a devolver la fianza?",
+            a: "Hablamos con él en tu nombre y le explicamos a qué tienes derecho por ley. La mayoría de los casos no llegan a juicio.",
+          },
+          {
+            q: "¿Solo trabajáis en Barcelona?",
+            a: "Por ahora sí. Si alquilas cerca, en el área metropolitana, escríbenos y valoramos tu caso de forma individual.",
+          },
+        ],
+      },
     },
     admin: {
       eyebrow: "Revisión gratuita de trámites de mudanza · Barcelona",
@@ -122,6 +148,32 @@ const es: Dictionary = {
           {
             pain: "belongings",
             teaser: "¿Te ha quedado mobiliario o cosas por ahí? Te ayudamos a guardarlas o venderlas.",
+          },
+        ],
+      },
+      faq: {
+        heading: "Preguntas frecuentes",
+        subheading: "Lo que normalmente se pregunta antes de reservar una revisión gratuita de trámites.",
+        items: [
+          {
+            q: "¿Es de verdad gratis, y dónde está el truco?",
+            a: "Sin truco — la consulta de 15 minutos y tu checklist personal no cuestan nada. Solo pagas por servicios de terceros, si llegas a necesitarlos (por ejemplo, un mensajero para documentos).",
+          },
+          {
+            q: "¿Hacéis vosotros las llamadas y las bajas, o solo me decís qué hacer?",
+            a: "Lo que mejor te venga. Podemos guiarte paso a paso para que lo hagas tú, o encargarnos de parte de las llamadas y el papeleo — lo vemos en la consulta.",
+          },
+          {
+            q: "Ya tengo casi todo hecho — ¿merece la pena de todas formas?",
+            a: "Sí. Normalmente son justo esos últimos detalles los que aparecen como una factura o carta sorpresa seis meses después — en 15 minutos comprobamos qué falta.",
+          },
+          {
+            q: "¿Y si no me da tiempo a cerrarlo todo antes de mudarme?",
+            a: "Priorizamos: qué hay que cerrar sí o sí antes de entregar las llaves, y qué puede esperar y resolverse a distancia después de la mudanza.",
+          },
+          {
+            q: "¿Solo trabajáis en Barcelona?",
+            a: "Por ahora sí. Si alquilas cerca, en el área metropolitana, escríbenos y valoramos tu caso de forma individual.",
           },
         ],
       },
@@ -181,6 +233,32 @@ const es: Dictionary = {
           },
         ],
       },
+      faq: {
+        heading: "Preguntas frecuentes",
+        subheading: "Lo que normalmente se pregunta antes de reservar una revisión gratuita.",
+        items: [
+          {
+            q: "¿Es de verdad gratis, incluso si ayudáis a organizar la recogida?",
+            a: "La consulta y el plan son gratis. Si necesitas recogida, almacenaje o ayuda para vender, te lo presupuestamos aparte, antes de que aceptes nada.",
+          },
+          {
+            q: "¿Recogéis vosotros los muebles, o solo me decís dónde llevarlos?",
+            a: "Las dos cosas, según lo que necesites. Podemos indicarte las mejores opciones, o encargarnos nosotros de la recogida.",
+          },
+          {
+            q: "¿Y si me queda muy poco tiempo antes de mudarme?",
+            a: "Para eso estamos — podemos armar un plan en 15 minutos incluso con plazos ajustados, sin el recargo de última hora.",
+          },
+          {
+            q: "¿Qué pasa con los muebles que el contrato incluye como parte del piso?",
+            a: "Documentamos su estado en foto y vídeo antes de que te vayas — eso es lo que realmente te protege de una reclamación después.",
+          },
+          {
+            q: "¿Solo trabajáis en Barcelona?",
+            a: "Por ahora sí. Si alquilas cerca, en el área metropolitana, escríbenos y valoramos tu caso de forma individual.",
+          },
+        ],
+      },
     },
     urgent: {
       eyebrow: "Revisión gratuita de mudanza urgente · Barcelona",
@@ -234,6 +312,32 @@ const es: Dictionary = {
           {
             pain: "admin",
             teaser: "¿Vas justo de tiempo con muchos trámites pendientes? Te ayudamos a dejarlo todo resuelto antes de irte.",
+          },
+        ],
+      },
+      faq: {
+        heading: "Preguntas frecuentes",
+        subheading: "Lo que normalmente se pregunta antes de reservar una revisión gratuita de mudanza urgente.",
+        items: [
+          {
+            q: "¿Es de verdad gratis, aunque sea urgente?",
+            a: "Sí — la consulta de 15 minutos es gratis y sin compromiso, aunque tengas que irte en los próximos días.",
+          },
+          {
+            q: "Ya le dije de palabra al propietario que me voy — ¿cuenta eso?",
+            a: "No, un aviso verbal no cuenta legalmente. Te ayudamos a ponerlo por escrito (email o burofax) — esa es la fecha desde la que empieza a contar el preaviso.",
+          },
+          {
+            q: "¿Cuánto voy a perder realmente si me voy antes de tiempo?",
+            a: "Por ley suele ser como máximo una mensualidad, no la fianza entera, como mucha gente teme. Te damos la cifra exacta en cuanto veamos tu contrato.",
+          },
+          {
+            q: "¿Y si el propietario no está de acuerdo con la compensación?",
+            a: "Hablamos con él en tu nombre, apoyándonos en lo que dice tu contrato y la ley — no en lo que él diga por teléfono.",
+          },
+          {
+            q: "¿Solo trabajáis en Barcelona?",
+            a: "Por ahora sí. Si alquilas cerca, en el área metropolitana, escríbenos y valoramos tu caso de forma individual.",
           },
         ],
       },
@@ -291,6 +395,65 @@ const es: Dictionary = {
           {
             pain: "repair",
             teaser: "¿Temes que te retengan la fianza por pequeñas reparaciones? Solo arreglamos lo que realmente hace falta.",
+          },
+        ],
+      },
+      calculator: {
+        heading: "Calcula tu bono estimado",
+        subheading:
+          "Tres preguntas rápidas sobre tu piso — y verás el rango que podrías conseguir. Te daremos la cifra exacta en una llamada gratuita, una vez veamos tu contrato.",
+        district: {
+          question: "¿En qué distrito de Barcelona está tu piso?",
+          options: [
+            "Ciutat Vella",
+            "Eixample",
+            "Sants-Montjuïc",
+            "Les Corts",
+            "Sarrià-Sant Gervasi",
+            "Gràcia",
+            "Horta-Guinardó",
+            "Nou Barris",
+            "Sant Andreu",
+            "Sant Martí",
+          ],
+        },
+        size: {
+          question: "¿Cuántos metros cuadrados tiene?",
+          options: ["Menos de 40 m²", "40–60 m²", "60–80 m²", "80–100 m²", "Más de 100 m²"],
+        },
+        contractAge: {
+          question: "¿Cuándo firmaste el contrato?",
+          options: ["Hace menos de un año", "Hace 1–2 años", "Hace 2–4 años", "Hace más de 4 años"],
+        },
+        resultHeading: "Tu bono estimado",
+        resultBody: "Entre {min} y {max} € — según el precio medio de tu zona.",
+        disclaimer:
+          "Es una estimación orientativa, no una oferta. Te daremos la cifra exacta en una llamada gratuita, una vez veamos tu contrato — es el paso «Cálculo exacto» de arriba.",
+        ctaLabel: "Reservar llamada gratuita",
+      },
+      faq: {
+        heading: "Preguntas frecuentes",
+        subheading: "Lo que normalmente se pregunta antes de la llamada gratuita.",
+        items: [
+          {
+            q: "¿Es de verdad gratis hasta que recibo una oferta?",
+            a: "Sí — la consulta y la valoración de la diferencia con el mercado no cuestan nada. Solo hay pago si aceptas la operación, y en ese caso somos nosotros quienes te pagamos a ti.",
+          },
+          {
+            q: "¿Es legal traspasar mi contrato a otra persona?",
+            a: "Sí, hecho correctamente, como una cesión de contrato con el consentimiento del propietario. Nosotros gestionamos toda la parte legal de la operación.",
+          },
+          {
+            q: "¿Y si mi alquiler no está tan por debajo del mercado?",
+            a: "Te lo diremos con honestidad en la primera llamada. Si no hay bono que ofrecer, no pierdes nada — te queda igualmente la consulta gratuita sobre tu salida.",
+          },
+          {
+            q: "¿Qué pasa con mi fianza si acepto la operación?",
+            a: "Vuelve el mismo día que te mudas, no un mes después como de costumbre — forma parte de la misma operación.",
+          },
+          {
+            q: "¿Solo trabajáis en Barcelona?",
+            a: "Por ahora sí. Si alquilas cerca, en el área metropolitana, escríbenos y valoramos tu caso de forma individual.",
           },
         ],
       },

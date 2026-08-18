@@ -13,6 +13,7 @@ import FAQ from "@/components/FAQ";
 import WhyUs from "@/components/WhyUs";
 import PainTestimonial from "@/components/PainTestimonial";
 import QuizSection from "@/components/Quiz/QuizSection";
+import BuyoutCalculator from "@/components/Quiz/BuyoutCalculator";
 
 type Params = { locale: string; pain: string };
 
@@ -66,13 +67,23 @@ export default function PainPage({ params }: { params: Params }) {
   if (!isValid(params)) notFound();
   const { locale, pain } = params;
   const dict = getDictionary(locale);
-  const { howItWorks, secondaryHowItWorks, furnitureNotes, relatedPains, faq } = dict.pains[pain];
+  const { howItWorks, secondaryHowItWorks, furnitureNotes, relatedPains, faq, calculator } = dict.pains[pain];
 
   return (
     <main>
       <Hero locale={locale} pain={pain} dict={dict} />
       <DidYouKnow dict={dict} pain={pain} />
       <WhatYouGet dict={dict} pain={pain} />
+
+      {/* buyout-only: the "estimate your bonus" calculator. Placed after the
+          value prop (WhatYouGet) but before the process steps (HowItWorks)
+          on purpose — the personalised number is what earns attention this
+          early on a page whose traffic is largely paid; HowItWorks right
+          after it then explains exactly how to turn that estimate into the
+          real, contract-checked offer. It's a second, warmer booking moment
+          ahead of the page's closing QuizSection card, not a replacement
+          for it. */}
+      
 
       {howItWorks &&
         (pain === "repair" ? (
@@ -87,6 +98,13 @@ export default function PainPage({ params }: { params: Params }) {
           <HowItWorks pain={pain} {...howItWorks} />
         ))
       }
+      {calculator && <BuyoutCalculator
+        {...calculator}
+        progressLabel={dict.quiz.progressLabel}
+        backLabel={dict.quiz.backButton}
+        restartLabel={dict.results.restartButton}
+      />}
+      <PainTestimonial dict={dict} locale={locale} pain={pain} />
       {relatedPains && <RelatedPains locale={locale} dict={dict} {...relatedPains} />}
 
       {/* repair-only: the plain numbered-list "Как это работает" every other
@@ -94,10 +112,11 @@ export default function PainPage({ params }: { params: Params }) {
           is spent on the RepairShowcase card grid instead. */}
       {secondaryHowItWorks && <HowItWorks pain={pain} {...secondaryHowItWorks} />}
       {furnitureNotes && <FurnitureNotes {...furnitureNotes} />}
-      <WhyUs dict={dict} pain={pain} />
-      <PainTestimonial dict={dict} locale={locale} pain={pain} />
+     
+      
       {/* Objection-handling, right before the ask — last chance to resolve
           cost/timeline/"what if I disagree" doubts before the booking card. */}
+      <WhyUs dict={dict} pain={pain} />
       {faq && <FAQ {...faq} />}
       <QuizSection locale={locale} dict={dict} />
     </main>

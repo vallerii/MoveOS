@@ -69,6 +69,32 @@ const en: Dictionary = {
           },
         ],
       },
+      faq: {
+        heading: "Frequently Asked Questions",
+        subheading: "What people usually ask before booking a free deposit review.",
+        items: [
+          {
+            q: "Is it really free?",
+            a: "Yes — the 15-minute review costs nothing and comes with no obligation. We don't take a cut of whatever deposit you get back.",
+          },
+          {
+            q: "I don't have a move-in report anymore — is that a problem?",
+            a: "Not a dealbreaker. We'll work with whatever you do have — photos, messages with the landlord, even just your memory of the flat's condition — and figure out how to protect you without it.",
+          },
+          {
+            q: "How long does it take to get the deposit back?",
+            a: "By law, no more than a month after you hand back the keys. If the landlord drags it out, we claim the legal interest under Article 36 LAU.",
+          },
+          {
+            q: "What if the landlord just refuses to return the deposit at all?",
+            a: "We deal with them directly on your behalf and lay out what you're legally entitled to. Most cases never make it to court.",
+          },
+          {
+            q: "Do you only work in Barcelona?",
+            a: "For now, yes. If you're renting just outside the city, reach out — we'll look at your situation individually.",
+          },
+        ],
+      },
     },
     admin: {
       eyebrow: "Free Move-Out Admin Check · Barcelona",
@@ -122,6 +148,32 @@ const en: Dictionary = {
           {
             pain: "belongings",
             teaser: "Got leftover furniture or belongings? We'll help you store or sell them.",
+          },
+        ],
+      },
+      faq: {
+        heading: "Frequently Asked Questions",
+        subheading: "What people usually ask before booking a free admin review.",
+        items: [
+          {
+            q: "Is it really free, and what's the catch?",
+            a: "No catch — the 15-minute consultation and your personal checklist cost nothing. You only pay for third-party services, if you end up needing any (a courier for documents, for example).",
+          },
+          {
+            q: "Do you actually make the calls and close accounts, or just tell me what to do?",
+            a: "Whichever works for you. We can walk you through it step by step so you handle it yourself, or take some of the calls and paperwork off your hands — we'll figure out which on the call.",
+          },
+          {
+            q: "I've already closed almost everything — is it still worth it?",
+            a: "Yes. It's usually the last couple of things that turn into a surprise bill or letter six months later — a 15-minute check catches what's left.",
+          },
+          {
+            q: "What if I don't have time to close everything before I move out?",
+            a: "We'll prioritize: what has to be closed before you hand back the keys, and what can wait and be finished remotely after you've moved.",
+          },
+          {
+            q: "Do you only work in Barcelona?",
+            a: "For now, yes. If you're renting just outside the city, reach out — we'll look at your situation individually.",
           },
         ],
       },
@@ -181,6 +233,32 @@ const en: Dictionary = {
           },
         ],
       },
+      faq: {
+        heading: "Frequently Asked Questions",
+        subheading: "What people usually ask before booking a free review.",
+        items: [
+          {
+            q: "Is it really free, even if you help arrange pickup?",
+            a: "The consultation and the plan are free. If you need actual pickup, storage, or help selling things, we'll quote that separately, before you agree to anything.",
+          },
+          {
+            q: "Do you pick up the furniture yourselves, or just tell me where to take it?",
+            a: "Both, depending on what you need. We can point you to the right options, or take the pickup off your hands entirely.",
+          },
+          {
+            q: "What if I have very little time before I move out?",
+            a: "That's exactly what we're for — we can put together a plan in 15 minutes even on a tight deadline, without the last-minute markup.",
+          },
+          {
+            q: "What about furniture the lease lists as part of the flat?",
+            a: "We document its condition on photo and video before you leave — that's what actually protects you from a claim about it later.",
+          },
+          {
+            q: "Do you only work in Barcelona?",
+            a: "For now, yes. If you're renting just outside the city, reach out — we'll look at your situation individually.",
+          },
+        ],
+      },
     },
     urgent: {
       eyebrow: "Free Urgent Move-Out Review · Barcelona",
@@ -234,6 +312,32 @@ const en: Dictionary = {
           {
             pain: "admin",
             teaser: "Short on time with a lot of admin to close out? We'll help you get it all done before you move.",
+          },
+        ],
+      },
+      faq: {
+        heading: "Frequently Asked Questions",
+        subheading: "What people usually ask before booking a free urgent move-out review.",
+        items: [
+          {
+            q: "Is it really free, even if this is urgent?",
+            a: "Yes — the 15-minute consultation is free and comes with no obligation, even if you need to move out in the next few days.",
+          },
+          {
+            q: "I already told my landlord verbally that I'm leaving — does that count?",
+            a: "No, a verbal heads-up doesn't count legally. We'll help you put it in writing (email or burofax) — that's the date your notice period actually starts from.",
+          },
+          {
+            q: "How much will I actually lose if I move out early?",
+            a: "By law it's usually capped at one month's rent, not the whole deposit, as many people fear. We'll give you the exact number once we've seen your lease.",
+          },
+          {
+            q: "What if the landlord doesn't agree with the compensation amount?",
+            a: "We deal with them on your behalf, based on what your lease and the law actually say — not what they claim over the phone.",
+          },
+          {
+            q: "Do you only work in Barcelona?",
+            a: "For now, yes. If you're renting just outside the city, reach out — we'll look at your situation individually.",
           },
         ],
       },
@@ -291,6 +395,65 @@ const en: Dictionary = {
           {
             pain: "repair",
             teaser: "Worried your deposit will be withheld over small repairs? We only fix what's actually needed.",
+          },
+        ],
+      },
+      calculator: {
+        heading: "Estimate Your Bonus",
+        subheading:
+          "Three quick questions about your flat — see the range you could be looking at. We'll give you the exact number on a free call once we've seen your lease.",
+        district: {
+          question: "Which Barcelona district is your flat in?",
+          options: [
+            "Ciutat Vella",
+            "Eixample",
+            "Sants-Montjuïc",
+            "Les Corts",
+            "Sarrià-Sant Gervasi",
+            "Gràcia",
+            "Horta-Guinardó",
+            "Nou Barris",
+            "Sant Andreu",
+            "Sant Martí",
+          ],
+        },
+        size: {
+          question: "How big is it?",
+          options: ["Under 40 m²", "40–60 m²", "60–80 m²", "80–100 m²", "Over 100 m²"],
+        },
+        contractAge: {
+          question: "When was the lease signed?",
+          options: ["Less than a year ago", "1–2 years ago", "2–4 years ago", "More than 4 years ago"],
+        },
+        resultHeading: "Your Estimated Bonus",
+        resultBody: "€{min}–{max} — based on average prices in your district.",
+        disclaimer:
+          "This is a ballpark estimate, not an offer. We'll give you the exact number on a free call once we've seen your lease — that's the \"Exact numbers\" step above.",
+        ctaLabel: "Book a Free Call",
+      },
+      faq: {
+        heading: "Frequently Asked Questions",
+        subheading: "What people usually ask before the free call.",
+        items: [
+          {
+            q: "Is it really free until I get an offer?",
+            a: "Yes — the consultation and the market-gap assessment cost nothing. You only pay if you agree to the deal itself, and even then it's us paying you, not the other way around.",
+          },
+          {
+            q: "Is it even legal to reassign my lease to someone else?",
+            a: "Yes, done properly, as a lease assignment with the landlord's consent. We handle the legal side of the deal.",
+          },
+          {
+            q: "What if my rent isn't that far below market?",
+            a: "We'll tell you honestly on the first call. If there's no bonus to offer, you lose nothing — you still get a free move-out consultation.",
+          },
+          {
+            q: "What happens to my deposit if I agree to the deal?",
+            a: "It comes back the day you move out, not a month later like usual — that's built into the same deal.",
+          },
+          {
+            q: "Do you only work in Barcelona?",
+            a: "For now, yes. If you're renting just outside the city, reach out — we'll look at your situation individually.",
           },
         ],
       },

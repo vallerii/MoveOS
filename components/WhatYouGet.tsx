@@ -1,6 +1,8 @@
 import Reveal from "./Reveal";
 import Glow from "./Glow";
+import PillButton from "./PillButton";
 import type { Dictionary, PainSlug } from "@/lib/i18n/types";
+import { BOOKING_URL } from "@/lib/config";
 
 type Props = {
   dict: Dictionary;
@@ -18,6 +20,7 @@ type Props = {
  */
 export default function WhatYouGet({ dict, pain }: Props) {
   const { heading, subheading, items, resultLabel, resultText } = dict.whatYouGet;
+  const { heroCta, heroCtaMobile } = dict.pains[pain];
 
   // Only show the mistakes actually relevant to this pain's page — a deposit
   // page doesn't need to also carry utilities/furniture/early-exit cards.
@@ -58,9 +61,36 @@ export default function WhatYouGet({ dict, pain }: Props) {
                 into the box, which is what actually makes it read as light
                 rather than as a grey tint. */}
             
-            <div className="relative z-10 flex flex-col gap-6 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
+            <div className="relative z-10 flex flex-col gap-8 p-8 sm:flex-row sm:items-start sm:justify-between sm:p-10">
               <span className="tag shrink-0 text-sienna/50">{resultLabel}</span>
-              <p className="max-w-2xl font-display text-heading text-sienna">{resultText[pain]}</p>
+              {/* Text and button share one left-aligned column so the CTA
+                  sits directly under the payoff line it belongs to, rather
+                  than floating at the card's own right edge — this banner is
+                  the emotional high point of the page (the reward, right
+                  after three cards of what goes wrong), so the ask belongs
+                  in the same breath as the outcome, not several scrolls
+                  further down. Ghost/outline, not filled — this is the
+                  page's second CTA (the hero already carries the one filled
+                  button), so it reads as "also here" rather than competing
+                  with it. */}
+              <div className="flex max-w-2xl flex-col items-start gap-6">
+                <p className="font-display text-heading text-sienna">{resultText[pain]}</p>
+                <PillButton
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="ghost"
+                  aria-label={heroCta}
+                  className="w-full border-sienna/40 text-sienna sm:w-auto"
+                >
+                  <span aria-hidden className="sm:!hidden">
+                    {heroCtaMobile ?? heroCta}
+                  </span>
+                  <span aria-hidden className="hidden sm:!inline">
+                    {heroCta}
+                  </span>
+                </PillButton>
+              </div>
             </div>
           </div>
         </Reveal>

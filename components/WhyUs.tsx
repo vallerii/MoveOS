@@ -27,12 +27,15 @@ export default function WhyUs({ dict, pain }: Props) {
               <h2 className="font-display text-heading-lg text-ink">{heading}</h2>
               {intro[pain] && <p className="mt-6 max-w-md text-body text-slate">{intro[pain]}</p>}
               <p
-                className={`whitespace-pre-line font-display text-ink ${
-                  // Without the intro line, this paragraph is standing in as
-                  // the section's main copy rather than a short pull-quote
-                  // under it — the pull-quote size (text-heading) reads too
-                  // heavy for two full sentences, so it steps down a size.
-                  intro[pain] ? "mt-10 border-t border-hairline pt-10 text-heading" : "mt-6 text-heading-sm"
+                className={`whitespace-pre-line font-display text-ink text-heading-sm ${
+                  // Always the pull-quote scale (text-heading-sm) now — it
+                  // used to step up to text-heading whenever an intro line
+                  // sat above it, so repair (the one pain with no intro,
+                  // since its body already carries two full sentences) read
+                  // noticeably smaller than the other five. The border-top
+                  // separator stays conditional: it's there to divide this
+                  // line from the intro above it, which repair doesn't have.
+                  intro[pain] ? "mt-10 border-t border-hairline pt-10" : "mt-6"
                 }`}
               >
                 {body[pain]}

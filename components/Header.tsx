@@ -235,7 +235,7 @@ export default function Header({ locale, dict }: Props) {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            variant="filled"
+            variant="ghost"
             className="u-hidden !py-2.5 !text-[15px] lg:inline-flex"
           >
             {dict.nav.callButton}

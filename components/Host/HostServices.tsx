@@ -1,6 +1,7 @@
 import Reveal from "../Reveal";
 import Glow from "../Glow";
 import PillButton from "../PillButton";
+import { BOOKING_URL } from "@/lib/config";
 
 type Item = { title: string; body: string; list?: string[] };
 type Props = {
@@ -32,6 +33,13 @@ export default function HostServices({ heading, intro, items, cta }: Props) {
             <div className="relative z-10 mx-auto max-w-2xl text-center">
               <h2 className="font-display text-heading-lg text-ink">{heading}</h2>
               <p className="mx-auto mt-6 max-w-xl text-body text-slate">{intro}</p>
+              <Reveal delay={items.length * 60}>
+                <div className="mt-16 flex justify-center">
+                  <PillButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                    {cta}
+                  </PillButton>
+                </div>
+              </Reveal>
             </div>
           </Reveal>
 
@@ -68,11 +76,7 @@ export default function HostServices({ heading, intro, items, cta }: Props) {
             ))}
           </div>
         </div>
-        <Reveal delay={items.length * 60}>
-          <div className="mt-16 flex justify-center">
-            <PillButton href="#calculate">{cta}</PillButton>
-          </div>
-        </Reveal>
+        
       </div>
     </section>
   );

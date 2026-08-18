@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/config";
 import Reveal from "../Reveal";
@@ -35,9 +34,8 @@ type Props = {
  * on the section for any old deep link, but nothing in the app points at
  * it anymore.
  */
-export default function QuizSection({ locale, dict }: Props) {
+export default function QuizSection({ dict }: Props) {
   const { qualified } = dict.results;
-  const pdfHref = `/checklists/${locale}/qualified.pdf`;
 
   return (
     <section id="quiz" className="scroll-mt-24 bg-paper py-20 sm:py-section relative">
@@ -84,24 +82,14 @@ export default function QuizSection({ locale, dict }: Props) {
                 </PillButton>
               </div>
 
-              <p className="mt-6 text-meta text-ash">{qualified.cityNote}</p>
-
-              <p className="mt-8 text-meta text-ash">
+              <p className="mt-6 text-meta text-ash">
                 {qualified.emailAltText}{" "}
                 <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4 hover:text-ink">
                   {CONTACT_EMAIL}
                 </a>
               </p>
-              <p className="mt-2 text-meta text-ash">
-                {dict.results.checklistAltText}{" "}
-                <Link href={`/${locale}/checklist/qualified`} className="underline underline-offset-4 hover:text-ink">
-                  {dict.results.viewChecklistButton}
-                </Link>{" "}
-                ·{" "}
-                <a href={pdfHref} download className="underline underline-offset-4 hover:text-ink">
-                  {dict.results.downloadPdf}
-                </a>
-              </p>
+
+              <p className="mt-2 text-meta text-ash">{qualified.cityNote}</p>
             </div>
           </div>
         </Reveal>

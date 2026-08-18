@@ -53,7 +53,11 @@ export interface HostCopy {
     heading: string;
     body: string;
     flowIntro: string;
-    flow: string;
+    // Each step of the "кто → когда → в каком состоянии → сколько" chain
+    // as its own array item — rendered one per line (a column, not a
+    // wrapping sentence) so the steps stay readable at any width instead
+    // of the arrows breaking mid-phrase.
+    flow: string[];
   };
   /** The three objection-handling rows plus the time-commitment row —
    * same "hairline-divided editorial row" shape, richer per-row content
@@ -194,7 +198,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       heading: "You Know What's Happening With Your Apartment",
       body: "One of the main reasons owners are wary of short-term rental is losing control.\n\nThat's why, after every stay, we check the apartment's condition and flag any issues that come up.",
       flowIntro: "You'll know:",
-      flow: "who stayed → when they left → what condition the apartment is in → what the booking earned",
+      flow: ["who stayed", "when they left", "what condition the apartment is in", "what the booking earned"],
     },
     details: {
       items: [
@@ -316,7 +320,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
     closingCta: {
       heading: "Your Apartment. Our Management.",
       body: "Guests, cleaning, check-ins, inspections, pricing and reporting — all on us.\n\nYou get clear income from your property and keep control over what happens to it.",
-      cta: "Find Out My Potential Income",
+      cta: "Book a Call",
     },
   },
   es: {
@@ -397,7 +401,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       heading: "Sabes qué pasa con tu piso",
       body: "Uno de los principales motivos por los que los propietarios temen el alquiler de temporada es perder el control.\n\nPor eso, después de cada estancia, controlamos el estado del piso y, si hace falta, registramos las incidencias que surjan.",
       flowIntro: "Sabrás:",
-      flow: "quién se alojó → cuándo salió → en qué estado está el piso → cuánto generó la reserva",
+      flow: ["quién se alojó", "cuándo salió", "en qué estado está el piso", "cuánto generó la reserva"],
     },
     details: {
       items: [
@@ -519,7 +523,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
     closingCta: {
       heading: "Tu piso. Nuestra gestión.",
       body: "Huéspedes, limpieza, entradas, control, precios e informes — de nuestro lado.\n\nObtienes un ingreso claro de tu propiedad y mantienes el control sobre lo que sucede con ella.",
-      cta: "Saber mi ingreso potencial",
+      cta: "Reservar una llamada",
     },
   },
   ru: {
@@ -600,7 +604,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
       heading: "Вы знаете, что происходит с квартирой",
       body: "Одна из главных причин, почему владельцы боятся краткосрочной аренды, — потеря контроля.\n\nПоэтому после проживания гостей мы контролируем состояние квартиры и при необходимости фиксируем возникшие проблемы.",
       flowIntro: "Вы понимаете:",
-      flow: "кто проживал → когда выехал → в каком состоянии квартира → сколько принесло бронирование",
+      flow: ["кто проживал", "когда выехал", "в каком состоянии квартира", "сколько принесло бронирование"],
     },
     details: {
       items: [
@@ -719,7 +723,7 @@ export const HOST_COPY: Partial<Record<Locale, HostCopy>> = {
     closingCta: {
       heading: "Ваша квартира. Наше управление.",
       body: "Гости, уборка, заселения, контроль, цены и отчётность — на нашей стороне.\n\nВы получаете понятный доход от недвижимости и сохраняете контроль над тем, что с ней происходит.",
-      cta: "Узнать потенциальный доход",
+      cta: "Забронировать звонок",
     },
   },
 };

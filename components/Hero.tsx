@@ -82,9 +82,12 @@ export default function Hero({ pain, dict }: Props) {
           </Reveal>
 
           <Reveal delay={300}>
-            {/* Filled primary always pairs with a ghost secondary on the
-                same baseline — that pairing is structural in this system. */}
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            {/* Single CTA — the page has one job (get the visitor to book
+                the free call), so it gets one button rather than a primary
+                pointing at the calendar next to a secondary that only
+                scrolled to the facts section below. Two stacked asks here
+                read as indecision, not choice. */}
+            <div className="mt-10 flex items-center justify-center">
               {/* Shorter label on mobile, full label from sm up. Both spans
                   are always in the DOM and only one is shown by CSS, so
                   anything that reads the DOM rather than the rendered page —
@@ -106,9 +109,6 @@ export default function Hero({ pain, dict }: Props) {
                 <span aria-hidden className="hidden sm:!inline">
                   {copy.heroCta}
                 </span>
-              </PillButton>
-              <PillButton href="#didyouknow" variant="ghost" className="w-full sm:w-auto">
-                {dict.nav.bookButton}
               </PillButton>
             </div>
           </Reveal>

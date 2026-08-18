@@ -172,7 +172,7 @@ export default function HostLeadForm({ locale, heading, body, cta, fields, conse
                   </label>
 
                   <div className="sm:col-span-2">
-                    <button type="submit" disabled={status === "loading"} className="btn-pill w-full sm:w-auto">
+                    <button type="submit" disabled={status === "loading"} className="btn-ghost w-full">
                       {cta}
                     </button>
                     {status === "error" && <p className="mt-4 text-caption text-sienna">{error}</p>}
