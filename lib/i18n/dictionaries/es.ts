@@ -833,7 +833,7 @@ const es: Dictionary = {
     heading: "Qué dicen los inquilinos",
   },
   footer: {
-    tagline: "MoveOS — mudanzas tranquilas e informadas en Barcelona.",
+    tagline: "MoveOS — alquiler sin estrés en Barcelona, para inquilinos y propietarios.",
     privacy: "Política de privacidad",
   },
   quiz: {

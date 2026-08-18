@@ -838,7 +838,7 @@ const en: Dictionary = {
     heading: "What Tenants Say",
   },
   footer: {
-    tagline: "MoveOS — calm, informed move-outs in Barcelona.",
+    tagline: "MoveOS — stress-free renting in Barcelona, for tenants and owners alike.",
     privacy: "Privacy Policy",
   },
   quiz: {

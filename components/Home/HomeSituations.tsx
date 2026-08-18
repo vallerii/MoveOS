@@ -4,9 +4,17 @@ import ArrowLink from "../ArrowLink";
 import PainQuotesCarousel from "./PainQuotesCarousel";
 import { ChecklistArtifact } from "../Artifacts";
 import { PAIN_ICONS, PAIN_SLUGS } from "@/lib/pains";
+import { KeyIcon, CalendarIcon } from "../icons";
 import type { HomeCopy } from "@/lib/i18n/home";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
-import { BOOKING_URL } from "@/lib/config";
+
+// Icon per owner card slug — same idea as PAIN_ICONS, but there are only
+// two of these and they're not part of the per-pain Dictionary, so a small
+// local map is simpler than widening lib/pains.ts for one component.
+const OWNER_ICONS: Record<"host" | "host/first-time", typeof KeyIcon> = {
+  "host/first-time": KeyIcon,
+  host: CalendarIcon,
+};
 
 type Props = {
   locale: Locale;
@@ -76,10 +84,16 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
               <div className="relative z-10 max-w-md lg:max-w-sm">
                 <h3 className="font-display text-heading text-ink">{whatWeDo.heading}</h3>
                 <p className="mt-5 text-caption text-slate">{whatWeDo.body}</p>
-                <div className="mt-8">
-                  <ArrowLink href={BOOKING_URL} external>
-                    {whatWeDo.cta}
-                  </ArrowLink>
+                {/* Both links jump to in-page sections now, not the external
+                    booking calendar: the tenant CTA opens the full "what's
+                    included" breakdown, and — when this locale has owner
+                    copy — a second line offers the same for owners, pointing
+                    at HomeOwners' `#for-owners` section. */}
+                <div className="mt-8 flex flex-col gap-3">
+                  <ArrowLink href="#included">{whatWeDo.cta}</ArrowLink>
+                  {copy.owners && (
+                    <ArrowLink href="#for-owners">{copy.owners.badge}</ArrowLink>
+                  )}
                 </div>
               </div>
 
@@ -97,6 +111,11 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
           <Reveal delay={80} className="lg:col-span-2">
             <div className="card-neutral flex h-full min-h-[22rem] flex-col justify-between">
               <h3 className="font-display text-heading-sm text-ink">{trustStats.heading}</h3>
+              {/* Both audiences side by side, one flat row, same size for
+                  both numbers — the heading above already says the words
+                  "arendatorov"/"vladel'tsev", so the count alone (6 vs 2)
+                  is what earns the "transparent for landlords" half of it.
+                  Stats-only: no links here, those live in HomeOwners. */}
               <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8">
                 {trustStats.stats.map((s) => (
                   <div key={s.label}>
@@ -152,6 +171,48 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
                   );
                 })}
               </nav>
+
+              {/* Owner scenarios, appended below the six tenant links in
+                  the same card — same row markup (icon chip, label, hover
+                  arrow) so they read as part of one system rather than a
+                  bolted-on extra. Own Reveal + delay so they fade in a
+                  beat after the tenant list above, and no data-fly-target:
+                  that hero-flying-icon rig is wired to exactly the six
+                  PAIN_SLUGS positions in HomeHero/HomeStage, and retrofitting
+                  two more slots there is a separate piece of work, not this
+                  one. Renders nothing for a locale without owner copy yet. */}
+              {copy.owners && (
+                <Reveal delay={80}>
+                  <div className="mt-2 border-t border-ink/[0.07] pt-2">
+                    <p className="pt-4 text-meta text-ash">{copy.owners.badge}</p>
+                    <nav className="flex flex-col">
+                      {copy.owners.cards.map((card, i) => {
+                        const Icon = OWNER_ICONS[card.slug];
+                        return (
+                          <Link
+                            key={card.slug}
+                            href={`/${locale}/${card.slug}`}
+                            className={`group flex items-center gap-4 py-3.5 text-base text-ink transition-colors hover:text-slate ${
+                              i > 0 ? "border-t border-ink/[0.07]" : ""
+                            }`}
+                          >
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-mist">
+                              <Icon className="h-[18px] w-[18px] text-ink" />
+                            </span>
+                            <span className="flex-1">{card.title}</span>
+                            <span
+                              aria-hidden
+                              className="text-ash transition-transform duration-200 group-hover:translate-x-0.5"
+                            >
+                              →
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </nav>
+                  </div>
+                </Reveal>
+              )}
             </div>
           </Reveal>
         </div>

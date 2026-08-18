@@ -21,10 +21,21 @@ export interface HomeCopy {
     subheading: string;
     cta: string;
     badges: string[];
+    /** Secondary hero CTA that jumps to HomeOwners (#for-owners) instead of
+     * the tenant quiz — renders only when present, so a locale without it
+     * simply gets the original two-button hero. */
+    ownerCta?: string;
   };
   situations: {
     whatWeDo: { heading: string; body: string; cta: string };
-    trustStats: { heading: string; stats: { value: string; label: string }[] };
+    trustStats: {
+      heading: string;
+      /** Both audiences in one flat stat row now — tenant scenario count
+       * and owner scenario count side by side, same size, no separate
+       * owner sub-section or links (this card is stats-only; the actual
+       * owner links live in HomeOwners further down the page). */
+      stats: { value: string; label: string }[];
+    };
     /** One quote per pain, in PAIN_SLUGS order (deposit, admin, belongings,
      * urgent, buyout, repair) — illustrative "pain -> what we solved" lines,
      * not verified customer testimonials. */
@@ -86,30 +97,61 @@ export interface HomeCopy {
     items: { title: string; body: string }[];
     ctaCard: { heading: string; body: string; button: string };
   };
+  /**
+   * "For owners" bridge block — sits between HomeWhyUs and FAQ. The
+   * homepage's whole body above this point is tenant-only (situations,
+   * how it works, what's included, why us); this is the one section that
+   * sends an owner visitor to one of the two landlord pages (/host,
+   * /host/first-time) instead of falling back to the nav dropdown as the
+   * only way to find them. Optional — a locale without it just doesn't
+   * render HomeOwners (see components/Home/HomeOwners.tsx).
+   */
+  owners?: {
+    eyebrow: string;
+    heading: string;
+    cards: { title: string; body: string; cta: string; slug: "host" | "host/first-time" }[];
+    trustLine: string;
+    /** Short caption ("For Owners") used wherever the owner cards need a
+     * compact label rather than the full `eyebrow` sentence — currently
+     * the mini owner list appended to HomeSituations' linksPanel. */
+    badge: string;
+  };
   /** Site-wide objection-handling FAQ — sits right after HomeWhyUs, before
    * the quiz. Reuses the same FAQ component/shape as the per-pain FAQ on
-   * /repair (components/FAQ.tsx). */
+   * /repair (components/FAQ.tsx).
+   *
+   * `ownerItems`/`tabLabels` are optional — when both are present, FAQ
+   * renders its tenants/owners toggle; a locale missing either just gets
+   * the plain tenant-only list, same as /repair and /host/first-time. */
   faq: {
     heading: string;
     subheading?: string;
     items: { q: string; a: string }[];
+    ownerItems?: { q: string; a: string }[];
+    tabLabels?: { tenants: string; owners: string };
   };
 }
 
 export const HOME_COPY: Record<Locale, HomeCopy> = {
   en: {
     hero: {
-      eyebrow: "Free for Renters in Barcelona ·",
+      eyebrow: "Free for Renters and Owners in Barcelona ·",
       h1: [
-        [{ text: "Move out" }],
-        [{ text: "with confidence." }],
+        [{ text: "Whatever happens —" }],
         [{ text: "MoveOS", accent: true }, { text: " has" }],
         [{ text: "everything", accent: true }, { text: " covered." }],
       ],
       subheading:
-        "MoveOS is a free service for tenants moving out in Barcelona. Tell us what's going on — your deposit, an urgent move, paperwork, furniture, or a small repair — and we'll walk you through it, for free.",
+        "Moving out soon and not sure where to start? Or not sure what to do with an apartment about to sit empty? Tell us what's going on, and we'll walk you through it — for free.",
       cta: "Tell Us Your Situation",
-      badges: ["Free, no obligation", "Barcelona-based", "Answers in 15 minutes"]
+      badges: [
+        "Move out with confidence",
+        "Manage your apartment",
+        "Free, no obligation",
+        "Barcelona-based",
+        "Answers in 15 minutes",
+      ],
+      ownerCta: "I'm an Owner",
     },
     situations: {
       whatWeDo: {
@@ -120,8 +162,8 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       trustStats: {
         heading: "Free for tenants. Transparent for landlords.",
         stats: [
-          { value: "6", label: "free solutions — one per situation" },
-          { value: "€0", label: "cost to the tenant" },
+          { value: "6", label: "scenarios for tenants" },
+          { value: "2", label: "scenarios for owners" },
         ],
       },
       quotes: [
@@ -255,6 +297,26 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         button: "Get My Free Review →",
       },
     },
+    owners: {
+      eyebrow: "For property owners in Barcelona",
+      heading: "Renting out a place? We can help, whatever the scenario.",
+      cards: [
+        {
+          title: "First-Time Landlord",
+          body: "Renting out for the first time? We check the tenant, their employment contract, and the deposit-registration deadline — before the listing ever goes live.",
+          cta: "Learn more",
+          slug: "host/first-time",
+        },
+        {
+          title: "Short-Term Rental",
+          body: "Want to rent out short-term without dealing with guests, cleaning, and pricing yourself? We take management off your hands.",
+          cta: "Learn more",
+          slug: "host",
+        },
+      ],
+      trustLine: "Free consultation · Answers in 15 minutes · No obligation",
+      badge: "For Owners",
+    },
     faq: {
       heading: "Frequently Asked Questions",
       subheading: "What people usually ask before telling us their situation.",
@@ -284,21 +346,50 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
           a: "Reach out anyway — almost every move-out situation overlaps with one of them, and we'll help you figure it out.",
         },
       ],
+      ownerItems: [
+        {
+          q: "How much does this cost?",
+          a: "The consultation and review of your situation are free. We make money at other stages — renting out the apartment or managing bookings — so it's in our interest that you rent it out smoothly and on good terms.",
+        },
+        {
+          q: "Where do I start?",
+          a: "Tell us about your apartment and situation — whether you're renting it out for the first time or want to manage it as a short-term rental. We'll point you to the right path and walk you through it, for free.",
+        },
+        {
+          q: "How do you screen tenants and guests?",
+          a: "For long-term rentals, we check income, employment contract and ability to pay before you decide. For short-term rentals, we rely on the booking platforms' own verification and host protection, plus our own check of the apartment after every stay.",
+        },
+        {
+          q: "What if the tenant stops paying or refuses to leave?",
+          a: "We can't rule out the risk entirely — no one can. But proper screening upfront and a correctly drafted contract are what actually affect the odds of a problem, not fear or hindsight.",
+        },
+        {
+          q: "How much time will this take me?",
+          a: "Very little. For a short-term rental, we handle messages, check-ins, cleaning, the calendar and pricing. For a one-time let, we handle apartment prep and the paperwork. You just see the results and get the reports.",
+        },
+      ],
+      tabLabels: { tenants: "Tenants", owners: "Owners" },
     },
   },
   es: {
     hero: {
-      eyebrow: "Gratis para inquilinos en Barcelona ·",
+      eyebrow: "Gratis para inquilinos y propietarios en Barcelona ·",
       h1: [
-        [{ text: "Múdate" }],
-        [{ text: "con confianza." }],
+        [{ text: "Pase lo que pase —" }],
         [{ text: "MoveOS", accent: true }, { text: " se encarga" }],
         [{ text: "de " }, { text: "todo.", accent: true }],
       ],
       subheading:
-        "MoveOS es un servicio gratuito para inquilinos que se mudan en Barcelona. Cuéntanos qué te pasa — tu fianza, una mudanza urgente, papeleo, muebles o una pequeña reparación — y te acompañamos, gratis.",
+        "¿Te mudas pronto y no sabes por dónde empezar? ¿O no sabes qué hacer con un piso a punto de quedar vacío? Cuéntanos qué te pasa y te acompañamos, gratis.",
       cta: "Cuéntanos Tu Situación",
-      badges: ["Gratis, sin compromiso", "Equipo local en Barcelona", "Respuesta en 15 minutos"],
+      badges: [
+        "Múdate con confianza",
+        "Gestiona tu piso",
+        "Gratis, sin compromiso",
+        "Equipo local en Barcelona",
+        "Respuesta en 15 minutos",
+      ],
+      ownerCta: "Soy propietario",
     },
     situations: {
       whatWeDo: {
@@ -309,8 +400,8 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       trustStats: {
         heading: "Gratis para inquilinos. Transparente para propietarios.",
         stats: [
-          { value: "6", label: "soluciones gratuitas — una por situación" },
-          { value: "0 €", label: "coste para el inquilino" },
+          { value: "6", label: "escenarios para inquilinos" },
+          { value: "2", label: "escenarios para propietarios" },
         ],
       },
       quotes: [
@@ -444,6 +535,26 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         button: "Hacer mi revisión gratuita →",
       },
     },
+    owners: {
+      eyebrow: "Para propietarios en Barcelona",
+      heading: "¿Alquilas un piso? Te ayudamos, sea cual sea tu caso.",
+      cards: [
+        {
+          title: "Primer alquiler",
+          body: "¿Alquilas por primera vez? Revisamos al inquilino, su contrato laboral y el plazo de registro de la fianza — antes incluso de publicar el anuncio.",
+          cta: "Saber más",
+          slug: "host/first-time",
+        },
+        {
+          title: "Alquiler de temporada",
+          body: "¿Quieres alquilar por temporada sin ocuparte de huéspedes, limpieza y precios? Nos encargamos de la gestión.",
+          cta: "Saber más",
+          slug: "host",
+        },
+      ],
+      trustLine: "Consulta gratuita · Respuesta en 15 minutos · Sin compromiso",
+      badge: "Para propietarios",
+    },
     faq: {
       heading: "Preguntas frecuentes",
       subheading: "Lo que normalmente se pregunta antes de contarnos tu situación.",
@@ -473,21 +584,50 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
           a: "Escríbenos igualmente — casi cualquier situación de mudanza se cruza con alguna de ellas, y te ayudamos a resolverlo.",
         },
       ],
+      ownerItems: [
+        {
+          q: "¿Cuánto cuesta esto?",
+          a: "La consulta y el análisis de tu situación son gratuitos. Ganamos dinero en otras fases — alquilar el piso o gestionar las reservas —, así que nos interesa que lo alquiles sin problemas y en buenas condiciones.",
+        },
+        {
+          q: "¿Por dónde empiezo?",
+          a: "Cuéntanos sobre tu piso y tu situación — si lo alquilas por primera vez o quieres gestionarlo como alquiler de temporada. Te indicamos gratis qué opción te conviene y te acompañamos en todo el proceso.",
+        },
+        {
+          q: "¿Cómo verificáis a los inquilinos y huéspedes?",
+          a: "Para el alquiler de larga duración, comprobamos ingresos, contrato laboral y capacidad de pago antes de que decidas. Para el alquiler de temporada, usamos la verificación y protección de las propias plataformas de reserva, y además revisamos el piso después de cada estancia.",
+        },
+        {
+          q: "¿Y si el inquilino deja de pagar o se niega a irse?",
+          a: "No podemos eliminar el riesgo por completo — nadie puede. Pero una buena verificación de entrada y un contrato bien redactado son lo que realmente influye en la probabilidad del problema, no los miedos a posteriori.",
+        },
+        {
+          q: "¿Cuánto tiempo me llevará esto?",
+          a: "El mínimo. En el alquiler de temporada, nos encargamos de los mensajes, las entradas, la limpieza, el calendario y los precios. En un alquiler puntual, nos encargamos de preparar el piso y del papeleo. Tú solo ves el resultado y recibes los informes.",
+        },
+      ],
+      tabLabels: { tenants: "Inquilinos", owners: "Propietarios" },
     },
   },
   ru: {
     hero: {
-      eyebrow: "Бесплатно для арендаторов в Барселоне ·",
+      eyebrow: "Бесплатно для арендаторов и владельцев в Барселоне ·",
       h1: [
-        [{ text: "Съезжайте" }],
-        [{ text: "с уверенностью." }],
+        [{ text: "Что бы ни случилось —" }],
         [{ text: "MoveOS", accent: true }, { text: " берёт" }],
         [{ text: "всё", accent: true }, { text: " на себя." }],
       ],
       subheading:
-        "Собираетесь скоро съехать, но не знаете с чего начать? Расскажите, какие у вас трудности — и мы вам поможем.",
+        "Собираетесь скоро съехать? Или не знаете, что делать с пустующей квартирой? Расскажите, что у вас происходит — и мы поможем.",
       cta: "Расскажите о своей ситуации",
-      badges: ["Бесплатно, без обязательств", "Местная команда в Барселоне", "Ответ за 15 минут"],
+      badges: [
+        "Съезжайте с уверенностью",
+        "Управление вашей квартирой",
+        "Бесплатно, без обязательств",
+        "Местная команда в Барселоне",
+        "Ответ за 15 минут",
+      ],
+      ownerCta: "Я владелец",
     },
     situations: {
       whatWeDo: {
@@ -498,8 +638,8 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       trustStats: {
         heading: "Бесплатно для арендаторов. Прозрачно для владельцев.",
         stats: [
-          { value: "6", label: "бесплатных решений — под каждую ситуацию" },
-          { value: "0 €", label: "стоимость для арендатора" },
+          { value: "6", label: "сценариев для арендаторов" },
+          { value: "2", label: "сценария для владельцев" },
         ],
       },
       quotes: [
@@ -631,6 +771,26 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         button: "Пройти проверку →",
       },
     },
+    owners: {
+      eyebrow: "Для владельцев квартир в Барселоне",
+      heading: "Сдаёте квартиру? Поможем — при любом сценарии",
+      cards: [
+        {
+          title: "Первая сдача",
+          body: "Сдаёте впервые? Проверим арендатора, трудовой договор и сроки регистрации депозита — ещё до того, как объявление попадёт на рынок.",
+          cta: "Узнать больше",
+          slug: "host/first-time",
+        },
+        {
+          title: "Посуточная сдача",
+          body: "Хотите сдавать посуточно, но не заниматься гостями, уборкой и ценами? Берём управление на себя.",
+          cta: "Узнать больше",
+          slug: "host",
+        },
+      ],
+      trustLine: "Бесплатная консультация · Ответ за 15 минут · Без обязательств",
+      badge: "Владельцам",
+    },
     faq: {
       heading: "Частые вопросы",
       subheading: "То, что обычно спрашивают перед тем, как рассказать нам свою ситуацию.",
@@ -660,6 +820,29 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
           a: "Напишите всё равно — почти любая ситуация при выезде пересекается с одной из них, разберёмся вместе.",
         },
       ],
+      ownerItems: [
+        {
+          q: "Сколько это стоит?",
+          a: "Консультация и разбор вашей ситуации — бесплатны. Мы зарабатываем на других этапах — сдаче квартиры в аренду или управлении бронированиями, — поэтому нам выгодно, чтобы вы сдавали её без проблем и на выгодных условиях.",
+        },
+        {
+          q: "С чего начать?",
+          a: "Расскажите о квартире и ситуации — сдаёте впервые или хотите сдавать посуточно. Мы бесплатно подскажем, какой вариант подходит, и проведём через весь процесс.",
+        },
+        {
+          q: "Как вы проверяете арендаторов и гостей?",
+          a: "Для долгосрочной аренды — доход, трудовой договор и платёжеспособность до подписания. Для посуточной сдачи — верификация и защита самих площадок бронирования, а после каждого заезда мы дополнительно проверяем состояние квартиры.",
+        },
+        {
+          q: "А если арендатор перестанет платить или откажется съезжать?",
+          a: "Мы не можем исключить риск полностью — его не исключает никто. Но грамотная проверка на входе и корректно оформленный договор реально снижают вероятность проблемы.",
+        },
+        {
+          q: "Сколько времени это займёт у меня?",
+          a: "Минимум. При посуточной сдаче мы берём на себя переписку, заселения, уборку, календарь и цены. При разовой сдаче — подготовку квартиры и оформление договора. Вы просто видите результат и получаете отчётность.",
+        },
+      ],
+      tabLabels: { tenants: "Арендаторам", owners: "Владельцам" },
     },
   },
 };

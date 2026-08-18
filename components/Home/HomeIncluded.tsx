@@ -36,7 +36,7 @@ export default function HomeIncluded({ copy }: Props) {
   const ActiveIcon = PAIN_ICONS[PAIN_SLUGS[selected]];
 
   return (
-    <section className="bg-fog py-20 sm:py-section">
+    <section id="included" className="scroll-mt-24 bg-fog py-20 sm:py-section">
       <div className="container-page">
         <div className="grid gap-4 lg:grid-cols-5 lg:items-stretch">
           <Reveal className="lg:col-span-3">

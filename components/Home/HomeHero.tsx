@@ -4,7 +4,6 @@ import HeroGlow from "./HeroGlow";
 import RecedingTitle from "./RecedingTitle";
 import FadeOnScroll from "./FadeOnScroll";
 import type { HomeCopy } from "@/lib/i18n/home";
-import { BOOKING_URL } from "@/lib/config";
 
 type Props = {
   copy: HomeCopy;
@@ -100,15 +99,23 @@ export default function HomeHero({ copy }: Props) {
                 <PillButton href="#situations" className="w-full sm:w-auto">
                   {copy.hero.cta}
                 </PillButton>
-                <PillButton
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="ghost"
-                  className="w-full sm:w-auto"
-                >
+                {/* Same label/target as the ArrowLink in HomeSituations'
+                    whatWeDo card — both now jump to #included instead of
+                    the external booking calendar, so the two buttons on
+                    the page carrying this exact text behave identically. */}
+                {/* <PillButton href="#included" variant="ghost" className="w-full sm:w-auto">
                   {copy.situations.whatWeDo.cta}
-                </PillButton>
+                </PillButton> */}
+                {/* Owner escape hatch out of an otherwise all-tenant hero —
+                    jumps to HomeOwners (#for-owners) further down the page.
+                    Renders only when the locale has owner copy (see
+                    lib/i18n/home.ts hero.ownerCta); a locale without it
+                    keeps the original two-button hero unchanged. */}
+                {copy.hero.ownerCta && (
+                  <PillButton href="#for-owners" variant="ghost" className="w-full sm:w-auto">
+                    {copy.hero.ownerCta}
+                  </PillButton>
+                )}
               </div>
             </Reveal>
           </div>
@@ -128,7 +135,7 @@ export default function HomeHero({ copy }: Props) {
                 that number changes — `flex-1` divides the row by whatever the
                 copy actually contains. Same construction as the pain-page
                 hero's badge row. */}
-            <div className="mx-auto flex max-w-3xl flex-col divide-y divide-hairline border-y border-hairline sm:flex-row sm:divide-x sm:divide-y-0">
+            <div className="mx-auto flex  flex-col divide-y divide-hairline border-y border-hairline sm:flex-row sm:divide-x sm:divide-y-0">
               {copy.hero.badges.map((label) => (
                 <div key={label} className="flex-1 px-4 py-5 text-center">
                   <p className="text-caption text-slate">{label}</p>

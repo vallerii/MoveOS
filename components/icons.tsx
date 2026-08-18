@@ -170,3 +170,25 @@ export function GiftIcon({ className = "h-6 w-6" }: IconProps) {
     </svg>
   );
 }
+
+/** First-time-landlord owner scenario (/host/first-time) — a key, for
+ * handing the flat over to a tenant for the first time. */
+export function KeyIcon({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <circle cx="8" cy="8" r="3.5" />
+      <path d="M10.5 10.5L20 20M16.5 20l3-3M14 17.5l2.5-2.5" />
+    </svg>
+  );
+}
+
+/** Short-term-rental owner scenario (/host) — a calendar, for the
+ * day-by-day booking management the page hands off. */
+export function CalendarIcon({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <rect x="3.5" y="5.5" width="17" height="15" rx="1.5" />
+      <path d="M3.5 9.5h17M8 3.5v3M16 3.5v3M12 13.5v3" />
+    </svg>
+  );
+}
