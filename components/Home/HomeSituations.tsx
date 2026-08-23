@@ -84,16 +84,12 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
               <div className="relative z-10 max-w-md lg:max-w-sm">
                 <h3 className="font-display text-heading text-ink">{whatWeDo.heading}</h3>
                 <p className="mt-5 text-caption text-slate">{whatWeDo.body}</p>
-                {/* Both links jump to in-page sections now, not the external
-                    booking calendar: the tenant CTA opens the full "what's
-                    included" breakdown, and — when this locale has owner
-                    copy — a second line offers the same for owners, pointing
-                    at HomeOwners' `#for-owners` section. */}
+                {/* Jumps to the in-page "what's included" breakdown, not the
+                    external booking calendar. The owner link that used to
+                    sit here moved to the teaser block below the quotes/links
+                    row — this card is tenant-only now. */}
                 <div className="mt-8 flex flex-col gap-3">
                   <ArrowLink href="#included">{whatWeDo.cta}</ArrowLink>
-                  {copy.owners && (
-                    <ArrowLink href="#for-owners">{copy.owners.badge}</ArrowLink>
-                  )}
                 </div>
               </div>
 
@@ -129,11 +125,50 @@ export default function HomeSituations({ locale, dict, copy }: Props) {
         </div>
 
         <div className="mt-4 grid gap-4 lg:grid-cols-2">
-          <Reveal delay={120}>
-            <PainQuotesCarousel quotes={quotes} />
-          </Reveal>
+          {/* Left column is now two stacked cards, not one stretched to
+              match the links panel's height. The quote card used to be the
+              lone occupant and relied on grid stretch + its own glow
+              graphic to fill the dead space below a short quote (see
+              PainQuotesCarousel) — that dead space is now the owner teaser
+              instead, so the quote card sizes to its own content and the
+              teaser (flex-1) absorbs the rest, keeping the column's total
+              height matched to the links panel beside it. */}
+          <div className="flex flex-col gap-4">
+            <Reveal delay={120} className="min-h-[400px]">
+              <PainQuotesCarousel quotes={quotes} />
+            </Reveal>
 
-          <Reveal delay={160}>
+            {/* Owner bridge — shares this column with the quote card rather
+                than running full-width below both, so it fills the space a
+                short quote used to leave empty instead of adding a new row
+                to the section. Same anchor and label (`owners.badge`) as the
+                link that used to live in the whatWeDo card above. Renders
+                nothing for a locale without owner copy yet.
+
+                `flex flex-1` goes on the Reveal wrapper itself (via
+                className), not the card inside it — Reveal's own div is the
+                actual flex item in the `flex flex-col` column above, so
+                that's the element that has to grow to fill the leftover
+                space; flex-1 on a nested div does nothing when its immediate
+                parent (Reveal's div) isn't itself a flex container. The
+                card then gets `flex-1` too, to fill 100% of that grown
+                wrapper rather than just sizing to its own content. */}
+            {copy.owners && (
+              <Reveal delay={160} className="flex flex-1">
+                <div className="card-neutral flex flex-1 flex-col justify-center gap-6 sm:flex-row  sm:justify-between">
+                  <div>
+                    <h3 className="font-display text-heading text-ink">{copy.owners.teaser.heading}</h3>
+                    <p className="mt-3 text-caption text-slate">{copy.owners.teaser.body}</p>
+                  </div>
+                  <ArrowLink href="#for-owners" className="shrink-0 items-end">
+                    {copy.owners.badge}
+                  </ArrowLink>
+                </div>
+              </Reveal>
+            )}
+          </div>
+
+          <Reveal delay={200}>
             <div id="situation-links" className="card-neutral h-full scroll-mt-24">
               <h3 className="font-display text-heading-sm text-ink">{linksPanel.heading}</h3>
               <nav className="mt-8 flex flex-col">

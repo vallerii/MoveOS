@@ -1,5 +1,7 @@
 import Reveal from "../Reveal";
 import ArrowLink from "../ArrowLink";
+import PillButton from "../PillButton";
+import { BOOKING_URL } from "@/lib/config";
 import type { HomeCopy } from "@/lib/i18n/home";
 import type { Locale } from "@/lib/i18n/types";
 
@@ -52,7 +54,23 @@ export default function HomeOwners({ copy, locale }: Props) {
           ))}
         </div>
 
+        {/* Catch-all for a scenario the two cards above don't name — sends
+            the visitor straight to the booking calendar (same target as
+            HomeIncluded's ctaCard) rather than one of the /host pages,
+            since there's no specific page to route this case to yet. */}
         <Reveal delay={owners.cards.length * 80}>
+          <div className="card-neutral mt-4 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="font-display text-heading-sm text-ink">{owners.fallback.heading}</h3>
+              <p className="mt-3 text-caption text-slate">{owners.fallback.body}</p>
+            </div>
+            <PillButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="w-fit shrink-0">
+              {owners.fallback.cta}
+            </PillButton>
+          </div>
+        </Reveal>
+
+        <Reveal delay={(owners.cards.length + 1) * 80}>
           <p className="mt-8 text-meta text-ash">{owners.trustLine}</p>
         </Reveal>
       </div>

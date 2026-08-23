@@ -113,8 +113,19 @@ export interface HomeCopy {
     trustLine: string;
     /** Short caption ("For Owners") used wherever the owner cards need a
      * compact label rather than the full `eyebrow` sentence — currently
-     * the mini owner list appended to HomeSituations' linksPanel. */
+     * the mini owner list appended to HomeSituations' linksPanel, and the
+     * link label on the `teaser` block below. */
     badge: string;
+    /** Small "are you an owner?" bridge block at the foot of the situations
+     * quotes/links row (see components/Home/HomeSituations.tsx) — replaces
+     * the owner ArrowLink that used to sit in the whatWeDo card. Links to
+     * the same #for-owners anchor, labelled with `badge`. */
+    teaser: { heading: string; body: string };
+    /** Catch-all CTA at the foot of HomeOwners' card grid, for an owner
+     * whose situation isn't either of the two named cards (first-time
+     * landlord, short-term rental). Routes to BOOKING_URL, same as
+     * `included.ctaCard` above, rather than a specific pain/host page. */
+    fallback: { heading: string; body: string; cta: string };
   };
   /** Site-wide objection-handling FAQ — sits right after HomeWhyUs, before
    * the quiz. Reuses the same FAQ component/shape as the per-pain FAQ on
@@ -316,6 +327,15 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       ],
       trustLine: "Free consultation · Answers in 15 minutes · No obligation",
       badge: "For Owners",
+      teaser: {
+        heading: "Are you an owner?",
+        body: "We've got solutions for you too.",
+      },
+      fallback: {
+        heading: "Didn't find your situation?",
+        body: "Tell us more about it — we can help whatever the case.",
+        cta: "Tell us more →",
+      },
     },
     faq: {
       heading: "Frequently Asked Questions",
@@ -554,6 +574,15 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       ],
       trustLine: "Consulta gratuita · Respuesta en 15 minutos · Sin compromiso",
       badge: "Para propietarios",
+      teaser: {
+        heading: "¿Eres propietario?",
+        body: "Tenemos soluciones para ti también.",
+      },
+      fallback: {
+        heading: "¿No encuentras tu situación?",
+        body: "Cuéntanos más — podemos ayudarte sea cual sea el caso.",
+        cta: "Cuéntanos más →",
+      },
     },
     faq: {
       heading: "Preguntas frecuentes",
@@ -790,6 +819,15 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       ],
       trustLine: "Бесплатная консультация · Ответ за 15 минут · Без обязательств",
       badge: "Владельцам",
+      teaser: {
+        heading: "Ты владелец?",
+        body: "У нас есть для тебя решения.",
+      },
+      fallback: {
+        heading: "Не нашли свою ситуацию?",
+        body: "Расскажите нам подробнее — поможем, каким бы ни был случай.",
+        cta: "Расскажите нам →",
+      },
     },
     faq: {
       heading: "Частые вопросы",

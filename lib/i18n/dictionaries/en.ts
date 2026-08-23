@@ -836,6 +836,112 @@ const en: Dictionary = {
   },
   testimonial: {
     heading: "What Tenants Say",
+    // Illustrative quotes, not verified customer reviews — same status as
+    // HomeCopy.situations.quotes and Host/HostTestimonials' items.
+    items: {
+      deposit: [
+        {
+          hook: "“Deposit came back the same day I moved out”",
+          quote: "I didn't expect it to happen so fast — everyone usually complains about waiting a month. We had the move-out report and photos ready in advance, so there was nothing for the landlord to argue about.",
+          name: "Marta, tenant",
+        },
+        {
+          hook: "“I didn't know the deposit isn't even held by the landlord”",
+          quote: "Turns out in Catalonia it's lodged with INCASÒL. They showed me how to check it myself — it put my mind at ease.",
+          name: "Dmitry, tenant",
+        },
+        {
+          hook: "“The landlord tried to charge me for old wallpaper”",
+          quote: "They showed the difference between wear and damage using my own move-in photos. It was settled in one phone call, no lawyer needed.",
+          name: "Olga, tenant",
+        },
+      ],
+      admin: [
+        {
+          hook: "“I completely forgot about the meter reading at my old place”",
+          quote: "They reminded me two weeks before moving out — otherwise I'd have kept paying for electricity there for another month out of sheer inertia.",
+          name: "Irina, tenant",
+        },
+        {
+          hook: "“I didn't know I had to update my address in the padrón”",
+          quote: "They sent me a list of six places where my old address was still on file — bank, insurance, subscriptions. I would never have remembered half of them myself.",
+          name: "Pavel, tenant",
+        },
+        {
+          hook: "“Moved my internet to the new place without a single day of downtime”",
+          quote: "That's usually its own headache when you move — this time they just told me exactly what to write to the provider and when.",
+          name: "Svetlana, tenant",
+        },
+      ],
+      belongings: [
+        {
+          hook: "“Didn't know what to do with my old sofa three days before moving out”",
+          quote: "They helped find someone to take it and arranged the pickup — I would have spent weeks looking on my own.",
+          name: "Anna, tenant",
+        },
+        {
+          hook: "“I was afraid some of my things would just get thrown out”",
+          quote: "They made an inventory before the pickup — everything that was left was accounted for, nothing got lost.",
+          name: "Viktor, tenant",
+        },
+        {
+          hook: "“Sold my furniture instead of paying for storage”",
+          quote: "I didn't even think that was an option — they suggested selling what I didn't need and only keeping what actually mattered.",
+          name: "Ekaterina, tenant",
+        },
+      ],
+      urgent: [
+        {
+          hook: "“Moved out in four days without a single penalty”",
+          quote: "I was sure I'd have to pay a penalty for breaking the lease early — turns out there was a clause in my contract I'd completely missed.",
+          name: "Natalia, tenant",
+        },
+        {
+          hook: "“Didn't know where to start with an urgent move”",
+          quote: "They gave me a step-by-step plan for two days — what to do first, what could wait. Without that list I would have completely panicked.",
+          name: "Igor, tenant",
+        },
+        {
+          hook: "“The deposit came through fine, even with all the rush”",
+          quote: "I was afraid I'd forget to photograph something important in the rush — they sent me a checklist right before I handed over the keys.",
+          name: "Tatiana, tenant",
+        },
+      ],
+      buyout: [
+        {
+          hook: "“Got my deposit and a bonus on the same day”",
+          quote: "I was renting below market rate and didn't want to move out without some compensation. They assessed the difference and made an offer the same day.",
+          name: "Maria, tenant",
+        },
+        {
+          hook: "“Didn't think you could get paid for giving up a lease”",
+          quote: "They explained it all in plain terms — what my rate was actually worth on the market and why the offer was fair.",
+          name: "Alexey, tenant",
+        },
+        {
+          hook: "“Didn't have to wait a month to get my money”",
+          quote: "The deposit was refunded right at handover, not after weeks of back-and-forth with the landlord.",
+          name: "Julia, tenant",
+        },
+      ],
+      repair: [
+        {
+          hook: "“Only paid for what was actually necessary”",
+          quote: "I was afraid the contractor would find a ton of extra work. They fixed exactly what could have cost me part of my deposit — not a euro more.",
+          name: "Kristina, tenant",
+        },
+        {
+          hook: "“Didn't end up paying to fix what turned out to be normal wear”",
+          quote: "I almost paid to repaint walls that had simply faded over time. They explained the difference — saved me a few hundred euros.",
+          name: "Roman, tenant",
+        },
+        {
+          hook: "“One nail hole — and it was all sorted in a single visit”",
+          quote: "I thought it would turn into a whole negotiation. The contractor came, fixed it, they sent before-and-after photos — that was enough.",
+          name: "Victoria, tenant",
+        },
+      ],
+    },
   },
   footer: {
     tagline: "MoveOS — stress-free renting in Barcelona, for tenants and owners alike.",

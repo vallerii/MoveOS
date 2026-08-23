@@ -831,6 +831,112 @@ const es: Dictionary = {
   },
   testimonial: {
     heading: "Qué dicen los inquilinos",
+    // Illustrative quotes, not verified customer reviews — same status as
+    // HomeCopy.situations.quotes and Host/HostTestimonials' items.
+    items: {
+      deposit: [
+        {
+          hook: "«La fianza volvió el mismo día que me mudé»",
+          quote: "No esperaba que fuera tan rápido — normalmente todo el mundo se queja de esperar un mes. Teníamos el acta de salida y las fotos listas de antemano, así que el propietario no tuvo nada que discutir.",
+          name: "Marta, inquilina",
+        },
+        {
+          hook: "«No sabía que la fianza ni siquiera la guarda el propietario»",
+          quote: "Resulta que en Cataluña está depositada en el INCASÒL. Me enseñaron a comprobarlo yo misma — me quedé mucho más tranquila.",
+          name: "Dmitri, inquilino",
+        },
+        {
+          hook: "«El propietario intentó cobrarme por el papel de pared antiguo»",
+          quote: "Me mostraron la diferencia entre desgaste y daño usando mis propias fotos de entrada. Se resolvió en una llamada, sin abogados.",
+          name: "Olga, inquilina",
+        },
+      ],
+      admin: [
+        {
+          hook: "«Se me olvidó por completo la lectura del contador del piso antiguo»",
+          quote: "Me lo recordaron dos semanas antes de mudarme — si no, habría seguido pagando la luz allí otro mes más por inercia.",
+          name: "Irina, inquilina",
+        },
+        {
+          hook: "«No sabía que tenía que cambiar la dirección en el padrón»",
+          quote: "Me enviaron una lista de seis sitios donde seguía mi dirección antigua — banco, seguro, suscripciones. Yo sola no habría recordado ni la mitad.",
+          name: "Pavel, inquilino",
+        },
+        {
+          hook: "«Trasladaron mi internet al piso nuevo sin un solo día sin conexión»",
+          quote: "Normalmente eso es un quebradero de cabeza aparte al mudarte — esta vez simplemente me dijeron qué escribirle al proveedor y cuándo.",
+          name: "Svetlana, inquilina",
+        },
+      ],
+      belongings: [
+        {
+          hook: "«No sabía qué hacer con el sofá viejo tres días antes de mudarme»",
+          quote: "Me ayudaron a encontrar a quién dárselo y organizaron la recogida — yo sola habría tardado semanas en buscar.",
+          name: "Anna, inquilina",
+        },
+        {
+          hook: "«Tenía miedo de que tiraran parte de mis cosas sin más»",
+          quote: "Hicieron un inventario antes de la recogida — todo lo que quedaba estaba registrado, no se perdió nada.",
+          name: "Viktor, inquilino",
+        },
+        {
+          hook: "«Vendí los muebles en vez de pagar un trastero»",
+          quote: "Ni se me había ocurrido que fuera una opción — me propusieron vender lo que no me importaba y guardar solo lo necesario.",
+          name: "Ekaterina, inquilina",
+        },
+      ],
+      urgent: [
+        {
+          hook: "«Me mudé en cuatro días sin ninguna penalización»",
+          quote: "Estaba segura de que tendría que pagar una compensación por romper el contrato antes de tiempo — resulta que había una cláusula que se me había pasado por alto.",
+          name: "Natalia, inquilina",
+        },
+        {
+          hook: "«No sabía por dónde empezar con una mudanza urgente»",
+          quote: "Me dieron un plan paso a paso para dos días — qué era prioritario y qué podía esperar. Sin esa lista me habría entrado el pánico seguro.",
+          name: "Igor, inquilino",
+        },
+        {
+          hook: "«La fianza no se vio afectada, ni con todas las prisas»",
+          quote: "Tenía miedo de olvidarme de fotografiar algo importante con las prisas — me enviaron una lista de comprobación justo antes de entregar las llaves.",
+          name: "Tatiana, inquilina",
+        },
+      ],
+      buyout: [
+        {
+          hook: "«Recibí la fianza y el bono el mismo día»",
+          quote: "Alquilaba por debajo del precio de mercado y no quería irme sin compensación. Evaluaron la diferencia y me hicieron una oferta ese mismo día.",
+          name: "Maria, inquilina",
+        },
+        {
+          hook: "«No pensaba que se pudiera cobrar por renunciar a un contrato»",
+          quote: "Me lo explicaron todo en lenguaje sencillo — cuánto valía mi alquiler en el mercado y por qué la oferta era justa.",
+          name: "Alexey, inquilino",
+        },
+        {
+          hook: "«No tuve que esperar un mes para recibir mi dinero»",
+          quote: "Me devolvieron la fianza en el momento del traspaso, no después de semanas de negociaciones con el propietario.",
+          name: "Julia, inquilina",
+        },
+      ],
+      repair: [
+        {
+          hook: "«Solo pagué por lo que realmente hacía falta»",
+          quote: "Tenía miedo de que el técnico encontrara un montón de cosas de más. Arreglaron justo lo que podía costarme parte de la fianza — ni un euro más.",
+          name: "Kristina, inquilina",
+        },
+        {
+          hook: "«No pagué por arreglar lo que resultó ser desgaste normal»",
+          quote: "Casi pago por repintar unas paredes que simplemente se habían desteñido con el tiempo. Me explicaron la diferencia — me ahorré varios cientos de euros.",
+          name: "Roman, inquilino",
+        },
+        {
+          hook: "«Un golpe de un clavo — y se resolvió en una sola visita»",
+          quote: "Pensaba que sería toda una negociación. Vino el técnico, lo arregló, me enviaron fotos de antes y después — con eso bastó.",
+          name: "Victoria, inquilina",
+        },
+      ],
+    },
   },
   footer: {
     tagline: "MoveOS — alquiler sin estrés en Barcelona, para inquilinos y propietarios.",
