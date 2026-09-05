@@ -21,7 +21,15 @@ export interface ChecklistContent {
 
 export interface Dictionary {
   meta: {
+    /** Appended to every page title EXCEPT the homepage — see homeTitle. */
     titleSuffix: string;
+    /**
+     * The homepage's own <title>. It deliberately does NOT take titleSuffix:
+     * composing `Movingo` + ` | Movingo Barcelona` printed the brand twice
+     * and burned most of the ~60 characters Google renders before it
+     * truncates. This is the full title, brand included.
+     */
+    homeTitle: string;
   };
   languageNames: Record<Locale, string>;
   nav: {

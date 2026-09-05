@@ -11,7 +11,7 @@ type Props = {
  * Homepage positioning section — the standard 2-column text + UI feature
  * layout on a Fog band.
  *
- * Previously this was a full-bleed dark ink section with "MoveOS" picked
+ * Previously this was a full-bleed dark ink section with "Movingo" picked
  * out in accent teal. Neither survives: ink is reserved for type and the
  * filled pill, and headline type is never tinted. The brand name simply
  * sits in the serif heading like the rest of the line.

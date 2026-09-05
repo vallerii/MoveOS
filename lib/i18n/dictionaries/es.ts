@@ -2,7 +2,8 @@ import type { Dictionary } from "../types";
 
 const es: Dictionary = {
   meta: {
-    titleSuffix: " | MoveOS Barcelona",
+    titleSuffix: " | Movingo Barcelona",
+    homeTitle: "Movingo — Revisión gratuita de salida para inquilinos en Barcelona",
   },
   languageNames: {
     en: "English",
@@ -803,7 +804,7 @@ const es: Dictionary = {
     },
   },
   whyUs: {
-    eyebrow: "Por qué MoveOS",
+    eyebrow: "Por qué Movingo",
     heading: "Cada mudanza es distinta",
     intro: {
       deposit: "Tu contrato, tu propietario, el estado del piso y tus plazos importan. Nuestro único trabajo es que te mudes sin estrés.",
@@ -939,7 +940,7 @@ const es: Dictionary = {
     },
   },
   footer: {
-    tagline: "MoveOS — alquiler sin estrés en Barcelona, para inquilinos y propietarios.",
+    tagline: "Movingo — alquiler sin estrés en Barcelona, para inquilinos y propietarios.",
     privacy: "Política de privacidad",
   },
   quiz: {
@@ -983,7 +984,7 @@ const es: Dictionary = {
         options: ["Paredes y pintura", "Fontanería o electricidad", "Aún no lo sé"],
       },
     },
-    dataNotice: "Tus datos los usa solo el equipo de MoveOS, y solo para esta consulta.",
+    dataNotice: "Tus datos los usa solo el equipo de Movingo, y solo para esta consulta.",
     dataNoticeLink: "Política de privacidad",
     otherCity: {
       heading: "De momento solo estamos en Barcelona",
@@ -1198,7 +1199,7 @@ const es: Dictionary = {
   privacy: {
     title: "Política de privacidad",
     intro:
-      "Esta es una política de privacidad provisional para el MVP de MoveOS. Sustitúyela por una política revisada por un profesional cualificado antes de enviar tráfico de pago aquí. Como mínimo debería cubrir:",
+      "Esta es una política de privacidad provisional para el MVP de Movingo. Sustitúyela por una política revisada por un profesional cualificado antes de enviar tráfico de pago aquí. Como mínimo debería cubrir:",
     items: [
       "Qué datos se recogen (nombre, teléfono, respuestas del cuestionario) y para qué (contactarte sobre tu revisión gratuita y enviarte tu checklist).",
       "Cuánto tiempo se conservan los datos.",

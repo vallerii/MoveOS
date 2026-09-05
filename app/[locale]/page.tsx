@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n";
 import Home from "@/components/Home";
+import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/JsonLd";
 
 type Params = { locale: string };
 
@@ -20,7 +21,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   // title/description (same og:image as the pain pages) rather than any
   // one pain's metaTitle/metaDescription.
   return {
-    title: `MoveOS${dict.meta.titleSuffix}`,
+    title: dict.meta.homeTitle,
     description: dict.footer.tagline,
     alternates: {
       canonical: path,
@@ -30,7 +31,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
       },
     },
     openGraph: {
-      title: "MoveOS",
+      title: dict.meta.homeTitle,
       description: dict.footer.tagline,
       type: "website",
       url: path,
@@ -38,7 +39,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "MoveOS",
+      title: dict.meta.homeTitle,
       description: dict.footer.tagline,
       images: ["/og-image.png"],
     },
@@ -50,5 +51,11 @@ export default function LocaleIndexPage({ params }: { params: Params }) {
   const { locale } = params;
   const dict = getDictionary(locale);
 
-  return <Home locale={locale} dict={dict} />;
+  return (
+    <>
+      <OrganizationJsonLd locale={locale} />
+      <WebSiteJsonLd locale={locale} name="Movingo" />
+      <Home locale={locale} dict={dict} />
+    </>
+  );
 }

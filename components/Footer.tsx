@@ -7,6 +7,7 @@ import { PAIN_SLUGS } from "@/lib/pains";
 import { CONTACT_EMAIL } from "@/lib/config";
 import { HOST_FIRST_TIME_LOCALES } from "@/lib/i18n/hostFirstTime";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { Logo } from "./Logo";
 
 type Props = {
   locale: Locale;
@@ -100,9 +101,7 @@ export default function Footer({ locale, dict }: Props) {
       <div className="container-page">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="lg:col-span-2">
-            <Link href={`/${locale}`} className="font-display text-2xl tracking-tight text-ink">
-              MoveOS
-            </Link>
+            <Logo locale={locale} />
             <p className="mt-5 max-w-xs text-caption text-slate">{dict.footer.tagline}</p>
             <div className="mt-8">
               <LanguageSwitcher locale={locale} languageNames={dict.languageNames} />
@@ -200,7 +199,7 @@ export default function Footer({ locale, dict }: Props) {
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-hairline pt-8 text-meta text-ash sm:flex-row">
-          <span>© {new Date().getFullYear()} MoveOS</span>
+          <span>© {new Date().getFullYear()} Movingo</span>
           <span>{extra.bottomNote}</span>
         </div>
       </div>

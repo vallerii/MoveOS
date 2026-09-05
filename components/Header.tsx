@@ -10,6 +10,7 @@ import { BOOKING_URL } from "@/lib/config";
 import { ChevronDownIcon } from "./icons";
 import LanguageSwitcher from "./LanguageSwitcher";
 import PillButton from "./PillButton";
+import { Logo } from "./Logo";
 
 type Props = {
   locale: Locale;
@@ -152,9 +153,7 @@ export default function Header({ locale, dict }: Props) {
   return (
     <header className="sticky top-0 z-50 bg-paper/80 backdrop-blur-md">
       <div className="container-page relative flex h-20 items-center justify-between gap-6">
-        <Link href={`/${locale}`} className="shrink-0 font-display text-2xl tracking-tight text-ink">
-          MoveOS
-        </Link>
+        <Logo locale={locale} />
 
         {/* Арендаторам + Владельцам, grouped and truly centred (absolute +
             -translate-x-1/2, not justify-between's uneven middle-child

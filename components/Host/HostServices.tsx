@@ -19,7 +19,7 @@ type Props = {
  * that isn't just a paragraph.
  *
  * The section wash (bg-fog + a soft blue tint) and the peach/lavender glow
- * behind the heading match HomeWhyUs's "Почему MoveOS" treatment exactly —
+ * behind the heading match HomeWhyUs's "Почему Movingo" treatment exactly —
  * same highlight, applied to this page's own lead line.
  */
 export default function HostServices({ heading, intro, items, cta }: Props) {

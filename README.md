@@ -1,4 +1,4 @@
-# MoveOS — Move-Out Qualifier Landing Pages (MVP)
+# Movingo — Move-Out Qualifier Landing Pages (MVP)
 
 A Next.js 14 + Tailwind CSS site for Meta (Instagram/Facebook) ads, testing
 Barcelona-renter acquisition. Four landing pages, each opening on a different

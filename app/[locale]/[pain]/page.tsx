@@ -14,6 +14,7 @@ import WhyUs from "@/components/WhyUs";
 import PainTestimonial from "@/components/PainTestimonial";
 import QuizSection from "@/components/Quiz/QuizSection";
 import BuyoutCalculator from "@/components/Quiz/BuyoutCalculator";
+import { FaqJsonLd } from "@/components/JsonLd";
 
 type Params = { locale: string; pain: string };
 
@@ -71,6 +72,9 @@ export default function PainPage({ params }: { params: Params }) {
 
   return (
     <main>
+      {/* Guarded on `faq` — several pains have no FAQ block, and marking up
+          questions that aren't rendered is a structured-data violation. */}
+      {faq && <FaqJsonLd items={faq.items} />}
       <Hero locale={locale} pain={pain} dict={dict} />
       <DidYouKnow dict={dict} pain={pain} />
       <WhatYouGet dict={dict} pain={pain} />

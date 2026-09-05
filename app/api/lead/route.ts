@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
   };
 
   // Always log server-side, so leads are visible even without a webhook configured.
-  console.log("[MoveOS lead]", lead);
+  console.log("[Movingo lead]", lead);
 
   const webhookUrl = process.env.LEAD_WEBHOOK_URL;
   if (webhookUrl) {
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
     } catch (err) {
       // Don't fail the request just because the webhook is unreachable —
       // the lead is already logged above.
-      console.error("[MoveOS lead] webhook delivery failed", err);
+      console.error("[Movingo lead] webhook delivery failed", err);
     }
   }
 

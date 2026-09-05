@@ -23,6 +23,7 @@ export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hola@move
 /**
  * Canonical production origin — used for metadataBase (resolving absolute
  * og:image / canonical / hreflang URLs) and for sitemap.xml / robots.txt.
- * Replace NEXT_PUBLIC_SITE_URL once a custom domain is live.
+ * movingo.es is the live custom domain; NEXT_PUBLIC_SITE_URL still overrides
+ * it per-environment (preview deploys, staging).
  */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://move-os-five.vercel.app";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://movingo.es";

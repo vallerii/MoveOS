@@ -2,7 +2,8 @@ import type { Dictionary } from "../types";
 
 const en: Dictionary = {
   meta: {
-    titleSuffix: " | MoveOS Barcelona",
+    titleSuffix: " | Movingo Barcelona",
+    homeTitle: "Movingo — Free Move-Out Check for Barcelona Renters",
   },
   languageNames: {
     en: "English",
@@ -803,7 +804,7 @@ const en: Dictionary = {
     },
   },
   whyUs: {
-    eyebrow: "Why MoveOS",
+    eyebrow: "Why Movingo",
     heading: "Every move-out is different",
     intro: {
       deposit:
@@ -944,7 +945,7 @@ const en: Dictionary = {
     },
   },
   footer: {
-    tagline: "MoveOS — stress-free renting in Barcelona, for tenants and owners alike.",
+    tagline: "Movingo — stress-free renting in Barcelona, for tenants and owners alike.",
     privacy: "Privacy Policy",
   },
   quiz: {
@@ -988,7 +989,7 @@ const en: Dictionary = {
         options: ["Walls and paintwork", "Plumbing or electrics", "Not sure yet"],
       },
     },
-    dataNotice: "Your details are used only by the MoveOS team, and only for this consultation.",
+    dataNotice: "Your details are used only by the Movingo team, and only for this consultation.",
     dataNoticeLink: "Privacy policy",
     otherCity: {
       heading: "We're only in Barcelona for now",
@@ -1203,7 +1204,7 @@ const en: Dictionary = {
   privacy: {
     title: "Privacy Policy",
     intro:
-      "This is a placeholder privacy policy for the MoveOS MVP. Replace it with a policy reviewed by a qualified professional before sending paid traffic here. At a minimum it should cover:",
+      "This is a placeholder privacy policy for the Movingo MVP. Replace it with a policy reviewed by a qualified professional before sending paid traffic here. At a minimum it should cover:",
     items: [
       "What data is collected (name, phone, quiz answers) and why (to contact you about your free move-out check and send your checklist).",
       "How long the data is retained.",

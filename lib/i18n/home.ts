@@ -3,7 +3,7 @@ import type { Locale } from "./types";
 /**
  * Copy for the homepage (app/[locale]/page.tsx), kept separate from the
  * shared `Dictionary` type in ./types.ts. The homepage isn't pain-specific
- * like the rest of the site — it's the entry point that explains MoveOS and
+ * like the rest of the site — it's the entry point that explains Movingo and
  * routes the visitor to one of the six pain pages — so its copy doesn't fit
  * the `pains` record shape the rest of the app is built around. Keeping it
  * in its own small dictionary avoids widening the shared Dictionary type
@@ -57,7 +57,7 @@ export interface HomeCopy {
     steps: { title: string; body: string }[];
   };
   whyUs: {
-    /** Ends with "MoveOS" in every locale — split on that word to render
+    /** Ends with "Movingo" in every locale — split on that word to render
      * the brand name in accent color, rest in ink, matching the reference. */
     eyebrow: string;
     heading: string;
@@ -149,7 +149,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       eyebrow: "Free for Renters and Owners in Barcelona ·",
       h1: [
         [{ text: "Whatever happens —" }],
-        [{ text: "MoveOS", accent: true }, { text: " has" }],
+        [{ text: "Movingo", accent: true }, { text: " has" }],
         [{ text: "everything", accent: true }, { text: " covered." }],
       ],
       subheading:
@@ -242,7 +242,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       ],
     },
     whyUs: {
-      eyebrow: "Why MoveOS",
+      eyebrow: "Why Movingo",
       heading: "We're not just a service. We're your advocate during the move-out.",
       intro:
         "From the first call to the final handover, we handle the calls, the paperwork, and the awkward conversations — so you can move out without the stress.",
@@ -396,7 +396,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       eyebrow: "Gratis para inquilinos y propietarios en Barcelona ·",
       h1: [
         [{ text: "Pase lo que pase —" }],
-        [{ text: "MoveOS", accent: true }, { text: " se encarga" }],
+        [{ text: "Movingo", accent: true }, { text: " se encarga" }],
         [{ text: "de " }, { text: "todo.", accent: true }],
       ],
       subheading:
@@ -489,7 +489,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       ],
     },
     whyUs: {
-      eyebrow: "Por Qué MoveOS",
+      eyebrow: "Por Qué Movingo",
       heading: "No somos solo un servicio. Somos tu defensor durante la mudanza.",
       intro:
         "Desde la primera llamada hasta la entrega de llaves, nos encargamos de las llamadas, el papeleo y las conversaciones incómodas — para que te mudes sin estrés.",
@@ -643,7 +643,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       eyebrow: "Бесплатно для арендаторов и владельцев в Барселоне ·",
       h1: [
         [{ text: "Что бы ни случилось —" }],
-        [{ text: "MoveOS", accent: true }, { text: " берёт" }],
+        [{ text: "Movingo", accent: true }, { text: " берёт" }],
         [{ text: "всё", accent: true }, { text: " на себя." }],
       ],
       subheading:
@@ -734,7 +734,7 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       ],
     },
     whyUs: {
-      eyebrow: "Почему MoveOS",
+      eyebrow: "Почему Movingo",
       heading: "Мы не просто сервис. Мы ваш защитник на этапе выезда.",
       intro:
         "От первого звонка до передачи ключей мы берём на себя переговоры с владельцем, бумажную волокиту и все неприятные моменты — чтобы вы съехали без стресса.",

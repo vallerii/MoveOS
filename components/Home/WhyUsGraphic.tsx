@@ -1,3 +1,5 @@
+import { LogoMark } from "../Logo";
+
 type Props = {
   /** Concrete "what we do" lines (full sentences, not single words).
    * Rendered only when `card` is absent. */
@@ -71,7 +73,10 @@ export default function WhyUsGraphic({ advantages, card }: Props) {
   return (
     <div className="card-artifact p-4 sm:p-8">
       <div className="flex items-center justify-between border-b border-hairline pb-5">
-        <span className="font-display text-xl text-ink">MoveOS</span>
+        <span className="flex items-center gap-2 text-ink">
+          <LogoMark className="h-5 w-5" />
+          <span className="font-display text-xl">Movingo</span>
+        </span>
         <span className="text-meta text-ash">{String(advantages.length).padStart(2, "0")}</span>
       </div>
 

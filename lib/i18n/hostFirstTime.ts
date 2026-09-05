@@ -69,7 +69,7 @@ export const HOST_FIRST_TIME_LOCALES: Locale[] = ["ru", "en", "es"];
 export const HOST_FIRST_TIME_COPY: Partial<Record<Locale, HostFirstTimeCopy>> = {
   en: {
     meta: {
-      title: "First-Time Landlord? No Risk, No Mistakes — MoveOS",
+      title: "First-Time Landlord? No Risk, No Mistakes — Movingo",
       description:
         "Renting out for the first time? We screen your tenant's income and employment contract, register the deposit on time, and help protect you from illegal occupation — a free consultation before you list.",
     },
@@ -192,7 +192,7 @@ export const HOST_FIRST_TIME_COPY: Partial<Record<Locale, HostFirstTimeCopy>> = 
   },
   es: {
     meta: {
-      title: "¿Primer alquiler? Sin riesgos, sin errores — MoveOS",
+      title: "¿Primer alquiler? Sin riesgos, sin errores — Movingo",
       description:
         "¿Alquilas tu piso por primera vez? Verificamos al inquilino, sus ingresos y su contrato laboral, registramos la fianza dentro de plazo y te ayudamos a protegerte de los okupas. Consulta gratuita antes de publicar el anuncio.",
     },
@@ -315,7 +315,7 @@ export const HOST_FIRST_TIME_COPY: Partial<Record<Locale, HostFirstTimeCopy>> = 
   },
   ru: {
     meta: {
-      title: "Сдать квартиру впервые. Без риска и без ошибок — MoveOS",
+      title: "Сдать квартиру впервые. Без риска и без ошибок — Movingo",
       description:
         "Сдаёте квартиру впервые? Проверим арендатора, доход и трудовой договор, оформим депозит по закону и защитим от okupas. Бесплатная консультация до размещения объявления.",
     },

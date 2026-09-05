@@ -1,11 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Favicon: "OS" in italic serif over the site's own bloom wash.
-       The blooms are plain radial gradients rather than blurred shapes: a
-       favicon is rasterised down to 16px, where a Gaussian blur costs render
-       time and buys nothing, while a gradient fading to transparent is
-       already soft. The serif is named generically (Georgia / Times) because
-       a favicon renders outside the page and can't reach the site's
-       webfonts. -->
+  <!-- Favicon: the Movingo mark — a house whose inner stroke reads as an "M"
+       — over the site's own bloom wash. The blooms are plain radial
+       gradients rather than blurred shapes: a favicon is rasterised down to
+       16px, where a Gaussian blur costs render time and buys nothing, while
+       a gradient fading to transparent is already soft.
+
+       The mark is drawn at stroke-width 4 on a 64 viewBox (the same 2-on-32
+       ratio as components/Logo.tsx). Finer detail — window dots, a lighter
+       inner stroke — was tried and fills in solid at 16px, so the drawing
+       stops at two paths. -->
   <defs>
     <radialGradient id="peach" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#f6bf98" stop-opacity="1" />
@@ -36,14 +39,8 @@
     <ellipse cx="8" cy="54" rx="28" ry="22" fill="url(#sky)" />
   </g>
 
-  <text
-    x="32"
-    y="45"
-    text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-style="italic"
-    font-size="36"
-    letter-spacing="-1.5"
-    fill="#17191c"
-  >OS</text>
+  <g fill="none" stroke="#17191c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 28.4 32 12l21 16.4V53H11z" />
+    <path d="M22 53V32.5l10 8.5 10-8.5V53" />
+  </g>
 </svg>
