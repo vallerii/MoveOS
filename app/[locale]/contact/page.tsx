@@ -10,6 +10,7 @@ import { BOOKING_URL, CONTACT_EMAIL, CONTACT_PHONE, COMPANY } from "@/lib/config
 import { legalHref } from "@/components/LegalDocument";
 import PillButton from "@/components/PillButton";
 import Reveal from "@/components/Reveal";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -22,8 +23,10 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   const copy = getContactCopy(locale);
   const path = `/${locale}/contact`;
 
+  // No titleSuffix here: copy.meta.title already carries the brand, and
+  // appending it printed "Contact Movingo | Movingo Barcelona".
   return {
-    title: `${copy.meta.title}${dict.meta.titleSuffix}`,
+    title: copy.meta.title,
     description: copy.meta.description,
     alternates: {
       canonical: path,
@@ -96,7 +99,9 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
 
   return (
     <main>
-      <section className="container-page py-20 sm:py-28">
+      <Breadcrumbs locale={locale} items={[{ label: copy.eyebrow }]} />
+
+      <section className="container-page pb-20 pt-12 sm:pb-28 sm:pt-16">
         <div className="mx-auto max-w-3xl">
           <p className="tag">{copy.eyebrow}</p>
           <h1 className="mt-4 font-display text-heading-lg text-ink">{copy.h1}</h1>

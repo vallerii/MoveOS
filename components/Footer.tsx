@@ -28,10 +28,18 @@ const EXTRA: Record<
   Locale,
   {
     linksHeading: string;
+    /** Heading over the two landlord pages, directly under the tenant links
+     * in the same column — they're a different audience, not a "company"
+     * link like Home or Contact, which is where they used to sit. */
+    ownersHeading: string;
     companyHeading: string;
     contact: string;
     /** The /contact page — distinct from `contact`, which is the mailto. */
     contactPage: string;
+    /** The guides hub (/blog) and the glossary hub — sitewide links, since
+     * both sections are otherwise reachable only from a handful of pages. */
+    guides: string;
+    glossary: string;
     home: string;
     bottomNote: string;
     hostLink: string;
@@ -53,9 +61,12 @@ const EXTRA: Record<
 > = {
   en: {
     linksHeading: "Move-Out Help",
+    ownersHeading: "For Owners",
     companyHeading: "Company",
     contact: "Email us",
     contactPage: "Contact",
+    guides: "Guides",
+    glossary: "Glossary",
     home: "Home",
     bottomNote: "Free consultation — for tenants and owners alike.",
     hostLink: "Short-Term Rental",
@@ -67,9 +78,12 @@ const EXTRA: Record<
   },
   es: {
     linksHeading: "Ayuda con tu Mudanza",
+    ownersHeading: "Propietarios",
     companyHeading: "Empresa",
     contact: "Escríbenos",
     contactPage: "Contacto",
+    guides: "Guías",
+    glossary: "Glosario",
     home: "Inicio",
     bottomNote: "Consulta gratuita — para inquilinos y propietarios.",
     hostLink: "Alquiler de temporada",
@@ -81,9 +95,12 @@ const EXTRA: Record<
   },
   ru: {
     linksHeading: "Помощь с выездом",
+    ownersHeading: "Владельцам",
     companyHeading: "Компания",
     contact: "Написать нам",
     contactPage: "Контакты",
+    guides: "Статьи",
+    glossary: "Глоссарий",
     home: "Главная",
     bottomNote: "Бесплатная консультация — для арендаторов и владельцев.",
     hostLink: "Посуточная сдача",
@@ -145,6 +162,34 @@ export default function Footer({ locale, dict }: Props) {
                 );
               })}
             </nav>
+
+            {/* Owner pages sit under the tenant links rather than in the
+                Company column: they're a second audience, and grouping them
+                behind their own heading is what makes the column readable
+                for both. */}
+            <p className="tag mt-8">{extra.ownersHeading}</p>
+            <nav className="mt-5 flex flex-col gap-3">
+              <Link
+                href={`/${locale}/host`}
+                aria-current={pathname === `/${locale}/host` ? "page" : undefined}
+                className={`text-caption transition-colors ${
+                  pathname === `/${locale}/host` ? "text-ink" : "text-slate hover:text-ink"
+                }`}
+              >
+                {extra.hostLink}
+              </Link>
+              {HOST_FIRST_TIME_LOCALES.includes(locale) && (
+                <Link
+                  href={`/${locale}/host/first-time`}
+                  aria-current={pathname === `/${locale}/host/first-time` ? "page" : undefined}
+                  className={`text-caption transition-colors ${
+                    pathname === `/${locale}/host/first-time` ? "text-ink" : "text-slate hover:text-ink"
+                  }`}
+                >
+                  {extra.hostFirstTimeLink}
+                </Link>
+              )}
+            </nav>
           </div>
 
           <div>
@@ -154,23 +199,21 @@ export default function Footer({ locale, dict }: Props) {
                 {extra.home}
               </Link>
               <Link
-                href={`/${locale}/host`}
-                aria-current={pathname === `/${locale}/host` ? "page" : undefined}
-                className={`transition-colors ${pathname === `/${locale}/host` ? "text-ink" : "hover:text-ink"}`}
+                href={`/${locale}/blog`}
+                aria-current={pathname === `/${locale}/blog` ? "page" : undefined}
+                className={`transition-colors ${pathname === `/${locale}/blog` ? "text-ink" : "hover:text-ink"}`}
               >
-                {extra.hostLink}
+                {extra.guides}
               </Link>
-              {HOST_FIRST_TIME_LOCALES.includes(locale) && (
-                <Link
-                  href={`/${locale}/host/first-time`}
-                  aria-current={pathname === `/${locale}/host/first-time` ? "page" : undefined}
-                  className={`transition-colors ${
-                    pathname === `/${locale}/host/first-time` ? "text-ink" : "hover:text-ink"
-                  }`}
-                >
-                  {extra.hostFirstTimeLink}
-                </Link>
-              )}
+              <Link
+                href={`/${locale}/glossary`}
+                aria-current={pathname.startsWith(`/${locale}/glossary`) ? "page" : undefined}
+                className={`transition-colors ${
+                  pathname.startsWith(`/${locale}/glossary`) ? "text-ink" : "hover:text-ink"
+                }`}
+              >
+                {extra.glossary}
+              </Link>
               <Link
                 href={`/${locale}/contact`}
                 aria-current={pathname === `/${locale}/contact` ? "page" : undefined}

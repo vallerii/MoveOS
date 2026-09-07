@@ -15,6 +15,7 @@ import PainTestimonial from "@/components/PainTestimonial";
 import QuizSection from "@/components/Quiz/QuizSection";
 import BuyoutCalculator from "@/components/Quiz/BuyoutCalculator";
 import { FaqJsonLd } from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 type Params = { locale: string; pain: string };
 
@@ -75,6 +76,10 @@ export default function PainPage({ params }: { params: Params }) {
       {/* Guarded on `faq` — several pains have no FAQ block, and marking up
           questions that aren't rendered is a structured-data violation. */}
       {faq && <FaqJsonLd items={faq.items} />}
+      {/* These URLs are flat (/en/deposit), so nothing else on the page says
+          where it sits in the site. The trail also gives the page its first
+          in-content internal link. */}
+      <Breadcrumbs locale={locale} items={[{ label: dict.pains[pain].shortLabel }]} />
       <Hero locale={locale} pain={pain} dict={dict} />
       <DidYouKnow dict={dict} pain={pain} />
       <WhatYouGet dict={dict} pain={pain} />

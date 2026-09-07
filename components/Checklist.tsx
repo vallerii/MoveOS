@@ -17,14 +17,18 @@ type Props = {
 export default function Checklist({ content, downloadLabel, downloadHref }: Props) {
   return (
     <div>
-      <h3 className="font-display text-heading text-ink">{content.title}</h3>
+      {/* The checklist page's H1. It used to be an h3, which left
+          /[locale]/checklist/* as the only pages on the site with no h1 at
+          all — the section headings below start at h2 for the same reason:
+          this list is the page's outline, so it should read as one. */}
+      <h1 className="font-display text-heading text-ink">{content.title}</h1>
       <p className="mt-6 max-w-2xl text-body text-slate">{content.intro}</p>
 
       <div className="mt-12 border-t border-hairline">
         {content.sections.map((section) => (
           <details key={section.heading} className="group border-b border-hairline py-6">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-heading-sm text-ink marker:content-none [&::-webkit-details-marker]:hidden">
-              <span>{section.heading}</span>
+              <h2 className="font-display text-heading-sm font-normal">{section.heading}</h2>
               <ChevronDownIcon className="h-5 w-5 shrink-0 text-ash transition-transform duration-200 group-open:rotate-180" />
             </summary>
             <ul className="mt-5 space-y-3">

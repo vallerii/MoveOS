@@ -58,7 +58,7 @@ export interface ContactCopy {
 
 const en: ContactCopy = {
   meta: {
-    title: "Contact Movingo",
+    title: "Contact Movingo — Barcelona Move-Out Help",
     description:
       "Talk to Movingo about your move-out in Barcelona: book a free 15-minute call, or email us. Contact details, hours and where we work.",
   },

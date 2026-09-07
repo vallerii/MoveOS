@@ -4,6 +4,8 @@ const es: Dictionary = {
   meta: {
     titleSuffix: " | Movingo Barcelona",
     homeTitle: "Movingo — Revisión gratuita de salida para inquilinos en Barcelona",
+    homeDescription:
+      "¿Te mudas de un piso de alquiler en Barcelona? Llamada gratuita de 15 minutos sobre la fianza, el papeleo, las reparaciones y qué hacer con lo que dejas atrás.",
   },
   languageNames: {
     en: "English",

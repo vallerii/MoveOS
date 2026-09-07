@@ -33,6 +33,14 @@ export interface ChecklistSection {
 
 export interface ChecklistContent {
   title: string;
+  /** Optional short <meta description> for search — `intro` is written for
+   * the page and runs past the ~155 characters Google renders. Falls back
+   * to `intro`. */
+  metaDescription?: string;
+  /** Optional short <title> for search. `title` is written for the page's
+   * own H1 and runs past what Google renders once the brand suffix is
+   * appended (67 chars for the Barcelona checklist). Falls back to `title`. */
+  metaTitle?: string;
   intro: string;
   sections: ChecklistSection[];
   disclaimer: string;
@@ -49,6 +57,12 @@ export interface Dictionary {
      * truncates. This is the full title, brand included.
      */
     homeTitle: string;
+    /**
+     * The homepage's own <meta description>. It used to reuse
+     * footer.tagline — 73 characters describing the brand rather than what
+     * the page offers, on the site's single most important URL.
+     */
+    homeDescription: string;
   };
   languageNames: Record<Locale, string>;
   nav: {

@@ -6,6 +6,7 @@ import {
   type LegalDocSlug,
 } from "@/lib/i18n/legal";
 import type { Locale } from "@/lib/i18n/types";
+import Breadcrumbs from "./Breadcrumbs";
 
 type Props = {
   locale: Locale;
@@ -35,8 +36,10 @@ export default function LegalDocument({ locale, slug }: Props) {
   const others = LEGAL_DOC_SLUGS.filter((s) => s !== slug);
 
   return (
-    <main className="container-page py-24 sm:py-32">
-      <article className="mx-auto max-w-3xl">
+    <main className="pb-24 sm:pb-32">
+      <Breadcrumbs locale={locale} items={[{ label: doc.navLabel }]} narrow />
+
+      <article className="container-page mx-auto max-w-3xl pt-12 sm:pt-16">
         <h1 className="font-display text-heading-lg text-ink">{doc.title}</h1>
         <p className="mt-4 text-meta text-ash">
           {copy.lastUpdatedLabel}:{" "}

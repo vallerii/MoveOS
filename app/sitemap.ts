@@ -3,6 +3,7 @@ import { LOCALES, PAIN_SLUGS } from "@/lib/i18n/types";
 import { HOST_LOCALES } from "@/lib/i18n/host";
 import { HOST_FIRST_TIME_LOCALES } from "@/lib/i18n/hostFirstTime";
 import { LEGAL_DOC_SLUGS } from "@/lib/i18n/legal";
+import { getGlossarySlugs } from "@/lib/i18n/glossary";
 import { SITE_URL } from "@/lib/config";
 import { getAllArticleSlugs } from "@/lib/datocms";
 
@@ -81,6 +82,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.4,
+      });
+    }
+  }
+
+  // Section hubs: the guides index and the glossary index. Both are parents
+  // of a set of URLs below, so they carry more weight than a leaf page.
+  for (const locale of LOCALES) {
+    for (const hub of ["blog", "glossary"]) {
+      entries.push({
+        url: `${SITE_URL}/${locale}/${hub}`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 0.7,
+        alternates: {
+          languages: Object.fromEntries(LOCALES.map((l) => [l, `${SITE_URL}/${l}/${hub}`])),
+        },
+      });
+    }
+  }
+
+  // Glossary terms — one URL per term, each answering a single definition
+  // query (see lib/i18n/glossary.ts).
+  for (const locale of LOCALES) {
+    for (const slug of getGlossarySlugs(locale)) {
+      entries.push({
+        url: `${SITE_URL}/${locale}/glossary/${slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.5,
+        alternates: {
+          languages: Object.fromEntries(
+            LOCALES.map((l) => [l, `${SITE_URL}/${l}/glossary/${slug}`]),
+          ),
+        },
       });
     }
   }

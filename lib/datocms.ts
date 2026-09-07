@@ -110,6 +110,25 @@ export async function getTrustArticles(locale: ArticleLocale): Promise<ArticleSu
   return (data?.allArticles ?? []).slice(0, MAX_TRUST_ARTICLES);
 }
 
+const ALL_ARTICLES_QUERY = `
+  query AllArticles($locale: SiteLocale) {
+    allArticles(locale: $locale, orderBy: _firstPublishedAt_DESC) {
+      ${ARTICLE_SUMMARY_FIELDS}
+    }
+  }
+`;
+
+/**
+ * Every published article for a locale, newest first — the guides hub
+ * (app/[locale]/blog/page.tsx). Unlike getTrustArticles this is not capped:
+ * the hub is the page that has to list all of them, which is the point of
+ * having one.
+ */
+export async function getAllArticles(locale: ArticleLocale): Promise<ArticleSummary[]> {
+  const data = await datocmsFetch<{ allArticles: ArticleSummary[] }>(ALL_ARTICLES_QUERY, { locale });
+  return data?.allArticles ?? [];
+}
+
 const ARTICLE_BY_SLUG_QUERY = `
   query ArticleBySlug($slug: String, $locale: SiteLocale) {
     article(filter: { slug: { eq: $slug } }, locale: $locale) {

@@ -10,6 +10,8 @@ import FAQ from "@/components/FAQ";
 import HowItWorks from "@/components/HowItWorks";
 import HostFirstTimeTestimonials from "@/components/HostFirstTime/HostFirstTimeTestimonials";
 import HostClosingCta from "@/components/Host/HostClosingCta";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { getDictionary } from "@/lib/i18n";
 
 type Params = { locale: string };
 
@@ -24,6 +26,13 @@ export function generateStaticParams() {
   return HOST_FIRST_TIME_LOCALES.map((locale) => ({ locale }));
 }
 
+/** Breadcrumb label — matches the header's "For Owners" dropdown wording. */
+const CRUMB: Record<Locale, string> = {
+  en: "First-Time Landlord",
+  es: "Primer alquiler",
+  ru: "Первая сдача",
+};
+
 export function generateMetadata({ params }: { params: Params }): Metadata {
   if (!isValid(params)) return {};
   const { locale } = params;
@@ -32,7 +41,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const path = `/${locale}/host/first-time`;
 
   return {
-    title: copy.meta.title,
+    title: `${copy.meta.title}${getDictionary(locale).meta.titleSuffix}`,
     description: copy.meta.description,
     alternates: {
       canonical: path,
@@ -88,6 +97,11 @@ export default function HostFirstTimePage({ params }: { params: Params }) {
 
   return (
     <main>
+      {/* Flat trail rather than Home / Short-Term Rental / First-Time
+          Landlord: the URL nests this page under /host, but the two pages
+          are siblings aimed at different owners, so a trail implying it's a
+          sub-page of short-term rental would mislead the reader. */}
+      <Breadcrumbs locale={locale} items={[{ label: CRUMB[locale] }]} />
       <HostFirstTimeHero {...copy.hero} />
       <HostFirstTimeServices {...copy.services} />
       <HostFirstTimeTrust {...copy.trust} />

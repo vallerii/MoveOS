@@ -4,6 +4,8 @@ const en: Dictionary = {
   meta: {
     titleSuffix: " | Movingo Barcelona",
     homeTitle: "Movingo — Free Move-Out Check for Barcelona Renters",
+    homeDescription:
+      "Moving out of a rented flat in Barcelona? Free 15-minute call on your deposit, the paperwork, repairs and what to do with what you leave behind.",
   },
   languageNames: {
     en: "English",
@@ -1023,6 +1025,9 @@ const en: Dictionary = {
   checklist: {
     generic: {
       title: "Moving Out in Spain: What Every Tenant Should Know",
+      metaTitle: "Moving Out in Spain: Tenant Checklist",
+      metaDescription:
+        "What every tenant in Spain should do before handing back the keys: deposit, notice, utilities, paperwork and the proof that protects you.",
       intro:
         "General information for anyone leaving a rental in Spain — not legal advice, but the basics most tenants only learn the hard way.",
       sections: [
@@ -1079,6 +1084,9 @@ const en: Dictionary = {
     },
     qualified: {
       title: "Move-Out Checklist for Your Barcelona Apartment",
+      metaTitle: "Barcelona Move-Out Checklist",
+      metaDescription:
+        "Step-by-step move-out checklist for a Barcelona rental: the evidence to gather, the repairs worth doing, and what to hand over with the keys.",
       intro:
         "The idea behind this checklist: once you hand back the keys, you should have a complete evidence pack proving the condition you left it in and that every obligation is closed.",
       sections: [

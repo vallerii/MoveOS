@@ -5,7 +5,7 @@ import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/config";
 import Checklist from "@/components/Checklist";
-import ArrowLink from "@/components/ArrowLink";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 type ChecklistType = "qualified" | "generic";
 const CHECKLIST_TYPES: ChecklistType[] = ["qualified", "generic"];
@@ -26,9 +26,13 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const dict = getDictionary(locale);
   const content = dict.checklist[type];
   const path = `/${locale}/checklist/${type}`;
+  // The checklist titles are written for the page ("Move-Out Checklist for
+  // Your Barcelona Apartment"); with the brand suffix that ran to 67
+  // characters, well past what Google renders. metaTitle is the short cut
+  // where a locale has authored one.
   return {
-    title: `${content.title}${dict.meta.titleSuffix}`,
-    description: content.intro,
+    title: `${content.metaTitle ?? content.title}${dict.meta.titleSuffix}`,
+    description: content.metaDescription ?? content.intro,
     alternates: {
       canonical: path,
       languages: {
@@ -50,19 +54,17 @@ export default function ChecklistPage({ params }: { params: Params }) {
   return (
     // Reading page — narrower measure than the marketing sections, since
     // this is a long list of items rather than a magazine spread.
-    <main className="container-page py-16 sm:py-24">
-      <div className="mx-auto max-w-3xl">
-        <ArrowLink href={`/${locale}`} className="text-caption text-slate">
-          {dict.checklistPage.backLink}
-        </ArrowLink>
+    <main className="pb-16 sm:pb-24">
+      <Breadcrumbs locale={locale} items={[{ label: content.title }]} narrow />
 
-        <div className="mt-10">
+      <div className="container-page max-w-3xl pt-10">
+        <div>
           <Checklist content={content} downloadLabel={dict.results.downloadPdf} downloadHref={pdfHref} />
 
           {/* The page's single accent card — the booking offer is the one
               action worth punctuating here. */}
           <div className="card-peach mt-16">
-            <h4 className="font-display text-heading-sm text-sienna">{dict.results.qualified.bookingHeading}</h4>
+            <h2 className="font-display text-heading-sm text-sienna">{dict.results.qualified.bookingHeading}</h2>
             <p className="mt-3 max-w-xl text-caption text-sienna/80">{dict.results.qualified.bookingBody}</p>
             <div className="mt-8">
               <a

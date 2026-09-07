@@ -74,9 +74,9 @@ export const HOST_FIRST_TIME_LOCALES: Locale[] = (["ru", "en", "es"] as Locale[]
 export const HOST_FIRST_TIME_COPY: Partial<Record<Locale, HostFirstTimeCopy>> = {
   en: {
     meta: {
-      title: "First-Time Landlord? No Risk, No Mistakes — Movingo",
+      title: "First Time Renting Out Your Flat",
       description:
-        "Renting out for the first time? We screen your tenant's income and employment contract, register the deposit on time, and help protect you from illegal occupation — a free consultation before you list.",
+        "Renting out for the first time in Barcelona? We screen the tenant, register the deposit on time and help you avoid the costly beginner mistakes.",
     },
     hero: {
       eyebrow: "For Property Owners · Barcelona · First-Time Landlords",

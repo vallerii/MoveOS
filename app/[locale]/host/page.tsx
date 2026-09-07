@@ -13,6 +13,8 @@ import HostCoverageGrid from "@/components/Host/HostCoverageGrid";
 import HostTestimonials from "@/components/Host/HostTestimonials";
 import HostLeadForm from "@/components/Host/HostLeadForm";
 import HostClosingCta from "@/components/Host/HostClosingCta";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { getDictionary } from "@/lib/i18n";
 
 type Params = { locale: string };
 
@@ -27,6 +29,13 @@ export function generateStaticParams() {
   return HOST_LOCALES.map((locale) => ({ locale }));
 }
 
+/** Breadcrumb label — matches the header's "For Owners" dropdown wording. */
+const CRUMB: Record<Locale, string> = {
+  en: "Short-Term Rental",
+  es: "Alquiler de temporada",
+  ru: "Посуточная сдача",
+};
+
 export function generateMetadata({ params }: { params: Params }): Metadata {
   if (!isValid(params)) return {};
   const { locale } = params;
@@ -34,8 +43,10 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   if (!copy) return {};
   const path = `/${locale}/host`;
 
+  // Brand suffix, same as every other page — these two landlord pages were
+  // the only ones whose <title> carried no brand at all.
   return {
-    title: copy.meta.title,
+    title: `${copy.meta.title}${getDictionary(locale).meta.titleSuffix}`,
     description: copy.meta.description,
     alternates: {
       canonical: path,
@@ -73,6 +84,7 @@ export default function HostPage({ params }: { params: Params }) {
 
   return (
     <main>
+      <Breadcrumbs locale={locale} items={[{ label: CRUMB[locale] }]} />
       <HostHero {...copy.hero} />
       <HostEarnings {...copy.earnings} />
       <HowItWorks
