@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { LOCALES, PAIN_SLUGS } from "@/lib/i18n/types";
 import { HOST_LOCALES } from "@/lib/i18n/host";
 import { HOST_FIRST_TIME_LOCALES } from "@/lib/i18n/hostFirstTime";
+import { LEGAL_DOC_SLUGS } from "@/lib/i18n/legal";
 import { SITE_URL } from "@/lib/config";
 import { getAllArticleSlugs } from "@/lib/datocms";
 
@@ -84,13 +85,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
+  // Contact page — low priority, but it carries the company's identity and
+  // is the page a person (or a reviewer at Meta) looks for.
   for (const locale of LOCALES) {
     entries.push({
-      url: `${SITE_URL}/${locale}/privacy`,
+      url: `${SITE_URL}/${locale}/contact`,
       lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.1,
+      changeFrequency: "monthly",
+      priority: 0.5,
+      alternates: {
+        languages: Object.fromEntries(LOCALES.map((l) => [l, `${SITE_URL}/${l}/contact`])),
+      },
     });
+  }
+
+  // The four legal documents (aviso legal, privacy, cookies, terms) — see
+  // lib/i18n/legal.ts. Listed so they are indexable and verifiably present,
+  // which is what an ad review looks for, at the lowest priority on the site.
+  for (const slug of LEGAL_DOC_SLUGS) {
+    for (const locale of LOCALES) {
+      entries.push({
+        url: `${SITE_URL}/${locale}/${slug}`,
+        lastModified: now,
+        changeFrequency: "yearly",
+        priority: 0.1,
+        alternates: {
+          languages: Object.fromEntries(LOCALES.map((l) => [l, `${SITE_URL}/${l}/${slug}`])),
+        },
+      });
+    }
   }
 
   // Articles from DatoCMS (see lib/datocms.ts) — same pattern as pain

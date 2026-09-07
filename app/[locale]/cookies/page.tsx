@@ -4,12 +4,10 @@ import { LOCALES, type Locale } from "@/lib/i18n/types";
 import { legalMetadata } from "@/lib/i18n/legal";
 import LegalDocument from "@/components/LegalDocument";
 
-// GDPR/LOPDGDD privacy policy. This route replaces the placeholder
-// page that used dict.privacy (still present, now unused, in the three
-// dictionary files).
+// Cookie policy — required by art. 22.2 LSSI-CE because of the Meta Pixel.
 // The document's copy lives in lib/i18n/legal.ts; the page itself is
 // rendered by components/LegalDocument.tsx, shared with the other three.
-const SLUG = "privacy" as const;
+const SLUG = "cookies" as const;
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));

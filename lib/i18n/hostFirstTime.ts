@@ -1,4 +1,4 @@
-import type { Locale } from "./types";
+import { LOCALES, type Locale } from "./types";
 
 /**
  * Copy for /[locale]/host/first-time — a second landlord-facing landing
@@ -64,7 +64,12 @@ export interface HostFirstTimeCopy {
   };
 }
 
-export const HOST_FIRST_TIME_LOCALES: Locale[] = ["ru", "en", "es"];
+// Intersected with LOCALES (lib/i18n/types.ts): this page has copy for
+// all three locales, but only the ones the site currently serves may be
+// linked or listed in the sitemap — a retired locale 404s at the layout.
+export const HOST_FIRST_TIME_LOCALES: Locale[] = (["ru", "en", "es"] as Locale[]).filter((l) =>
+  LOCALES.includes(l),
+);
 
 export const HOST_FIRST_TIME_COPY: Partial<Record<Locale, HostFirstTimeCopy>> = {
   en: {

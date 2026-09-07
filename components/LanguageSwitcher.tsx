@@ -19,6 +19,13 @@ function pathForLocale(pathname: string, target: Locale): string {
 export default function LanguageSwitcher({ locale, languageNames }: Props) {
   const pathname = usePathname() || `/${locale}`;
 
+  // Nothing to switch between while the site serves a single locale (see
+  // LOCALES in lib/i18n/types.ts). The component is left wired up in the
+  // header, footer and mobile panel so re-adding a locale there brings the
+  // control back with no markup changes — see MULTI_LOCALE below for the
+  // surrounding chrome (separators, the footer block) that hides with it.
+  if (LOCALES.length < 2) return null;
+
   return (
     // Pill-geometry segmented control on a hairline border — the same
     // rounded-full silhouette as the buttons, at a smaller scale, with the

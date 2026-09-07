@@ -64,6 +64,15 @@ const config: Config = {
         // at the same ~1238px viewport width the old curve did, so tablet/
         // desktop sizing is effectively unchanged — only the narrow-phone
         // end of the curve moved.
+        // Homepage hero only. The `display` tier above tops out at 90px,
+        // which is wider than the 768px headline measure can hold: the
+        // authored three-line h1 (see HomeCopy.hero.h1) re-wrapped into five
+        // ragged lines from 1280px up, and the first line ran under the
+        // floating checklist artifact. This tier caps at 76px — the largest
+        // size at which the longest line ("Whatever happens —") still fits
+        // the measure with slack to spare — and keeps a gentler slope so the
+        // three lines hold from ~360px wide upward.
+        "display-hero": ["clamp(1.75rem, 0.6rem + 5.4vw, 4.75rem)", { lineHeight: "1.1", letterSpacing: "-0.025em", fontWeight: "400" }],
         display: ["clamp(2rem, 0.75rem + 6.3vw, 5.625rem)", { lineHeight: "1.12", letterSpacing: "-0.025em", fontWeight: "400" }],
         "heading-lg": ["clamp(2.25rem, 1.5rem + 3.4vw, 4rem)", { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "400" }],
         heading: ["clamp(1.875rem, 1.35rem + 2.2vw, 2.75rem)", { lineHeight: "1.2", letterSpacing: "-0.015em", fontWeight: "400" }],

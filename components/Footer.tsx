@@ -2,12 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { Dictionary, Locale } from "@/lib/i18n/types";
+import { LOCALES, type Dictionary, type Locale } from "@/lib/i18n/types";
 import { PAIN_SLUGS } from "@/lib/pains";
 import { CONTACT_EMAIL } from "@/lib/config";
 import { HOST_FIRST_TIME_LOCALES } from "@/lib/i18n/hostFirstTime";
+import { LEGAL_DOC_SLUGS, getLegalCopy } from "@/lib/i18n/legal";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { legalHref } from "./LegalDocument";
 import { Logo } from "./Logo";
+
+// See the identical constant in Header.tsx: the switcher hides itself when
+// the site serves one locale, but the block around it (a top margin here,
+// a hairline divider there) has to hide with it.
+const MULTI_LOCALE = LOCALES.length > 1;
 
 type Props = {
   locale: Locale;
@@ -23,6 +30,8 @@ const EXTRA: Record<
     linksHeading: string;
     companyHeading: string;
     contact: string;
+    /** The /contact page — distinct from `contact`, which is the mailto. */
+    contactPage: string;
     home: string;
     bottomNote: string;
     hostLink: string;
@@ -38,12 +47,15 @@ const EXTRA: Record<
     checklistsHeading: string;
     checklistQualified: string;
     checklistGeneric: string;
+    /** Heading for the row of legal documents (see lib/i18n/legal.ts). */
+    legalHeading: string;
   }
 > = {
   en: {
     linksHeading: "Move-Out Help",
     companyHeading: "Company",
-    contact: "Contact us",
+    contact: "Email us",
+    contactPage: "Contact",
     home: "Home",
     bottomNote: "Free consultation — for tenants and owners alike.",
     hostLink: "Short-Term Rental",
@@ -51,11 +63,13 @@ const EXTRA: Record<
     checklistsHeading: "Move-out checklists",
     checklistQualified: "Barcelona",
     checklistGeneric: "Spain (general)",
+    legalHeading: "Legal",
   },
   es: {
     linksHeading: "Ayuda con tu Mudanza",
     companyHeading: "Empresa",
-    contact: "Contáctanos",
+    contact: "Escríbenos",
+    contactPage: "Contacto",
     home: "Inicio",
     bottomNote: "Consulta gratuita — para inquilinos y propietarios.",
     hostLink: "Alquiler de temporada",
@@ -63,11 +77,13 @@ const EXTRA: Record<
     checklistsHeading: "Checklists de mudanza",
     checklistQualified: "Barcelona",
     checklistGeneric: "España (general)",
+    legalHeading: "Legal",
   },
   ru: {
     linksHeading: "Помощь с выездом",
     companyHeading: "Компания",
     contact: "Написать нам",
+    contactPage: "Контакты",
     home: "Главная",
     bottomNote: "Бесплатная консультация — для арендаторов и владельцев.",
     hostLink: "Посуточная сдача",
@@ -75,6 +91,7 @@ const EXTRA: Record<
     checklistsHeading: "Чек-листы по выезду",
     checklistQualified: "Барселона",
     checklistGeneric: "Испания (общий)",
+    legalHeading: "Документы",
   },
 };
 
@@ -95,17 +112,20 @@ export default function Footer({ locale, dict }: Props) {
   const pathname = usePathname() || `/${locale}`;
   const currentSlug = pathname.split("/")[2];
   const extra = EXTRA[locale];
+  const legalCopy = getLegalCopy(locale);
 
   return (
     <footer className="border-t border-hairline bg-fog pb-12 pt-20 sm:pt-24">
       <div className="container-page">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           <div className="lg:col-span-2">
             <Logo locale={locale} />
             <p className="mt-5 max-w-xs text-caption text-slate">{dict.footer.tagline}</p>
-            <div className="mt-8">
-              <LanguageSwitcher locale={locale} languageNames={dict.languageNames} />
-            </div>
+            {MULTI_LOCALE && (
+              <div className="mt-8">
+                <LanguageSwitcher locale={locale} languageNames={dict.languageNames} />
+              </div>
+            )}
           </div>
 
           <div>
@@ -151,12 +171,41 @@ export default function Footer({ locale, dict }: Props) {
                   {extra.hostFirstTimeLink}
                 </Link>
               )}
-              <Link href={`/${locale}/privacy`} className="transition-colors hover:text-ink">
-                {dict.footer.privacy}
+              <Link
+                href={`/${locale}/contact`}
+                aria-current={pathname === `/${locale}/contact` ? "page" : undefined}
+                className={`transition-colors ${pathname === `/${locale}/contact` ? "text-ink" : "hover:text-ink"}`}
+              >
+                {extra.contactPage}
               </Link>
               <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-ink">
                 {extra.contact}
               </a>
+            </nav>
+          </div>
+
+          {/* Aviso Legal, privacy, cookies and terms — Spanish law expects all
+              four to be reachable from every page, and Meta requires the
+              privacy policy for any ad that collects personal data. Its own
+              column beside Company rather than a row under the grid, so the
+              set reads as one group. */}
+          <div>
+            <p className="tag">{extra.legalHeading}</p>
+            <nav className="mt-5 flex flex-col gap-3">
+              {LEGAL_DOC_SLUGS.map((slug) => {
+                const href = legalHref(locale, slug);
+                const active = pathname === href;
+                return (
+                  <Link
+                    key={slug}
+                    href={href}
+                    aria-current={active ? "page" : undefined}
+                    className={`text-caption transition-colors ${active ? "text-ink" : "text-slate hover:text-ink"}`}
+                  >
+                    {legalCopy.docs[slug].navLabel}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
         </div>

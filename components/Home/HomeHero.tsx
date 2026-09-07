@@ -71,7 +71,7 @@ export default function HomeHero({ copy }: Props) {
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="mt-6 font-display text-display text-ink">
+              <h1 className="mt-6 text-balance font-display text-display-hero text-ink">
                 {copy.hero.h1.map((line, i) => (
                   <span key={i} className="block">
                     {line.map((segment, j) =>

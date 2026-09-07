@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { PAIN_SLUGS } from "@/lib/i18n/types";
+import { LOCALES, PAIN_SLUGS } from "@/lib/i18n/types";
 import type { Dictionary, Locale } from "@/lib/i18n/types";
 import { HOST_FIRST_TIME_LOCALES } from "@/lib/i18n/hostFirstTime";
 import { BOOKING_URL } from "@/lib/config";
@@ -40,6 +40,11 @@ const HOST_MENU: Record<Locale, { trigger: string; shortTerm: string; firstTime:
   es: { trigger: "Propietarios", shortTerm: "Alquiler de temporada", firstTime: "Primer alquiler" },
   ru: { trigger: "Владельцам", shortTerm: "Посуточно", firstTime: "Первая сдача" },
 };
+
+// True only when more than one locale is served (see LOCALES in
+// lib/i18n/types.ts). Gates the chrome *around* the language switcher — the
+// switcher hides itself, but its wrapper's divider and spacing can't.
+const MULTI_LOCALE = LOCALES.length > 1;
 
 function MenuIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -291,9 +296,14 @@ export default function Header({ locale, dict }: Props) {
               ))}
             </nav>
 
-            <div className="mt-5 border-t border-hairline pt-5">
-              <LanguageSwitcher locale={locale} languageNames={dict.languageNames} />
-            </div>
+            {/* Hidden along with the switcher itself while the site is
+                single-locale — the wrapper carries a hairline rule that would
+                otherwise read as an empty divider. See MULTI_LOCALE. */}
+            {MULTI_LOCALE && (
+              <div className="mt-5 border-t border-hairline pt-5">
+                <LanguageSwitcher locale={locale} languageNames={dict.languageNames} />
+              </div>
+            )}
 
             <PillButton
               href={BOOKING_URL}

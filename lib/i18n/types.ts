@@ -1,7 +1,26 @@
 export type Locale = "en" | "es" | "ru";
 
-export const LOCALES: Locale[] = ["en", "es", "ru"];
-export const DEFAULT_LOCALE: Locale = "ru";
+/**
+ * Every locale that still has a full dictionary in lib/i18n/dictionaries/.
+ * Nothing routes off this list — it exists so the Spanish and Russian copy
+ * stays type-checked (and one edit away from coming back) while the site
+ * serves English only, and so middleware.ts knows which locale prefixes are
+ * retired and need redirecting.
+ */
+export const ALL_LOCALES: Locale[] = ["en", "es", "ru"];
+
+/**
+ * The locales the site actually serves. Everything derives from this list:
+ * generateStaticParams, the 404 for an unknown locale, hreflang/alternates,
+ * sitemap.xml, the JSON-LD availableLanguage, and whether the language
+ * switcher renders at all (it hides itself below two locales).
+ *
+ * English-only for now. To bring a language back, add it here — the
+ * dictionaries are untouched, and middleware.ts stops redirecting a prefix
+ * as soon as it appears in this list.
+ */
+export const LOCALES: Locale[] = ["en"];
+export const DEFAULT_LOCALE: Locale = "en";
 
 export type PainSlug = "deposit" | "admin" | "belongings" | "urgent" | "buyout" | "repair";
 
